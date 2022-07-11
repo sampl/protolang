@@ -5,9 +5,9 @@ export default function Layout({children}) {
     <header>
       <nav>
         <a href="/">Home</a>
-        {/* <Link href="/lessons">Lessons</Link> */}
-        {/* <Link href="/practice">Practice</Link> */}
-        {/* <Link href="/resources">Resources</Link> */}
+        {/* <Link to="/lessons">Lessons</Link> */}
+        {/* <Link to="/practice">Practice</Link> */}
+        {/* <Link to="/resources">Resources</Link> */}
 
         <AccountDropdown />
       </nav>

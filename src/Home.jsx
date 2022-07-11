@@ -1,7 +1,7 @@
 import Layout from "./Layout"
 import { useUser } from "./user";
 
-function App() {
+export default function Home() {
   const { user } = useUser();
 
   return (
@@ -11,5 +11,3 @@ function App() {
     </Layout>
   )
 }
-
-export default App

@@ -1,5 +1,6 @@
 import { useUser } from "./user";
 import { useSelect } from 'react-supabase'
+import { Link } from "react-router-dom";
 
 export default function AccountDropdown() {
 
@@ -9,7 +10,7 @@ export default function AccountDropdown() {
   const [{ data: languages }] = useSelect('languages')
 
   return <div>
-    {!user ? <a href="/login">log in</a> : <a href="/account">Account</a>}
+    {!user ? <Link to="/login">log in</Link> : <Link to="/account">Account</Link>}
     {languages && languages.length > 0 && languages.map(d => d.flag).join(' ')}
   </div>
 }

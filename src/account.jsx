@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import { supabase } from '../utils/supabaseClient'
-import { useUser } from "../context/user";
-import Layout from '../layout/Layout';
+import { supabase } from './supabaseClient'
+import { useUser } from "./user";
+import Layout from './Layout';
 
 export default function Account() {
   const { user, logout } = useUser()
