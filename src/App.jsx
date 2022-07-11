@@ -1,8 +1,14 @@
+import Layout from "./Layout"
+import { useUser } from "./user";
+
 function App() {
+  const { user } = useUser();
+
   return (
-    <div>
+    <Layout>
       hi
-    </div>
+      <pre>{JSON.stringify(user)}</pre>
+    </Layout>
   )
 }
 
