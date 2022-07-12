@@ -1,12 +1,13 @@
-import { Routes as RouterRoutes, Route } from "react-router-dom";
-import Account from "./Account";
-import Home from "./Home";
-import Resources from "./Resources";
-import ResourceItem from './ResourceItem'
-import Lessons from "./Lessons";
-import LessonItem from './LessonItem'
-import Login from "./login";
-import Logout from "./logout";
+import { Routes as RouterRoutes, Route } from 'react-router-dom'
+
+import Account from './account/Account'
+import Home from './Home'
+import Resources from './resources/Resources'
+import ResourceItem from './resources/ResourceItem'
+import Lessons from './lessons/Lessons'
+import LessonItem from './lessons/LessonItem'
+import Login from './account/login'
+import Logout from './account/logout'
 
 export default function Routes() {
   return (

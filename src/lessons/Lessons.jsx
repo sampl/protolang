@@ -1,6 +1,7 @@
-import Layout from './Layout'
-import { Link } from 'react-router-dom';
-import { useSelect } from 'react-supabase';
+import { Link } from 'react-router-dom'
+import { useSelect } from 'react-supabase'
+
+import Layout from '../_layout/Layout'
 
 export default function Lessons() {
 

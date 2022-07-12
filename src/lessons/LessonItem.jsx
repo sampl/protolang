@@ -1,9 +1,10 @@
-import Layout from './Layout'
-import { useParams } from 'react-router-dom';
-import { useFilter, useSelect } from 'react-supabase';
+import { useParams } from 'react-router-dom'
+import { useFilter, useSelect } from 'react-supabase'
+
+import Layout from '../_layout/Layout'
 
 export default function LessonItem() {
-  let { id } = useParams();
+  let { id } = useParams()
 
   const filter = useFilter(
     (query) => query.eq('id', id),

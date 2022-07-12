@@ -1,10 +1,11 @@
-import { useUser } from "./user";
 import { useSelect } from 'react-supabase'
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom'
+
+import { useUser } from '../_state/user'
 
 export default function AccountDropdown() {
 
-  const { user } = useUser();
+  const { user } = useUser()
 
   // https://react-supabase.vercel.app/documentation/data/use-select
   const [{ data: languages }] = useSelect('languages')

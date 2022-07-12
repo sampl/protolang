@@ -1,11 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import Routes from './Routes'
-import './index.css'
+import { BrowserRouter } from 'react-router-dom'
 import { Provider as ReactSupabaseProvider } from 'react-supabase'
-import { supabase } from './supabaseClient'
-import UserProvider from './user'
-import { BrowserRouter } from "react-router-dom";
+
+import Routes from './Routes'
+import { supabase } from './_util/supabaseClient'
+import UserProvider from './_state/user'
+import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

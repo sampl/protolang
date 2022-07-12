@@ -1,35 +1,36 @@
-import { createContext, useState, useEffect, useContext } from "react";
-import { supabase } from "./supabaseClient";
+import { createContext, useState, useEffect, useContext } from 'react'
 
-const Context = createContext();
+import { supabase } from '../_util/supabaseClient'
+
+const Context = createContext()
 
 const Provider = ({ children }) => {
-  const [user, setUser] = useState(supabase.auth.user());
+  const [user, setUser] = useState(supabase.auth.user())
 
   useEffect(() => {
     const getUserProfile = async () => {
-      const sessionUser = supabase.auth.user();
+      const sessionUser = supabase.auth.user()
 
       if (sessionUser) {
         const { data: profile } = await supabase
           .from('profiles')
           .select()
           .eq('id', sessionUser.id)
-          .single();
+          .single()
 
         setUser({
           ...sessionUser,
           ...profile,
-        });
+        })
       }
-    };
+    }
 
-    getUserProfile();
+    getUserProfile()
 
     supabase.auth.onAuthStateChange(() => {
-      getUserProfile();
-    });
-  }, []);
+      getUserProfile()
+    })
+  }, [])
 
   const login = async (email) => {
     try {
@@ -39,12 +40,12 @@ const Provider = ({ children }) => {
     } catch (error) {
       alert(error.error_description || error.message)
     }
-  };
+  }
 
   const logout = async () => {
-    await supabase.auth.signOut();
-    setUser(null);
-    // router.push("/");
+    await supabase.auth.signOut()
+    setUser(null)
+    // router.push('/')
   }
 
   const exposed = {
@@ -58,6 +59,6 @@ const Provider = ({ children }) => {
   </Context.Provider>
 }
 
-export const useUser = () => useContext(Context);
+export const useUser = () => useContext(Context)
 
-export default Provider;
+export default Provider

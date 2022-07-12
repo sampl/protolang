@@ -1,5 +1,6 @@
-import AccountDropdown from "./AccountDropdown";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom'
+
+import AccountDropdown from './AccountDropdown'
 
 export default function Layout({children}) {
   return <div>
