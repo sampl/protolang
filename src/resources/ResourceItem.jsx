@@ -1,7 +1,7 @@
 import { useFilter, useSelect } from 'react-supabase'
 import { useParams } from 'react-router-dom'
 
-import Layout from '../_layout/Layout'
+import Layout from '@/_layout/Layout'
 
 export default function ResourceItem() {
   let { id } = useParams()

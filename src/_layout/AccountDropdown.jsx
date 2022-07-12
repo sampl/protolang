@@ -1,7 +1,7 @@
 import { useSelect } from 'react-supabase'
 import { Link } from 'react-router-dom'
 
-import { useUser } from '../_state/user'
+import { useUser } from '@/_state/user'
 
 export default function AccountDropdown() {
 

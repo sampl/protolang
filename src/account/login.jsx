@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
-import Layout from '../_layout/Layout'
-import { useUser } from '../_state/user'
+import Layout from '@/_layout/Layout'
+import { useUser } from '@/_state/user'
 
 export default function Login() {
   const [email, setEmail] = useState('')

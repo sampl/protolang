@@ -1,7 +1,7 @@
 import { useSelect } from 'react-supabase'
 import { Link } from 'react-router-dom'
 
-import Layout from '../_layout/Layout'
+import Layout from '@/_layout/Layout'
 
 export default function Resources() {
 
