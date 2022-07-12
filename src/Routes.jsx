@@ -5,6 +5,8 @@ import Resources from "./Resources";
 import ResourceItem from './ResourceItem'
 import Lessons from "./Lessons";
 import LessonItem from './LessonItem'
+import Login from "./login";
+import Logout from "./logout";
 
 export default function Routes() {
   return (
@@ -15,6 +17,10 @@ export default function Routes() {
       <Route path="/resources/:id" element={<ResourceItem />} />
       <Route path="/lessons" element={<Lessons />} />
       <Route path="/lessons/:id" element={<LessonItem />} />
+
+      {/* TODO - finish auth, also org folders */}
+      <Route path="/login" element={<Login />} />
+      <Route path="/logout" element={<Logout />} />
     </RouterRoutes>
   )
 }
