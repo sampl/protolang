@@ -45,7 +45,6 @@ const Provider = ({ children }) => {
   const logout = async () => {
     await supabase.auth.signOut()
     setUser(null)
-    // router.push('/')
   }
 
   const exposed = {
