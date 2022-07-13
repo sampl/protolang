@@ -1,5 +1,7 @@
 import { useParams } from 'react-router-dom'
 import { useFilter, useSelect } from 'react-supabase'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 
 import Layout from '@/_layout/Layout'
 
@@ -20,6 +22,10 @@ export default function LessonItem() {
     {fetching && 'loading...'}
 
     <h1>{lesson && lesson.title_en}</h1>
-    <div>{lesson && lesson.content_en}</div>
+
+    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+      {lesson && lesson.content_en}
+    </ReactMarkdown>
+
   </Layout>
 }
