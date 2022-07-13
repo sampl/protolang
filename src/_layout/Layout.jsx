@@ -8,8 +8,8 @@ export default function Layout({children}) {
       <nav>
         <a href="/">Home</a>
         <Link to="/lessons">Lessons</Link>
+        <Link to="/practice">Practice</Link>
         <Link to="/resources">Resources</Link>
-        <Link to="/words">Words temp</Link>
 
         <AccountDropdown />
       </nav>
