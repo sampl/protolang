@@ -22,7 +22,10 @@ export default function Lessons() {
 }
 
 const LessonListItem = ({lesson}) => {
-  return <Link to={`/lessons/${lesson.id}`}>
-    {lesson.title_en || 'Unknown'}
-  </Link>
+  return <>
+    <Link to={`/lessons/${lesson.id}`}>
+      {lesson.title_en || 'Unknown'}
+    </Link>
+    <br />
+  </>
 }
