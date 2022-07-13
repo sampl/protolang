@@ -3,6 +3,7 @@ import { useFilter, useSelect } from 'react-supabase'
 
 import Layout from '@/_layout/Layout'
 import MnemonicsList from './MnemonicsList'
+import AttemptsList from './AttemptsList'
 
 export default function WordItem() {
   let { id } = useParams()
@@ -28,6 +29,10 @@ export default function WordItem() {
     <hr />
 
     <MnemonicsList wordId={id} />
+
+    <hr />
+
+    <AttemptsList wordId={id} />
 
   </Layout>
 }

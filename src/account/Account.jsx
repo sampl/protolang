@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { supabase } from '@/_util/supabaseClient'
 import { useUser } from '@/_state/user'
 import Layout from '@/_layout/Layout'
+import AttemptsList from '@/account/AttemptsList'
 
 export default function Account() {
   const { user, logout } = useUser()
@@ -67,5 +68,10 @@ export default function Account() {
     <button onClick={() => logout()}>
       Sign Out
     </button>
+
+    <hr />
+
+    <AttemptsList userId={user.id} />
+
   </Layout>
 }
