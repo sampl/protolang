@@ -6,7 +6,7 @@ import { Provider as ReactSupabaseProvider } from 'react-supabase'
 import Routes from '@/Routes'
 import { supabase } from '@/_util/supabaseClient'
 import UserProvider from '@/_state/user'
-import '@/index.css'
+import '@/styles/index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
