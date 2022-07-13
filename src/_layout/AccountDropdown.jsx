@@ -1,17 +1,26 @@
-import { useSelect } from 'react-supabase'
 import { Link } from 'react-router-dom'
 
 import { useUser } from '@/_state/user'
+import { useLanguage } from '@/_state/language'
 
 export default function AccountDropdown() {
 
   const { user } = useUser()
-
-  // https://react-supabase.vercel.app/documentation/data/use-select
-  const [{ data: languages }] = useSelect('languages')
+  const { currentLanguage, userLanguages, setCurrentLanguageId } = useLanguage()
 
   return <div>
     {!user ? <Link to="/login">log in</Link> : <Link to="/account">Account</Link>}
-    {languages && languages.length > 0 && languages.map(d => d.flag).join(' ')}
+    {currentLanguage?.language?.flag}
+
+    <br />
+
+    change: {userLanguages && userLanguages.map( userLanguage => {
+      const { id, name_en } = userLanguage.language
+      return (
+        <div key={userLanguage.id} onClick={() => setCurrentLanguageId(id)}>
+          {name_en}
+        </div>
+      )
+    })}
   </div>
 }
