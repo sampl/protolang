@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom'
 import { useFilter, useSelect } from 'react-supabase'
 
 import Layout from '@/_layout/Layout'
+import MnemonicsList from './MnemonicsList'
 
 export default function WordItem() {
   let { id } = useParams()
@@ -23,5 +24,10 @@ export default function WordItem() {
     <div>({word && word.type})</div>
     <div>{word && word.translation_en}</div>
     <div>{word && word.context_en}</div>
+
+    <hr />
+
+    <MnemonicsList wordId={id} />
+
   </Layout>
 }
