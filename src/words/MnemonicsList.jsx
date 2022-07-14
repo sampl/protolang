@@ -1,5 +1,7 @@
 import { useFilter, useSelect } from 'react-supabase'
 
+import NewMnemonic from '@/words/NewMnemonic'
+
 export default function MnemonicsList({ wordId }) {
 
   const filter = useFilter(
@@ -13,6 +15,8 @@ export default function MnemonicsList({ wordId }) {
   })
 
   return <div>
+    <NewMnemonic wordId={wordId} />
+
     {error && error.message}
     {fetching && 'loading...'}
     {
