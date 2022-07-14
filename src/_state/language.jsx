@@ -21,7 +21,7 @@ export default ({ children }) => {
 
   const [currentLanguageId, setCurrentLanguageId] = useState()
 
-  if (!currentLanguageId && userLanguages) {
+  if (!currentLanguageId && userLanguages && userLanguages[0]) {
     setCurrentLanguageId(userLanguages[0].language?.id)
   }
   const currentLanguage = userLanguages?.find(ul => ul.language?.id === currentLanguageId) || {}
