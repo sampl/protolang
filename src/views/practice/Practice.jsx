@@ -2,7 +2,7 @@ import { useSelect, useFilter } from 'react-supabase'
 import { useState } from 'react'
 
 import { useLanguage } from '@/_state/language'
-import Card from '@/practice/Card'
+import Card from '@/views/practice/Card'
 
 export default () => {
   const { currentLanguageId } = useLanguage()

@@ -1,6 +1,6 @@
 import { useFilter, useSelect } from 'react-supabase'
 
-import NewMnemonic from '@/words/NewMnemonic'
+import NewMnemonic from '@/views/words/NewMnemonic'
 
 export default ({ wordId }) => {
 

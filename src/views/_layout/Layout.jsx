@@ -6,7 +6,7 @@ import { useLanguage } from '@/_state/language'
 import DropdownNavMenu from '@/styles/DropdownNavMenu'
 import TopNav from '@/styles/TopNav'
 import Modal from '@/styles/Modal'
-import NewUserLanguage from '@/user_languages/NewUserLanguage'
+import NewUserLanguage from '@/views/user_languages/NewUserLanguage'
 
 export default ({children}) => {
   const { user } = useUser()

@@ -1,5 +1,5 @@
-import { useUser } from "../_state/user"
-import AttemptsList from '@/home/AttemptsList'
+import { useUser } from "../../_state/user"
+import AttemptsList from '@/views/home/AttemptsList'
 
 export default () => {
   const { user } = useUser()
