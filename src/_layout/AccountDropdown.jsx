@@ -4,7 +4,7 @@ import { useUser } from '@/_state/user'
 import { useLanguage } from '@/_state/language'
 import DropdownNavMenu from '@/styles/DropdownNavMenu'
 
-export default function AccountDropdown() {
+export default () => {
 
   const { user } = useUser()
   const { currentLanguage, userLanguages, setCurrentLanguageId } = useLanguage()

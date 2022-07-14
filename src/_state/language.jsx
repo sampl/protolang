@@ -6,7 +6,7 @@ import { useSelect, useFilter } from 'react-supabase'
 
 const Context = createContext()
 
-const Provider = ({ children }) => {
+export default ({ children }) => {
   const { user } = useUser()
 
   const filter = useFilter(
@@ -39,5 +39,3 @@ const Provider = ({ children }) => {
 }
 
 export const useLanguage = () => useContext(Context)
-
-export default Provider

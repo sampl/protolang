@@ -1,7 +1,7 @@
 import { useFilter, useSelect } from 'react-supabase'
 import { useUser } from '@/_state/user'
 
-export default function AttemptsList({ wordId }) {
+export default ({ wordId }) => {
 
   const { user } = useUser()
 

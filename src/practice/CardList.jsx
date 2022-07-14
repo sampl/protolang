@@ -2,7 +2,7 @@ import { useFilter, useSelect } from 'react-supabase'
 
 import Card from '@/practice/Card'
 
-export default function MnemonicsList({ deckId }) {
+export default ({ deckId }) => {
 
   const filter = useFilter(
     (query) => query.eq('deck', deckId),

@@ -4,7 +4,7 @@ import { supabase } from '@/_util/supabaseClient'
 
 const Context = createContext()
 
-const Provider = ({ children }) => {
+export default ({ children }) => {
   const [user, setUser] = useState(supabase.auth.user())
 
   useEffect(() => {
@@ -59,5 +59,3 @@ const Provider = ({ children }) => {
 }
 
 export const useUser = () => useContext(Context)
-
-export default Provider

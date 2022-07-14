@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import Layout from '@/_layout/Layout'
 import { useUser } from '@/_state/user'
 
-export default function Logout() {
+export default () => {
   const { logout } = useUser()
   let navigate = useNavigate();
 

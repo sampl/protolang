@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import AccountDropdown from '@/_layout/AccountDropdown'
 import TopNav from '@/styles/TopNav'
 
-export default function Layout({children}) {
+export default ({children}) => {
   return <div>
     <TopNav>
       <nav>

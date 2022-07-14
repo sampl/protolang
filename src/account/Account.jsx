@@ -5,7 +5,7 @@ import { useUser } from '@/_state/user'
 import Layout from '@/_layout/Layout'
 import AttemptsList from '@/account/AttemptsList'
 
-export default function Account() {
+export default () => {
   const { user, logout } = useUser()
   const [username, setUsername] = useState(null)
   const [loading, setLoading] = useState(false)

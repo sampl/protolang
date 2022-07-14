@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { useLanguage } from '@/_state/language'
 import Layout from '@/_layout/Layout'
 
-export default function Resources() {
+export default () => {
 
   const { currentLanguageId } = useLanguage()
 

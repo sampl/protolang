@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro'
 
-export default function TopNav({ children }) {
+export default ({ children }) => {
   return <TopNavWrapper>{children}</TopNavWrapper>
 }
 

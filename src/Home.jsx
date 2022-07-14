@@ -1,6 +1,6 @@
 import Layout from '@/_layout/Layout'
 
-export default function Home() {
+export default () => {
   return (
     <Layout>
       hi

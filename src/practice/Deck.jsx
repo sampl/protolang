@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import CardList from '@/practice/CardList'
 import Layout from '@/_layout/Layout'
 
-export default function Deck() {
+export default () => {
   let { id } = useParams()
 
   const filter = useFilter(

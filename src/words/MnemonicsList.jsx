@@ -2,7 +2,7 @@ import { useFilter, useSelect } from 'react-supabase'
 
 import NewMnemonic from '@/words/NewMnemonic'
 
-export default function MnemonicsList({ wordId }) {
+export default ({ wordId }) => {
 
   const filter = useFilter(
     (query) => query.eq('word', wordId),

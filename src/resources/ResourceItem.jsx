@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 
 import Layout from '@/_layout/Layout'
 
-export default function ResourceItem() {
+export default () => {
   let { id } = useParams()
 
   const filter = useFilter(

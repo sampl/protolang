@@ -3,7 +3,7 @@ import { useState } from 'react'
 import Layout from '@/_layout/Layout'
 import { useUser } from '@/_state/user'
 
-export default function Login() {
+export default () => {
   const [email, setEmail] = useState('')
   const { login } = useUser()
 

@@ -5,7 +5,7 @@ import Layout from '@/_layout/Layout'
 import MnemonicsList from './MnemonicsList'
 import AttemptsList from './AttemptsList'
 
-export default function WordItem() {
+export default () => {
   let { id } = useParams()
 
   const filter = useFilter(

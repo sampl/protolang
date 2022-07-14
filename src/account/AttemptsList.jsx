@@ -1,6 +1,6 @@
 import { useFilter, useSelect } from 'react-supabase'
 
-export default function AttemptsList({ userId }) {
+export default ({ userId }) => {
 
   const filter = useFilter(
     (query) => query.eq('created_by', userId),

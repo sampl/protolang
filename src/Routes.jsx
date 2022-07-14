@@ -12,7 +12,7 @@ import WordItem from '@/words/WordItem'
 import Login from '@/account/login'
 import Logout from '@/account/logout'
 
-export default function Routes() {
+export default () => {
   return (
     <RouterRoutes>
       <Route path="/" element={<Home />} />

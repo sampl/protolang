@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useUser } from '@/_state/user'
 import { supabase } from '@/_util/supabaseClient'
 
-export default function NewMnemonic({ wordId }) {
+export default ({ wordId }) => {
   const { user } = useUser()
 
   const [newMnemonic, setNewMnemonic] = useState('')

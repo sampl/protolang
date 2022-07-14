@@ -5,7 +5,7 @@ import remarkGfm from 'remark-gfm'
 
 import Layout from '@/_layout/Layout'
 
-export default function LessonItem() {
+export default () => {
   let { id } = useParams()
 
   const filter = useFilter(
