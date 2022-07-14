@@ -1,4 +1,4 @@
-import { Routes as RouterRoutes, Route } from 'react-router-dom'
+import { Routes as RouterRoutes, Route, Navigate } from 'react-router-dom'
 
 import Account from '@/account/Account'
 import Home from '@/Home'
@@ -12,6 +12,7 @@ import Login from '@/account/login'
 import Logout from '@/account/logout'
 
 import Layout from './_layout/Layout'
+import { useUser } from './_state/user'
 
 const routes = [
   {
@@ -23,6 +24,7 @@ const routes = [
     path: `/account`,
     component: Account,
     layout: Layout,
+    private: true,
   },
   {
     path: `/resources`,
@@ -67,21 +69,24 @@ const routes = [
 ]
 
 export default () => {
-  return (
-    <RouterRoutes>
-      {
-        routes.map(route => {
-          return <Route
-            key={route.path}
-            path={route.path}
-            element={
-              <route.layout>
-                <route.component />
-              </route.layout>
+  const { user } = useUser()
+
+  return <RouterRoutes>
+    {routes.map(route => {
+      return <Route
+        key={route.path}
+        path={route.path}
+        element={
+          <route.layout>
+            {
+              (route.private && !user) ?
+              <Navigate to='/login' replace={true} /> :
+              <route.component />
             }
-          />
-        })
-      }
-    </RouterRoutes>
-  )
+          </route.layout>
+        }
+      />
+    })}
+  </RouterRoutes>
 }
+
