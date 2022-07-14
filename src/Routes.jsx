@@ -11,8 +11,10 @@ import WordItem from '@/words/WordItem'
 import Login from '@/account/login'
 import Logout from '@/account/logout'
 
-import Layout from './_layout/Layout'
-import { useUser } from './_state/user'
+import Layout from '@/_layout/Layout'
+import { useUser } from '@/_state/user'
+import NewUserLanguage from '@/user_languages/NewUserLanguage'
+import { useLanguage } from '@/_state/language'
 
 const routes = [
   {
@@ -30,31 +32,37 @@ const routes = [
     path: `/resources`,
     component: Resources,
     layout: Layout,
+    requires_language: true,
   },
   {
     path: `/resources/:id`,
     component: ResourceItem,
     layout: Layout,
+    requires_language: true,
   },
   {
     path: `/lessons`,
     component: Lessons,
     layout: Layout,
+    requires_language: true,
   },
   {
     path: `/lessons/:id`,
     component: LessonItem,
     layout: Layout,
+    requires_language: true,
   },
   {
     path: `/practice`,
     component: Practice,
     layout: Layout,
+    requires_language: true,
   },
   {
     path: `/words/:id`,
     component: WordItem,
     layout: Layout,
+    requires_language: true,
   },
   {
     path: `/login`,
@@ -70,6 +78,7 @@ const routes = [
 
 export default () => {
   const { user } = useUser()
+  const { currentLanguageId } = useLanguage()
 
   return <RouterRoutes>
     {routes.map(route => {
@@ -81,6 +90,8 @@ export default () => {
             {
               (route.private && !user) ?
               <Navigate to='/login' replace={true} /> :
+              (route.requires_language && !currentLanguageId) ?
+              <NewUserLanguage /> :
               <route.component />
             }
           </route.layout>

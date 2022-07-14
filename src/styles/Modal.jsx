@@ -1,14 +1,14 @@
 import styled from 'styled-components/macro'
 import * as Dialog from '@radix-ui/react-dialog'
 
-export default ({ title, close, children }) => {
+export default ({ close, children }) => {
   return <Dialog.Root open={true}>
     <Dialog.Portal>
       <ModalOverlay onClick={close} />
       <ModalWrapper>
         <ModalContentWrapper>
           <Dialog.Close onClick={close}>✖️</Dialog.Close>
-          <Dialog.Title>{title}</Dialog.Title>
+          {/* <Dialog.Title>{title}</Dialog.Title> */}
           {/* <Dialog.Description /> */}
           {children}
         </ModalContentWrapper>

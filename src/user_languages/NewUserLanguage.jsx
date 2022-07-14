@@ -25,7 +25,7 @@ export default ({ closeModal }) => {
       if (error) {
         throw error
       }
-      closeModal()
+      closeModal && closeModal()
       setCurrentLanguageId(selectedLanguage)
       navigate('/lessons')
     } catch (error) {
@@ -37,14 +37,14 @@ export default ({ closeModal }) => {
   }
 
   return <form onSubmit={addUserLanguage}>
-
+    <h2>Your language journey begins here</h2>
     <select
       value={selectedLanguage}
       onChange={e => setSelectedLanguage(e.target.value)}
       required
     >
       <option>-- Choose a language --</option>
-      {allLanguages.map(lang => {
+      {allLanguages?.map(lang => {
         return <option key={lang.id} value={lang.id}>{lang.name_en} {!lang.is_live && '(Coming soon)'}</option>
       })}
     </select>

@@ -16,7 +16,7 @@ export default ({children}) => {
   return <div>
 
     {isAddingLanguage &&
-      <Modal title="Add a language" close={() => setIsAddingLanguage(false)}>
+      <Modal close={() => setIsAddingLanguage(false)}>
         <NewUserLanguage closeModal={() => setIsAddingLanguage(false)} />
       </Modal>
     }
