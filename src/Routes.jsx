@@ -21,6 +21,7 @@ const routes = [
     path: `/`,
     component: Home,
     layout: Layout,
+    requires_language: true,
   },
   {
     path: `/settings`,
@@ -92,8 +93,8 @@ export default () => {
               <Navigate to='/login' replace={true} /> :
               (route.requires_language && !currentLanguageId) ?
               <NewUserLanguage /> :
-              (route.requires_language && !currentLanguage.language.is_live) ?
-              `${currentLanguage.language.name_en} coming soon!` :
+              (route.requires_language && !currentLanguage?.language?.is_live) ?
+              `${currentLanguage.language?.name_en} coming soon!` :
               <route.component />
             }
           </route.layout>

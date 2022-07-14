@@ -32,8 +32,8 @@ export default ({children}) => {
         <Link to="/resources">Resources</Link>
       </nav>
       <div>
-        <DropdownNavMenu trigger={currentLanguage?.language?.flag}>
-          {userLanguages && userLanguages.map( userLanguage => {
+        {userLanguages?.length > 0 && <DropdownNavMenu trigger={currentLanguage?.language?.flag}>
+          {userLanguages?.map( userLanguage => {
             const { id, name_en } = userLanguage.language
             return <div
               key={userLanguage.id}
@@ -43,7 +43,7 @@ export default ({children}) => {
             </div>
           })}
           <button onClick={() => setIsAddingLanguage(true)}>+ Learn another language</button>
-        </DropdownNavMenu>
+        </DropdownNavMenu>}
         {' '}
         {!user ? <Link to="/login">Log in</Link> : <Link to="/settings">Settings</Link>}
       </div>
