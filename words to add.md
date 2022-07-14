@@ -272,3 +272,13 @@ Meeting
 Document
 Computer
 Client
+
+## Italian politics
+
+Famous politicians
+Types of government
+Elections
+Parties
+Major causes
+European Union
+Fascist, socialist, liberal, labor, conservative, etc
