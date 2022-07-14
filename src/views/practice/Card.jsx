@@ -4,12 +4,14 @@ import { Link } from 'react-router-dom'
 import { supabase } from '@/_util/supabaseClient'
 import Card from '@/styles/Card'
 import { useUser } from '@/_state/user'
+import ReportError from '@/views/practice/ReportError'
 
 const TEST_TYPE = 'self'
 
 export default ({ word, next }) => {
   const { user } = useUser()
   const [answerIsShown, setAnswerIsShown] = useState(false)
+  const [ isReportingError, setIsReportingError ] = useState()
 
   const saveAnswer = async correct => {
     next()
@@ -42,6 +44,10 @@ export default ({ word, next }) => {
         <br />
         <button onClick={() => saveAnswer(true)}>I was right</button>
         <button onClick={() => saveAnswer(false)}>I was wrong</button>
+        <br />
+        <br />
+        <button onClick={() => setIsReportingError(true)}>Report translation error</button>
+        { isReportingError && <ReportError word={word} close={() => setIsReportingError(false)} /> }
       </>
     }
   </Card>
