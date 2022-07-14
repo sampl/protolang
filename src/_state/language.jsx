@@ -1,8 +1,6 @@
-import { createContext, useState, useEffect, useContext } from 'react'
+import { createContext, useState, useContext } from 'react'
 import { useUser } from '@/_state/user'
 import { useSelect, useFilter } from 'react-supabase'
-
-// import { supabase } from '@/_util/supabaseClient'
 
 const Context = createContext()
 
@@ -25,11 +23,13 @@ export default ({ children }) => {
     setCurrentLanguageId(userLanguages[0].language?.id)
   }
   const currentLanguage = userLanguages?.find(ul => ul.language?.id === currentLanguageId) || {}
+  const currentLanguageCode = currentLanguageId?.slice(-2)
 
   const exposed = {
     userLanguages,
     currentLanguage,
     currentLanguageId,
+    currentLanguageCode,
     setCurrentLanguageId,
   }
 

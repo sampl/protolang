@@ -7,6 +7,7 @@ import Routes from '@/Routes'
 import { supabase } from '@/_util/supabaseClient'
 import UserProvider from '@/_state/user'
 import LanguageProvider from '@/_state/language'
+import SpeechProvider from '@/_state/speech'
 import '@/styles/index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -14,9 +15,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <ReactSupabaseProvider value={supabase}>
       <UserProvider>
         <LanguageProvider>
-          <BrowserRouter>
-            <Routes />
-          </BrowserRouter>
+          <SpeechProvider>
+            <BrowserRouter>
+              <Routes />
+            </BrowserRouter>
+          </SpeechProvider>
         </LanguageProvider>
       </UserProvider>
     </ReactSupabaseProvider>
