@@ -1,38 +1,36 @@
 import { useSelect, useFilter } from 'react-supabase'
-import { Link } from 'react-router-dom'
+import { useState } from 'react'
 
 import { useLanguage } from '@/_state/language'
+import Card from '@/practice/Card'
 
 export default () => {
-
   const { currentLanguageId } = useLanguage()
-
   const filter = useFilter(
     (query) => query.eq('language', currentLanguageId),
     [currentLanguageId],
   )
+  const [{ data: words, error, fetching }] = useSelect('words', { filter })
+  const [currentWordIndex, setCurrentWordIndex] = useState(0)
 
-  const [{ data: decks, error, fetching }] = useSelect('decks', { filter })
+  const nextWord = () => {
+    if (words.length - 1 <= currentWordIndex) {
+      setCurrentWordIndex(0)
+    } else {
+      setCurrentWordIndex(currentWordIndex + 1)
+    }
+  }
 
   return <>
-    <h1>Practice</h1>
-
-    <h2>Decks</h2>
-
     {
       error ? error.message :
       fetching ? 'loading...' :
-      (!decks || decks.length <= 0) ? 'no decks' :
-      decks.map(deck => <DeckListItem key={deck.id} deck={deck} />)
+      (!words || words.length <= 0) ? 'no words' :
+      <Card
+        key={currentWordIndex}
+        word={words[currentWordIndex]}
+        next={nextWord}
+      />
     }
-  </>
-}
-
-const DeckListItem = ({deck}) => {
-  return <>
-    <Link to={`/practice/deck/${deck.id}`}>
-      {deck.title_en}
-    </Link>
-    <br />
   </>
 }

@@ -7,7 +7,6 @@ import ResourceItem from '@/resources/ResourceItem'
 import Lessons from '@/lessons/Lessons'
 import LessonItem from '@/lessons/LessonItem'
 import Practice from '@/practice/Practice'
-import Deck from '@/practice/Deck'
 import WordItem from '@/words/WordItem'
 import Login from '@/account/login'
 import Logout from '@/account/logout'
@@ -48,11 +47,6 @@ const routes = [
   {
     path: `/practice`,
     component: Practice,
-    layout: Layout,
-  },
-  {
-    path: `/practice/deck/:id`,
-    component: Deck,
     layout: Layout,
   },
   {
