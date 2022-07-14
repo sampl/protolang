@@ -10,8 +10,8 @@ const Provider = ({ children }) => {
   const { user } = useUser()
 
   const filter = useFilter(
-    (query) => query.eq('user', user.id),
-    [user.id],
+    (query) => query.eq('user', user?.id),
+    [user?.id],
   )
 
   const [{ data: userLanguages, error, fetching }] = useSelect('user_languages', {
