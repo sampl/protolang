@@ -1,3 +1,6 @@
+import { useUser } from "./_state/user"
+
 export default () => {
-  return 'hi'
+  const { user } = useUser()
+  return <h2>Welcome, {user.username}</h2>
 }
