@@ -2,7 +2,6 @@ import { useSelect, useFilter } from 'react-supabase'
 import { Link } from 'react-router-dom'
 
 import { useLanguage } from '@/_state/language'
-import Layout from '@/_layout/Layout'
 
 export default () => {
 
@@ -15,7 +14,7 @@ export default () => {
 
   const [{ data: decks, error, fetching }] = useSelect('decks', { filter })
 
-  return <Layout>
+  return <>
     <h1>Practice</h1>
 
     <h2>Decks</h2>
@@ -26,7 +25,7 @@ export default () => {
       (!decks || decks.length <= 0) ? 'no decks' :
       decks.map(deck => <DeckListItem key={deck.id} deck={deck} />)
     }
-  </Layout>
+  </>
 }
 
 const DeckListItem = ({deck}) => {

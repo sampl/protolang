@@ -12,22 +12,82 @@ import WordItem from '@/words/WordItem'
 import Login from '@/account/login'
 import Logout from '@/account/logout'
 
+import Layout from './_layout/Layout'
+
+const routes = [
+  {
+    path: `/`,
+    component: Home,
+    layout: Layout,
+  },
+  {
+    path: `/account`,
+    component: Account,
+    layout: Layout,
+  },
+  {
+    path: `/resources`,
+    component: Resources,
+    layout: Layout,
+  },
+  {
+    path: `/resources/:id`,
+    component: ResourceItem,
+    layout: Layout,
+  },
+  {
+    path: `/lessons`,
+    component: Lessons,
+    layout: Layout,
+  },
+  {
+    path: `/lessons/:id`,
+    component: LessonItem,
+    layout: Layout,
+  },
+  {
+    path: `/practice`,
+    component: Practice,
+    layout: Layout,
+  },
+  {
+    path: `/practice/deck/:id`,
+    component: Deck,
+    layout: Layout,
+  },
+  {
+    path: `/words/:id`,
+    component: WordItem,
+    layout: Layout,
+  },
+  {
+    path: `/login`,
+    component: Login,
+    layout: Layout,
+  },
+  {
+    path: `/logout`,
+    component: Logout,
+    layout: Layout,
+  },
+]
+
 export default () => {
   return (
     <RouterRoutes>
-      <Route path="/" element={<Home />} />
-      <Route path="/account" element={<Account />} />
-      <Route path="/resources" element={<Resources />} />
-      <Route path="/resources/:id" element={<ResourceItem />} />
-      <Route path="/lessons" element={<Lessons />} />
-      <Route path="/lessons/:id" element={<LessonItem />} />
-      <Route path="/practice" element={<Practice />} />
-      <Route path="/practice/deck/:id" element={<Deck />} />
-      <Route path="/words/:id" element={<WordItem />} />
-
-      {/* TODO - finish auth, also org folders */}
-      <Route path="/login" element={<Login />} />
-      <Route path="/logout" element={<Logout />} />
+      {
+        routes.map(route => {
+          return <Route
+            key={route.path}
+            path={route.path}
+            element={
+              <route.layout>
+                <route.component />
+              </route.layout>
+            }
+          />
+        })
+      }
     </RouterRoutes>
   )
 }

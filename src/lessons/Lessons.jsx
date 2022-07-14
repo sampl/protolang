@@ -2,7 +2,6 @@ import { useSelect, useFilter } from 'react-supabase'
 import { Link } from 'react-router-dom'
 
 import { useLanguage } from '@/_state/language'
-import Layout from '@/_layout/Layout'
 
 export default () => {
 
@@ -15,7 +14,7 @@ export default () => {
 
   const [{ data: lessons, error, fetching }] = useSelect('lessons', { filter })
 
-  return <Layout>
+  return <>
     <h1>Lessons</h1>
     {
       error ? error.message :
@@ -23,7 +22,7 @@ export default () => {
       (!lessons || lessons.length <= 0) ? 'no lessons' :
       lessons.map(lesson => <LessonListItem key={lesson.id} lesson={lesson} />)
     }
-  </Layout>
+  </>
 }
 
 const LessonListItem = ({lesson}) => {

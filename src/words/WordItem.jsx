@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom'
 import { useFilter, useSelect } from 'react-supabase'
 
-import Layout from '@/_layout/Layout'
 import MnemonicsList from './MnemonicsList'
 import AttemptsList from './AttemptsList'
 
@@ -17,7 +16,7 @@ export default () => {
 
   const word = data && data[0]
 
-  return <Layout>
+  return <>
     {error && error.message}
     {fetching && 'loading...'}
 
@@ -41,5 +40,5 @@ export default () => {
 
     <AttemptsList wordId={id} />
 
-  </Layout>
+  </>
 }

@@ -2,7 +2,6 @@ import { useState } from 'react'
 
 import { supabase } from '@/_util/supabaseClient'
 import { useUser } from '@/_state/user'
-import Layout from '@/_layout/Layout'
 import AttemptsList from '@/account/AttemptsList'
 
 export default () => {
@@ -35,7 +34,7 @@ export default () => {
     }
   }
 
-  return <Layout>
+  return <>
     <h1>Profile for {user && user.username}</h1>
     <label htmlFor="email">Email</label>
     <input
@@ -73,5 +72,5 @@ export default () => {
 
     <AttemptsList userId={user.id} />
 
-  </Layout>
+  </>
 }

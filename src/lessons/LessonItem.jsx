@@ -3,8 +3,6 @@ import { useFilter, useSelect } from 'react-supabase'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 
-import Layout from '@/_layout/Layout'
-
 export default () => {
   let { id } = useParams()
 
@@ -17,7 +15,7 @@ export default () => {
 
   const lesson = data && data[0]
 
-  return <Layout>
+  return <>
     {error && error.message}
     {fetching && 'loading...'}
 
@@ -27,5 +25,5 @@ export default () => {
       {lesson && lesson.content_en}
     </ReactMarkdown>
 
-  </Layout>
+  </>
 }

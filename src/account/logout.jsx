@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import Layout from '@/_layout/Layout'
 import { useUser } from '@/_state/user'
 
 export default () => {
@@ -13,7 +12,5 @@ export default () => {
     navigate('/', { replace: true })
   }, [])
 
-  return <Layout>
-    logging out...
-  </Layout>
+  return 'logging out...'
 }

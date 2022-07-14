@@ -1,8 +1,6 @@
 import { useFilter, useSelect } from 'react-supabase'
 import { useParams } from 'react-router-dom'
 
-import Layout from '@/_layout/Layout'
-
 export default () => {
   let { id } = useParams()
 
@@ -18,7 +16,7 @@ export default () => {
   
   const resource = data && data[0]
 
-  return <Layout>
+  return <>
     {
       error ? error.message :
       fetching ? 'loading...' :
@@ -33,5 +31,5 @@ export default () => {
         }
       </>
     }
-  </Layout>
+  </>
 }

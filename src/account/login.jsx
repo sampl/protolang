@@ -1,13 +1,12 @@
 import { useState } from 'react'
 
-import Layout from '@/_layout/Layout'
 import { useUser } from '@/_state/user'
 
 export default () => {
   const [email, setEmail] = useState('')
   const { login } = useUser()
 
-  return <Layout>
+  return <>
     <h1>Log in</h1>
     <input
       type="email"
@@ -23,5 +22,5 @@ export default () => {
     >
       Log in
     </button>
-  </Layout>
+  </>
 }

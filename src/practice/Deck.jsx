@@ -2,7 +2,6 @@ import { useFilter, useSelect } from 'react-supabase'
 import { useParams } from 'react-router-dom'
 
 import CardList from '@/practice/CardList'
-import Layout from '@/_layout/Layout'
 
 export default () => {
   let { id } = useParams()
@@ -16,7 +15,7 @@ export default () => {
 
   const deck = data && data[0]
 
-  return <Layout>
+  return <>
     {error && error.message}
     {fetching && 'loading...'}
     { deck &&
@@ -25,5 +24,5 @@ export default () => {
         <CardList deckId={deck.id} />
       </>
     }
-  </Layout>
+  </>
 }
