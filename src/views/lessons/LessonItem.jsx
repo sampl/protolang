@@ -11,7 +11,10 @@ export default () => {
     [id],
   )
 
-  const [{ data, error, fetching }] = useSelect('lessons', { filter })
+  const [{ data, error, fetching }] = useSelect('lessons', {
+    columns: '*, user_lessons(*)',
+    filter,
+  })
 
   const lesson = data && data[0]
 
