@@ -24,8 +24,11 @@ export default ({children}) => {
     <TopNav>
       <nav>
         <a href="/">Home</a>
+        {' '}
         <Link to="/lessons">Lessons</Link>
+        {' '}
         <Link to="/practice">Practice</Link>
+        {' '}
         <Link to="/resources">Resources</Link>
       </nav>
       <div>
@@ -41,8 +44,8 @@ export default ({children}) => {
           })}
           <button onClick={() => setIsAddingLanguage(true)}>+ Learn another language</button>
         </DropdownNavMenu>
-
-        {!user ? <Link to="/login">log in</Link> : <Link to="/account">Account</Link>}
+        {' '}
+        {!user ? <Link to="/login">Log in</Link> : <Link to="/settings">Settings</Link>}
       </div>
     </TopNav>
     

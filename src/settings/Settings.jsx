@@ -2,7 +2,6 @@ import { useState } from 'react'
 
 import { supabase } from '@/_util/supabaseClient'
 import { useUser } from '@/_state/user'
-import AttemptsList from '@/account/AttemptsList'
 
 export default () => {
   const { user, logout } = useUser()
@@ -35,7 +34,8 @@ export default () => {
   }
 
   return <>
-    <h1>Profile for {user && user.username}</h1>
+    <h1>Settings</h1>
+
     <label htmlFor="email">Email</label>
     <input
       id="email"
@@ -62,15 +62,12 @@ export default () => {
     >
       {loading ? 'Loading ...' : 'Update'}
     </button>
-    <br />
-    <br />
-    <button onClick={() => logout()}>
-      Sign Out
-    </button>
 
     <hr />
 
-    <AttemptsList userId={user.id} />
+    <button onClick={() => logout()}>
+      Sign Out
+    </button>
 
   </>
 }

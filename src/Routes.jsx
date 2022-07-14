@@ -1,7 +1,7 @@
 import { Routes as RouterRoutes, Route, Navigate } from 'react-router-dom'
 
-import Account from '@/account/Account'
-import Home from '@/Home'
+import Settings from '@/settings/Settings'
+import Home from '@/home/Home'
 import Resources from '@/resources/Resources'
 import ResourceItem from '@/resources/ResourceItem'
 import Lessons from '@/lessons/Lessons'
@@ -23,8 +23,8 @@ const routes = [
     layout: Layout,
   },
   {
-    path: `/account`,
-    component: Account,
+    path: `/settings`,
+    component: Settings,
     layout: Layout,
     private: true,
   },
