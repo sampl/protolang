@@ -7,8 +7,10 @@ const Context = createContext()
 export default ({ children }) => {
   const { user } = useUser()
 
+  const [{ data: allLanguages }] = useSelect('languages')
+
   const filter = useFilter(
-    (query) => query.eq('user', user?.id),
+    (query) => query.eq('created_by', user?.id),
     [user?.id],
   )
 
@@ -26,6 +28,7 @@ export default ({ children }) => {
   const currentLanguageCode = currentLanguageId?.slice(-2)
 
   const exposed = {
+    allLanguages,
     userLanguages,
     currentLanguage,
     currentLanguageId,
