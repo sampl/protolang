@@ -8,7 +8,7 @@ const Context = createContext()
 export default ({ children }) => {
   const { currentLanguageCode } = useLanguage()
 
-  const speechIsSupported = 'speechSynthesis' in window
+  const speechSynthesisIsSupported = 'speechSynthesis' in window
 
   const [voice, setVoice] = useState()
 
@@ -39,7 +39,7 @@ export default ({ children }) => {
   }
 
   const exposed = {
-    speechIsSupported,
+    speechSynthesisIsSupported,
     speak,
   }
 
