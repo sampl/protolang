@@ -7,7 +7,8 @@ import Routes from '@/Routes'
 import { supabase } from '@/_util/supabaseClient'
 import UserProvider from '@/_state/user'
 import LanguageProvider from '@/_state/language'
-import SpeechProvider from '@/_state/speech'
+import SpeechSynthesisProvider from '@/_state/speechSynthesis'
+import SpeechRecognitionProvider from '@/_state/speechRecognition'
 import '@/styles/index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -15,11 +16,13 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <ReactSupabaseProvider value={supabase}>
       <UserProvider>
         <LanguageProvider>
-          <SpeechProvider>
-            <BrowserRouter>
-              <Routes />
-            </BrowserRouter>
-          </SpeechProvider>
+          <SpeechSynthesisProvider>
+            <SpeechRecognitionProvider>
+              <BrowserRouter>
+                <Routes />
+              </BrowserRouter>
+            </SpeechRecognitionProvider>
+          </SpeechSynthesisProvider>
         </LanguageProvider>
       </UserProvider>
     </ReactSupabaseProvider>

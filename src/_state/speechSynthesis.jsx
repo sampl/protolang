@@ -6,7 +6,7 @@ const Context = createContext()
 
 // based on https://codepen.io/matt-west/pen/DpmMgE
 export default ({ children }) => {
-  const { currentLanguageCode, currentLanguage } = useLanguage()
+  const { currentLanguageCode } = useLanguage()
 
   const speechIsSupported = 'speechSynthesis' in window
 
@@ -48,4 +48,4 @@ export default ({ children }) => {
   </Context.Provider>
 }
 
-export const useSpeech = () => useContext(Context)
+export const useSpeechSynthesis = () => useContext(Context)

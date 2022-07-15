@@ -3,8 +3,9 @@ import { useFilter, useSelect } from 'react-supabase'
 
 import MnemonicsList from './MnemonicsList'
 import AttemptsList from './AttemptsList'
-import Speech from './Speech'
+import SpeakWord from './SpeakWord'
 import { useLanguage } from '@/_state/language'
+import Listen from './Listen'
 
 export default () => {
   const { id } = useParams()
@@ -24,7 +25,7 @@ export default () => {
     {fetching && 'loading...'}
 
     <h1>{word?.name}</h1>
-    <Speech word={word} />
+    <SpeakWord word={word} />
 
     <div>({word?.type})</div>
     <div>{word?.translation_en}</div>
@@ -44,6 +45,8 @@ export default () => {
     <hr />
 
     <AttemptsList wordId={id} />
+
+    <Listen />
 
   </>
 }
