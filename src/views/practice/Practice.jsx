@@ -29,6 +29,7 @@ export default () => {
       <Card
         key={currentWordIndex}
         word={words[currentWordIndex]}
+        type={'text'}
         next={nextWord}
       />
     }

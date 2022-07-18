@@ -5,19 +5,33 @@ import { supabase } from '@/_util/supabaseClient'
 import Card from '@/styles/Card'
 import { useUser } from '@/_state/user'
 import ReportError from '@/views/practice/ReportError'
+import CardText from './card_types/CardText'
 
-const TEST_TYPE = 'self'
+const MAX_STRIKES = 1
 
-export default ({ word, next }) => {
+export default ({ word, type, next }) => {
   const { user } = useUser()
-  const [answerIsShown, setAnswerIsShown] = useState(false)
-  const [ isReportingError, setIsReportingError ] = useState()
 
-  const saveAnswer = async correct => {
-    next()
+  // waiting, try_again, correct, incorrect
+  const [cardState, setCardState] = useState('waiting')
+  const [strikes, setStrikes] = useState(0)
+  const [isReportingError, setIsReportingError] = useState()
+
+  const answer = (answer) => {
+    const correct = word.name === answer.trim().toLowerCase()
+    if (!correct && strikes < MAX_STRIKES) {
+      setStrikes(s => s + 1)
+      setCardState('try_again')
+      return
+    }
+    setCardState(correct ? 'correct' : 'incorrect')
+    saveAnswer(type, correct)
+  }
+
+  const saveAnswer = async (type, correct) => {
     try {
       const newData = {
-        type: TEST_TYPE,
+        type,
         created_by: user.id,
         word: word?.id,
         correct,
@@ -31,24 +45,38 @@ export default ({ word, next }) => {
     }
   }
 
+  const CardComponent = type === 'text' ? CardText : CardText
+
   return <Card>
-    <p>Translate from English to Italian...</p>
-    <h2>{word?.translation_en}</h2>
-    <p>(Think of the answer and hit the button when you're ready)</p>
+    <CardComponent
+      type={type}
+      word={word}
+      cardState={cardState}
+      answer={answer}
+    />
     {
-      !answerIsShown ?
-      <button onClick={() => setAnswerIsShown(true)}>Show answer</button> :
-      <>
-        <h4>{word?.name}</h4>
+      cardState === "correct" ? <>
+        You're right!
         <Link to={`/words/${word?.id}`}>go to word</Link>
-        <br />
-        <button onClick={() => saveAnswer(true)}>I was right</button>
-        <button onClick={() => saveAnswer(false)}>I was wrong</button>
-        <br />
-        <br />
-        <button onClick={() => setIsReportingError(true)}>Report translation error</button>
-        { isReportingError && <ReportError word={word} close={() => setIsReportingError(false)} /> }
+        <button autoFocus onClick={next}>Next</button>
       </>
+      :
+      cardState === "try_again" ? <>
+        Not quite, try again...
+      </>
+      :
+      cardState === "incorrect" ? <>
+        Whoops not quite. The answer is "{word.translation_en}"
+        <Link to={`/words/${word?.id}`}>go to word</Link>
+        <button autoFocus onClick={next}>Next</button>
+      </>
+      :
+      null
+    }
+    {
+      (cardState === "correct" || cardState === "incorrect") && 
+      isReportingError && 
+      <ReportError word={word} close={() => setIsReportingError(false)} />
     }
   </Card>
 }
