@@ -10,6 +10,9 @@ The **full language dictionaries** are generated from the English-language [Wikt
 
 ## Things to add
 
+- A & the
+- If's, and's, & but's (conditionals)
+- Irregular verbs (am, have, etc etc etc)
 - Food, including standard dishes, Italian dishes, ingredients
 - The arts: art, science, theater, literature, painting
 - Animals
