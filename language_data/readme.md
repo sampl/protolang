@@ -16,6 +16,7 @@ The **full language dictionaries** are generated from the English-language [Wikt
 - Food, including standard dishes, Italian dishes, ingredients
 - The arts: art, science, theater, literature, painting
 - Animals
+- Curse words
 - Numbers: 20-100, 100-1000, million billion, first/second/third etc
 - Politics: famous politicians, types of government, elections, parties, major causes, european union, fascist, socialist, liberal, labor, conservative, etc
 
