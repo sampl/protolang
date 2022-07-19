@@ -1,11 +1,9 @@
-export default ({ word, answer, cardState }) => {
+export default ({ word, submitAnswer, disabled }) => {
 
   const onSubmit = event => {
     event.preventDefault()
-    answer(event.currentTarget.answer.value)
+    submitAnswer(event.currentTarget.answer.value)
   }
-
-  const disabled = cardState === 'correct' || cardState === 'incorrect'
 
   return <>
     <p>Type the Italian for...</p>

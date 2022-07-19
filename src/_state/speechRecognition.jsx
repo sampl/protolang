@@ -63,19 +63,30 @@ export default ({ children }) => {
 
   useEffect(setUpRecognition, [])
 
-  const toggleSpeechRecognition = () => {
-    if (recognitionState === 'listening') {
-      recognitionObject.stop()
-    } else {
+  const startSpeechRecognition = () => {
+    if (recognitionState !== 'listening') {
       setFinalTranscript('')
       setInterimTranscript('')
       recognitionObject.start()
     }
   }
+  
+  const stopSpeechRecognition = () => {
+    if (recognitionState === 'listening') {
+      recognitionObject.stop()
+    }
+  }
+
+  const clearSpeechRecognition = () => {
+    setFinalTranscript('')
+    setInterimTranscript('')
+  }
 
   const exposed = {
     speechRecognitionIsSupported,
-    toggleSpeechRecognition,
+    startSpeechRecognition,
+    stopSpeechRecognition,
+    clearSpeechRecognition,
     recognitionState,
     interimTranscript,
     finalTranscript,
