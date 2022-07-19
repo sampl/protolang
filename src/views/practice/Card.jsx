@@ -13,7 +13,11 @@ const MAX_STRIKES = 1
 // https://stackoverflow.com/a/37511463/1061063
 const normalizeString = string => string.normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim().toLowerCase()
 
-export default ({ word, type, next }) => {
+export default ({ word, type, direction, next }) => {
+
+  const question =      direction === 'forward' ? word?.translation_en : word?.name 
+  const correctAnswer = direction === 'forward' ? word?.name : word?.translation_en 
+
   const { user } = useUser()
 
   // waiting, try_again, correct, incorrect
@@ -22,11 +26,11 @@ export default ({ word, type, next }) => {
   const [isReportingError, setIsReportingError] = useState()
 
   const testAnswer = answer => {
-    return normalizeString(word?.name) === normalizeString(answer)
+    return normalizeString(correctAnswer) === normalizeString(answer)
   }
 
   const testPartialAnswer = answer => {
-    return normalizeString(word?.name).startsWith(normalizeString(answer))
+    return normalizeString(correctAnswer).startsWith(normalizeString(answer))
   }
 
   const submitAnswer = answer => {
@@ -65,7 +69,9 @@ export default ({ word, type, next }) => {
     <CardComponent
       key={word?.id}
       type={type}
-      word={word}
+      direction={direction}
+      question={question}
+      correctAnswer={correctAnswer}
       disabled={disabled}
       testAnswer={testAnswer}
       testPartialAnswer={testPartialAnswer}

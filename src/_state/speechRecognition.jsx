@@ -16,7 +16,7 @@ export default ({ children }) => {
     var recognition = new webkitSpeechRecognition()
     recognition.continuous = true
     recognition.interimResults = true
-    recognition.lang = 'it-IT' // TODO - get language from context so it's not hard-coded italian
+    recognition.lang = 'it-IT' // default
 
     recognition.onstart = () => {
       setRecognitionState('listening')
@@ -63,8 +63,14 @@ export default ({ children }) => {
 
   useEffect(setUpRecognition, [])
 
-  const startSpeechRecognition = () => {
+  const startSpeechRecognition = languageCode => {
     if (recognitionState !== 'listening') {
+      if (languageCode === 'it') {
+        recognitionObject.lang = 'it-IT'
+      } else if (languageCode === 'en') {
+        recognitionObject.lang = 'en-US'
+      }
+      console.log('-- STARTING speech recognition --')
       setFinalTranscript('')
       setInterimTranscript('')
       recognitionObject.start()
@@ -73,6 +79,7 @@ export default ({ children }) => {
   
   const stopSpeechRecognition = () => {
     if (recognitionState === 'listening') {
+      console.log('-- stopping speech recognition --')
       recognitionObject.stop()
     }
   }

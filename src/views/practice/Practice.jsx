@@ -13,6 +13,7 @@ export default () => {
   const [{ data: words, error, fetching }] = useSelect('words', { filter })
   const [currentWordIndex, setCurrentWordIndex] = useState(0)
   const [cardType, setCardType] = useState('speech')
+  const [direction, setDirection] = useState('reverse')
 
   words && shuffleArray(words)
 
@@ -25,9 +26,13 @@ export default () => {
   }
 
   return <>
-    <select value={cardType} onChange={e => setCardType(e.value)}>
+    <select value={cardType} onChange={e => setCardType(e.target.value)}>
       <option value="text">Text</option>
       <option value="speech">Speech</option>
+    </select>
+    <select value={direction} onChange={e => setDirection(e.target.value)}>
+      <option value="forward">English to Italian</option>
+      <option value="reverse">Italian to English</option>
     </select>
     {
       error ? error.message :
@@ -37,6 +42,7 @@ export default () => {
         key={currentWordIndex}
         word={words[currentWordIndex]}
         type={cardType}
+        direction={direction}
         next={nextWord}
       />
     }

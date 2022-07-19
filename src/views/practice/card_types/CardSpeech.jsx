@@ -1,8 +1,10 @@
+import { useLanguage } from "@/_state/language"
 import { useSpeechRecognition } from "@/_state/speechRecognition"
 import { useEffect } from "react"
 
-export default ({ word, testAnswer, testPartialAnswer, submitAnswer, disabled }) => {
+export default ({ direction, question, correctAnswer, testAnswer, testPartialAnswer, submitAnswer, disabled }) => {
 
+  const { currentLanguageCode } = useLanguage()
   const {
     speechRecognitionIsSupported,
     startSpeechRecognition,
@@ -51,19 +53,27 @@ export default ({ word, testAnswer, testPartialAnswer, submitAnswer, disabled })
 
     // end if it's just plain wrong
     if (!isCorrect) {
-      console.log('wrong answer', finalTranscript, 'should be', word.name)
+      console.log('wrong answer', finalTranscript, 'should be', correctAnswer)
       stopSpeechRecognition()
       submitAnswer(finalTranscript)
       return
     }
   }, [interimTranscript, finalTranscript])
 
+  const toggleSpeech = () => {
+    if (recognitionState === 'listening') {
+      stopSpeechRecognition()
+    } else {
+      const languageCode = direction === 'forward' ? currentLanguageCode : 'en'
+      startSpeechRecognition(languageCode)
+    }
+  }
   return <>
-    <p>Speak the Italian for...</p>
-    <h2>{word?.translation_en}</h2>
+    <p>Speak the {direction === 'forward' ? 'Italian' : 'English'} for...</p>
+    <h2>{question}</h2>
 
     <code><strong>{finalTranscript}</strong> {interimTranscript}</code>
-    {!disabled && <button onClick={recognitionState === 'listening' ? stopSpeechRecognition : startSpeechRecognition}>
+    {!disabled && <button onClick={toggleSpeech}>
       {recognitionState === 'listening' ? 'Listening...' : 'Listen'}
     </button>}
   </>
