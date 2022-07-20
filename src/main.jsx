@@ -9,6 +9,7 @@ import UserProvider from '@/_state/user'
 import LanguageProvider from '@/_state/language'
 import SpeechSynthesisProvider from '@/_state/speechSynthesis'
 import SpeechRecognitionProvider from '@/_state/speechRecognition'
+import '@/styles/variables.css'
 import '@/styles/index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
