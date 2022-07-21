@@ -1,5 +1,5 @@
 import { useUser } from "../../_state/user"
-import AttemptsList from '@/views/home/AttemptsList'
+import AttemptsList from '@/views/dashboard/AttemptsList'
 import Heatmap from "./Heatmap"
 
 export default () => {

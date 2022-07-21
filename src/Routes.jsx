@@ -1,9 +1,10 @@
 import { Routes as RouterRoutes, Route, Navigate } from 'react-router-dom'
 
 import Settings from '@/views/settings/Settings'
-import Home from '@/views/home/Home'
+import Dashboard from '@/views/dashboard/Dashboard'
 import Resources from '@/views/resources/Resources'
 import ResourceItem from '@/views/resources/ResourceItem'
+import Marketing from '@/views/marketing/Marketing'
 import Lessons from '@/views/lessons/Lessons'
 import LessonItem from '@/views/lessons/LessonItem'
 import Practice from '@/views/practice/Practice'
@@ -19,9 +20,16 @@ import { useLanguage } from '@/_state/language'
 const routes = [
   {
     path: `/`,
-    component: Home,
+    component: Marketing,
+    layout: Layout,
+    public: true,
+  },
+  {
+    path: `/dashboard`,
+    component: Dashboard,
     layout: Layout,
     requires_language: true,
+    private: true,
   },
   {
     path: `/settings`,
@@ -91,6 +99,8 @@ export default () => {
             {
               (route.private && !user) ?
               <Navigate to='/login' replace={true} /> :
+              (route.public && user) ?
+              <Navigate to='/dashboard' replace={true} /> :
               loading ? 'loading...' :
               (route.requires_language && !currentLanguageId) ?
               <NewUserLanguage /> :

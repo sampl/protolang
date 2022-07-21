@@ -1,0 +1,27 @@
+/* global */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-size: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Helvetica Neue', sans-serif;
+}
+
+/* headings */
+
+h1 {
+  margin: 2rem 0 1rem;
+  font-size: 22px;
+}
+
+h2 {
+  margin: 1.5rem 0 .5rem;
+  font-size: 18px;
+}
+
+p {
+  margin: 0 0 .5rem;
+}
