@@ -55,5 +55,37 @@ export default ({children}) => {
       {children}
     </main>
 
+    <footer>
+
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+
+      <p>
+        <a href="" disabled>License</a>
+        {' · '}
+        <a href="" disabled>Source</a>
+        {' · '}
+        <a href="" disabled>Contribute</a>
+        {' · '}
+        <a href="" disabled>Sponsor</a>
+        {' · '}
+        <a href="" disabled>About</a>
+        {' · '}
+        <a href="" disabled>Contact</a>
+      </p>
+
+      <p>
+        &copy; 2022{new Date().getFullYear()>2022 && ("-"+new Date().getFullYear())}, Directed Works LLC
+      </p>
+    </footer>
+
   </div>
 }
