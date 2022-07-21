@@ -5,10 +5,11 @@ import { useUser } from '@/_state/user'
 
 export default () => {
   const { user, logout } = useUser()
-  const [username, setUsername] = useState(null)
+  const [username, setUsername] = useState(user?.username)
   const [loading, setLoading] = useState(false)
 
-  async function updateProfile({ username }) {
+  const onSubmit = async event => {
+    event.preventDefault()
     try {
       setLoading(true)
       const user = supabase.auth.user()
@@ -36,32 +37,29 @@ export default () => {
   return <>
     <h1>Settings</h1>
 
-    <label htmlFor="email">Email</label>
-    <input
-      id="email"
-      type="text"
-      value={user && user.email}
-      disabled
-    />
+    <form onSubmit={onSubmit}>
+      <label htmlFor="email">Email</label>
+      <input
+        id="email"
+        type="text"
+        value={user && user.email}
+        disabled
+      />
 
-    <br/>
+      <br/>
 
-    <label htmlFor="username">Username</label>
-    <input
-      id="username"
-      type="text"
-      value={username || ''}
-      onChange={(e) => setUsername(e.target.value)}
-    />
+      <label htmlFor="username">Username</label>
+      <input
+        id="username"
+        type="text"
+        value={username || ''}
+        onChange={(e) => setUsername(e.target.value)}
+      />
 
-    <br/>
+      <br/>
 
-    <button
-      onClick={() => updateProfile({ username })}
-      disabled={loading}
-    >
-      {loading ? 'Loading ...' : 'Update'}
-    </button>
+      <button type="submit" disabled={loading}>{loading ? 'Updating...' : 'Update'}</button>
+    </form>
 
     <hr />
 
