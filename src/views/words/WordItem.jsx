@@ -5,7 +5,6 @@ import MnemonicsList from './MnemonicsList'
 import AttemptsList from './AttemptsList'
 import SpeakWord from './SpeakWord'
 import { useLanguage } from '@/_state/language'
-import Listen from './Listen'
 
 export default () => {
   const { id } = useParams()
@@ -52,8 +51,6 @@ export default () => {
     <hr />
 
     <AttemptsList wordId={id} />
-
-    <Listen />
 
   </>
 }
