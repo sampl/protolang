@@ -14,17 +14,15 @@ export default () => {
     <blockquote>
       "Straight to the dome"
     </blockquote>
-
-    <hr />
-
-    <h2>No more games</h2>
-    <p>Instead of teasing you with fake prizes and forcing your down a specific path, we just make everything available up-front.</p>
     <blockquote>
       "It's like Duolingo for adults" - Joe Flateau
     </blockquote>
 
-    <h2>Freedom to learn how you want</h2>
-    <p>Choose the lessons that are relevant for your trip.</p>
+    <hr />
+
+    <h2>No more games</h2>
+    {/* <h2>Freedom to learn how you want</h2> */}
+    <p>We don't tease you with fake prizes or force your down a narrow path. We just make everything available up-front and let you choose the lessons that you need.</p>
     <p><em>Example: food, workplace, family</em></p>
 
     <h2>Memorization tricks built-in</h2>
