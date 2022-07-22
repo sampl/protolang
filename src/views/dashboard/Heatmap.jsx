@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
+import moment from 'moment'
 
-import { supabase } from '@/_util/supabaseClient'
+// import { supabase } from '@/_util/supabaseClient'
 import { HeatmapCell, HeatmapWrapper } from "@/styles/Heatmap"
 
 const TEST_DAYS = [
@@ -14,61 +15,76 @@ const TEST_DAYS = [
   },
   {
     date: '2022-01-03',
-    attempts: 5,
+    attempts: 10,
   },
   {
     date: '2022-01-04',
-    attempts: 15,
-  },
-  {
-    date: '2022-01-05',
-    attempts: 50,
+    attempts: 75,
   },
   {
     date: '2022-01-06',
     attempts: 500,
   },
   {
-    date: '2022-01-020',
+    date: '2022-01-20',
     attempts: 1000,
   },
 ]
 
-const getColor = count => {
-  return count > 1000 ? 'var(--diablo)' :
-         count >  500 ? 'var(--fire)' :
-         count >   75 ? 'var(--hot)' :
-         count >   10 ? 'var(--medium)' :
-         count >    0 ? 'var(--mild)' :
-                        'var(--empty)'
+const getColor = attempts => {
+  return attempts >= 1000 ? 'var(--diablo)' :
+         attempts >=  500 ? 'var(--fire)' :
+         attempts >=   75 ? 'var(--hot)' :
+         attempts >=   10 ? 'var(--medium)' :
+         attempts >=    1 ? 'var(--mild)' :
+                            'var(--empty)'
 }
+
 export default () => {
 
   const [error, setError] = useState()
-  const [data, setData] = useState()
+  const [days, setDays] = useState([])
 
   useEffect( () => {
     const getData = async () => {
-      const { data, error } = await supabase.rpc('get_user_activity_heatmap')
-      setData(data)
+
+      // empty array of days
+      // TODO - offset for day of the week
+      const start = moment().add(-365, 'days')
+      const emptyDays = Array.from(new Array(365))
+        .map( (_, index) => ({
+          date: moment(start).add(index, 'day').format('YYYY-MM-DD'),
+        }))
+
+      // const { data: dataDays, error } = await supabase.rpc('get_user_activity_heatmap')
+      const dataDays = TEST_DAYS
+      
+      // merge data with empty array
+      const days = emptyDays.map(ed => {
+        const dataDay = dataDays.find(dd => dd.date === ed.date)
+        return {
+          ...ed,
+          attempts: dataDay?.attempts || 0,
+        }
+      })
+
+      setDays(days)
       setError(error)
     }
     getData()
   }, [])
 
-  const days = data || TEST_DAYS
-
   return <div>
     {error && error.message}
-    <br/>
-    {JSON.stringify(data)}
 
     <hr />
 
     <HeatmapWrapper padding={2}>
-      {days.map(d => {
-        return <HeatmapCell size={10} background={getColor(d.attempts)} />
+      {days.map(day => {
+        const background = getColor(day.attempts)
+        return <HeatmapCell key={day.date} size={10} background={background} />
       })}
     </HeatmapWrapper>
   </div>
+
 }
