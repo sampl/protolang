@@ -69,17 +69,17 @@ export default ({children}) => {
       <br />
 
       <p>
-        <a href="" disabled>License</a>
+        <a href="https://github.com/sampl/language-learning" disabled>License</a>
         {' · '}
-        <a href="" disabled>Source</a>
+        <a href="https://github.com/sampl/language-learning" disabled>Source</a>
         {' · '}
-        <a href="" disabled>Contribute</a>
+        <a href="https://github.com/sampl/language-learning" disabled>Contribute</a>
         {' · '}
-        <a href="" disabled>Sponsor</a>
+        <a href="mailto:sam@directedworks.com" disabled>Sponsor</a>
         {' · '}
-        <a href="" disabled>About</a>
-        {' · '}
-        <a href="" disabled>Contact</a>
+        {/* <a href="" disabled>About</a> */}
+        {/* {' · '} */}
+        <a href="mailto:sam@directedworks.com" disabled>Contact</a>
       </p>
 
       <p>
