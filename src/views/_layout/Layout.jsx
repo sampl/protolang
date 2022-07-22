@@ -28,8 +28,8 @@ export default ({children}) => {
         <Link to="/lessons">Lessons</Link>
         {' '}
         <Link to="/practice">Practice</Link>
-        {' '}
-        <Link to="/resources">Resources</Link>
+        {/* {' '}
+        <Link to="/resources">Resources</Link> */}
       </nav>
       <div>
         {userLanguages?.length > 0 && <DropdownNavMenu trigger={currentLanguage?.language?.flag}>
