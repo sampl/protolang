@@ -23,7 +23,7 @@ export default ({children}) => {
 
     <TopNav>
       <nav>
-        <a href="/dashboard">Home</a>
+        <a href={user ? "/dashboard" : "/"}>Home</a>
         {' '}
         <Link to="/lessons">Lessons</Link>
         {' '}
