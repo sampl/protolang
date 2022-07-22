@@ -37,6 +37,13 @@ export default () => {
     >
       Open in Google Translate
     </a>
+    {' · '}
+    <a
+      href={`https://en.wiktionary.org/wiki/${word?.name}#Italian`}
+      target="_blank"
+    >
+      Open in Wiktionary
+    </a>
 
     <hr />
 
