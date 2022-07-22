@@ -1,6 +1,7 @@
 [
   {
     "name": "Polite basics",
+    "content_en": "",
     "words": [
       "Hi!",
       "Goodbye",
@@ -19,6 +20,7 @@
   },
   {
     "name": "Greetings",
+    "content_en": "",
     "words": [
       "How are you?",
       "I'm well (reply to how are you)",
@@ -38,6 +40,7 @@
   },
   {
     "name": "Language",
+    "content_en": "",
     "words": [
       "Do you speak English?",
       "I speak English",
@@ -57,6 +60,7 @@
   },
   {
     "name": "Questions",
+    "content_en": "",
     "words": [
       "Who",
       "What",
@@ -72,6 +76,7 @@
   },
   {
     "name": "Getting around",
+    "content_en": "",
     "words": [
       "Airplane",
       "Train",
@@ -112,6 +117,7 @@
   },
   {
     "name": "Eating",
+    "content_en": "",
     "words": [
       "Can you recommend a good restaurant?",
       "Is there a local specialty?",
@@ -132,6 +138,7 @@
   },
   {
     "name": "Coffee and tea",
+    "content_en": "",
     "words": [
       "Coffee",
       "Black tea",
@@ -143,6 +150,7 @@
   },
   {
     "name": "Describing objects",
+    "content_en": "",
     "words": [
       "That",
       "This",
@@ -164,6 +172,7 @@
   },
   {
     "name": "Shopping",
+    "content_en": "",
     "words": [
       "Grocery store",
       "Drug store",
@@ -182,6 +191,7 @@
   },
   {
     "name": "Love",
+    "content_en": "",
     "words": [
       "I love you",
       "Would you like to dance with me?",
@@ -195,6 +205,7 @@
   },
   {
     "name": "Emergencies",
+    "content_en": "",
     "words": [
       "Help!",
       "I need help",
@@ -213,6 +224,7 @@
   },
   {
     "name": "Numbers",
+    "content_en": "",
     "words": [
       "One",
       "Two",
@@ -238,6 +250,7 @@
   },
   {
     "name": "Family",
+    "content_en": "",
     "words": [
       "Great grandson",
       "Great granddaughter",
@@ -265,6 +278,7 @@
   },
   {
     "name": "Time and date",
+    "content_en": "",
     "words": [
       "Days of the week",
       "Months of the year",
@@ -276,6 +290,7 @@
   },
   {
     "name": "Colors",
+    "content_en": "",
     "words": [
       "Red",
       "Orange",
@@ -290,6 +305,7 @@
   },
   {
     "name": "Clothing",
+    "content_en": "",
     "words": [
       "Shirt",
       "Dress",
@@ -298,6 +314,7 @@
   },
   {
     "name": "Holidays",
+    "content_en": "",
     "words": [
       "Merry Christmas",
       "Happy New Year",
@@ -307,6 +324,7 @@
   },
   {
     "name": "Work",
+    "content_en": "",
     "words": [
       "Job",
       "Company",
