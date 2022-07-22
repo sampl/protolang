@@ -17,8 +17,6 @@ export default () => {
     filter,
   })
 
-  console.log(lessons)
-
   return <>
     <h1>Lessons</h1>
     {
