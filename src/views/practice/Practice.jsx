@@ -3,6 +3,7 @@ import { useState } from 'react'
 
 import { useLanguage } from '@/_state/language'
 import Card from '@/views/practice/Card'
+import { TwoColumns } from '@/styles/Layout'
 
 export default () => {
   const { currentLanguageId } = useLanguage()
@@ -25,28 +26,31 @@ export default () => {
     }
   }
 
-  return <>
-    <select value={cardType} onChange={e => setCardType(e.target.value)}>
-      <option value="text">Text</option>
-      <option value="speech">Speech</option>
-    </select>
-    <select value={direction} onChange={e => setDirection(e.target.value)}>
-      <option value="forward">English to Italian</option>
-      <option value="reverse">Italian to English</option>
-    </select>
+  return <TwoColumns cols="2fr 1fr">
     {
       error ? error.message :
       fetching ? 'loading...' :
       (!words || words.length <= 0) ? 'no words' :
       <Card
-        key={currentWordIndex}
-        word={words[currentWordIndex]}
-        type={cardType}
-        direction={direction}
-        next={nextWord}
+      key={currentWordIndex}
+      word={words[currentWordIndex]}
+      type={cardType}
+      direction={direction}
+      next={nextWord}
       />
     }
-  </>
+    <div>
+      <select value={cardType} onChange={e => setCardType(e.target.value)}>
+        <option value="text">Text</option>
+        <option value="speech">Speech</option>
+      </select>
+      <br />
+      <select value={direction} onChange={e => setDirection(e.target.value)}>
+        <option value="forward">English to Italian</option>
+        <option value="reverse">Italian to English</option>
+      </select>
+    </div>
+  </TwoColumns>
 }
 
 // https://stackoverflow.com/a/2450976/1061063
