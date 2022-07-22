@@ -11,6 +11,8 @@
     "@radix-ui/react-dialog": "^0.1.7",
     "@radix-ui/react-popover": "^0.1.6",
     "@supabase/supabase-js": "^1.35.4",
+    "dotenv": "^16.0.1",
+    "pg": "^8.7.3",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-markdown": "^8.0.3",
