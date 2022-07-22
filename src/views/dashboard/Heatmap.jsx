@@ -65,9 +65,9 @@ export default () => {
 
     <hr />
 
-    <HeatmapWrapper padding={4}>
+    <HeatmapWrapper padding={2}>
       {days.map(d => {
-        return <HeatmapCell size={8} background={getColor(d.attempts)} />
+        return <HeatmapCell size={10} background={getColor(d.attempts)} />
       })}
     </HeatmapWrapper>
   </div>
