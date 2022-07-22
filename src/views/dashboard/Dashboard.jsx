@@ -1,6 +1,7 @@
 import { useUser } from "../../_state/user"
 import AttemptsList from '@/views/dashboard/AttemptsList'
 import Heatmap from "./Heatmap"
+import UserScore from "./UserScore"
 
 export default () => {
   const { user } = useUser()
@@ -10,7 +11,8 @@ export default () => {
     <hr />
 
     <Heatmap />
-
+    <UserScore />
+    
     <hr />
 
     <AttemptsList userId={user.id} />

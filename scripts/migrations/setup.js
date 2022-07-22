@@ -12,6 +12,13 @@ const HEATMAP_VIEW = `
     WHERE     created_at > CURRENT_DATE - INTERVAL '1 year'
     GROUP BY  date(created_at), created_by;
 `
+const USER_SCORE_VIEW = `
+  CREATE OR REPLACE VIEW user_scores AS
+    SELECT    created_by, COUNT(DISTINCT word)
+    FROM      attempts
+    WHERE     correct = true
+    GROUP BY  created_by;
+`
 
 const migrate = async () => {
   await client.connect()
@@ -20,6 +27,7 @@ const migrate = async () => {
     // const res = await client.query('SELECT * FROM words')
     // console.log('result:', res.rows[0])
     await client.query(HEATMAP_VIEW)
+    await client.query(USER_SCORE_VIEW)
   } catch (error) {
     console.error(error)
   }
