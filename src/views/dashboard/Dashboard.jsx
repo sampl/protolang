@@ -4,11 +4,15 @@ import UserScore from "./UserScore"
 import Radio from "./Radio"
 import { TwoColumns } from "@/styles/Layout"
 import ProblemWords from "./ProblemWords"
+import QuickLinks from "./QuickLinks"
 
 export default () => {
   const { user } = useUser()
   return <>
     <h2>Welcome, {user?.username}</h2>
+    <QuickLinks />
+
+    <hr />
 
     <TwoColumns cols="2fr 1fr">
       <div>
