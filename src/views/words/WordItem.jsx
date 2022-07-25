@@ -4,6 +4,7 @@ import { useFilter, useSelect } from 'react-supabase'
 import MnemonicsList from './MnemonicsList'
 import AttemptsList from './AttemptsList'
 import SpeakWord from './SpeakWord'
+import Ngram from './Ngram'
 import { useLanguage } from '@/_state/language'
 
 export default () => {
@@ -49,6 +50,8 @@ export default () => {
     <MnemonicsList wordId={id} />
 
     <hr />
+
+    <Ngram word={word} />
 
     <AttemptsList wordId={id} />
 
