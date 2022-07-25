@@ -19,11 +19,18 @@ const USER_SCORE_VIEW = `
     WHERE     correct = true
     GROUP BY  created_by;
 `
+// https://stackoverflow.com/questions/27253333/how-to-calculate-ratio-using-sql-query
+// https://stackoverflow.com/questions/28736227/cast-syntax-to-convert-a-sum-to-float
 const USER_WORD_SCORE_VIEW = `
   CREATE OR REPLACE VIEW user_word_scores AS
-    SELECT    created_by, correct, word, COUNT(*)
-    FROM      attempts
-    GROUP BY  created_by, correct, word;
+    SELECT
+      created_by,
+      word,
+      count(*),
+      sum(case when correct = true then 1 else 0 end) as num_correct,
+      sum(case when correct = true then 1 else 0 end)::float/count(*)::float as percent_correct
+    FROM attempts
+    GROUP BY created_by, word;
 `
 
 const migrate = async () => {
