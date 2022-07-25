@@ -3,7 +3,6 @@
     "name": "Polite basics",
     "content_en": "",
     "words": [
-      "Hi!",
       "Goodbye",
       "Please",
       "Thank you",
@@ -167,7 +166,15 @@
       "Lower",
       "On the left",
       "On the right",
-      "Next to [place]"
+      "Next to [place]",
+      "Beginning/start",
+      "End",
+      "Half",
+      "Whole/entire",
+      "A little bit",
+      "None",
+      "More",
+      "Less"
     ]
   },
   {

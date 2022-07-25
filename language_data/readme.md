@@ -22,12 +22,79 @@ The **full language dictionaries** are generated from the English-language [Wikt
 - Date/time (months, days, years, etc)
 - Food, including standard dishes, Italian dishes, ingredients
 - The arts: art, science, theater, literature, painting
+- Music: Song, singer, voice, note, piano, guitar, bass
 - Animals
 - Clothing
 - Curse words
 - Numbers: 20-100, 100-1000, million billion, first/second/third etc
 - Politics: famous politicians, types of government, elections, parties, major causes, european union, fascist, socialist, liberal, labor, conservative, etc
 - Top 1000 words
+- High vs higher (comparative adjectives)
+
+Big
+Small
+Good
+Bad
+Hot
+Cold
+I like
+I don't like
+Light
+Heavy
+
+House
+Kitchen
+Bedroom
+Bed
+Door
+Floor
+Apartment
+Stairs
+Bathroom
+
+Boy
+Girl
+Man
+Woman
+Mister
+Miss
+Misses
+Husband
+Wife
+
+Weather
+It is hot
+It is cold
+
+Today
+Yesterday
+Morning
+Afternoon
+Evening
+Night
+
+Colors… gold, silver
+
+North south east west
+
+Nature
+Stars
+Sky
+Clouds
+Rain
+Snow
+Hill
+Mountains
+Tree
+River
+Ocean
+Waves
+Rocks
+Animals
+Sun
+Moon
+
+Emotions:, happy, sad, excited, tired, hungry
 
 ## Other TODO
 
