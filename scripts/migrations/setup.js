@@ -19,6 +19,12 @@ const USER_SCORE_VIEW = `
     WHERE     correct = true
     GROUP BY  created_by;
 `
+const USER_WORD_SCORE_VIEW = `
+  CREATE OR REPLACE VIEW user_word_scores AS
+    SELECT    created_by, correct, word, COUNT(*)
+    FROM      attempts
+    GROUP BY  created_by, correct, word;
+`
 
 const migrate = async () => {
   await client.connect()
@@ -28,6 +34,7 @@ const migrate = async () => {
     // console.log('result:', res.rows[0])
     await client.query(HEATMAP_VIEW)
     await client.query(USER_SCORE_VIEW)
+    await client.query(USER_WORD_SCORE_VIEW)
   } catch (error) {
     console.error(error)
   }

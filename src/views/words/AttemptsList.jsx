@@ -1,4 +1,6 @@
+import moment from 'moment'
 import { useFilter, useSelect } from 'react-supabase'
+
 import { useUser } from '@/_state/user'
 
 export default ({ wordId }) => {
@@ -29,6 +31,6 @@ export default ({ wordId }) => {
 
 const AttemptsListItem = ({attempt}) => {
   return <div>
-    {attempt.created_at}: "{attempt.guess}" {attempt.correct ? '✅' : '❌'}
+    {moment(attempt.created_at).format('MM/DD/YYYY')}: "{attempt.guess}" {attempt.correct ? '✅' : '❌'}
   </div>
 }

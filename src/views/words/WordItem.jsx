@@ -6,6 +6,7 @@ import AttemptsList from './AttemptsList'
 import SpeakWord from './SpeakWord'
 import Ngram from './Ngram'
 import { useLanguage } from '@/_state/language'
+import WordScore from './WordScore'
 
 export default () => {
   const { id } = useParams()
@@ -52,6 +53,14 @@ export default () => {
     <hr />
 
     <Ngram word={word} />
+
+    <hr />
+
+    <h3>
+      Your accuracy:
+      {' '}
+      <WordScore word={word} />
+    </h3>
 
     <AttemptsList wordId={id} />
 
