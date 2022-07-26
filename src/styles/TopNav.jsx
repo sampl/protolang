@@ -7,4 +7,5 @@ export default ({ children }) => {
 const TopNavWrapper = styled.header`
   display: grid;
   grid-template-columns: auto max-content;
+  border-bottom: 1px solid;
 `

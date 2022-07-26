@@ -18,8 +18,6 @@ export default () => {
       "It's like Duolingo for adults" - Joe Flateau
     </blockquote>
 
-    <hr />
-
     <h2>No more games</h2>
     {/* <h2>Freedom to learn how you want</h2> */}
     <p>We don't tease you with fake prizes or force your down a narrow path. We just make everything available up-front and let you choose the lessons that you need.</p>

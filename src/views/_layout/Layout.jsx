@@ -7,13 +7,14 @@ import DropdownNavMenu from '@/styles/DropdownNavMenu'
 import TopNav from '@/styles/TopNav'
 import Modal from '@/styles/Modal'
 import NewUserLanguage from '@/views/user_languages/NewUserLanguage'
+import { HeaderFooterLayoutWrapper, Footer } from '@/styles/Layout'
 
 export default ({children}) => {
   const { user } = useUser()
   const [ isAddingLanguage, setIsAddingLanguage ] = useState(false)
   const { currentLanguage, userLanguages, setCurrentLanguageId } = useLanguage()
 
-  return <div>
+  return <HeaderFooterLayoutWrapper>
 
     {isAddingLanguage &&
       <Modal close={() => setIsAddingLanguage(false)}>
@@ -48,26 +49,12 @@ export default ({children}) => {
         {!user ? <Link to="/login">Log in</Link> : <Link to="/settings">Settings</Link>}
       </div>
     </TopNav>
-    
-    <hr />
 
     <main>
       {children}
     </main>
 
-    <footer>
-
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-
+    <Footer>
       <p>
         <a href="https://github.com/sampl/language-learning" disabled>License</a>
         {' · '}
@@ -85,7 +72,7 @@ export default ({children}) => {
       <p>
         &copy; 2022{new Date().getFullYear()>2022 && ("-"+new Date().getFullYear())}, Directed Works LLC
       </p>
-    </footer>
+    </Footer>
 
-  </div>
+  </HeaderFooterLayoutWrapper>
 }
