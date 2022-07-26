@@ -56,21 +56,21 @@ export default ({children}) => {
 
     <Footer>
       <p>
-        <a href="https://github.com/sampl/language-learning" disabled>License</a>
+        <Link to="/about">About</Link>
         {' · '}
-        <a href="https://github.com/sampl/language-learning" disabled>Source</a>
+        <a href="https://github.com/sampl/language-learning">License</a>
         {' · '}
-        <a href="https://github.com/sampl/language-learning" disabled>Contribute</a>
+        <a href="https://github.com/sampl/language-learning">Source</a>
         {' · '}
-        <a href="mailto:sam@directedworks.com" disabled>Sponsor</a>
+        <Link to="/contribute">Contribute</Link>
         {' · '}
-        {/* <a href="" disabled>About</a> */}
-        {/* {' · '} */}
-        <a href="mailto:sam@directedworks.com" disabled>Contact</a>
+        <Link to="/sponsor">Sponsor</Link>
+        {' · '}
+        <a href="mailto:sam@directedworks.com">Contact</a>
       </p>
 
       <p>
-        &copy; 2022{new Date().getFullYear()>2022 && ("-"+new Date().getFullYear())}, Directed Works LLC
+        &copy; 2022{new Date().getFullYear()>2022 && ("-"+new Date().getFullYear())} Directed Works LLC
       </p>
     </Footer>
 

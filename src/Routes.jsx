@@ -11,6 +11,9 @@ import Practice from '@/views/practice/Practice'
 import WordItem from '@/views/words/WordItem'
 import Login from '@/views/account/login'
 import Logout from '@/views/account/logout'
+import About from '@/views/marketing/About'
+import Contribute from '@/views/marketing/Contribute'
+import Sponsor from '@/views/marketing/Sponsor'
 
 import Layout from '@/views/_layout/Layout'
 import { useUser } from '@/_state/user'
@@ -81,6 +84,21 @@ const routes = [
   {
     path: `/logout`,
     component: Logout,
+    layout: Layout,
+  },
+  {
+    path: `/about`,
+    component: About,
+    layout: Layout,
+  },
+  {
+    path: `/contribute`,
+    component: Contribute,
+    layout: Layout,
+  },
+  {
+    path: `/sponsor`,
+    component: Sponsor,
     layout: Layout,
   },
 ]
