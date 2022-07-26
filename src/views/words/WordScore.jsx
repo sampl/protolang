@@ -26,6 +26,6 @@ export default ({ word }) => {
     return `you haven't tried to guess this word yet`
   }
   return <>
-    {wordScore.percent_correct}%
+    {Math.floor(wordScore.percent_correct * 100)}%
   </>
 }
