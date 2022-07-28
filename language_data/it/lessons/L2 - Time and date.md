@@ -11,9 +11,13 @@ Title: Time and date
 <VocabWord translation_en="Evening" />
 <VocabWord translation_en="Night" />
 
+--------------------------------------------------
+
 <VocabWord translation_en="Day" />
 <VocabWord translation_en="Date" />
 <VocabWord translation_en="When" />
+
+--------------------------------------------------
 
 <VocabWord translation_en="Monday" />
 <VocabWord translation_en="Tuesday" />
@@ -23,7 +27,11 @@ Title: Time and date
 <VocabWord translation_en="Saturday" />
 <VocabWord translation_en="Sunday" />
 
+--------------------------------------------------
+
 <VocabWord translation_en="Month" />
+
+--------------------------------------------------
 
 <VocabWord translation_en="January" />
 <VocabWord translation_en="February" />
@@ -38,12 +46,18 @@ Title: Time and date
 <VocabWord translation_en="November" />
 <VocabWord translation_en="December" />
 
+--------------------------------------------------
+
 <VocabWord translation_en="Winter" />
 <VocabWord translation_en="Spring" />
 <VocabWord translation_en="Summer" />
 <VocabWord translation_en="Autumn" />
 
+--------------------------------------------------
+
 <VocabWord translation_en="Year" />
+
+--------------------------------------------------
 
 <VocabWord translation_en="What time is it?" />
 <VocabWord translation_en="What day is it?" />

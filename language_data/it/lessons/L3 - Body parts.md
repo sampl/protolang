@@ -9,6 +9,8 @@ Basic body parts
 <VocabWord translation_en="Head" />
 <VocabWord translation_en="Hair" />
 
+--------------------------------------------------
+
 Your face
 
 <VocabWord translation_en="Face" />
@@ -16,6 +18,8 @@ Your face
 <VocabWord translation_en="Lips" />
 <VocabWord translation_en="Teeth" />
 <VocabWord translation_en="Tongue" />
+
+--------------------------------------------------
 
 And your legs
 

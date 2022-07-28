@@ -5,6 +5,9 @@ Title: Houses and buildings
 ---
 
 <VocabWord translation_en="House" />
+
+--------------------------------------------------
+
 <VocabWord translation_en="Kitchen" />
 <VocabWord translation_en="Bedroom" />
 <VocabWord translation_en="Bed" />

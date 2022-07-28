@@ -9,6 +9,8 @@ Title: Politics
 <VocabWord translation_en="European Union" />
 <VocabWord translation_en="to vote" />
 
+--------------------------------------------------
+
 Types of government...
 
 <VocabWord translation_en="Fascist" />
@@ -17,10 +19,15 @@ Types of government...
 <VocabWord translation_en="Conservative" />
 <VocabWord translation_en="Labor" />
 
+--------------------------------------------------
+
 Parties
 
 <VocabWord translation_en="Party" />
+
 ...
+
+--------------------------------------------------
 
 Famous politicians
 

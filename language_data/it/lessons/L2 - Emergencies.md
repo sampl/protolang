@@ -9,6 +9,8 @@ We really hope nothing bad happens to you... but if it does, here are a few phra
 <VocabWord translation_en="Help!" />
 <VocabWord translation_en="I need help" />
 
+--------------------------------------------------
+
 If something goes wrong, like an accident:
 
 <VocabWord translation_en="There is an emergency" />
@@ -18,6 +20,8 @@ If something goes wrong, like an accident:
 <VocabWord translation_en="Stop!" />
 <VocabWord translation_en="Leave me alone!" />
 <VocabWord translation_en="Can I please use your phone?" />
+
+--------------------------------------------------
 
 These are for if you're feeling sick:
 

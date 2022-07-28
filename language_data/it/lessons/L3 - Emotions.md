@@ -6,6 +6,9 @@ Title: Emotions
 
 <VocabWord translation_en="Happy" />
 <VocabWord translation_en="Sad" />
+
+--------------------------------------------------
+
 <VocabWord translation_en="Angry" />
 <VocabWord translation_en="Depressed" />
 <VocabWord translation_en="Excited" />

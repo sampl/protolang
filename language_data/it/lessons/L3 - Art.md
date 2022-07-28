@@ -9,6 +9,8 @@ Title: Art
 <VocabWord translation_en="Theater" />
 <VocabWord translation_en="Painting" />
 
+--------------------------------------------------
+
 Books
 
 <VocabWord translation_en="Literature" />

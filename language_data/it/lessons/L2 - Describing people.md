@@ -14,6 +14,8 @@ Title: Describing people
 <VocabWord translation_en="Husband" />
 <VocabWord translation_en="Wife" />
 
+--------------------------------------------------
+
 <VocabWord translation_en="Tall" />
 <VocabWord translation_en="Short" />
 <VocabWord translation_en="Pretty" />

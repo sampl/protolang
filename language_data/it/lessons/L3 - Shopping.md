@@ -7,6 +7,9 @@ Title: Shopping
 <VocabWord translation_en="Grocery store" />
 <VocabWord translation_en="Drug store" />
 <VocabWord translation_en="Market" />
+
+--------------------------------------------------
+
 <VocabWord translation_en="What is this?" />
 <VocabWord translation_en="Do you have [product]?" />
 <VocabWord translation_en="Can I see [product]?" />

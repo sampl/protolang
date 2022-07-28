@@ -12,6 +12,8 @@ If it ends in "...ation"
 
 ...
 
+--------------------------------------------------
+
 If it ends in "...al"
 
 <VocabWord translation_en="National" />

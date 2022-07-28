@@ -33,6 +33,8 @@ Let's learn how to say the ABC's... in Italian!
 <VocabWord translation_en="Y" />
 <VocabWord translation_en="Z" />
 
+--------------------------------------------------
+
 <VocabWord translation_en="accent" />
 
 ... ?
