@@ -14,6 +14,7 @@ import Logout from '@/views/account/logout'
 import About from '@/views/marketing/About'
 import Contribute from '@/views/marketing/Contribute'
 import Sponsor from '@/views/marketing/Sponsor'
+import ErrorPage from '@/views/ErrorPage'
 
 import Layout from '@/views/_layout/Layout'
 import { useUser } from '@/_state/user'
@@ -99,6 +100,11 @@ const routes = [
   {
     path: `/sponsor`,
     component: Sponsor,
+    layout: Layout,
+  },
+  {
+    path: `*`,
+    component: ErrorPage,
     layout: Layout,
   },
 ]
