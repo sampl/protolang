@@ -1,50 +1,50 @@
 ---
 
-Title: Family
+title: Family
 
 ---
 
-<VocabWord translation_en="Son" />
-<VocabWord translation_en="Daughter" />
-<VocabWord translation_en="Brother" />
-<VocabWord translation_en="Sister" />
-<VocabWord translation_en="Father" />
-<VocabWord translation_en="Mother" />
+:word{en="son" }
+:word{en="daughter" }
+:word{en="brother" }
+:word{en="sister" }
+:word{en="father" }
+:word{en="mother" }
 
 --------------------------------------------------
 
-<VocabWord translation_en="Grandson" />
-<VocabWord translation_en="Granddaughter" />
-<VocabWord translation_en="Grandfather" />
-<VocabWord translation_en="Grandmother" />
+:word{en="grandson" }
+:word{en="granddaughter" }
+:word{en="grandfather" }
+:word{en="grandmother" }
 
 --------------------------------------------------
 
-<VocabWord translation_en="Uncle" />
-<VocabWord translation_en="Aunt" />
-<VocabWord translation_en="First cousin" />
-<VocabWord translation_en="Niece" />
-<VocabWord translation_en="Nephew" />
+:word{en="uncle" }
+:word{en="aunt" }
+:word{en="first cousin" }
+:word{en="niece" }
+:word{en="nephew" }
 
 --------------------------------------------------
 
-<VocabWord translation_en="Great grandson" />
-<VocabWord translation_en="Great granddaughter" />
-<VocabWord translation_en="Great grandfather" />
-<VocabWord translation_en="Great grandmother" />
+:word{en="great grandson" }
+:word{en="great granddaughter" }
+:word{en="great grandfather" }
+:word{en="great grandmother" }
 
 --------------------------------------------------
 
-<VocabWord translation_en="Great uncle" />
-<VocabWord translation_en="Great niece" />
-<VocabWord translation_en="Great aunt" />
-<VocabWord translation_en="Great nephew" />
+:word{en="great uncle" }
+:word{en="great niece" }
+:word{en="great aunt" }
+:word{en="great nephew" }
 
 --------------------------------------------------
 
-<VocabWord translation_en="Ancestor" />
-<VocabWord translation_en="Descendant" />
+:word{en="ancestor" }
+:word{en="descendant" }
 
 --------------------------------------------------
 
-<VocabWord translation_en="Second cousin" />
+:word{en="second cousin" }

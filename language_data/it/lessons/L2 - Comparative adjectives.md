@@ -1,6 +1,6 @@
 ---
 
-Title: Comparative adjectives
+title: Comparative adjectives
 
 ---
 

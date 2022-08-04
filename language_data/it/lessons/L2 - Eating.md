@@ -1,54 +1,54 @@
 ---
 
-Title: Eating
+title: Eating
 
 ---
 
 The Italian word for restaurant
 
-<VocabWord translation_en="Restaurant" />
+:word{en="restaurant" }
 
 --------------------------------------------------
 
 Finding a place to eat...
 
-<VocabWord translation_en="Can you recommend a good restaurant?" />
+:word{en="can you recommend a good restaurant?" }
 
 --------------------------------------------------
 
 Getting a table...
 
-<VocabWord translation_en="A table for [number:1-10]" />
-<VocabWord translation_en="Menu please" />
+:word{en="a table for [number:1-10]" }
+:word{en="menu please" }
 
 --------------------------------------------------
 
 Drinks
 
-<VocabWord translation_en="Cheers" />
-<VocabWord translation_en="Bar" />
+:word{en="cheers" }
+:word{en="bar" }
 
 --------------------------------------------------
 
 Ordering food...
 
-<VocabWord translation_en="What dish do you recommend?" />
-<VocabWord translation_en="Is there a local specialty?" />
-<VocabWord translation_en="I would like [food:dish]" />
-<VocabWord translation_en="I am allergic to [ingredient]" />
-<VocabWord translation_en="Let's have another" />
+:word{en="what dish do you recommend?" }
+:word{en="is there a local specialty?" }
+:word{en="i would like [food:dish]" }
+:word{en="i am allergic to [ingredient]" }
+:word{en="let's have another" }
 
 --------------------------------------------------
 
 Eating...
 
-<VocabWord translation_en="Bon appetit / Have a nice meal" />
-<VocabWord translation_en="Pass the [item] please" />
+:word{en="bon appetit / Have a nice meal" }
+:word{en="pass the [item] please" }
 
 --------------------------------------------------
 
 Leaving
 
-<VocabWord translation_en="Where's the toilet / bathroom?" />
-<VocabWord translation_en="That was delicious" />
-<VocabWord translation_en="Check please" />
+:word{en="where's the toilet / bathroom?" }
+:word{en="that was delicious" }
+:word{en="check please" }

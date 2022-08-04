@@ -1,13 +1,13 @@
 ---
 
-Title: Italian history
+title: Italian history
 
 ---
 
-<VocabWord translation_en="Greeks" />
-<VocabWord translation_en="Rome" />
-<VocabWord translation_en="Roman empire" />
-<VocabWord translation_en="Egypt" />
-<VocabWord translation_en="Caesar" />
+:word{en="Greeks" }
+:word{en="Rome" }
+:word{en="Roman empire" }
+:word{en="Egypt" }
+:word{en="Caesar" }
 
 ...

@@ -1,6 +1,6 @@
 ---
 
-Title: Describing objects
+title: Describing objects
 
 ---
 
@@ -8,56 +8,56 @@ Talking about objects
 
 The Italian word for "and" is similar to the word for "he/she/it is"
 
-<VocabWord translation_en="And" />
+:word{en="and" }
 
 --------------------------------------------------
 
-<VocabWord translation_en="That" />
-<VocabWord translation_en="This" />
+:word{en="that" }
+:word{en="this" }
 
 --------------------------------------------------
 
-<VocabWord translation_en="Inside" />
-<VocabWord translation_en="Outside" />
-<VocabWord translation_en="On/on top of" />
-<VocabWord translation_en="Above" />
-<VocabWord translation_en="Below/underneath" />
-<VocabWord translation_en="Left" />
-<VocabWord translation_en="Right" />
-<VocabWord translation_en="On the left" />
-<VocabWord translation_en="On the right" />
-<VocabWord translation_en="Top" />
-<VocabWord translation_en="Bottom" />
-<VocabWord translation_en="Higher" />
-<VocabWord translation_en="Lower" />
-<VocabWord translation_en="Next to [place]" />
+:word{en="inside" }
+:word{en="outside" }
+:word{en="on/on top of" }
+:word{en="above" }
+:word{en="below/underneath" }
+:word{en="left" }
+:word{en="right" }
+:word{en="on the left" }
+:word{en="on the right" }
+:word{en="top" }
+:word{en="bottom" }
+:word{en="higher" }
+:word{en="lower" }
+:word{en="next to [place]" }
 
 --------------------------------------------------
 
-<VocabWord translation_en="Beginning/start" />
-<VocabWord translation_en="End" />
+:word{en="beginning/start" }
+:word{en="end" }
 
 --------------------------------------------------
 
-<VocabWord translation_en="Half" />
-<VocabWord translation_en="Whole/entire" />
-<VocabWord translation_en="A little bit" />
-<VocabWord translation_en="None" />
-<VocabWord translation_en="More" />
-<VocabWord translation_en="Less" />
+:word{en="half" }
+:word{en="whole/entire" }
+:word{en="a little bit" }
+:word{en="none" }
+:word{en="more" }
+:word{en="less" }
 
 --------------------------------------------------
 
-<VocabWord translation_en="Big" />
-<VocabWord translation_en="Small" />
-<VocabWord translation_en="Good" />
-<VocabWord translation_en="Bad" />
-<VocabWord translation_en="Hot" />
-<VocabWord translation_en="Cold" />
-<VocabWord translation_en="Light" />
-<VocabWord translation_en="Heavy" />
+:word{en="big" }
+:word{en="small" }
+:word{en="good" }
+:word{en="bad" }
+:word{en="hot" }
+:word{en="cold" }
+:word{en="light" }
+:word{en="heavy" }
 
 --------------------------------------------------
 
-<VocabWord translation_en="I like" />
-<VocabWord translation_en="I don't like" />
+:word{en="i like" }
+:word{en="i don't like" }

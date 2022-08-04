@@ -1,12 +1,12 @@
 ---
 
-Title: Coffee and tea
+title: Coffee and tea
 
 ---
 
-<VocabWord translation_en="Coffee" />
-<VocabWord translation_en="Black tea" />
-<VocabWord translation_en="Green tea" />
-<VocabWord translation_en="Milk" />
-<VocabWord translation_en="Sugar" />
-<VocabWord translation_en="Pastries" />
+:word{en="coffee" }
+:word{en="black tea" }
+:word{en="green tea" }
+:word{en="milk" }
+:word{en="sugar" }
+:word{en="pastries" }

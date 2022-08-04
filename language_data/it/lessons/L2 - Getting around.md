@@ -1,42 +1,51 @@
 ---
 
-Title: Getting around
+title: Getting around
 
 ---
 
-<VocabWord translation_en="Airplane" />
-<VocabWord translation_en="Train" />
-<VocabWord translation_en="Taxi" />
-<VocabWord translation_en="Uber?" />
-<VocabWord translation_en="Car" />
-<VocabWord translation_en="Bus" />
-<VocabWord translation_en="Motorcycle/scooter" />
-<VocabWord translation_en="Bicycle" />
-<VocabWord translation_en="Boat" />
-<VocabWord translation_en="Airport" />
-<VocabWord translation_en="Train station" />
-<VocabWord translation_en="Bus station" />
-<VocabWord translation_en="Subway station" />
-<VocabWord translation_en="Hotel" />
-<VocabWord translation_en="Where are you from?" />
-<VocabWord translation_en="I'm from [location:speaker]" />
-<VocabWord translation_en="I arrived yesterday" />
-<VocabWord translation_en="I will leave tomorrow" />
-<VocabWord translation_en="Where is [attraction:destination]" />
-<VocabWord translation_en="Can you write that down?" />
-<VocabWord translation_en="Can you show me on the map?" />
-<VocabWord translation_en="Where am I?" />
-<VocabWord translation_en="Left" />
-<VocabWord translation_en="Right" />
-<VocabWord translation_en="Straight" />
-<VocabWord translation_en="Turn around" />
-<VocabWord translation_en="Near [attraction:destination]" />
-<VocabWord translation_en="Next to [???]" />
-<VocabWord translation_en="Road (dif words for)" />
-<VocabWord translation_en="I am lost" />
-<VocabWord translation_en="Where is the [nationality] Embassy?" />
-<VocabWord translation_en="Is there an ATM nearby?" />
-<VocabWord translation_en="What's fun to do around here?" />
-<VocabWord translation_en="I have a reservation" />
-<VocabWord translation_en="We have a reservation" />
-<VocabWord translation_en="North south east west" />
+:word{en="airplane" }
+:word{en="train" }
+:word{en="taxi" }
+:word{en="uber?" }
+:word{en="car" }
+:word{en="bus" }
+:word{en="motorcycle/scooter" }
+:word{en="bicycle" }
+:word{en="boat" }
+:word{en="airport" }
+:word{en="train station" }
+:word{en="bus station" }
+:word{en="subway station" }
+:word{en="hotel" }
+
+Phrases...
+
+:word{en="where are you from?" }
+:word{en="I'm from [location:speaker]" }
+:word{en="I arrived yesterday" }
+:word{en="I will leave tomorrow" }
+:word{en="where is [attraction:destination]" }
+:word{en="can you write that down?" }
+:word{en="can you show me on the map?" }
+:word{en="where am I?" }
+:word{en="left" }
+:word{en="right" }
+:word{en="straight" }
+:word{en="turn around" }
+:word{en="near [attraction:destination]" }
+:word{en="next to [???]" }
+:word{en="road (dif words for)" }
+:word{en="I am lost" }
+:word{en="where is the [nationality] Embassy?" }
+:word{en="is there an ATM nearby?" }
+:word{en="what's fun to do around here?" }
+:word{en="I have a reservation" }
+:word{en="we have a reservation" }
+
+Cardinal directions
+
+:word{en="north" }
+:word{en="south" }
+:word{en="east" }
+:word{en="west" }

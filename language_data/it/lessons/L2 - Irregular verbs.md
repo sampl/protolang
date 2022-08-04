@@ -1,6 +1,6 @@
 ---
 
-Title: Basic verbs
+title: Basic verbs
 
 ---
 

@@ -1,17 +1,17 @@
 ---
 
-Title: Emotions
+title: Emotions
 
 ---
 
-<VocabWord translation_en="Happy" />
-<VocabWord translation_en="Sad" />
+:word{en="happy" }
+:word{en="sad" }
 
 --------------------------------------------------
 
-<VocabWord translation_en="Angry" />
-<VocabWord translation_en="Depressed" />
-<VocabWord translation_en="Excited" />
-<VocabWord translation_en="Tired" />
-<VocabWord translation_en="Hungry" />
-<VocabWord translation_en="In love" />
+:word{en="angry" }
+:word{en="depressed" }
+:word{en="excited" }
+:word{en="tired" }
+:word{en="hungry" }
+:word{en="in love" }

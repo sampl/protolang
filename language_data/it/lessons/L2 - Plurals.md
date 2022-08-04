@@ -1,6 +1,6 @@
 ---
 
-Title: Plurals
+title: Plurals
 
 ---
 

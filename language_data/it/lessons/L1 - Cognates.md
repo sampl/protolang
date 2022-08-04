@@ -1,6 +1,6 @@
 ---
 
-Title: Cognates
+title: Cognates
 
 ---
 
@@ -8,7 +8,7 @@ Here's how to guess a word in Italian
 
 If it ends in "...ation"
 
-<VocabWord translation_en="Nation" />
+:word{en="nation" }
 
 ...
 
@@ -16,6 +16,6 @@ If it ends in "...ation"
 
 If it ends in "...al"
 
-<VocabWord translation_en="National" />
+:word{en="national" }
 
 ...

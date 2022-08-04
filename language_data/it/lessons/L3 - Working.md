@@ -1,21 +1,23 @@
 ---
 
-Title: Working
+title: Working
 
 ---
 
-<VocabWord translation_en="Job" />
-<VocabWord translation_en="To work" />
-<VocabWord translation_en="Company" />
+:word{en="job"}
+:word{en="to work"}
+:word{en="company"}
 
 --------------------------------------------------
 
-<VocabWord translation_en="Boss" />
-<VocabWord translation_en="Coworkers" />
+:word{en="boss"}
+:word{en="coworkers"}
 
 --------------------------------------------------
 
-<VocabWord translation_en="Meeting" />
-<VocabWord translation_en="Document" />
-<VocabWord translation_en="Computer" />
-<VocabWord translation_en="Client" />
+:word{en="meeting"}
+:word{en="document"}
+:word{en="computer"}
+:word{en="client"}
+
+:word{it="ciao"}

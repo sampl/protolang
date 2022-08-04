@@ -1,41 +1,41 @@
 ---
 
-Title: Nature
+title: Nature
 
 ---
 
-<VocabWord translation_en="World" />
+:word{en="world" }
 
 --------------------------------------------------
 
-<VocabWord translation_en="Sun" />
-<VocabWord translation_en="Moon" />
+:word{en="sun" }
+:word{en="moon" }
 
 --------------------------------------------------
 
-<VocabWord translation_en="Sky" />
-<VocabWord translation_en="Stars" />
-<VocabWord translation_en="Clouds" />
+:word{en="sky" }
+:word{en="stars" }
+:word{en="clouds" }
 
 --------------------------------------------------
 
-<VocabWord translation_en="Rain" />
-<VocabWord translation_en="Snow" />
+:word{en="rain" }
+:word{en="snow" }
 
 --------------------------------------------------
 
-<VocabWord translation_en="Hill" />
-<VocabWord translation_en="Mountains" />
+:word{en="hill" }
+:word{en="mountains" }
 
 --------------------------------------------------
 
-<VocabWord translation_en="Tree" />
-<VocabWord translation_en="Forrest" />
-<VocabWord translation_en="Rocks" />
+:word{en="tree" }
+:word{en="forrest" }
+:word{en="rocks" }
 
 --------------------------------------------------
 
-<VocabWord translation_en="River" />
-<VocabWord translation_en="Ocean" />
-<VocabWord translation_en="Waves" />
-<VocabWord translation_en="Nature" />
+:word{en="river" }
+:word{en="ocean" }
+:word{en="waves" }
+:word{en="nature" }

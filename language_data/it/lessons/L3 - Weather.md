@@ -1,14 +1,14 @@
 ---
 
-Title: Weather
+title: Weather
 
 ---
 
-<VocabWord translation_en="Weather" />
+:word{en="weather" }
 
 --------------------------------------------------
 
-<VocabWord translation_en="It is hot" />
-<VocabWord translation_en="It is cold" />
+:word{en="it is hot" }
+:word{en="it is cold" }
 
 Rain etc...

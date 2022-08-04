@@ -1,35 +1,35 @@
 ---
 
-Title: Language
+title: Language
 
 ---
 
 If someone on the street asks you a question, you can just reply with:
 
-<VocabWord translation_en="Excuse me, I don't speak Italian" />
-<VocabWord translation_en="I don't know, sorry" />
+:word{en="excuse me, I don't speak Italian" }
+:word{en="I don't know, sorry" }
 
 --------------------------------------------------
 
 If you want to strike up more of a conversation...
 
-<VocabWord translation_en="Do you speak English?" />
-<VocabWord translation_en="I speak English" />
-<VocabWord translation_en="Do you speak Italian?" />
-<VocabWord translation_en="I speak a little Italian" />
-<VocabWord translation_en="Please speak to me in Italian" />
+:word{en="do you speak English?" }
+:word{en="I speak English" }
+:word{en="do you speak Italian?" }
+:word{en="I speak a little Italian" }
+:word{en="please speak to me in Italian" }
 
 --------------------------------------------------
 
-<VocabWord translation_en="Do you understand?" />
-<VocabWord translation_en="I understand" />
-<VocabWord translation_en="I understand a little bit" />
-<VocabWord translation_en="I don't understand" />
+:word{en="do you understand?" }
+:word{en="I understand" }
+:word{en="I understand a little bit" }
+:word{en="I don't understand" }
 
 --------------------------------------------------
 
-<VocabWord translation_en="Please speak more slowly" />
-<VocabWord translation_en="Please say that again/repeat" />
-<VocabWord translation_en="Please write it down" />
-<VocabWord translation_en="How do you say [phrase] in Italian?" />
-<VocabWord translation_en='In English we say "[phrase]"' />
+:word{en="please speak more slowly" }
+:word{en="please say that again" }
+:word{en="please write it down" }
+:word{en="how do you say [phrase] in Italian?" }
+:word{en='in English we say "[phrase]"' }

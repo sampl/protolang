@@ -1,6 +1,6 @@
 ---
 
-Title: Polite basics
+title: Polite basics
 
 ---
 
@@ -10,36 +10,36 @@ The word for "hello" in Italian is "ciao" (sounds like "chow").
 
 Click below to hear it and repeat the phase out loud.
 
-<VocabWord translation_en="Hello" />
+:word{en="hello" }
 
 --------------------------------------------------
 
 Have you ever heard that "Aloha" means both hello and goodbye in Hawaii? Well in Italian, ciao is both hello and goodbye too:
 
-<VocabWord translation_en="Goodbye" />
+:word{en="goodbye" }
 
 --------------------------------------------------
 
-<VocabWord translation_en="No" />
-<VocabWord translation_en="Yes" />
+:word{en="no" }
+:word{en="yes" }
 
 --------------------------------------------------
 
 If you're asking for something, you'll want please and thank you.
 
-<VocabWord translation_en="Please" />
-<VocabWord translation_en="Thank you" />
-<VocabWord translation_en="You're welcome" />
+:word{en="please" }
+:word{en="thank you" }
+:word{en="you're welcome" }
 
 --------------------------------------------------
 
 If you're in someone's way on the street (or in line at the Colosseum) you might want these...
 
-<VocabWord translation_en="Excuse me" />
-<VocabWord translation_en="Sorry" />
+:word{en="excuse me" }
+:word{en="sorry" }
 
 --------------------------------------------------
 
 But it's not all bad... if you want to say something is awesome, try this:
 
-<VocabWord translation_en="Great!" />
+:word{en="great!" }

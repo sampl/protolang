@@ -1,22 +1,22 @@
 ---
 
-Title: Art
+title: Art
 
 ---
 
-<VocabWord translation_en="Art" />
-<VocabWord translation_en="Artist" />
-<VocabWord translation_en="Theater" />
-<VocabWord translation_en="Painting" />
+:word{en="art" }
+:word{en="artist" }
+:word{en="theater" }
+:word{en="painting" }
 
 --------------------------------------------------
 
 Books
 
-<VocabWord translation_en="Literature" />
-<VocabWord translation_en="Book" />
-<VocabWord translation_en="Reading" />
-<VocabWord translation_en="Author" />
-<VocabWord translation_en="Story" />
-<VocabWord translation_en="Bookstore" />
-<VocabWord translation_en="Character" />
+:word{en="literature" }
+:word{en="book" }
+:word{en="reading" }
+:word{en="author" }
+:word{en="story" }
+:word{en="bookstore" }
+:word{en="character" }

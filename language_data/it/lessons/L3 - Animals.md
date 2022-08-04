@@ -1,19 +1,19 @@
 ---
 
-Title: Animals
+title: Animals
 
 ---
 
-<VocabWord translation_en="Animals" />
+:word{en="animals" }
 
 --------------------------------------------------
 
 Farm animals
 
-<VocabWord translation_en="Cow" />
+:word{en="cow" }
 
 --------------------------------------------------
 
 Wild animals in Italy
 
-<VocabWord translation_en="Dolphin" />
+:word{en="dolphin" }

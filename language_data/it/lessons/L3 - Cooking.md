@@ -1,9 +1,11 @@
 ---
 
-Title: Cooking
+title: Cooking
 
 ---
 
-<VocabWord translation_en="Standard dishes" />
-<VocabWord translation_en="Italian dishes" />
-<VocabWord translation_en="Ingredients" />
+Standard dishes...
+
+Italian dishes...
+
+Ingredients...

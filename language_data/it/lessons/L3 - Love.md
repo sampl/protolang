@@ -1,19 +1,19 @@
 ---
 
-Title: Love
+title: Love
 
 ---
 
-<VocabWord translation_en="I love you" />
+:word{en="I love you" }
 
 --------------------------------------------------
 
-<VocabWord translation_en="Would you like to dance with me?" />
-<VocabWord translation_en="Do you come here often?" />
-<VocabWord translation_en="You are beautiful" />
-<VocabWord translation_en="You are handsome" />
-<VocabWord translation_en="Do you like [activity]" />
-<VocabWord translation_en="Where are you?" />
-<VocabWord translation_en="I'm angry" />
-<VocabWord translation_en="I'm sad" />
-<VocabWord translation_en="I miss you" />
+:word{en="would you like to dance with me?" }
+:word{en="do you come here often?" }
+:word{en="you are beautiful" }
+:word{en="you are handsome" }
+:word{en="do you like [activity]" }
+:word{en="where are you?" }
+:word{en="I'm angry" }
+:word{en="I'm sad" }
+:word{en="I miss you" }

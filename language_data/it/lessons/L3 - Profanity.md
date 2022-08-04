@@ -1,10 +1,10 @@
 ---
 
-Title: Profanity
+title: Profanity
 
 ---
 
-<VocabWord translation_en="Damn" />
-<VocabWord translation_en="Shit" />
-<VocabWord translation_en="Fuck" />
-<VocabWord translation_en="Motherfucker" />
+:word{en="damn" }
+:word{en="shit" }
+:word{en="fuck" }
+:word{en="motherfucker" }

@@ -1,6 +1,6 @@
 ---
 
-Title: Articles
+title: Articles
 
 ---
 
@@ -10,12 +10,12 @@ In English there's only one word for "the", but there are many in Italian.
 
 The
 
-<VocabWord name="il" />
-<VocabWord name="la" />
+:word{ it="il" }
+:word{ it="la" }
 
 --------------------------------------------------
 
 A
 
-<VocabWord name="un" />
-<VocabWord name="una" />
+:word{ it="un" }
+:word{ it="una" }

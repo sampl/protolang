@@ -1,22 +1,22 @@
 ---
 
-Title: Questions
+title: Questions
 
 ---
 
-<VocabWord translation_en="Who" />
-<VocabWord translation_en="What" />
-<VocabWord translation_en="When" />
-<VocabWord translation_en="Where" />
-<VocabWord translation_en="Why" />
-<VocabWord translation_en="How" />
+:word{en="who" }
+:word{en="what" }
+:word{en="when" }
+:word{en="where" }
+:word{en="why" }
+:word{en="how" }
 
 --------------------------------------------------
 
-<VocabWord translation_en="This" />
-<VocabWord translation_en="That" />
+:word{en="this" }
+:word{en="that" }
 
 --------------------------------------------------
 
-<VocabWord translation_en="Thing" />
-<VocabWord translation_en="Place" />
+:word{en="thing" }
+:word{en="place" }

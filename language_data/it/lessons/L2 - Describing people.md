@@ -1,22 +1,22 @@
 ---
 
-Title: Describing people
+title: Describing people
 
 ---
 
-<VocabWord translation_en="Boy" />
-<VocabWord translation_en="Girl" />
-<VocabWord translation_en="Man" />
-<VocabWord translation_en="Woman" />
-<VocabWord translation_en="Mister" />
-<VocabWord translation_en="Miss" />
-<VocabWord translation_en="Misses" />
-<VocabWord translation_en="Husband" />
-<VocabWord translation_en="Wife" />
+:word{en="boy" }
+:word{en="girl" }
+:word{en="man" }
+:word{en="woman" }
+:word{en="mister" }
+:word{en="miss" }
+:word{en="misses" }
+:word{en="husband" }
+:word{en="wife" }
 
 --------------------------------------------------
 
-<VocabWord translation_en="Tall" />
-<VocabWord translation_en="Short" />
-<VocabWord translation_en="Pretty" />
-<VocabWord translation_en="Handsome" />
+:word{en="tall" }
+:word{en="short" }
+:word{en="pretty" }
+:word{en="handsome" }

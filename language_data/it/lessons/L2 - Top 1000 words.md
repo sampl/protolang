@@ -1,6 +1,6 @@
 ---
 
-Title: Top 1000 words
+title: Top 1000 words
 
 ---
 

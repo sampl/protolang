@@ -1,18 +1,18 @@
 ---
 
-Title: Houses and buildings
+title: Houses and buildings
 
 ---
 
-<VocabWord translation_en="House" />
+:word{en="house" }
 
 --------------------------------------------------
 
-<VocabWord translation_en="Kitchen" />
-<VocabWord translation_en="Bedroom" />
-<VocabWord translation_en="Bed" />
-<VocabWord translation_en="Door" />
-<VocabWord translation_en="Floor" />
-<VocabWord translation_en="Apartment" />
-<VocabWord translation_en="Stairs" />
-<VocabWord translation_en="Bathroom" />
+:word{en="kitchen" }
+:word{en="bedroom" }
+:word{en="bed" }
+:word{en="door" }
+:word{en="floor" }
+:word{en="apartment" }
+:word{en="stairs" }
+:word{en="bathroom" }

@@ -1,9 +1,9 @@
 ---
 
-Title: Italian places
+title: Italian places
 
 ---
 
-<VocabWord translation_en="Rome" />
-<VocabWord translation_en="Tuscany" />
-<VocabWord translation_en="Amalfi" />
+:word{en="Rome" }
+:word{en="Tuscany" }
+:word{en="Amalfi" }
