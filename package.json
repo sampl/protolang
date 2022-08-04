@@ -12,6 +12,7 @@
     "@radix-ui/react-popover": "^0.1.6",
     "@supabase/supabase-js": "^1.35.4",
     "dotenv": "^16.0.1",
+    "hastscript": "^7.0.2",
     "moment": "^2.29.4",
     "pg": "^8.7.3",
     "react": "^18.0.0",
@@ -19,8 +20,15 @@
     "react-markdown": "^8.0.3",
     "react-router-dom": "^6.3.0",
     "react-supabase": "^0.2.0",
+    "remark-directive": "^2.0.1",
+    "remark-frontmatter": "^4.0.1",
     "remark-gfm": "^3.0.1",
+    "remark-parse": "^10.0.1",
+    "remark-parse-yaml": "0.0.3",
+    "remark-stringify": "^10.0.2",
     "styled-components": "^5.3.5",
+    "unified": "^10.1.2",
+    "unist-util-visit": "^4.1.0",
     "vite-plugin-babel-macros": "^1.0.6"
   },
   "devDependencies": {
