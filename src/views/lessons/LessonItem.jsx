@@ -5,6 +5,7 @@ import remarkGfm from 'remark-gfm'
 import remarkDirective from 'remark-directive'
 import remarkDirectiveRehype from 'remark-directive-rehype'
 import LessonEmbed from './LessonEmbed'
+import { BreadcrumbItem, BreadcrumbSeparator, BreadcrumbWrapper } from '@/styles/Breadcrumbs'
 
 export default () => {
   let { id } = useParams()
@@ -21,6 +22,12 @@ export default () => {
   const lesson = data && data[0]
 
   return <>
+    <BreadcrumbWrapper>
+      <BreadcrumbItem to="/lessons">Lessons</BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem to={`/lessons/${id}`}>{lesson?.title_en}</BreadcrumbItem>
+    </BreadcrumbWrapper>
+
     {error && error.message}
     {fetching && 'loading...'}
 

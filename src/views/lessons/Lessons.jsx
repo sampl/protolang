@@ -2,6 +2,7 @@ import { useSelect, useFilter } from 'react-supabase'
 import { Link } from 'react-router-dom'
 
 import { useLanguage } from '@/_state/language'
+import { BreadcrumbItem, BreadcrumbWrapper } from '@/styles/Breadcrumbs'
 
 export default () => {
 
@@ -17,6 +18,10 @@ export default () => {
   })
 
   return <>
+    <BreadcrumbWrapper>
+      <BreadcrumbItem to="/lessons">Lessons</BreadcrumbItem>
+    </BreadcrumbWrapper>
+
     <h1>Lessons</h1>
     {
       error ? error.message :
