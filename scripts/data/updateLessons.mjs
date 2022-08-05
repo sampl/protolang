@@ -10,6 +10,7 @@ import remarkFrontmatter from 'remark-frontmatter'
 import remarkStringify from 'remark-stringify'
 // import remarkDirective from 'remark-directive'
 import remarkParseYaml from 'remark-parse-yaml'
+import { filter } from 'unist-util-filter'
 
 import { dirname } from 'path'
 import { fileURLToPath } from 'url'
@@ -74,9 +75,14 @@ const parseLesson = async ({ filename, content }) => {
   //   .use(remarkStringify)
   //   .process(content)
 
-  // TODO - get markdown content from lesson
-
-  const { content_en } = parsedLessonContent
+  // https://github.com/remarkjs/remark/blob/main/packages/remark-stringify/readme.md#use
+  let markdownContent = await unified()
+    .use(remarkParse)
+    .use(remarkFrontmatter)
+    .use(() => tree => filter(tree, node => node.type !== 'yaml'))
+    .use(remarkStringify)
+    .process(content)
+  const markdownContentString = String(markdownContent)
 
   const order = filename.startsWith('L1') ? 10 :
                 filename.startsWith('L2') ? 20 :
@@ -86,7 +92,7 @@ const parseLesson = async ({ filename, content }) => {
   return {
     language: `lang_${LANGUAGE_CODE}`,
     title_en: frontMatter.title,
-    content_en: content_en,
+    content_en: markdownContentString,
     updated_on: new Date(),
     order,
     // directive_words: directiveWords,
