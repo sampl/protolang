@@ -111,7 +111,7 @@ const routes = [
 
 export default () => {
   const { user } = useUser()
-  const { currentLanguageId, currentLanguage, loading, error } = useLanguage()
+  const { currentLanguage, fetching, error } = useLanguage()
 
   return <RouterRoutes>
     {routes.map(route => {
@@ -125,11 +125,11 @@ export default () => {
               <Navigate to='/login' replace={true} /> :
               (route.public && user) ?
               <Navigate to='/dashboard' replace={true} /> :
-              loading ? 'loading...' :
-              (route.requires_language && !currentLanguageId) ?
+              fetching ? 'loading...' :
+              (route.requires_language && !currentLanguage.id) ?
               <NewUserLanguage /> :
-              (route.requires_language && !currentLanguage?.language?.is_live) ?
-              `${currentLanguage.language?.name_en} coming soon!` :
+              (route.requires_language && !currentLanguage?.is_live) ?
+              `${currentLanguage.name_en} coming soon!` :
               <route.component />
             }
           </route.layout>

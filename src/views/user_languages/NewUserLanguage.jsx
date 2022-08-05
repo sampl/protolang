@@ -9,10 +9,10 @@ import { RadioRoot, RadioItem, RadioIndicator } from '@/styles/Radio'
 export default ({ closeModal }) => {
   const navigate = useNavigate()
   const { user } = useUser()
-  const { allLanguages, setCurrentLanguageId } = useLanguage()
+  const { languages, setCurrentLanguageId } = useLanguage()
 
-  const liveLanguages = allLanguages?.filter(l => l.is_live)
-  const soonLanguages = allLanguages?.filter(l => !l.is_live)
+  const liveLanguages = languages?.filter(l => l.is_live)
+  const soonLanguages = languages?.filter(l => !l.is_live)
 
   const [selectedLanguage, setSelectedLanguage] = useState()
   const [selectedGoal, setSelectedGoal] = useState()
@@ -26,16 +26,18 @@ export default ({ closeModal }) => {
     try {
       setSaving(true)
       const newData = {
-        created_by: user.id,
+        created_by: user?.id,
         language: selectedLanguage,
         goal: selectedGoal,
         visit_plans: selectedVisitPlans,
         visit_date: selectedVisitDate,
         self_reported_skill: selectedSkill,
       }
-      let { error } = await supabase.from('user_languages').insert([newData])
-      if (error) {
-        throw error
+      if (user) {
+        let { error } = await supabase.from('user_languages').insert([newData])
+        if (error) {
+          throw error
+        }
       }
       closeModal && closeModal()
       setCurrentLanguageId(selectedLanguage)
@@ -56,7 +58,7 @@ export default ({ closeModal }) => {
       required
       >
       <option>-- Choose a language --</option>
-      {allLanguages?.map(lang => {
+      {languages?.map(lang => {
         return <option key={lang.id} value={lang.id}>{lang.name_en} {!lang.is_live && '(Coming soon)'}</option>
       })}
     </select> */}

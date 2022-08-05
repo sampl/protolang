@@ -5,13 +5,13 @@ import { useLanguage } from '@/_state/language'
 
 export default () => {
   
-  const { currentLanguageId } = useLanguage()
+  const { currentLanguage } = useLanguage()
   
   const filter = useFilter(
     (query) => query
-      .eq('language', currentLanguageId)
+      .eq('language', currentLanguage.id)
       .order('order', { ascending: true }),
-    [currentLanguageId],
+    [currentLanguage.id],
   )
 
   const [{ data: lessons, error, fetching }] = useSelect('lessons', {

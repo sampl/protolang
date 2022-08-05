@@ -10,7 +10,7 @@ import WordScore from './WordScore'
 
 export default () => {
   const { id } = useParams()
-  const { currentLanguageCode } = useLanguage()
+  const { currentLanguage } = useLanguage()
 
   const filter = useFilter(
     (query) => query.eq('id', id),
@@ -33,7 +33,7 @@ export default () => {
     <div>{word?.context_en}</div>
 
     <a
-      href={`https://translate.google.com/?sl=${currentLanguageCode}&tl=en&text=${word?.name}&op=translate`}
+      href={`https://translate.google.com/?sl=${currentLanguage.code}&tl=en&text=${word?.name}&op=translate`}
       target="_blank"
     >
       Open in Google Translate

@@ -5,11 +5,11 @@ import { useLanguage } from '@/_state/language'
 
 export default () => {
 
-  const { currentLanguageId } = useLanguage()
+  const { currentLanguage } = useLanguage()
 
   const filter = useFilter(
-    (query) => query.eq('language', currentLanguageId),
-    [currentLanguageId],
+    (query) => query.eq('language', currentLanguage.id),
+    [currentLanguage.id],
   )
 
   const [{ data: resources, error, fetching }] = useSelect('resources', { filter })

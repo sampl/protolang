@@ -6,10 +6,10 @@ import Card from '@/views/practice/Card'
 import { TwoColumns } from '@/styles/Layout'
 
 export default () => {
-  const { currentLanguageId } = useLanguage()
+  const { currentLanguage } = useLanguage()
   const filter = useFilter(
-    (query) => query.eq('language', currentLanguageId),
-    [currentLanguageId],
+    (query) => query.eq('language', currentLanguage.id),
+    [currentLanguage.id],
   )
   const [{ data: words, error, fetching }] = useSelect('words', { filter })
   const [currentWordIndex, setCurrentWordIndex] = useState(0)

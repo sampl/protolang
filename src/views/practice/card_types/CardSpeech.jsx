@@ -4,7 +4,7 @@ import { useEffect } from "react"
 
 export default ({ direction, question, correctAnswer, testAnswer, testPartialAnswer, submitAnswer, disabled }) => {
 
-  const { currentLanguageCode } = useLanguage()
+  const { currentLanguage } = useLanguage()
   const {
     speechRecognitionIsSupported,
     startSpeechRecognition,
@@ -64,7 +64,7 @@ export default ({ direction, question, correctAnswer, testAnswer, testPartialAns
     if (recognitionState === 'listening') {
       stopSpeechRecognition()
     } else {
-      const languageCode = direction === 'forward' ? currentLanguageCode : 'en'
+      const languageCode = direction === 'forward' ? currentLanguage.code : 'en'
       startSpeechRecognition(languageCode)
     }
   }

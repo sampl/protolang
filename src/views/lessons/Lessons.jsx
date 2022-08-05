@@ -6,11 +6,11 @@ import { BreadcrumbItem, BreadcrumbWrapper } from '@/styles/Breadcrumbs'
 
 export default () => {
 
-  const { currentLanguageId } = useLanguage()
+  const { currentLanguage } = useLanguage()
 
   const filter = useFilter(
-    (query) => query.eq('language', currentLanguageId),
-    [currentLanguageId],
+    (query) => query.eq('language', currentLanguage.id),
+    [currentLanguage.id],
   )
 
   const [{ data: lessons, error, fetching }] = useSelect('lessons', {

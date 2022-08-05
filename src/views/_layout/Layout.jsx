@@ -33,9 +33,9 @@ export default ({children}) => {
         <Link to="/resources">Resources</Link> */}
       </nav>
       <div>
-        {userLanguages?.length > 0 && <DropdownNavMenu trigger={currentLanguage?.language?.flag}>
+        {userLanguages?.length > 0 && <DropdownNavMenu trigger={currentLanguage?.flag}>
           {userLanguages?.map( userLanguage => {
-            const { id, name_en } = userLanguage.language
+            const { id, name_en } = userLanguage
             return <div
               key={userLanguage.id}
               onClick={() => setCurrentLanguageId(id)}
