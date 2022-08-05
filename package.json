@@ -10,6 +10,7 @@
   "dependencies": {
     "@radix-ui/react-dialog": "^0.1.7",
     "@radix-ui/react-popover": "^0.1.6",
+    "@radix-ui/react-radio-group": "^1.0.0",
     "@supabase/supabase-js": "^1.35.4",
     "dotenv": "^16.0.1",
     "hastscript": "^7.0.2",
