@@ -13,7 +13,6 @@ export default () => {
   )
 
   const [{ data: lessons, error, fetching }] = useSelect('lessons', {
-    columns: '*, user_lessons(*)',
     filter,
   })
 
@@ -29,10 +28,9 @@ export default () => {
 }
 
 const LessonListItem = ({lesson}) => {
-  const completed = lesson?.user_lessons && lesson.user_lessons[0]?.completed
   return <div>
     <Link to={`/lessons/${lesson.id}`}>
-      {lesson.title_en || 'Unknown'} {completed && '✅'}
+      {lesson.title_en || 'Unknown'}
     </Link>
   </div>
 }

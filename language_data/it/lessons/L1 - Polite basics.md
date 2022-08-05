@@ -10,13 +10,13 @@ The word for "hello" in Italian is "ciao" (sounds like "chow").
 
 Click below to hear it and repeat the phase out loud.
 
-:word{en="hello" }
+:word{it="ciao" en="hi"}
 
 --------------------------------------------------
 
 Have you ever heard that "Aloha" means both hello and goodbye in Hawaii? Well in Italian, ciao is both hello and goodbye too:
 
-:word{en="goodbye" }
+:word{it="ciao" en="bye"}
 
 --------------------------------------------------
 

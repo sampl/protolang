@@ -2,8 +2,9 @@ import { useParams } from 'react-router-dom'
 import { useFilter, useSelect } from 'react-supabase'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-
-import LessonBlock from '@/views/lessons/LessonBlock'
+import remarkDirective from 'remark-directive'
+import remarkDirectiveRehype from 'remark-directive-rehype'
+import LessonEmbed from './LessonEmbed'
 
 export default () => {
   let { id } = useParams()
@@ -14,27 +15,24 @@ export default () => {
   )
 
   const [{ data, error, fetching }] = useSelect('lessons', {
-    columns: '*, user_lessons(*), lesson_blocks(*)',
     filter,
   })
 
   const lesson = data && data[0]
-  const completed = lesson?.user_lessons && lesson.user_lessons[0]?.completed
 
   return <>
     {error && error.message}
     {fetching && 'loading...'}
 
-    <h1>{lesson?.title_en} {completed && '✅'}</h1>
+    <h1>{lesson?.title_en}</h1>
 
-    <ReactMarkdown remarkPlugins={[remarkGfm]}>
-      {lesson?.content_en || ''}
-    </ReactMarkdown>
-    
-    <hr />
+    <ReactMarkdown
+      children={lesson?.content_en || ''}
+      remarkPlugins={[remarkGfm, remarkDirective, remarkDirectiveRehype]}
+      components={{
+        'word': LessonEmbed,
+      }}
+    />
 
-    {lesson?.lesson_blocks.map(lessonBlock => (
-      <LessonBlock key={lessonBlock.id} lessonBlock={lessonBlock} />
-    ))}
   </>
 }

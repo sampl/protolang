@@ -1,5 +1,5 @@
-import * as pg from 'pg'
-const { Client } = pg
+import pg from 'pg'
+const Client = pg.Client
 
 import { promises as fs } from 'fs'
 import dotenv from 'dotenv'
@@ -93,15 +93,15 @@ const parseLesson = async ({ filename, content }) => {
     content_en: markdownContentString,
     updated_on: new Date(),
     order,
-    words: directiveWords,
+    words: JSON.stringify(directiveWords),
   }
 }
 
-// TODO - remove "completed" lesson attr and add a view that shows percentage lessons completed based on vocab
+// TODO - lessons getting added multiple times
 const updateDatabase = async lessons => {
 
-  console.dir(lessons)
-  
+  // console.dir(lessons)
+
   if (!LIVE) {
     console.log('Skipping db update, to run it for real use "--live"')
     return
@@ -112,13 +112,27 @@ const updateDatabase = async lessons => {
 
   // clear out previous data
   if (DESTRUCTIVE) {
-    console.log('--destructive flag detected, removing existing lessons...')
+    console.log('Removing existing lessons...')
     await client.query('DELETE FROM lessons;')
   }
-
+  
+  console.log('Adding new lessons...')
   await Promise.all(lessons.map(async lesson => {
-    const text = 'INSERT INTO lessons(language, title_en, content_en, updated_on, order, words) VALUES($1, $2, $3, $4, $5, $6) RETURNING *'
-    await client.query(text, lesson)
+    console.log(lesson.title_en)
+    const values = [
+      lesson.language,
+      lesson.title_en,
+      lesson.content_en,
+      lesson.updated_on,
+      lesson.order,
+      lesson.words,
+    ]
+    const text = `
+      INSERT INTO lessons("language", title_en, content_en, created_at, "order", words)
+      VALUES($1, $2, $3, $4, $5, json_array_elements($6))
+      RETURNING *
+    `
+    await client.query(text, values)
   }))
 
   await client.end()
