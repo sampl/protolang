@@ -8,7 +8,7 @@ import {unified} from 'unified'
 import remarkParse from 'remark-parse'
 import remarkFrontmatter from 'remark-frontmatter'
 import remarkStringify from 'remark-stringify'
-// import remarkDirective from 'remark-directive'
+import remarkDirective from 'remark-directive'
 import remarkParseYaml from 'remark-parse-yaml'
 import { filter } from 'unist-util-filter'
 
@@ -59,21 +59,19 @@ const parseLesson = async ({ filename, content }) => {
     })
     .process(content)
 
-  // let directiveWords
-  // const parsedLessonContent = await unified()
-  //   .use(remarkParse)
-  //   .use(remarkDirective)
-  //   .use(() => tree => {
-  //     const allSubChildren = tree?.children.map(c => c.children || []).flat()
-  //     const directives = allSubChildren.filter(c => c.type.includes('Directive'))
-  //     directiveWords = {
-  //       it: directives.map(directive => directive.attributes?.it).filter(word => !!word),
-  //       en: directives.map(directive => directive.attributes?.en).filter(word => !!word),
-  //     }
-  //   })
-  //   .use(remarkFrontmatter)
-  //   .use(remarkStringify)
-  //   .process(content)
+  let directiveWords
+  await unified()
+    .use(remarkParse)
+    .use(remarkDirective)
+    .use(() => tree => {
+      const allSubChildren = tree?.children.map(c => c.children || []).flat()
+      const directives = allSubChildren.filter(c => c.type.includes('Directive'))
+      // TODO - translate english-only directives to italian
+      directiveWords = directives.map(directive => directive.attributes?.it || directive.attributes?.en).filter(word => !!word)
+    })
+    .use(remarkFrontmatter)
+    .use(remarkStringify)
+    .process(content)
 
   // https://github.com/remarkjs/remark/blob/main/packages/remark-stringify/readme.md#use
   let markdownContent = await unified()
@@ -95,12 +93,11 @@ const parseLesson = async ({ filename, content }) => {
     content_en: markdownContentString,
     updated_on: new Date(),
     order,
-    // directive_words: directiveWords,
+    words: directiveWords,
   }
 }
 
 // TODO - remove "completed" lesson attr and add a view that shows percentage lessons completed based on vocab
-// TODO - add directive words to db
 const updateDatabase = async lessons => {
 
   console.dir(lessons)
@@ -120,7 +117,7 @@ const updateDatabase = async lessons => {
   }
 
   await Promise.all(lessons.map(async lesson => {
-    const text = 'INSERT INTO lessons(language, title_en, content_en, updated_on, order) VALUES($1, $2, $3, $4, $5) RETURNING *'
+    const text = 'INSERT INTO lessons(language, title_en, content_en, updated_on, order, words) VALUES($1, $2, $3, $4, $5, $6) RETURNING *'
     await client.query(text, lesson)
   }))
 
