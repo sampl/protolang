@@ -26,3 +26,9 @@ h2 {
 p {
   margin: 0 0 .5rem;
 }
+
+label {
+  font-weight: 500;
+  display: block;
+  margin: 1rem 0 0;
+}
