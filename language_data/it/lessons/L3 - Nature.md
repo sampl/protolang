@@ -1,6 +1,8 @@
 ---
 
 title: Nature
+concepts:
+  - nature
 
 ---
 

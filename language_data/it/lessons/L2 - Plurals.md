@@ -1,6 +1,8 @@
 ---
 
 title: Plurals
+concepts:
+  - grammar
 
 ---
 

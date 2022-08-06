@@ -1,6 +1,8 @@
 ---
 
 title: Comparative adjectives
+concepts:
+  - grammar
 
 ---
 

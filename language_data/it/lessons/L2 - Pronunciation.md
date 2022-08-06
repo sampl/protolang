@@ -1,6 +1,8 @@
 ---
 
 title: Pronunciation
+concepts:
+  - pronunciation
 
 ---
 

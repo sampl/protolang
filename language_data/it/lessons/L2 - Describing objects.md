@@ -1,6 +1,8 @@
 ---
 
 title: Describing objects
+concepts:
+  - objects
 
 ---
 

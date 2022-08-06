@@ -1,6 +1,8 @@
 ---
 
 title: Greetings
+concepts:
+  - basics
 
 ---
 

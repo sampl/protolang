@@ -1,6 +1,8 @@
 ---
 
 title: Cooking
+concepts:
+  - food
 
 ---
 

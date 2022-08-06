@@ -1,6 +1,8 @@
 ---
 
 title: Love
+concepts:
+  - emotions
 
 ---
 

@@ -1,6 +1,8 @@
 ---
 
 title: Profanity
+concepts:
+  - emotions
 
 ---
 

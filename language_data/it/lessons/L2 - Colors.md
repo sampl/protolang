@@ -1,6 +1,8 @@
 ---
 
 title: Colors
+concepts:
+  - basics
 
 ---
 

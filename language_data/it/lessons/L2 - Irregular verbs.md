@@ -1,6 +1,8 @@
 ---
 
-title: Basic verbs
+title: Irregular verbs
+concepts:
+  - verbs
 
 ---
 

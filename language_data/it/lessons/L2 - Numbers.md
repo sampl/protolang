@@ -1,6 +1,8 @@
 ---
 
 title: Numbers
+concepts:
+  - numbers
 
 ---
 

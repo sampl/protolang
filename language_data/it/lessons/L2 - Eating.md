@@ -1,6 +1,8 @@
 ---
 
 title: Eating
+concepts:
+  - food
 
 ---
 

@@ -1,6 +1,8 @@
 ---
 
 title: Describing people
+concepts:
+  - people
 
 ---
 

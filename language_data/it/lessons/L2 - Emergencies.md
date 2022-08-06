@@ -1,6 +1,8 @@
 ---
 
 title: Emergencies
+concepts:
+  - basics
 
 ---
 

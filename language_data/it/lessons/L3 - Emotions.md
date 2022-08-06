@@ -1,6 +1,8 @@
 ---
 
 title: Emotions
+concepts:
+  - emotions
 
 ---
 

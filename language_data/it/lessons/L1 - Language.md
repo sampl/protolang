@@ -1,6 +1,8 @@
 ---
 
 title: Language
+concepts:
+  - basics
 
 ---
 

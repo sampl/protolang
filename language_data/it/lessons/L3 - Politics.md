@@ -1,6 +1,8 @@
 ---
 
 title: Politics
+concepts:
+  - culture
 
 ---
 

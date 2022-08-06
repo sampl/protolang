@@ -1,6 +1,8 @@
 ---
 
 title: Clothing
+concepts:
+  - people
 
 ---
 

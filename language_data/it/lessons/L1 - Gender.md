@@ -1,6 +1,8 @@
 ---
 
 title: Gender
+concepts:
+  - gender
 
 ---
 

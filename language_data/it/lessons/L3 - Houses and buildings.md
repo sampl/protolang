@@ -1,6 +1,8 @@
 ---
 
 title: Houses and buildings
+concepts:
+  - places
 
 ---
 

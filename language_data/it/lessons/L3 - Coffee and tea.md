@@ -1,6 +1,8 @@
 ---
 
 title: Coffee and tea
+concepts:
+  - food
 
 ---
 
