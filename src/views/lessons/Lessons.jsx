@@ -31,7 +31,7 @@ export default () => {
 }
 
 const LessonListItem = ({lesson}) => {
-  const { currentLanguage } = useLanguage()
+  const { lang: urlLang } = useParams()
   return <div>
     <Link to={`/${urlLang}/lessons/${lesson.id}`}>
       {lesson.title_en || 'Unknown'}
