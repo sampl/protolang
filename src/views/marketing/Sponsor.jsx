@@ -1,7 +1,7 @@
 export default () => {
   return <>
 
-    <h1>Support free and open language learning</h1>
+    <h1>Support free language education</h1>
 
     <p>
       This website is free to use and open source, meaning anyone can run a full copy on their own servers at no cost. You can also browse all of our lessons (and submit suggestions!) on our Github page.

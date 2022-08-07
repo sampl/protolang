@@ -7,15 +7,18 @@ export default () => {
   return <>
 
     {/* <Modal close={() => navigate('/languages')}> */}
-      <h1>Learn a foreign language, faster than you ever thought possible</h1>
-      {/* <p>A powerful new way to learn. Unlock a world of new experiences with a powerful.</p> */}
+      {/* <h1>Learn a foreign language, faster than you ever thought possible</h1> */}
+      <h1>The language learning site for serious learners</h1>
+      {/* <p>Language learning site for serious language learners.</p> */}
       <button onClick={() => navigate('/languages')}>Choose your language</button>
       <p>Free forever · Open source · No account required</p>
       {/* Join 10,000 learners broadening their horizons */}
 
-      <blockquote>
+      <hr />
+
+      {/* <blockquote>
         "Straight to the dome"
-      </blockquote>
+      </blockquote> */}
       <blockquote>
         "It's like Duolingo for adults" - Joe Flateau
       </blockquote>
@@ -51,12 +54,14 @@ export default () => {
         <li>Speech synthesis</li>
       </ul>
 
-      <p>
+      {/* <p>
         Considering a switch?
         {' '}
         <a href="">Compare to Duolingo</a>
-      </p>
+      </p> */}
 
+      <h2>Start learning</h2>
+      <p>100% free, no account required</p>
       <button onClick={() => navigate('/languages')}>Choose your language</button>
     {/* </Modal> */}
 
