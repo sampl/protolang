@@ -2,17 +2,16 @@ import { Link, NavLink } from 'react-router-dom'
 
 import { useLanguage } from '@/_state/language'
 import DropdownNavMenu from '@/styles/DropdownNavMenu'
-import TopNav from '@/styles/TopNav'
 import AccountMenu from '@/views/_layout/AccountMenu'
 import Footer from '@/views/_layout/Footer'
-import { HeaderFooterLayoutWrapper } from '@/styles/Layout'
+import { HeaderFooterLayoutWrapper, Header, Main } from '@/styles/Layout'
 
 export default ({children}) => {
   const { currentLanguage, userLanguages } = useLanguage()
 
   return <HeaderFooterLayoutWrapper>
 
-    <TopNav>
+    <Header>
       <nav>
         <NavLink to={`/`}>Protolang</NavLink>
       </nav>
@@ -32,11 +31,11 @@ export default ({children}) => {
         {' '}
         <AccountMenu />
       </div>
-    </TopNav>
+    </Header>
 
-    <main>
+    <Main>
       {children}
-    </main>
+    </Main>
 
     <Footer />
 

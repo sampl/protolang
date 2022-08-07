@@ -1,4 +1,9 @@
 :root {
+  /* sizes */
+  --gutter: 1rem;
+  --leading: .5rem;
+
+  /* heatmap colors */
   --diablo: black;
   --fire: purple;
   --hot: red;

@@ -2,10 +2,9 @@ import { Link, NavLink, useNavigate, useParams } from 'react-router-dom'
 
 import { useLanguage } from '@/_state/language'
 import DropdownNavMenu from '@/styles/DropdownNavMenu'
-import TopNav from '@/styles/TopNav'
 import AccountMenu from '@/views/_layout/AccountMenu'
 import Footer from '@/views/_layout/Footer'
-import { HeaderFooterLayoutWrapper } from '@/styles/Layout'
+import { HeaderFooterLayoutWrapper, Header, Main } from '@/styles/Layout'
 import LanguagePicker from '../user_languages/LanguagePicker'
 import { useUser } from "@/_state/user"
 import { useEffect } from 'react'
@@ -27,7 +26,7 @@ export default ({children}) => {
 
   return <HeaderFooterLayoutWrapper>
 
-    <TopNav>
+    <Header>
       <nav>
         <NavLink to={`/${urlLang}`}>Protolang</NavLink>
         {' '}
@@ -52,14 +51,14 @@ export default ({children}) => {
         {' '}
         <AccountMenu />
       </div>
-    </TopNav>
+    </Header>
 
     {/*
       TODO
       How should URLs interact with current language?
       ie should every page that requires a language check the route and try to set it if they find one?
     */}
-    <main>
+    <Main>
 
       {!user && <Banner>
           To start saving your progress, <Link to="/signup">create an account</Link>.
@@ -81,7 +80,7 @@ export default ({children}) => {
           `${currentLanguage?.name_en} lessons coming soon! Create an account to get notified of new courses.` :
         children
       }
-    </main>
+    </Main>
 
     <Footer />
 
