@@ -26,14 +26,16 @@ export default () => {
     }))
 
   // get activity data
-  const filter = useFilter(
-    (query) => query.eq('created_by', user.id),
-    [user.id],
-  )
-  const [{ data: dataDays, error, fetching }] = useSelect('heatmap_days', { filter })
-  
+  const [{ data: dataDays, error, fetching }] = useSelect('heatmap_days', {
+    pause: !user,
+    filter: user && useFilter(
+      (query) => query.eq('created_by', user?.id),
+      [user?.id],
+    ),
+  })
+
   // merge data with empty array
-  const days = emptyDays.map(ed => {
+  const days = !user ? emptyDays : emptyDays.map(ed => {
     const dataDay = dataDays?.find(dd => dd.date === ed.date)
     return {
       ...ed,

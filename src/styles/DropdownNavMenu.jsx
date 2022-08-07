@@ -6,7 +6,7 @@ export default ({ trigger, children }) => {
     <Popover.Trigger>{trigger}</Popover.Trigger>
     <DropdownContentWrapper>
       <Popover.Arrow />
-      <Popover.Close>✖️</Popover.Close>
+      {/* <Popover.Close>✖️</Popover.Close> */}
       {children}
     </DropdownContentWrapper>
   </Popover.Root>

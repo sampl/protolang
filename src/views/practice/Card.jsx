@@ -7,6 +7,7 @@ import { useUser } from '@/_state/user'
 import ReportError from '@/views/practice/ReportError'
 import CardText from './card_types/CardText'
 import CardSpeech from './card_types/CardSpeech'
+import { useLanguage } from '@/_state/language'
 
 const MAX_STRIKES = 1
 
@@ -19,6 +20,7 @@ export default ({ word, type, direction, next }) => {
   const correctAnswer = direction === 'forward' ? word?.name : word?.translation_en 
 
   const { user } = useUser()
+  const { currentLanguage } = useLanguage()
 
   // waiting, try_again, correct, incorrect
   const [cardState, setCardState] = useState('waiting')
@@ -45,6 +47,9 @@ export default ({ word, type, direction, next }) => {
   }
 
   const saveAnswer = async (type, correct) => {
+    if (!user) {
+      return
+    }
     try {
       const newData = {
         type,
@@ -81,7 +86,7 @@ export default ({ word, type, direction, next }) => {
     {
       cardState === "correct" ? <>
         You're right!
-        <Link to={`/words/${word?.id}`}>go to word</Link>
+        <Link to={`/${currentLanguage.code}/words/${word?.id}`}>go to word</Link>
         <br />
         <button autoFocus onClick={next}>Next</button>
       </>
@@ -92,7 +97,7 @@ export default ({ word, type, direction, next }) => {
       :
       cardState === "incorrect" ? <>
         Whoops not quite. The answer is "{word.name}"
-        <Link to={`/words/${word?.id}`}>go to word</Link>
+        <Link to={`/${currentLanguage.code}/words/${word?.id}`}>go to word</Link>
         <button autoFocus onClick={next}>Next</button>
       </>
       :

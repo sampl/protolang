@@ -1,21 +1,19 @@
 import { useSelect, useFilter } from 'react-supabase'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 import { useLanguage } from '@/_state/language'
 
 export default () => {
-  
+  const { lang: urlLang } = useParams()
   const { currentLanguage } = useLanguage()
-  
-  const filter = useFilter(
-    (query) => query
-      .eq('language', currentLanguage.id)
-      .order('order', { ascending: true }),
-    [currentLanguage.id],
-  )
 
   const [{ data: lessons, error, fetching }] = useSelect('lessons', {
-    filter,
+    filter: useFilter(
+      (query) => query
+        .eq('language', currentLanguage.id)
+        .order('order', { ascending: true }),
+      [currentLanguage.id],
+    ),
   })
 
   // TODO - suggest lessons that aren't super complete
@@ -29,9 +27,9 @@ export default () => {
       error ? error.message :
       fetching ? 'loading...' :
       <>
-        { nextLesson && <Link to={`/lessons/${nextLesson.id}`}>Lesson: {nextLesson.title_en} →</Link> }
+        { nextLesson && <Link to={`/${urlLang}/lessons/${nextLesson.id}`}>Lesson: {nextLesson.title_en} →</Link> }
         <br />
-        <Link to="/practice">Practice →</Link>
+        <Link to={`/${urlLang}/practice`}>Practice →</Link>
       </>
     }
   </div>

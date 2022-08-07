@@ -2,16 +2,13 @@ import { useFilter, useSelect } from 'react-supabase'
 
 export default ({ word }) => {
 
-  const filter = useFilter(
-    (query) => query.eq('word', word?.id),
-    [word?.id],
-  )
-
   const [{ data, error, fetching }] = useSelect('mnemonics', {
     columns: '*, mnemonic_votes(*)',
-    filter,
+    filter: useFilter(
+      (query) => query.eq('word', word?.id),
+      [word?.id],
+    ),
   })
-  console.log(data)
 
   const mnemonic = data && data[0]
 

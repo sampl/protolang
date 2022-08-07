@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider as ReactSupabaseProvider } from 'react-supabase'
 
-import Routes from '@/Routes'
+import Router from '@/Router'
 import { supabase } from '@/_util/supabaseClient'
 import UserProvider from '@/_state/user'
 import LanguageProvider from '@/_state/language'
@@ -20,7 +20,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <SpeechSynthesisProvider>
             <SpeechRecognitionProvider>
               <BrowserRouter>
-                <Routes />
+                <Router />
               </BrowserRouter>
             </SpeechRecognitionProvider>
           </SpeechSynthesisProvider>

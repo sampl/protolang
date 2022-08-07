@@ -4,22 +4,20 @@ import NewMnemonic from '@/views/words/NewMnemonic'
 
 export default ({ wordId }) => {
 
-  const filter = useFilter(
-    (query) => query.eq('word', wordId),
-    [wordId],
-  )
-
   const [{ data: mnemonics, error, fetching }] = useSelect('mnemonics', {
     columns: '*, mnemonic_votes(*)',
-    filter,
+    filter: useFilter(
+      (query) => query.eq('word', wordId),
+      [wordId],
+    ),
   })
 
   return <div>
     <NewMnemonic wordId={wordId} />
 
-    {error && error.message}
-    {fetching && 'loading...'}
     {
+      error ? error.message :
+      fetching ? 'loading...' :
       (!mnemonics || mnemonics.length <= 0)
       ?
       'no mnemonics'

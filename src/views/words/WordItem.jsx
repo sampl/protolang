@@ -12,57 +12,59 @@ export default () => {
   const { id } = useParams()
   const { currentLanguage } = useLanguage()
 
-  const filter = useFilter(
-    (query) => query.eq('id', id),
-    [id],
-  )
-
-  const [{ data, error, fetching }] = useSelect('words', { filter })
+  const [{ data, error, fetching }] = useSelect('words', {
+    filter: useFilter(
+      (query) => query.eq('id', id),
+      [id],
+    ),
+  })
 
   const word = data && data[0]
 
   return <>
-    {error && error.message}
-    {fetching && 'loading...'}
+    {
+      error ? error.message :
+      fetching ? 'loading...' :
+      <>
+        <h1>{word?.name}</h1>
+        <SpeakWord word={word} />
 
-    <h1>{word?.name}</h1>
-    <SpeakWord word={word} />
+        <div>({word?.type})</div>
+        <div>{word?.translation_en}</div>
+        <div>{word?.context_en}</div>
 
-    <div>({word?.type})</div>
-    <div>{word?.translation_en}</div>
-    <div>{word?.context_en}</div>
+        <a
+          href={`https://translate.google.com/?sl=${currentLanguage.code}&tl=en&text=${word?.name}&op=translate`}
+          target="_blank"
+        >
+          Open in Google Translate
+        </a>
+        {' · '}
+        <a
+          href={`https://en.wiktionary.org/wiki/${word?.name}#Italian`}
+          target="_blank"
+        >
+          Open in Wiktionary
+        </a>
 
-    <a
-      href={`https://translate.google.com/?sl=${currentLanguage.code}&tl=en&text=${word?.name}&op=translate`}
-      target="_blank"
-    >
-      Open in Google Translate
-    </a>
-    {' · '}
-    <a
-      href={`https://en.wiktionary.org/wiki/${word?.name}#Italian`}
-      target="_blank"
-    >
-      Open in Wiktionary
-    </a>
+        <hr />
 
-    <hr />
+        <MnemonicsList wordId={id} />
 
-    <MnemonicsList wordId={id} />
+        <hr />
 
-    <hr />
+        <Ngram word={word} />
 
-    <Ngram word={word} />
+        <hr />
 
-    <hr />
+        <h3>
+          Your accuracy:
+          {' '}
+          <WordScore word={word} />
+        </h3>
 
-    <h3>
-      Your accuracy:
-      {' '}
-      <WordScore word={word} />
-    </h3>
-
-    <AttemptsList wordId={id} />
-
+        <AttemptsList wordId={id} />
+      </>
+    }
   </>
 }

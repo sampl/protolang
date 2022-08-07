@@ -1,5 +1,5 @@
 import { useSelect, useFilter } from 'react-supabase'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 import { useLanguage } from '@/_state/language'
 
@@ -7,12 +7,12 @@ export default () => {
 
   const { currentLanguage } = useLanguage()
 
-  const filter = useFilter(
-    (query) => query.eq('language', currentLanguage.id),
-    [currentLanguage.id],
-  )
-
-  const [{ data: resources, error, fetching }] = useSelect('resources', { filter })
+  const [{ data: resources, error, fetching }] = useSelect('resources', {
+    filter: useFilter(
+      (query) => query.eq('language', currentLanguage.id),
+      [currentLanguage.id],
+    )
+  })
 
   return <>
     <h1>Resources</h1>
@@ -26,8 +26,10 @@ export default () => {
 }
 
 const ResourceListItem = ({resource}) => {
+  const { lang: urlLang } = useParams()
+
   return <div>
-    <Link to={`/resources/${resource.id}`}>
+    <Link to={`/${urlLang}/resources/${resource.id}`}>
       {resource.url || 'Unknown url'}
     </Link>
   </div>

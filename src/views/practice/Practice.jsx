@@ -7,11 +7,14 @@ import { TwoColumns } from '@/styles/Layout'
 
 export default () => {
   const { currentLanguage } = useLanguage()
-  const filter = useFilter(
-    (query) => query.eq('language', currentLanguage.id),
-    [currentLanguage.id],
-  )
-  const [{ data: words, error, fetching }] = useSelect('words', { filter })
+
+  const [{ data: words, error, fetching }] = useSelect('words', {
+    filter: useFilter(
+      (query) => query.eq('language', currentLanguage.id),
+      [currentLanguage.id],
+    )
+  })
+
   const [currentWordIndex, setCurrentWordIndex] = useState(0)
   const [cardType, setCardType] = useState('speech')
   const [direction, setDirection] = useState('reverse')

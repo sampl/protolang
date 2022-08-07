@@ -6,6 +6,7 @@ const Context = createContext()
 
 // based on https://codepen.io/matt-west/pen/DpmMgE
 export default ({ children }) => {
+  // console.log(useLanguage())
   const { currentLanguage } = useLanguage()
 
   const speechSynthesisIsSupported = 'speechSynthesis' in window
@@ -16,14 +17,14 @@ export default ({ children }) => {
     const voices = speechSynthesis.getVoices()
     const langVoices = voices.filter(voice => {
       const voiceLangCode = voice.lang?.substring(0,2)
-      return voiceLangCode == currentLanguage.code
+      return voiceLangCode == currentLanguage?.code
     })
     // console.log(langVoices.map(v => v.name).join(' | '))
     const voice = langVoices[1] || langVoices[0]
     setVoice(voice)
   }
 
-  useEffect(loadVoices, [currentLanguage.code])
+  useEffect(loadVoices, [currentLanguage?.code])
   window.speechSynthesis.onvoiceschanged = () => loadVoices()
 
   const speak = (text) => {

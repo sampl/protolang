@@ -4,14 +4,12 @@ import { useParams } from 'react-router-dom'
 export default () => {
   let { id } = useParams()
 
-  const filter = useFilter(
-    (query) => query.eq('id', id),
-    [id],
-  )
-
   const [{ data, error, fetching }] = useSelect('resources', {
     columns: '*, resource_ratings(*)',
-    filter,
+    filter: useFilter(
+      (query) => query.eq('id', id),
+      [id],
+    ),
   })
   
   const resource = data && data[0]

@@ -9,12 +9,8 @@ import { RadioRoot, RadioItem, RadioIndicator } from '@/styles/Radio'
 export default ({ closeModal }) => {
   const navigate = useNavigate()
   const { user } = useUser()
-  const { languages, setCurrentLanguageId } = useLanguage()
+  const { currentLanguage } = useLanguage()
 
-  const liveLanguages = languages?.filter(l => l.is_live)
-  const soonLanguages = languages?.filter(l => !l.is_live)
-
-  const [selectedLanguage, setSelectedLanguage] = useState()
   const [selectedGoal, setSelectedGoal] = useState()
   const [selectedVisitPlans, setSelectedVisitPlans] = useState()
   const [selectedVisitDate, setSelectedVisitDate] = useState()
@@ -27,7 +23,7 @@ export default ({ closeModal }) => {
       setSaving(true)
       const newData = {
         created_by: user?.id,
-        language: selectedLanguage,
+        language: currentLanguage.id,
         goal: selectedGoal,
         visit_plans: selectedVisitPlans,
         visit_date: selectedVisitDate,
@@ -40,59 +36,16 @@ export default ({ closeModal }) => {
         }
       }
       closeModal && closeModal()
-      setCurrentLanguageId(selectedLanguage)
       navigate('/lessons')
     } catch (error) {
       alert(error.message)
     } finally {
       setSaving(false)
-      setSelectedLanguage(undefined)
     }
   }
 
   return <form onSubmit={addUserLanguage}>
-    <h2>Choose your language</h2>
-    {/* <select
-      value={selectedLanguage}
-      onChange={e => setSelectedLanguage(e.target.value)}
-      required
-      >
-      <option>-- Choose a language --</option>
-      {languages?.map(lang => {
-        return <option key={lang.id} value={lang.id}>{lang.name_en} {!lang.is_live && '(Coming soon)'}</option>
-      })}
-    </select> */}
-
-    <RadioRoot
-      value={selectedLanguage}
-      onValueChange={value => setSelectedLanguage(value)}
-      required
-    >
-      {liveLanguages?.map(lang => {
-        return <RadioItem
-          key={lang.id}
-          value={lang.id}
-        >
-          <RadioIndicator />
-          {lang.name_en}
-        </RadioItem>
-      })}
-
-      <h3>Coming soon...</h3>
-
-      {soonLanguages?.map(lang => {
-        return <RadioItem
-        key={lang.id}
-        value={lang.id}
-        >
-          <RadioIndicator />
-          {lang.name_en}
-        </RadioItem>
-      })}
-
-    </RadioRoot>
-
-    <label>How serious are you about learning Italian?</label>
+    <label>How serious are you about learning {currentLanguage?.name_en || 'this language'}?</label>
     <RadioRoot
       value={selectedGoal}
       onValueChange={value => setSelectedGoal(value)}

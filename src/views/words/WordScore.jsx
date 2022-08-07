@@ -5,25 +5,29 @@ export default ({ word }) => {
 
   const { user } = useUser()
 
-  const filter = useFilter(
-    (query) => query
-      .eq('word', word?.id)
-      .eq('created_by', user?.id),
-    [user?.id, word?.id],
-  )
-
-  const [{ data, error, fetching }] = useSelect('user_word_scores', { filter })
+  const [{ data, error, fetching }] = useSelect('user_word_scores', {
+    pause: !user,
+    filter: useFilter(
+      (query) => query
+        .eq('word', word?.id)
+        .eq('created_by', user?.id),
+      [user?.id, word?.id],
+    )
+  })
 
   const wordScore = data && data[0]
 
+  if (!user) {
+    return `??`
+  }
   if (fetching) {
-    return 'loading...'
+    return '...'
   }
   if (error) {
-    return `Error: ${error.message}`
+    return `(Error)`
   }
   if (!wordScore?.count > 0) {
-    return `you haven't tried to guess this word yet`
+    return `0%`
   }
   return <>
     {Math.floor(wordScore.percent_correct * 100)}%

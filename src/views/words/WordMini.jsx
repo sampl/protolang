@@ -1,4 +1,3 @@
-import { useParams } from 'react-router-dom'
 import { useFilter, useSelect } from 'react-supabase'
 
 import MnemonicSuggested from './MnemonicSuggested'
@@ -6,14 +5,13 @@ import SpeakWord from './SpeakWord'
 import WordScore from './WordScore'
 
 export default ({ wordString }) => {
-  const { id } = useParams()
 
-  const filter = useFilter(
-    (query) => query.eq('name', wordString),
-    [wordString],
-  )
-
-  const [{ data, error, fetching }] = useSelect('words', { filter })
+  const [{ data, error, fetching }] = useSelect('words', {
+    filter: useFilter(
+      (query) => query.eq('name', wordString),
+      [wordString],
+    ),
+  })
 
   const word = data && data[0]
 

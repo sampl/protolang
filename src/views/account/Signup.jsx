@@ -25,7 +25,7 @@ export default () => {
   }
 
   return <>
-    <h1>Log in</h1>
+    <h1>Create your account</h1>
     <p>We'll send a login link to your email</p>
     <form onSubmit={onSubmit}>
       <input

@@ -5,7 +5,7 @@ export default () => {
   const { user, logout } = useUser()
 
   return <>
-    <h1>Settings</h1>
+    <h1>Account settings</h1>
 
     <form>
       <label htmlFor="email">Email</label>

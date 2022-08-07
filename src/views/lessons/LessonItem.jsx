@@ -8,24 +8,22 @@ import LessonEmbed from './LessonEmbed'
 import { BreadcrumbItem, BreadcrumbSeparator, BreadcrumbWrapper } from '@/styles/Breadcrumbs'
 
 export default () => {
-  let { id } = useParams()
-
-  const filter = useFilter(
-    (query) => query.eq('id', id),
-    [id],
-  )
+  const { id, lang: urlLang } = useParams()
 
   const [{ data, error, fetching }] = useSelect('lessons', {
-    filter,
+    filter: useFilter(
+      (query) => query.eq('id', id),
+      [id],
+    ),
   })
 
   const lesson = data && data[0]
 
   return <>
     <BreadcrumbWrapper>
-      <BreadcrumbItem to="/lessons">Lessons</BreadcrumbItem>
+      <BreadcrumbItem to={`/${urlLang}/lessons`}>Lessons</BreadcrumbItem>
       <BreadcrumbSeparator />
-      <BreadcrumbItem to={`/lessons/${id}`}>{lesson?.title_en}</BreadcrumbItem>
+      <BreadcrumbItem to={`/${urlLang}/lessons/${id}`}>{lesson?.title_en}</BreadcrumbItem>
     </BreadcrumbWrapper>
 
     {error && error.message}

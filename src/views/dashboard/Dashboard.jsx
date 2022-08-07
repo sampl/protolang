@@ -9,7 +9,10 @@ import QuickLinks from "./QuickLinks"
 export default () => {
   const { user } = useUser()
   return <>
-    <h2>Welcome, {user?.username}</h2>
+    <h2>
+      {user?.username ? `Welcome, ${user.username}` : `Welcome`}
+    </h2>
+    
     <QuickLinks />
 
     <hr />

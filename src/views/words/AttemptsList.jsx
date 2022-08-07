@@ -7,24 +7,21 @@ export default ({ wordId }) => {
 
   const { user } = useUser()
 
-  const filter = useFilter(
-    (query) => query.eq('word', wordId).eq('created_by', user.id),
-    [wordId, user.id],
-  )
-
   const [{ data: attempts, error, fetching }] = useSelect('attempts', {
-    filter,
+    pause: !user,
+    filter: useFilter(
+      (query) => query.eq('word', wordId).eq('created_by', user?.id),
+      [wordId, user?.id],
+    ),
   })
 
   return <div>
-    {error && error.message}
-    {fetching && 'loading...'}
     {
-      (!attempts || attempts.length <= 0)
-      ?
-      `you haven't been tested on this word yet`
-      :
-      attempts.map(attempt => <AttemptsListItem key={attempt.id} attempt={attempt} />)
+      !user ? `Sign in to track your attempts at this word` :
+      error ? error.message :
+      fetching ? 'loading...' :
+      (!attempts || attempts.length <= 0) ? `You haven't been tested on this word yet` :
+      attempts.map(attempt => <AttemptsListItem key={attempt?.id} attempt={attempt} />)
     }
   </div>
 }

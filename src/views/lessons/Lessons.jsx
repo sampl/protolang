@@ -1,25 +1,23 @@
 import { useSelect, useFilter } from 'react-supabase'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 import { useLanguage } from '@/_state/language'
 import { BreadcrumbItem, BreadcrumbWrapper } from '@/styles/Breadcrumbs'
 
 export default () => {
-
   const { currentLanguage } = useLanguage()
-
-  const filter = useFilter(
-    (query) => query.eq('language', currentLanguage.id),
-    [currentLanguage.id],
-  )
+  const { lang: urlLang } = useParams()
 
   const [{ data: lessons, error, fetching }] = useSelect('lessons', {
-    filter,
+    filter: useFilter(
+      (query) => query.eq('language', currentLanguage.id),
+      [currentLanguage.id],
+    ),
   })
 
   return <>
     <BreadcrumbWrapper>
-      <BreadcrumbItem to="/lessons">Lessons</BreadcrumbItem>
+      <BreadcrumbItem to={`/${urlLang}/lessons`}>Lessons</BreadcrumbItem>
     </BreadcrumbWrapper>
 
     <h1>Lessons</h1>
@@ -33,8 +31,9 @@ export default () => {
 }
 
 const LessonListItem = ({lesson}) => {
+  const { currentLanguage } = useLanguage()
   return <div>
-    <Link to={`/lessons/${lesson.id}`}>
+    <Link to={`/${urlLang}/lessons/${lesson.id}`}>
       {lesson.title_en || 'Unknown'}
     </Link>
   </div>
