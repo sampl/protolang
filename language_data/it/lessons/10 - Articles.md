@@ -1,6 +1,7 @@
 ---
 
 title: Articles
+slug: Articles
 concepts:
   - grammar
 
@@ -12,12 +13,12 @@ In English there's only one word for "the", but there are many in Italian.
 
 The
 
-:word{ it="il" }
-:word{ it="la" }
+:word{ it="il" en="the"}
+:word{ it="la" en="the"}
 
 --------------------------------------------------
 
 A
 
-:word{ it="un" }
-:word{ it="una" }
+:word{ it="un" en="a"}
+:word{ it="una" en="a"}

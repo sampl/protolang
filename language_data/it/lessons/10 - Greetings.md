@@ -20,7 +20,7 @@ You'll probably need a few polite greetings to strike up a conversation:
 :word{en="good afternoon" }
 :word{en="good evening" }
 :word{en="good night" }
-:word{en="goodbye" }
+:word{en="goodbye" it="arevederci"}
 :word{en="good luck!" }
 :word{en="have a nice day" }
 :word{it="buon viaggio!", context_en="To someone leaving on a trip"}
