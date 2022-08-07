@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 export default () => {
   return <>
 
@@ -13,7 +15,7 @@ export default () => {
       </em>
     </p>
 
-    <a href="mailto:sam@directedworks.com">Contact us</a>
+    <Link to="/contact">Contact</Link>
 
   </>
 }

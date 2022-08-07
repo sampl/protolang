@@ -10,7 +10,7 @@ export default () => {
       {' · '}
       <Link to="/about">About</Link>
       {' · '}
-      <a href="https://github.com/sampl/language-learning">License</a>
+      <a href="https://github.com/sampl/language-learning/blob/main/license.txt">License</a>
       {' · '}
       <a href="https://github.com/sampl/language-learning">Source</a>
       {' · '}
@@ -18,7 +18,7 @@ export default () => {
       {' · '}
       <Link to="/sponsor">Sponsor</Link>
       {' · '}
-      <a href="mailto:sam@directedworks.com">Contact</a>
+      <Link to="/contact">Contact</Link>
     </p>
 
     <p>

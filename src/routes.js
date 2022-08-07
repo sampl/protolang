@@ -16,8 +16,9 @@ import ErrorPage from '@/views/ErrorPage'
 
 import LayoutSimple from '@/views/_layout/LayoutSimple'
 import LayoutLanguage from '@/views/_layout/LayoutLanguage'
-import LanguagePicker from './views/user_languages/LanguagePicker'
-import Signup from './views/account/Signup'
+import LanguagePicker from '@/views/user_languages/LanguagePicker'
+import Signup from '@/views/account/Signup'
+import Contact from '@/views/marketing/Contact'
 
 // ROUTES
 // This is a simple JS list of routes in the app
@@ -35,6 +36,11 @@ export default [
   {
     path: `/about`,
     component: About,
+    layout: LayoutSimple,
+  },
+  {
+    path: `/contact`,
+    component: Contact,
     layout: LayoutSimple,
   },
   {
