@@ -126,11 +126,15 @@ const updateDatabase = async lessons => {
       lesson.content_en,
       lesson.updated_on,
       lesson.order,
-      lesson.words,
+      // lesson.words,
     ]
+
+    // TODO - add back works
+    // VALUES($1, $2, $3, $4, $5, json_array_elements($6))
+    // this version makes each insert into multiple rows (one for each word)
     const text = `
-      INSERT INTO lessons("language", title_en, content_en, created_at, "order", words)
-      VALUES($1, $2, $3, $4, $5, json_array_elements($6))
+      INSERT INTO lessons("language", title_en, content_en, created_at, "order")
+      VALUES($1, $2, $3, $4, $5)
       RETURNING *
     `
     await client.query(text, values)
