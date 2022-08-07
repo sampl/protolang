@@ -5,11 +5,12 @@ import WordMini from '../words/WordMini'
 
 export default props => {
   const { it, en } = props
-  return <span style={{display: 'block', background: '#eee'}}>
+  return <span style={{display: 'block', border: '1px solid', padding: '.5rem'}}>
     <Popover
       target={<Word>{it || '(Unknown word)'}</Word>}
       content={<WordMini wordString={it} />}
     />
+    {' '}
     <SpeakWord wordString={it} disabled={!it} />
     { en && !it && `TODO - translate this from English: ${en}`}
   </span>

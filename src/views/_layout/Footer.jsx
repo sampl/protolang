@@ -4,7 +4,7 @@ import { Footer } from '@/styles/Layout'
 
 export default () => {
   return <Footer>
-    <div style={{color: 'red', fontWeight: 'bold'}}>This site is in early alpha testing. Your progress may not be saved, use at your own risk.</div>
+    <p style={{color: 'red', fontWeight: 'bold'}}>This site is in early alpha testing. Your progress may not be saved. Use at your own risk.</p>
     <p>
       <Link to="/">Home</Link>
       {' · '}

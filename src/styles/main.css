@@ -35,6 +35,18 @@ label {
   margin: 1rem 0 0;
 }
 
+/* tables */
+
+table {
+  border-collapse: collapse;
+  margin: 0 0 1rem;
+}
+th,
+td {
+  border-bottom: 1px solid;
+  padding: 0 1rem 0 0;
+}
+
 /* misc */
 
 hr {
