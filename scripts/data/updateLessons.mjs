@@ -82,10 +82,11 @@ const parseLesson = async ({ filename, content }) => {
     .process(content)
   const markdownContentString = String(markdownContent)
 
-  const order = filename.startsWith('L1') ? 10 :
-                filename.startsWith('L2') ? 20 :
-                filename.startsWith('L3') ? 30 :
-                                            100
+  const orderString = filename.split(' - ')[0]
+  const order = parseInt(orderString)
+  if (!(order > 0 && order < 100)) {
+    throw new Error(`Invalid order "${orderString}" in filename`)
+  }
 
   return {
     language: `lang_${LANGUAGE_CODE}`,
