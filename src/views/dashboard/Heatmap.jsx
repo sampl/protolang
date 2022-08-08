@@ -48,21 +48,24 @@ export default () => {
     {
       error ? error.message :
       fetching ? 'loading...' :
-      <HeatmapWrapper padding={2}>
-        {!user && 
-          <HeatmapEmptyStateWrapper>
-            <HeatmapEmptyStateMessage>
-              <Link to="/signup">Create an account</Link>
-              {' '}
-              to see your daily activity
-            </HeatmapEmptyStateMessage>
-          </HeatmapEmptyStateWrapper>
-        }
-        {days.map(day => {
-          const background = getColor(day.attempts)
-          return <HeatmapCell key={day.date} size={10} background={background} />
-        })}
-      </HeatmapWrapper>
+      <>
+        <h3>Practice frequency</h3>
+        <HeatmapWrapper padding={2}>
+          {!user && 
+            <HeatmapEmptyStateWrapper>
+              <HeatmapEmptyStateMessage>
+                <Link to="/signup">Create an account</Link>
+                {' '}
+                to see your daily activity
+              </HeatmapEmptyStateMessage>
+            </HeatmapEmptyStateWrapper>
+          }
+          {days.map(day => {
+            const background = getColor(day.attempts)
+            return <HeatmapCell key={day.date} size={10} background={background} />
+          })}
+        </HeatmapWrapper>
+      </>
     }
   </div>
 

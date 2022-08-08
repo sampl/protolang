@@ -20,6 +20,7 @@ export default () => {
   const score = data ? data[0]?.count : '0'
 
   return <div>
+    <h3>Vocabulary score</h3>
     {
       !user ? <>
         <Link to="/signup">Create an account</Link>
@@ -29,9 +30,11 @@ export default () => {
       error ? error.message :
       fetching ? 'loading...' :
       <>
-        Your {currentLanguage?.name_en || ''} vocab score:
+        {currentLanguage?.name_en || ''} vocabulary estimate:
         {' '}
         <strong>{score}</strong>
+        {' '}
+        words
       </>
     }
   </div>
