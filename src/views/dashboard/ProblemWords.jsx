@@ -37,7 +37,7 @@ export default () => {
 const ProblemWordsListItem = ({ word, percent }) => {
   const { lang: urlLang } = useParams()
   return <div>
-    <Link to={`/${urlLang}/words/${word.id}`}>{word.name}</Link>
+    <Link to={`/${urlLang}/words/${encodeURIComponent(word.name)}`}>{word.name}</Link>
     {' - '}
     {Math.round(percent * 100)}% correct
   </div>

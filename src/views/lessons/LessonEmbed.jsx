@@ -7,7 +7,7 @@ export default ({ it, en }) => {
   return <span style={{display: 'block', border: '1.5px solid', padding: '.5rem'}}>
     <Popover
       target={<Word>{it || '(Unknown word)'}</Word>}
-      content={<WordMini wordString={it} />}
+      content={<WordMini name={it} />}
     />
     {' '}
     <SpeakWord wordString={it} disabled={!it} />

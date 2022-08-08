@@ -9,13 +9,14 @@ import { useLanguage } from '@/_state/language'
 import WordScore from './WordScore'
 
 export default () => {
-  const { id } = useParams()
+  const { string } = useParams()
+  const name = decodeURIComponent(string)
   const { currentLanguage } = useLanguage()
 
   const [{ data, error, fetching }] = useSelect('words', {
     filter: useFilter(
-      (query) => query.eq('id', id),
-      [id],
+      (query) => query.eq('name', name),
+      [name],
     ),
   })
 
@@ -49,7 +50,7 @@ export default () => {
 
         <hr />
 
-        <MnemonicsList wordId={id} />
+        <MnemonicsList wordId={word?.id} />
 
         <hr />
 
@@ -63,7 +64,7 @@ export default () => {
           <WordScore word={word} />
         </h3>
 
-        <AttemptsList wordId={id} />
+        <AttemptsList wordId={word?.id} />
       </>
     }
   </>

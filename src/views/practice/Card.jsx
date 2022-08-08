@@ -87,7 +87,7 @@ export default ({ word, type, direction, next }) => {
     {
       cardState === "correct" ? <>
         You're right!
-        <Link to={`/${currentLanguage.code}/words/${word?.id}`}>go to word</Link>
+        <Link to={`/${currentLanguage.code}/words/${word && encodeURIComponent(word.name)}`}>go to word</Link>
         <br />
         <Button autoFocus onClick={next}>Next</Button>
       </>
@@ -98,7 +98,7 @@ export default ({ word, type, direction, next }) => {
       :
       cardState === "incorrect" ? <>
         Whoops not quite. The answer is "{word.name}"
-        <Link to={`/${currentLanguage.code}/words/${word?.id}`}>go to word</Link>
+        <Link to={`/${currentLanguage.code}/words/${word && encodeURIComponent(word.name)}`}>go to word</Link>
         <Button autoFocus onClick={next}>Next</Button>
       </>
       :

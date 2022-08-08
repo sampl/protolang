@@ -4,12 +4,12 @@ import MnemonicSuggested from './MnemonicSuggested'
 import SpeakWord from './SpeakWord'
 import WordScore from './WordScore'
 
-export default ({ wordString }) => {
+export default ({ name }) => {
 
   const [{ data, error, fetching }] = useSelect('words', {
     filter: useFilter(
-      (query) => query.eq('name', wordString),
-      [wordString],
+      (query) => query.eq('name', name),
+      [name],
     ),
   })
 

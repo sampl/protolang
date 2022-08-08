@@ -140,7 +140,7 @@ export default [
     layout: LayoutLanguage,
   },
   {
-    path: `/:lang/words/:id`,
+    path: `/:lang/words/:string`,
     component: WordItem,
     layout: LayoutLanguage,
   },
