@@ -1,4 +1,5 @@
 import { useSelect, useFilter } from 'react-supabase'
+import { Link } from 'react-router-dom'
 
 import { useUser } from "@/_state/user"
 import { useLanguage } from '@/_state/language'
@@ -20,7 +21,11 @@ export default () => {
 
   return <div>
     {
-      !user ? 'Sign in to track your vocab score' :
+      !user ? <>
+        <Link to="/signup">Create an account</Link>
+        {' '}
+        to track your vocab score
+      </> :
       error ? error.message :
       fetching ? 'loading...' :
       <>

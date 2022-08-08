@@ -21,7 +21,11 @@ export default () => {
   return <>
     <h3>Problem words</h3>
     {
-      !user ? 'Sign in to see the words you make the most mistakes on' :
+      !user ? <>
+        <Link to="/signup">Create an account</Link>
+        {' '}
+        to see the words you make the most mistakes on
+      </> :
       error ? error.message :
       fetching ? 'loading...' :
       (!words || words.length <= 0) ? 'no problem words!' :

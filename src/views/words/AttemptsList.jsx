@@ -1,5 +1,6 @@
 import moment from 'moment'
 import { useFilter, useSelect } from 'react-supabase'
+import { Link } from 'react-router-dom'
 
 import { useUser } from '@/_state/user'
 
@@ -17,7 +18,11 @@ export default ({ wordId }) => {
 
   return <div>
     {
-      !user ? `Sign in to track your attempts at this word` :
+      !user ? <>
+        <Link to="/signup">Create an account</Link>
+        {' '}
+        to track your attempts at this word
+      </> :
       error ? error.message :
       fetching ? 'loading...' :
       (!attempts || attempts.length <= 0) ? `You haven't been tested on this word yet` :
