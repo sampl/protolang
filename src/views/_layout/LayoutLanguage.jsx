@@ -53,11 +53,6 @@ export default ({children}) => {
       </div>
     </Header>
 
-    {/*
-      TODO
-      How should URLs interact with current language?
-      ie should every page that requires a language check the route and try to set it if they find one?
-    */}
     <Main>
 
       {!user && <Banner>
@@ -77,7 +72,27 @@ export default ({children}) => {
         !currentLanguage ?
           `no language, loading...` :
         !currentLanguage.is_live ?
-          `${currentLanguage?.name_en} lessons coming soon! Create an account to get notified of new courses.` :
+          <>
+            <h2>The {currentLanguage?.name_en} language course isn't ready yet</h2>
+            {
+              !user ?
+              <p>
+                <Link to="/signup">Create an account</Link>
+                {' '}
+                to get notified about new courses
+              </p>
+              :
+              <p>
+                {/* TODO - let people request a course here */}
+              </p>
+            }
+            <p>
+              Do you know {currentLanguage?.name_en}? Why not
+              {' '}
+              <Link to="/contribute">help us write the course</Link>?
+            </p>
+          </>
+          :
         children
       }
     </Main>
