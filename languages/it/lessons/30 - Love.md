@@ -7,8 +7,6 @@ concepts:
 
 :word{en="I love you" }
 
---------------------------------------------------
-
 :word{en="would you like to dance with me?" }
 :word{en="do you come here often?" }
 :word{en="you are beautiful" }

@@ -9,12 +9,8 @@ concepts:
 :word{en="to work"}
 :word{en="company"}
 
---------------------------------------------------
-
 :word{en="boss"}
 :word{en="coworkers"}
-
---------------------------------------------------
 
 :word{en="meeting"}
 :word{en="document"}

@@ -11,12 +11,8 @@ The Italian word for "and" is similar to the word for "he/she/it is"
 
 :word{en="and" }
 
---------------------------------------------------
-
 :word{en="that" }
 :word{en="this" }
-
---------------------------------------------------
 
 :word{en="inside" }
 :word{en="outside" }
@@ -33,12 +29,8 @@ The Italian word for "and" is similar to the word for "he/she/it is"
 :word{en="lower" }
 :word{en="next to [place]" }
 
---------------------------------------------------
-
 :word{en="beginning/start" }
 :word{en="end" }
-
---------------------------------------------------
 
 :word{en="half" }
 :word{en="whole/entire" }
@@ -46,8 +38,6 @@ The Italian word for "and" is similar to the word for "he/she/it is"
 :word{en="none" }
 :word{en="more" }
 :word{en="less" }
-
---------------------------------------------------
 
 :word{en="big" }
 :word{en="small" }
@@ -57,8 +47,6 @@ The Italian word for "and" is similar to the word for "he/she/it is"
 :word{en="cold" }
 :word{en="light" }
 :word{en="heavy" }
-
---------------------------------------------------
 
 :word{en="i like" }
 :word{en="i don't like" }

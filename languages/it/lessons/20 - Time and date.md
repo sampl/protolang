@@ -12,13 +12,9 @@ concepts:
 :word{en="evening" }
 :word{en="night" }
 
---------------------------------------------------
-
 :word{en="day" }
 :word{en="date" }
 :word{en="when" }
-
---------------------------------------------------
 
 :word{en="Monday" }
 :word{en="Tuesday" }
@@ -28,11 +24,7 @@ concepts:
 :word{en="Saturday" }
 :word{en="Sunday" }
 
---------------------------------------------------
-
 :word{en="month" }
-
---------------------------------------------------
 
 :word{en="January" }
 :word{en="February" }
@@ -47,18 +39,12 @@ concepts:
 :word{en="November" }
 :word{en="December" }
 
---------------------------------------------------
-
 :word{en="winter" }
 :word{en="spring" }
 :word{en="summer" }
 :word{en="autumn" }
 
---------------------------------------------------
-
 :word{en="year" }
-
---------------------------------------------------
 
 :word{en="what time is it?" }
 :word{en="what day is it?" }

@@ -7,8 +7,6 @@ concepts:
 
 :word{en="house" }
 
---------------------------------------------------
-
 :word{en="kitchen" }
 :word{en="bedroom" }
 :word{en="bed" }

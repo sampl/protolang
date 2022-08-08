@@ -10,8 +10,6 @@ Basic body parts
 :word{en="head" }
 :word{en="hair" }
 
---------------------------------------------------
-
 Your face
 
 :word{en="face" }
@@ -19,8 +17,6 @@ Your face
 :word{en="lips" }
 :word{en="teeth" }
 :word{en="tongue" }
-
---------------------------------------------------
 
 And your legs
 

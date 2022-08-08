@@ -13,8 +13,6 @@ If it ends in "...ation"
 
 ...
 
---------------------------------------------------
-
 If it ends in "...al"
 
 :word{en="national" }

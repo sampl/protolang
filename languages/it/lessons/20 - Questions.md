@@ -12,12 +12,8 @@ concepts:
 :word{en="why" }
 :word{en="how" }
 
---------------------------------------------------
-
 :word{en="this" }
 :word{en="that" }
-
---------------------------------------------------
 
 :word{en="thing" }
 :word{en="place" }

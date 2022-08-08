@@ -14,8 +14,6 @@ The
 :word{ it="il" en="the"}
 :word{ it="la" en="the"}
 
---------------------------------------------------
-
 A
 
 :word{ it="un" en="a"}

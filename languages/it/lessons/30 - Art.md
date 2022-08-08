@@ -10,8 +10,6 @@ concepts:
 :word{en="theater" }
 :word{en="painting" }
 
---------------------------------------------------
-
 Books
 
 :word{en="literature" }

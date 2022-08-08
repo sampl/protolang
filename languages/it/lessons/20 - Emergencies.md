@@ -10,8 +10,6 @@ We really hope nothing bad happens to you... but if it does, here are a few phra
 :word{en="help!" }
 :word{en="I need help" }
 
---------------------------------------------------
-
 If something goes wrong, like an accident:
 
 :word{en="there is an emergency" }
@@ -21,8 +19,6 @@ If something goes wrong, like an accident:
 :word{en="stop!" }
 :word{en="leave me alone!" }
 :word{en="can I please use your phone?" }
-
---------------------------------------------------
 
 These are for if you're feeling sick:
 

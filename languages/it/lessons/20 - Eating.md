@@ -9,27 +9,19 @@ The Italian word for restaurant
 
 :word{en="restaurant" }
 
---------------------------------------------------
-
 Finding a place to eat...
 
 :word{en="can you recommend a good restaurant?" }
-
---------------------------------------------------
 
 Getting a table...
 
 :word{en="a table for [number:1-10]" }
 :word{en="menu please" }
 
---------------------------------------------------
-
 Drinks
 
 :word{en="cheers" }
 :word{en="bar" }
-
---------------------------------------------------
 
 Ordering food...
 
@@ -39,14 +31,10 @@ Ordering food...
 :word{en="i am allergic to [ingredient]" }
 :word{en="let's have another" }
 
---------------------------------------------------
-
 Eating...
 
 :word{en="bon appetit / Have a nice meal" }
 :word{en="pass the [item] please" }
-
---------------------------------------------------
 
 Leaving
 

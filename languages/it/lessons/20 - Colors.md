@@ -13,13 +13,9 @@ concepts:
 :word{it="azure" }
 :word{en="purple" }
 
---------------------------------------------------
-
 :word{en="black" }
 :word{en="white" }
 :word{en="grey" }
-
---------------------------------------------------
 
 :word{en="gold" }
 :word{en="silver" }

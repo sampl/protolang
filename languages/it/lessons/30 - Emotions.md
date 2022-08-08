@@ -8,8 +8,6 @@ concepts:
 :word{en="happy" }
 :word{en="sad" }
 
---------------------------------------------------
-
 :word{en="angry" }
 :word{en="depressed" }
 :word{en="excited" }

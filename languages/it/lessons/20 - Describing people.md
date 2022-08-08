@@ -15,8 +15,6 @@ concepts:
 :word{en="husband" }
 :word{en="wife" }
 
---------------------------------------------------
-
 :word{en="tall" }
 :word{en="short" }
 :word{en="pretty" }

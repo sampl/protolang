@@ -9,8 +9,6 @@ concepts:
 :word{en="drug store" }
 :word{en="market" }
 
---------------------------------------------------
-
 :word{en="what is this?" }
 :word{en="do you have [product]?" }
 :word{en="can I see [product]?" }

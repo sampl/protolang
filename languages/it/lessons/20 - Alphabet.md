@@ -34,8 +34,6 @@ Let's learn how to say the ABC's... in Italian!
 :word{en="Y" }
 :word{en="Z" }
 
---------------------------------------------------
-
 :word{en="accent" }
 
 ... ?
