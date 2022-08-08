@@ -60,6 +60,13 @@ input {
   padding: .25rem;
   margin: 0 0 .5rem;
 }
+select {
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  padding: .25rem;
+  margin: 0 0 .5rem;
+}
 button {
   font-family: inherit;
   font-size: inherit;
