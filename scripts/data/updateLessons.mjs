@@ -25,7 +25,7 @@ const LIVE = myArgs[0] === '--live'
 const DESTRUCTIVE = myArgs[1] === '--destructive'
 
 const LANGUAGE_CODE = 'it'
-const LESSONS_FILE_PATH = `/../../language_data/${LANGUAGE_CODE}/lessons/`
+const LESSONS_FILE_PATH = `/../../languages/${LANGUAGE_CODE}/lessons/`
 
 const updateLessons = async() => {
   try {

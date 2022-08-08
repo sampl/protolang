@@ -7,7 +7,7 @@ This folder contain language data for all language courses.
 All files are grouped into folders by language. Each folder is named for the two-letter [ISO language code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) for that language (for ex, Italian is `it`, Spanish is `es` etc).
 
 ```text
-language_data/
+languages/
   ├─ it/
   | ├─ lessons/
   | └─ ...

@@ -17,7 +17,7 @@ const LIVE = myArgs[0] === '--live'
 const DESTRUCTIVE = myArgs[1] === '--destructive'
 
 const LANGUAGE_CODE = 'it'
-const DICTIONARY_FILE_PATH = `/../../language_data/${LANGUAGE_CODE}/kaikki.org-dictionary-Italian.json`
+const DICTIONARY_FILE_PATH = `/../../languages/${LANGUAGE_CODE}/kaikki.org-dictionary-Italian.json`
 
 let lineNum = 0
 
