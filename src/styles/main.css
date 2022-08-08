@@ -44,7 +44,7 @@ table {
 }
 th,
 td {
-  border-bottom: 1px solid;
+  border-bottom: 1.5px solid;
   padding: 0 1rem 0 0;
 }
 
@@ -71,6 +71,6 @@ button {
 hr {
   height: 0;
   border: none;
-  border-bottom: 1px solid;
+  border-bottom: 1.5px solid;
   margin: 1rem 0;
 }

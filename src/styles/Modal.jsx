@@ -40,6 +40,6 @@ const ModalContentWrapper = styled(Dialog.Content)`
   position: absolute;
   background: white;
   padding: 1rem;
-  border: 1px solid;
+  border: 1.5px solid;
   max-width: calc(100vw - 2rem);
 `

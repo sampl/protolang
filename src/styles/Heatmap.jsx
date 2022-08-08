@@ -2,7 +2,7 @@ import styled from 'styled-components/macro'
 
 export const HeatmapWrapper = styled.div`
   position: relative;
-  border: 1px solid;
+  border: 1.5px solid;
   display: grid;
   grid-auto-flow: column;
   grid-template-rows: repeat(7, max-content);
@@ -14,7 +14,7 @@ export const HeatmapWrapper = styled.div`
 export const HeatmapCell = styled.div`
   width:  ${p => p.size ? `${p.size}px` : `5px`};
   height: ${p => p.size ? `${p.size}px` : `5px`};
-  border: 1px solid;
+  border: 1.5px solid;
   background: ${p => p.background || 'white'};
 `
 export const HeatmapEmptyStateWrapper = styled.div`
@@ -29,7 +29,7 @@ export const HeatmapEmptyStateWrapper = styled.div`
   justify-content: center;
 `
 export const HeatmapEmptyStateMessage = styled.div`
-  border: 1px solid;
+  border: 1.5px solid;
   background: white;
   padding: .25rem .5rem;
 `

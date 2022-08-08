@@ -16,5 +16,5 @@ const DropdownContentWrapper = styled(Popover.Content)`
   z-index: 1;
   background: white;
   padding: 1rem;
-  border: 1px solid;
+  border: 1.5px solid;
 `

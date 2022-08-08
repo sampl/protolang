@@ -10,7 +10,7 @@ export const Header = styled.header`
   display: grid;
   grid-template-columns: auto max-content;
   padding: var(--leading) var(--gutter);
-  border-bottom: 1px solid;
+  border-bottom: 1.5px solid;
 `
 export const Main = styled.main`
   padding: var(--leading) var(--gutter);

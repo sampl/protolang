@@ -4,7 +4,7 @@ import * as Radio from '@radix-ui/react-radio-group'
 export const RadioRoot = Radio.Root
 
 export const RadioItem = styled(Radio.Item)`
-  border: 1px solid;
+  border: 1.5px solid;
   cursor: pointer;
 `
 export const RadioIndicator = styled(Radio.Indicator)`
