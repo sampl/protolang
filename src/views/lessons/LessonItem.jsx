@@ -6,6 +6,7 @@ import remarkDirective from 'remark-directive'
 import remarkDirectiveRehype from 'remark-directive-rehype'
 import LessonEmbed from './LessonEmbed'
 import { BreadcrumbItem, BreadcrumbSeparator, BreadcrumbWrapper } from '@/styles/Breadcrumbs'
+import LessonVideo from './LessonVideo'
 
 export default () => {
   const { id, lang: urlLang } = useParams()
@@ -36,6 +37,7 @@ export default () => {
       remarkPlugins={[remarkGfm, remarkDirective, remarkDirectiveRehype]}
       components={{
         'word': LessonEmbed,
+        'video': LessonVideo,
       }}
     />
 

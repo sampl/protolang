@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 
 import { useLanguage } from '@/_state/language'
 import { BreadcrumbItem, BreadcrumbWrapper } from '@/styles/Breadcrumbs'
+import { TwoColumns } from '@/styles/Layout'
 
 export default () => {
   const { currentLanguage } = useLanguage()
@@ -25,7 +26,14 @@ export default () => {
       error ? error.message :
       fetching ? 'loading...' :
       (!lessons || lessons.length <= 0) ? 'no lessons' :
-      lessons.map(lesson => <LessonListItem key={lesson.id} lesson={lesson} />)
+      <TwoColumns cols="auto max-content">
+        <div>
+          {lessons.map(lesson => <LessonListItem key={lesson.id} lesson={lesson} />)}
+        </div>
+        <div>
+          {lessons.length} lesson{lessons.length !== 1 && 's'}
+        </div>
+      </TwoColumns>
     }
   </>
 }
