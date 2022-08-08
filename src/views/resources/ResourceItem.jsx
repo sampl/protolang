@@ -21,6 +21,8 @@ export default () => {
       !resource ? 'no resource found' :
       <>
         <h1>{resource.url}</h1>
+        <a href={resource.url} target="_blank">Visit site ↗</a>
+        <br />
         {
           (!resource.resource_ratings || resource.resource_ratings.length <= 0) ? 'no ratings' :
           resource.resource_ratings.map(rr => {
