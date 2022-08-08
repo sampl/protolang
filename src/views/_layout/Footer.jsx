@@ -23,6 +23,8 @@ export default () => {
 
     <p>
       &copy; 2022{new Date().getFullYear()>2022 && ("-"+new Date().getFullYear())} Directed Works LLC
+      {' · '}
+      <Link to="/conduct">Code of conduct</Link>
     </p>
   </Footer>
 }
