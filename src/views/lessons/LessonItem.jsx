@@ -9,12 +9,12 @@ import { BreadcrumbItem, BreadcrumbSeparator, BreadcrumbWrapper } from '@/styles
 import LessonVideo from './LessonVideo'
 
 export default () => {
-  const { id, lang: urlLang } = useParams()
+  const { slug, lang: urlLang } = useParams()
 
   const [{ data, error, fetching }] = useSelect('lessons', {
     filter: useFilter(
-      (query) => query.eq('id', id),
-      [id],
+      (query) => query.eq('slug', slug),
+      [slug],
     ),
   })
 
@@ -24,7 +24,7 @@ export default () => {
     <BreadcrumbWrapper>
       <BreadcrumbItem to={`/${urlLang}/lessons`}>Lessons</BreadcrumbItem>
       <BreadcrumbSeparator />
-      <BreadcrumbItem to={`/${urlLang}/lessons/${id}`}>{lesson?.title_en}</BreadcrumbItem>
+      <BreadcrumbItem to={`/${urlLang}/lessons/${slug}`}>{lesson?.title_en}</BreadcrumbItem>
     </BreadcrumbWrapper>
 
     {error && error.message}

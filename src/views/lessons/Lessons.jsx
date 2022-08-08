@@ -28,7 +28,7 @@ export default () => {
       (!lessons || lessons.length <= 0) ? 'no lessons' :
       <TwoColumns cols="auto max-content">
         <div>
-          {lessons.map(lesson => <LessonListItem key={lesson.id} lesson={lesson} />)}
+          {lessons.map(lesson => <LessonListItem key={lesson.slug} lesson={lesson} />)}
         </div>
         <div>
           {lessons.length} lesson{lessons.length !== 1 && 's'}
@@ -41,7 +41,7 @@ export default () => {
 const LessonListItem = ({lesson}) => {
   const { lang: urlLang } = useParams()
   return <div>
-    <Link to={`/${urlLang}/lessons/${lesson.id}`}>
+    <Link to={`/${urlLang}/lessons/${lesson.slug}`}>
       {lesson.title_en || 'Unknown'}
     </Link>
   </div>

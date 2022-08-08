@@ -124,7 +124,7 @@ export default [
     layout: LayoutLanguage,
   },
   {
-    path: `/:lang/lessons/:id`,
+    path: `/:lang/lessons/:slug`,
     component: LessonItem,
     layout: LayoutLanguage,
   },

@@ -9,8 +9,9 @@ import remarkParse from 'remark-parse'
 import remarkFrontmatter from 'remark-frontmatter'
 import remarkStringify from 'remark-stringify'
 import remarkDirective from 'remark-directive'
-import remarkParseYaml from 'remark-parse-yaml'
+// import remarkParseYaml from 'remark-parse-yaml'
 import { filter } from 'unist-util-filter'
+import slugify from 'slugify'
 
 import { dirname } from 'path'
 import { fileURLToPath } from 'url'
@@ -47,17 +48,17 @@ const getLessonFileContent = async relativePath => {
 
 const parseLesson = async ({ filename, content }) => {
 
-  let frontMatter
-  await unified()
-    .use(remarkParse)
-    .use(remarkFrontmatter)
-    .use(remarkParseYaml)
-    .use(remarkStringify)
-    .use(() => tree => {
-      const yamlNode = tree.children.find(n => n.type === 'yaml')
-      frontMatter = yamlNode?.data?.parsedValue
-    })
-    .process(content)
+  // let frontMatter
+  // await unified()
+  //   .use(remarkParse)
+  //   .use(remarkFrontmatter)
+  //   .use(remarkParseYaml)
+  //   .use(remarkStringify)
+  //   .use(() => tree => {
+  //     const yamlNode = tree.children.find(n => n.type === 'yaml')
+  //     frontMatter = yamlNode?.data?.parsedValue
+  //   })
+  //   .process(content)
 
   let directiveWords
   await unified()
@@ -88,12 +89,27 @@ const parseLesson = async ({ filename, content }) => {
     throw new Error(`Invalid order "${orderString}" in filename`)
   }
 
+  const title = filename.split(' - ')[1].split('.')[0]
+  if (!title || title.length < 1) {
+    throw new Error(`Invalid title "${title}" in filename`)
+  }
+
+  // https://www.npmjs.com/package/slugify
+  const slug = slugify(title, {
+    lower: true,
+    strict: true,
+  })
+  if (!slug || slug.length < 1) {
+    throw new Error(`Invalid slug generated for title "${title}" in filename`)
+  }
+
   return {
     language: `lang_${LANGUAGE_CODE}`,
-    title_en: frontMatter.title,
+    title_en: title,
     content_en: markdownContentString,
     updated_on: new Date(),
     order,
+    slug,
     words: JSON.stringify(directiveWords),
   }
 }
@@ -126,6 +142,7 @@ const updateDatabase = async lessons => {
       lesson.content_en,
       lesson.updated_on,
       lesson.order,
+      lesson.slug,
       // lesson.words,
     ]
 
@@ -133,8 +150,8 @@ const updateDatabase = async lessons => {
     // VALUES($1, $2, $3, $4, $5, json_array_elements($6))
     // this version makes each insert into multiple rows (one for each word)
     const text = `
-      INSERT INTO lessons("language", title_en, content_en, created_at, "order")
-      VALUES($1, $2, $3, $4, $5)
+      INSERT INTO lessons("language", title_en, content_en, created_at, "order", slug)
+      VALUES($1, $2, $3, $4, $5, $6)
       RETURNING *
     `
     await client.query(text, values)

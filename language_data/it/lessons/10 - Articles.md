@@ -1,7 +1,6 @@
 ---
 
 title: Articles
-slug: Articles
 concepts:
   - grammar
 
