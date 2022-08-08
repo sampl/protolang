@@ -9,6 +9,7 @@ export const HeatmapWrapper = styled.div`
   grid-gap: ${p => p.padding ? `${p.padding}px` : `5px`};
   padding:  ${p => p.padding ? `${p.padding}px` : `5px`};
   justify-content: start;
+  width: fit-content;
 `
 export const HeatmapCell = styled.div`
   width:  ${p => p.size ? `${p.size}px` : `5px`};
