@@ -2,6 +2,8 @@ import { useSelect, useFilter } from 'react-supabase'
 import { Link, useParams } from 'react-router-dom'
 
 import { useLanguage } from '@/_state/language'
+import { TwoColumns } from '@/styles/Layout'
+import Card from '@/styles/Card'
 
 export default () => {
   const { lang: urlLang } = useParams()
@@ -26,11 +28,14 @@ export default () => {
     {
       error ? error.message :
       fetching ? 'loading...' :
-      <>
-        { nextLesson && <Link to={`/${urlLang}/lessons/${nextLesson.slug}`}>Lesson: {nextLesson.title_en} →</Link> }
-        <br />
-        <Link to={`/${urlLang}/practice`}>Practice →</Link>
-      </>
+      <TwoColumns>
+        <Card>
+          { nextLesson && <Link to={`/${urlLang}/lessons/${nextLesson.slug}`}>Lesson: {nextLesson.title_en} →</Link> }
+        </Card>
+        <Card>
+          <Link to={`/${urlLang}/practice`}>Practice →</Link>
+        </Card>
+      </TwoColumns>
     }
   </div>
 }

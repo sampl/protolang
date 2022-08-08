@@ -9,13 +9,16 @@ import QuickLinks from "./QuickLinks"
 export default () => {
   const { user } = useUser()
   return <>
+
+    <br />
+
     <h2>
       {user?.username ? `Welcome, ${user.username}` : `Welcome`}
     </h2>
-    
+
     <QuickLinks />
 
-    <hr />
+    <br />
 
     <TwoColumns cols="2fr 1fr">
       <div>
