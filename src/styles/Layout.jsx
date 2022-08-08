@@ -20,6 +20,10 @@ export const Footer = styled.footer`
 `
 
 // section layouts
+export const OneCol = styled.div`
+  max-width: 50rem;
+  /* margin: 0 auto; */
+`
 export const TwoColumns = styled.div`
   display: grid;
   grid-template-columns: ${p => p.cols || `1fr 1fr`};
