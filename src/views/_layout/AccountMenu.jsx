@@ -6,6 +6,17 @@ export default () => {
   const { user } = useUser()
 
   return <>
-    {!user ? <Link to="/login">Log in</Link> : <Link to="/settings">👤</Link>}
+    {
+      user ?
+      <>
+        <Link to="/settings">👤</Link>
+      </>
+      :
+      <>
+        <Link to="/signup">Create account</Link>
+        {' / '}
+        <Link to="/login">Log in</Link>
+      </>
+    }
   </>
 }
