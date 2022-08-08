@@ -1,8 +1,8 @@
 ---
 
-title: Language
 concepts:
   - basics
+  - travel
 
 ---
 

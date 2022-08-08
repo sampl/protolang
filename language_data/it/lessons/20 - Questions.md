@@ -1,6 +1,5 @@
 ---
 
-title: Questions
 concepts:
   - questions
 

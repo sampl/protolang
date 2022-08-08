@@ -1,6 +1,5 @@
 ---
 
-title: Cooking
 concepts:
   - food
 

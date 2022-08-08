@@ -1,6 +1,5 @@
 ---
 
-title: Big numbers
 concepts:
   - numbers
 

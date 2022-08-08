@@ -1,6 +1,5 @@
 ---
 
-title: Pronunciation
 concepts:
   - pronunciation
 

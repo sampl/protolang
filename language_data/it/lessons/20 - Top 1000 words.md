@@ -1,6 +1,7 @@
 ---
 
-title: Top 1000 words
+concepts:
+  - common words
 
 ---
 

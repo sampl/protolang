@@ -1,6 +1,7 @@
 ---
 
-title: Dialects
+concepts:
+  - dialects
 
 ---
 

@@ -1,6 +1,7 @@
 ---
 
-title: Math and science
+concepts:
+  - arts
 
 ---
 

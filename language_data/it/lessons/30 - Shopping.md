@@ -1,6 +1,7 @@
 ---
 
-title: Shopping
+concepts:
+  - travel
 
 ---
 

@@ -1,6 +1,5 @@
 ---
 
-title: Italian history
 concepts:
   - culture
   - arts

@@ -1,6 +1,5 @@
 ---
 
-title: Profanity
 concepts:
   - emotions
 

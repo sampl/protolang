@@ -1,6 +1,5 @@
 ---
 
-title: Names
 concepts:
   - people
 

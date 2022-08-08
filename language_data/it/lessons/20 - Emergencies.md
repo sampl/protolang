@@ -1,6 +1,5 @@
 ---
 
-title: Emergencies
 concepts:
   - basics
 

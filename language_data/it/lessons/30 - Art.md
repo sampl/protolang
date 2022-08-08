@@ -1,6 +1,7 @@
 ---
 
-title: Art
+concepts:
+  - arts
 
 ---
 

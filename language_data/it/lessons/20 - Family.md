@@ -1,6 +1,5 @@
 ---
 
-title: Family
 concepts:
   - family
 

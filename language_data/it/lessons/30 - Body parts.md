@@ -1,6 +1,7 @@
 ---
 
-title: Body parts
+concepts:
+  - people
 
 ---
 

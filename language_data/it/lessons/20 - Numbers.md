@@ -1,6 +1,5 @@
 ---
 
-title: Numbers
 concepts:
   - numbers
 

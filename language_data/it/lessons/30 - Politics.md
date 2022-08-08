@@ -1,6 +1,5 @@
 ---
 
-title: Politics
 concepts:
   - culture
 

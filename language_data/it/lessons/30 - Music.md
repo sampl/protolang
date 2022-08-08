@@ -1,6 +1,5 @@
 ---
 
-title: Music
 concepts:
   - arts
 

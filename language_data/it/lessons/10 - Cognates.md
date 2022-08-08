@@ -1,6 +1,5 @@
 ---
 
-title: Cognates
 concepts:
   - cognates
 

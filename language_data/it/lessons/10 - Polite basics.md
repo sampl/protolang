@@ -1,6 +1,5 @@
 ---
 
-title: Polite basics
 concepts:
   - basics
 

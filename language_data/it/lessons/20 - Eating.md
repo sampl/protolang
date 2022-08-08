@@ -1,6 +1,5 @@
 ---
 
-title: Eating
 concepts:
   - food
 

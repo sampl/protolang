@@ -1,6 +1,5 @@
 ---
 
-title: Animals
 concepts:
   - nature
 

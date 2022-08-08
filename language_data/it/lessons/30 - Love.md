@@ -1,6 +1,5 @@
 ---
 
-title: Love
 concepts:
   - emotions
 

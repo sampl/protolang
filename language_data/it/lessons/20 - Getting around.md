@@ -1,6 +1,7 @@
 ---
 
-title: Getting around
+concepts:
+  - travel
 
 ---
 

@@ -1,6 +1,5 @@
 ---
 
-title: Italian places
 concepts:
   - culture
 

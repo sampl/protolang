@@ -1,6 +1,5 @@
 ---
 
-title: Alphabet
 concepts:
   - grammar
 

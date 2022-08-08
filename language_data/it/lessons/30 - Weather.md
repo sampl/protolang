@@ -1,6 +1,5 @@
 ---
 
-title: Weather
 concepts:
   - nature
 

@@ -1,6 +1,5 @@
 ---
 
-title: Irregular verbs
 concepts:
   - verbs
 

@@ -1,6 +1,5 @@
 ---
 
-title: Clothing
 concepts:
   - people
 
