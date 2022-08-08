@@ -48,6 +48,19 @@ td {
   padding: 0 1rem 0 0;
 }
 
+/* forms */
+input {
+  font-family: inherit;
+  font-size: inherit;
+  padding: .25rem;
+  margin: 0 0 .5rem;
+}
+button {
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+}
+
 /* misc */
 
 hr {
@@ -55,10 +68,4 @@ hr {
   border: none;
   border-bottom: 1px solid;
   margin: 1rem 0;
-}
-
-button {
-  font-family: inherit;
-  font-size: inherit;
-  cursor: pointer;
 }
