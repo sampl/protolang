@@ -8,8 +8,8 @@ export default () => {
   const soonLanguages = languages?.filter(l => !l.is_live)
 
   return <>
-    <h2>Your new adventure starts here!</h2>
-    <p>Choose your language</p>
+    <h2>Your adventure starts here</h2>
+    <p>In beta</p>
 
     {liveLanguages?.map(lang => {
       return <div key={lang.id}>
@@ -20,6 +20,7 @@ export default () => {
     })}
 
     <br />
+
     <p>Coming soon...</p>
 
     {soonLanguages?.map(lang => {
