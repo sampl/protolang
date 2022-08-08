@@ -8,6 +8,7 @@ import ReportError from '@/views/practice/ReportError'
 import CardText from './card_types/CardText'
 import CardSpeech from './card_types/CardSpeech'
 import { useLanguage } from '@/_state/language'
+import { Button } from '@/styles/Button'
 
 const MAX_STRIKES = 1
 
@@ -88,7 +89,7 @@ export default ({ word, type, direction, next }) => {
         You're right!
         <Link to={`/${currentLanguage.code}/words/${word?.id}`}>go to word</Link>
         <br />
-        <button autoFocus onClick={next}>Next</button>
+        <Button autoFocus onClick={next}>Next</Button>
       </>
       :
       cardState === "try_again" ? <>
@@ -98,7 +99,7 @@ export default ({ word, type, direction, next }) => {
       cardState === "incorrect" ? <>
         Whoops not quite. The answer is "{word.name}"
         <Link to={`/${currentLanguage.code}/words/${word?.id}`}>go to word</Link>
-        <button autoFocus onClick={next}>Next</button>
+        <Button autoFocus onClick={next}>Next</Button>
       </>
       :
       null

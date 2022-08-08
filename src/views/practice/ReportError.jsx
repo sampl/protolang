@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import { useUser } from '@/_state/user'
 import { supabase } from '@/_util/supabaseClient'
+import { Button } from '@/styles/Button'
 
 export default ({ word, close }) => {
   const { user } = useUser()
@@ -47,11 +48,11 @@ export default ({ word, close }) => {
     />
 
     <br />
-    <button
+    <Button
       type="submit"
       disabled={saving}
     >
       {saving ? 'Reporting...' : 'Report error'}
-    </button>
+    </Button>
   </form>
 }

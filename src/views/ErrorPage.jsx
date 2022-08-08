@@ -1,3 +1,4 @@
+import { Button } from "@/styles/Button"
 import { useNavigate } from "react-router-dom"
 
 export default ({ word }) => {
@@ -8,6 +9,6 @@ export default ({ word }) => {
     <p>Sorry, we couldn't find this page</p>
     <hr />
     <p>Think you hit an error?</p>
-    <button onClick={() => navigate('contact')}>Contact us</button>
+    <Button onClick={() => navigate('contact')}>Contact us</Button>
   </>
 }

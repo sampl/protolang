@@ -5,6 +5,7 @@ import { useUser } from '@/_state/user'
 import { supabase } from '@/_util/supabaseClient'
 import { useLanguage } from '@/_state/language'
 import { RadioRoot, RadioItem, RadioIndicator } from '@/styles/Radio'
+import { Button } from '@/styles/Button'
 
 export default ({ closeModal }) => {
   const navigate = useNavigate()
@@ -124,12 +125,12 @@ export default ({ closeModal }) => {
 
     <br />
 
-    <button
+    <Button
       type="submit"
       disabled={saving}
     >
       {saving ? 'Getting ready...' : 'Start learning'}
-    </button>
+    </Button>
 
   </form>
 }
