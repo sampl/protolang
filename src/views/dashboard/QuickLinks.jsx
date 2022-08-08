@@ -27,7 +27,7 @@ export default () => {
       error ? error.message :
       fetching ? 'loading...' :
       <>
-        { nextLesson && <Link to={`/${urlLang}/lessons/${nextLesson.id}`}>Lesson: {nextLesson.title_en} →</Link> }
+        { nextLesson && <Link to={`/${urlLang}/lessons/${nextLesson.slug}`}>Lesson: {nextLesson.title_en} →</Link> }
         <br />
         <Link to={`/${urlLang}/practice`}>Practice →</Link>
       </>
