@@ -96,29 +96,6 @@ export default [
     layout: LayoutSimple,
   },
 
-  // These routes require a language, but there's no language code in the URL
-  // Router.jsx will attempt to redirect them based on app state, or prompt them to pick a language
-  // {
-  //   path: `/lessons`,
-  //   component: Lessons,
-  //   layout: LayoutLanguage,
-  // },
-  // {
-  //   path: `/practice`,
-  //   component: Practice,
-  //   layout: LayoutLanguage,
-  // },
-  // {
-  //   path: `/resources`,
-  //   component: Practice,
-  //   layout: LayoutLanguage,
-  // },
-  // {
-  //   path: `/words`,
-  //   component: Practice,
-  //   layout: LayoutLanguage,
-  // },
-
   // Normal language routes
   {
     path: `/:lang/resources`,

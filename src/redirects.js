@@ -34,4 +34,20 @@ export default [
     path: `/dmca`,
     target: `/legal`,
   },
+  {
+    path: `/lessons`,
+    target: `/`,
+  },
+  {
+    path: `/practice`,
+    target: `/`,
+  },
+  {
+    path: `/resources`,
+    target: `/`,
+  },
+  {
+    path: `/words`,
+    target: `/`,
+  },
 ]
