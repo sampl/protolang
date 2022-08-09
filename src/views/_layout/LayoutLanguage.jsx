@@ -10,6 +10,8 @@ import { useUser } from "@/_state/user"
 import { useEffect } from 'react'
 import Banner from '@/styles/Banner'
 import UserLanguageOnboarding from '../user_languages/UserLanguageOnboarding'
+import ErrorPage from '../ErrorPage'
+import LayoutSimple from './LayoutSimple'
 
 export default ({children}) => {
   const { currentLanguage, userLanguages, fetching, error, setCurrentLanguageId } = useLanguage()
@@ -22,6 +24,13 @@ export default ({children}) => {
   // somehow we got a bad link and undefined ended up in the url bar as a string
   if (urlLang === 'undefined') {
     navigate('/')
+  }
+
+  // TODO - better conditions for loading etc
+  if (!currentLanguage) {
+    return <LayoutSimple>
+      <ErrorPage />
+    </LayoutSimple>
   }
 
   return <HeaderFooterLayoutWrapper>
