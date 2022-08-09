@@ -20,6 +20,7 @@ import Signup from '@/views/account/Signup'
 import Contact from '@/views/marketing/Contact'
 import Conduct from './views/marketing/Conduct'
 import Legal from './views/marketing/Legal'
+import ResourceNew from './views/resources/ResourceNew'
 
 // ROUTES
 // This is a simple JS list of routes in the app
@@ -122,6 +123,11 @@ export default [
   {
     path: `/:lang/resources`,
     component: Resources,
+    layout: LayoutLanguage,
+  },
+  {
+    path: `/:lang/resources/new`,
+    component: ResourceNew,
     layout: LayoutLanguage,
   },
   {

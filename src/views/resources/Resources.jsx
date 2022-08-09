@@ -6,6 +6,7 @@ import { useLanguage } from '@/_state/language'
 export default () => {
 
   const { currentLanguage } = useLanguage()
+  const { lang: urlLang } = useParams()
 
   const [{ data: resources, error, fetching }] = useSelect('resources', {
     filter: useFilter(
@@ -16,6 +17,10 @@ export default () => {
 
   return <>
     <h1>Resources</h1>
+    <Link to={`/${urlLang}/resources/new`}>+ Add resource</Link>
+
+    <hr />
+
     {
       error ? error.message :
       fetching ? 'loading...' :
