@@ -3,6 +3,9 @@
   --gutter: 1rem;
   --leading: .5rem;
 
+  /* type sizes */
+  --s: .85rem;
+
   /* heatmap colors */
   --diablo: black;
   --fire: purple;

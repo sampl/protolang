@@ -19,6 +19,7 @@ import LanguagePicker from '@/views/user_languages/LanguagePicker'
 import Signup from '@/views/account/Signup'
 import Contact from '@/views/marketing/Contact'
 import Conduct from './views/marketing/Conduct'
+import Legal from './views/marketing/Legal'
 
 // ROUTES
 // This is a simple JS list of routes in the app
@@ -56,6 +57,11 @@ export default [
   {
     path: `/sponsor`,
     component: Sponsor,
+    layout: LayoutSimple,
+  },
+  {
+    path: `/legal`,
+    component: Legal,
     layout: LayoutSimple,
   },
 

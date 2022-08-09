@@ -21,10 +21,12 @@ export default () => {
       <Link to="/contact">Contact</Link>
     </p>
 
-    <p>
+    <p style={{fontSize: 'var(--s)'}}>
       &copy; 2022{new Date().getFullYear()>2022 && ("-"+new Date().getFullYear())} Directed Works LLC
       {' · '}
       <Link to="/conduct">Code of conduct</Link>
+      {' · '}
+      <Link to="/legal">Legal</Link>
     </p>
   </Footer>
 }
