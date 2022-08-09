@@ -2,7 +2,7 @@ import Settings from '@/views/settings/Settings'
 import Dashboard from '@/views/dashboard/Dashboard'
 import Resources from '@/views/resources/Resources'
 import ResourceItem from '@/views/resources/ResourceItem'
-import Marketing from '@/views/marketing/Marketing'
+import Home from '@/views/marketing/Home'
 import Lessons from '@/views/lessons/Lessons'
 import LessonItem from '@/views/lessons/LessonItem'
 import Practice from '@/views/practice/Practice'
@@ -30,7 +30,7 @@ export default [
   // Marketing pages
   {
     path: `/`,
-    component: Marketing,
+    component: Home,
     layout: LayoutSimple,
   },
   {

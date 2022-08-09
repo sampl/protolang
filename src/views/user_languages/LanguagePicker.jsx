@@ -8,27 +8,26 @@ export default () => {
   const soonLanguages = languages?.filter(l => !l.is_live)
 
   return <>
-    <h2>Your adventure starts here</h2>
-    <p>In beta</p>
+    <h2>Choose a language</h2>
 
     {liveLanguages?.map(lang => {
-      return <div key={lang.id}>
-        <Link to={`/${lang.code}`}>
-          {lang.name_en}
-        </Link>
-      </div>
+      return <Link key={lang.id} to={`/${lang.code}`} style={{border: '1px solid', padding: '1rem 2rem', display: 'inline-block', textDecoration: 'none'}}>
+        {lang.name_en} →
+      </Link>
     })}
 
+    <br />
     <br />
 
     <p>Coming soon...</p>
 
-    {soonLanguages?.map(lang => {
-      return <div key={lang.id}>
+    {soonLanguages?.map( (lang, index) => {
+      return <span key={lang.id}>
+        {index > 0 && ' · '}
         <Link to={`/${lang.code}`}>
           {lang.name_en}
         </Link>
-      </div>
+      </span>
     })}
 
   </>

@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { Button } from '@/styles/Button'
 import { OneCol } from '@/styles/Layout'
+import LanguagePicker from '../user_languages/LanguagePicker'
 // import Modal from '@/styles/Modal'
 
 export default () => {
@@ -63,9 +64,8 @@ export default () => {
         <a href="">Compare to Duolingo</a>
       </p> */}
 
-      <h2>Start learning</h2>
-      <p>100% free, no account required</p>
-      <Button onClick={() => navigate('/languages')}>Choose your language</Button>
+      <LanguagePicker />
+
     {/* </Modal> */}
 
   </OneCol>
