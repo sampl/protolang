@@ -12,7 +12,6 @@ import Logout from '@/views/account/Logout'
 import About from '@/views/marketing/About'
 import Contribute from '@/views/marketing/Contribute'
 import Sponsor from '@/views/marketing/Sponsor'
-import ErrorPage from '@/views/ErrorPage'
 
 import LayoutSimple from '@/views/_layout/LayoutSimple'
 import LayoutLanguage from '@/views/_layout/LayoutLanguage'
@@ -148,12 +147,5 @@ export default [
     path: `/:lang`,
     component: Dashboard,
     layout: LayoutLanguage,
-  },
-
-  // Catch all
-  {
-    path: `*`,
-    component: ErrorPage,
-    layout: LayoutSimple,
   },
 ]
