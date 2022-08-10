@@ -10,12 +10,11 @@ const CONNECTION_STRING = process.env.ADMIN_POSTGRES_CONNECTION_STRING
 
 const myArgs = process.argv.slice(2)
 const LIVE = myArgs[0] === '--live'
-const DESTRUCTIVE = myArgs[1] === '--destructive'
 
 const LANGUAGE_CODE = 'it'
 const DICTIONARY_FILE_PATH = `/../../languages/${LANGUAGE_CODE}/kaikki.org-dictionary-Italian.json`
 
-const BATCH_SIZE = 1
+const BATCH_SIZE = 1000
 
 const TABLE_NAME = `words_it`
 
@@ -23,107 +22,47 @@ const TABLE_NAME = `words_it`
 const pgp = pgPromise()
 const db = pgp(CONNECTION_STRING)
 
-const columns = [
-  {
-    name: 'pos',
-    type: 'text',
-  },
-  {
-    name: 'head_templates',
-    type: 'text',
-  },
-  {
-    name: 'forms',
-    type: 'jsonb',
-  },
-  {
-    name: 'inflection_templates',
-    type: 'jsonb',
-  },
-  {
-    name: 'etymology_text',
-    type: 'text',
-  },
-  {
-    name: 'etymology_templates',
-    type: 'jsonb',
-  },
-  {
-    name: 'sounds',
-    type: 'jsonb',
-  },
-  {
-    name: 'word',
-    type: 'text',
-  },
-  {
-    name: 'lang',
-    type: 'text',
-  },
-  {
-    name: 'lang_code',
-    type: 'text',
-  },
-  {
-    name: 'categories',
-    type: 'jsonb',
-  },
-  {
-    name: 'derived',
-    type: 'jsonb',
-  },
-  {
-    name: 'related',
-    type: 'jsonb',
-  },
-  {
-    name: 'senses',
-    type: 'jsonb',
-  },
-]
+const columnSet = new pgp.helpers.ColumnSet(["wiktionary_data"], {table: TABLE_NAME});
 
-const columnSet = new pgp.helpers.ColumnSet(columns.map(c => c.name), {table: TABLE_NAME});
+let onDeck = []
+let errors = []
+let batch = 0
 
 const updateDictionary = async () => {
-  try {
 
+  try {
     console.time('Duration')
 
     // clear out previous data
-    if (DESTRUCTIVE) {
-      console.log('--destructive flag detected, removing existing lessons...')
+    if (LIVE) {
+      console.log('Removing existing words...')
       await db.none(`DELETE FROM ${TABLE_NAME};`)
-
-
-
-      // TODO - instead of clearing them all out, straight up drop table and recreated columns accordingly
-
-
-
-    }
+    }  
   
-    let onDeck = []
-    let errors = []
-
     // unlike readline, this actually pauses events when paused
     // https://stackoverflow.com/a/44277990/1061063
     const reader = new LineByLineReader(__dirname + DICTIONARY_FILE_PATH)
 
-    reader.on('error', errors.push)
-
     reader.on('line', async line => {
       const parsedLine = JSON.parse(line)
-      onDeck.push(parsedLine)
+      const row = { 'wiktionary_data': parsedLine }
+      onDeck.push(row)
+
       if (onDeck.length >= BATCH_SIZE) {
         reader.pause()
-        console.log(onDeck.length, 'words ready to go')
-        await updateDatabase(onDeck)
+        batch++
+        await sendBatch(onDeck)
         onDeck = []
         reader.resume()
       }
     })
 
-    reader.on('end', () => {
+    reader.on('error', errors.push)
+
+    reader.on('end', async () => {
+
+      // send whatever was queued up at the end of the list (but never hit the BATCH_SIZE limit)
+      await sendBatch(onDeck)
 
       if (errors.length === 0) {
         console.log('Done, with no errors ✅')
@@ -133,6 +72,8 @@ const updateDictionary = async () => {
           console.log(`  - ${error.message || 'unknown error'}`)
         })
       }
+
+      console.log(`${batch} batches ${LIVE ? 'sent to the database' : 'processed as a test'}`)
 
       // https://www.valentinog.com/blog/node-usage/
       const used = process.memoryUsage().heapUsed / 1024 / 1024
@@ -146,30 +87,13 @@ const updateDictionary = async () => {
   }
 }
 
-const updateDatabase = async parsedDictionaryLines => {
-  
-  // ensure the obj we pass has keys for every column
-  const data = parsedDictionaryLines.map(parsedLine => {
-    const row = {}
-    columns.forEach(column => {
-      // console.log(column.name)
-      row[column.name] = parsedLine[column.name] || (column.type === 'jsonb' ? [] : null)
-    })
-    return row
-  })
+const sendBatch = () => {
+  console.log(`Got batch #${batch} of size ${onDeck.length} ${LIVE ? '- sending to db...' : ''}`)
 
-  console.log(data)
-
-  if (!LIVE) {
-    // console.log(parsedDictionaryLines.map(Object.keys))
-    // console.log('Skipping update: ', parsedDictionaryLines.word)
-    return null
+  if (LIVE) {
+    const query = pgp.helpers.insert(onDeck, columnSet)
+    return db.none(query)
   }
-
-  const query = pgp.helpers.insert(data, columnSet)
-
-  // http://vitaly-t.github.io/pg-promise/Database.html#none
-  return db.none(query)
 }
 
 updateDictionary()
