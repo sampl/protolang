@@ -1,5 +1,7 @@
+import { OneCol } from "@/styles/Layout"
+
 export default () => {
-  return <>
+  return <OneCol>
 
     <h1>Support free language education</h1>
 
@@ -12,5 +14,5 @@ export default () => {
 
     <a href="mailto:sam@directedworks.com">Sponsor this project</a>
 
-  </>
+  </OneCol>
 }

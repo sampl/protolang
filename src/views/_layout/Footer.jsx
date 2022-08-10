@@ -6,13 +6,11 @@ export default () => {
   return <Footer>
     <p style={{color: 'red', fontWeight: 'bold'}}>This site is in early alpha testing. Your progress may not be saved. Use at your own risk.</p>
     <p>
-      <Link to="/">Home</Link>
-      {' · '}
+      {/* <Link to="/">Home</Link>
+      {' · '} */}
       <Link to="/about">About</Link>
       {' · '}
-      <a href="https://github.com/sampl/language-learning/blob/main/license.txt">License</a>
-      {' · '}
-      <a href="https://github.com/sampl/language-learning">Source</a>
+      <a href="https://github.com/sampl/protolang" target="_blank">Source</a>
       {' · '}
       <Link to="/contribute">Contribute</Link>
       {' · '}
@@ -23,8 +21,6 @@ export default () => {
 
     <p style={{fontSize: 'var(--s)'}}>
       &copy; 2022{new Date().getFullYear()>2022 && ("-"+new Date().getFullYear())} Directed Works LLC
-      {' · '}
-      <Link to="/conduct">Code of conduct</Link>
       {' · '}
       <Link to="/legal">Legal</Link>
     </p>
