@@ -1,0 +1,107 @@
+[
+  {
+    "id": "fr",
+    "endonym": "français",
+    "name_en": "French",
+    "flag": "🇫🇷",
+    "is_live": false
+  },
+  {
+    "id": "ja",
+    "endonym": "日本語",
+    "name_en": "Japanese",
+    "flag": "🇯🇵",
+    "is_live": false
+  },
+  {
+    "id": "de",
+    "endonym": "Deutsch",
+    "name_en": "German",
+    "flag": "🇩🇪",
+    "is_live": false
+  },
+  {
+    "id": "zh",
+    "endonym": "汉语/漢語",
+    "name_en": "Chinese",
+    "flag": "🇨🇳",
+    "is_live": false
+  },
+  {
+    "id": "hi",
+    "endonym": "हिन्दी",
+    "name_en": "Hindi",
+    "flag": "🇮🇳",
+    "is_live": false
+  },
+  {
+    "id": "eo",
+    "endonym": "Esperanto",
+    "name_en": "Esperanto",
+    "flag": "🌍",
+    "is_live": false
+  },
+  {
+    "id": "la",
+    "endonym": "lingua Latīna",
+    "name_en": "Latin",
+    "flag": "🏛",
+    "is_live": false
+  },
+  {
+    "id": "pt",
+    "endonym": "português",
+    "name_en": "Portuguese",
+    "flag": "🇵🇹",
+    "is_live": false
+  },
+  {
+    "id": "ru",
+    "endonym": "Русский язык",
+    "name_en": "Russian",
+    "flag": "🇷🇺",
+    "is_live": false
+  },
+  {
+    "id": "ar",
+    "endonym": "اَلْعَرَبِيَّةُ",
+    "name_en": "Arabic",
+    "flag": "🇸🇦",
+    "is_live": false
+  },
+  {
+    "id": "bn",
+    "endonym": "বাংলা",
+    "name_en": "Bengali",
+    "flag": "🇧🇩",
+    "is_live": false
+  },
+  {
+    "id": "id",
+    "endonym": "Bahasa Indonesia",
+    "name_en": "Indonesian",
+    "flag": "🇮🇩",
+    "is_live": false
+  },
+  {
+    "id": "ko",
+    "endonym": "한국어",
+    "name_en": "Korean",
+    "flag": "🇰🇷",
+    "is_live": false
+  },
+  {
+    "id": "it",
+    "endonym": "italiano",
+    "name_en": "Italian",
+    "flag": "🇮🇹",
+    "is_live": true
+  },
+  {
+    "id": "es",
+    "endonym": "español",
+    "name_en": "Spanish",
+    "flag": "🇪🇸",
+    "is_live": false
+  }
+]
