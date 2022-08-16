@@ -49,6 +49,12 @@ td {
 }
 
 /* forms */
+
+a {
+  color: inherit;
+}
+
+/* forms */
 input {
   font-family: inherit;
   font-size: inherit;
