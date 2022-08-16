@@ -101,6 +101,22 @@ export default ({children}) => {
     </LayoutSimple>
   }
 
+  if (!isBetaUser && user) {
+    return <LayoutSimple>
+      Coming soon!
+    </LayoutSimple>
+  }
+
+  if (!isBetaUser && !user) {
+    return <LayoutSimple>
+      <h1>Coming soon!</h1>
+      <p>Sign up to get notified when Protolang launches</p>
+      <br />
+      <br />
+      <Signup />
+    </LayoutSimple>
+  }
+
   return <HeaderFooterLayoutWrapper>
 
     <Header>
