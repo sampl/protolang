@@ -7,6 +7,8 @@ const Context = createContext()
 export default ({ children }) => {
   const [user, setUser] = useState(supabase.auth.user())
 
+  const isBetaUser = !!localStorage.getItem('protolang_is_beta_user')
+
   useEffect(() => {
     const getUserProfile = async () => {
       const sessionUser = supabase.auth.user()
@@ -51,6 +53,7 @@ export default ({ children }) => {
     user,
     login,
     logout,
+    isBetaUser,
   }
 
   return <Context.Provider value={exposed}>

@@ -12,11 +12,12 @@ import Banner from '@/styles/Banner'
 import UserLanguageOnboarding from '../user_languages/UserLanguageOnboarding'
 import ErrorPage from '../ErrorPage'
 import LayoutSimple from './LayoutSimple'
+import Signup from '../account/Signup'
 
 export default ({children}) => {
   const { currentLanguage, userLanguages, fetching, error, setCurrentLanguageId } = useLanguage()
   const { lang: urlLang } = useParams()
-  const { user } = useUser()
+  const { user, isBetaUser } = useUser()
   const navigate = useNavigate()
 
   useEffect( () => setCurrentLanguageId(`lang_${urlLang}`), [urlLang])
@@ -30,6 +31,22 @@ export default ({children}) => {
   if (!currentLanguage) {
     return <LayoutSimple>
       <ErrorPage />
+    </LayoutSimple>
+  }
+
+  if (!isBetaUser && user) {
+    return <LayoutSimple>
+      Coming soon!
+    </LayoutSimple>
+  }
+
+  if (!isBetaUser && !user) {
+    return <LayoutSimple>
+      <h1>Coming soon!</h1>
+      <p>Sign up to get notified when Protolang launches</p>
+      <br />
+      <br />
+      <Signup />
     </LayoutSimple>
   }
 
