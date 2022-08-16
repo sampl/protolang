@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import { useUser } from '@/_state/user'
 import { Navigate } from 'react-router-dom'
+import { Button } from '@/styles/Button'
 
 export default () => {
   const [email, setEmail] = useState('')
@@ -35,7 +36,7 @@ export default () => {
         onChange={e => setEmail(e.target.value)}
       />
       <br />
-      <button disabled={loading} type="submit">{loading ? "Logging in..." : "Log in"}</button>
+      <Button disabled={loading} type="submit">{loading ? "Logging in..." : "Log in"}</Button>
     </form>
   </>
 }
