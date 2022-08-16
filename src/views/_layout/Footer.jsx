@@ -1,6 +1,5 @@
-import { Link } from 'react-router-dom'
-
 import { Footer } from '@/styles/Layout'
+import { Link } from '@/styles/Links'
 
 export default () => {
 
@@ -28,9 +27,9 @@ export default () => {
       {' · '}
       <Link to="/about">About</Link>
       {' · '}
-      <a href="https://github.com/sampl/language-learning/blob/main/license.txt">License</a>
+      <Link as="a" href="https://github.com/sampl/language-learning/blob/main/license.txt">License</Link>
       {' · '}
-      <a href="https://github.com/sampl/language-learning">Source</a>
+      <Link as="a" href="https://github.com/sampl/language-learning">Source</Link>
       {' · '}
       <Link to="/contribute">Contribute</Link>
       {' · '}
@@ -40,11 +39,13 @@ export default () => {
     </p>
 
     <p style={{fontSize: 'var(--s)'}}>
-      &copy; 2022{new Date().getFullYear()>2022 && ("-"+new Date().getFullYear())} Directed Works LLC
+      &copy; 2022{new Date().getFullYear()>2022 && ("-"+new Date().getFullYear())}
+      {' '}
+      <Link plain as="a" href="https://directedworks.com/" target="_blank">Directed Works LLC</Link>
       {' · '}
-      <span onClick={toggleBetaAccess}>Beta access</span>
+      <Link plain as="span" onClick={toggleBetaAccess}>Beta access</Link>
       {' · '}
-      <Link to="/legal">Legal</Link>
+      <Link plain to="/legal">Legal</Link>
     </p>
   </Footer>
 }
