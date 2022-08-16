@@ -12,7 +12,7 @@ export default () => {
 
     {liveLanguages?.map(lang => {
       return <Link key={lang.id} to={`/${lang.code}`} style={{border: '1px solid', padding: '1rem 2rem', display: 'inline-block', textDecoration: 'none'}}>
-        {lang.name_en} →
+        {lang.name_en}{lang.is_beta && ' (beta)'} →
       </Link>
     })}
 
