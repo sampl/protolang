@@ -11,6 +11,7 @@ export const Header = styled.header`
   grid-template-columns: auto max-content;
   padding: var(--leading) var(--gutter);
   border-bottom: 1.5px solid;
+  margin: 0 0 1rem;
 `
 export const Main = styled.main`
   padding: var(--leading) var(--gutter);

@@ -21,15 +21,66 @@ export default ({children}) => {
 
   useEffect( () => setCurrentLanguageId(`lang_${urlLang}`), [urlLang])
 
+  if (!urlLang) {
+    return <LayoutSimple>
+      <LanguagePicker />
+    </LayoutSimple>
+  }
   // somehow we got a bad link and undefined ended up in the url bar as a string
   if (urlLang === 'undefined') {
     navigate('/')
   }
-
-  // TODO - better conditions for loading etc
-  if (!currentLanguage) {
+  if (error) {
+    console.error(error.message)
     return <LayoutSimple>
       <ErrorPage />
+    </LayoutSimple>
+  }
+  if (fetching || !currentLanguage) {
+    return <LayoutSimple>
+      Loading...
+    </LayoutSimple>
+  }
+  if (!currentLanguage.is_live) {
+    return <LayoutSimple>
+      <h2>The {currentLanguage?.name_en} language course isn't ready yet</h2>
+      {
+        !user ?
+        <p>
+          <Link to="/signup">Create an account</Link>
+          {' '}
+          to get notified about new courses
+        </p>
+        :
+        <p>
+          {/* TODO - let people request a course here */}
+        </p>
+      }
+      <p>
+        Do you know {currentLanguage?.name_en}?
+        {' '}
+        <Link to="/contribute">Help us write the course</Link>!
+      </p>
+    </LayoutSimple>
+  }
+  if (!isBetaUser) {
+    return <LayoutSimple>
+      <h1>Coming soon!</h1>
+      {user ?
+        <p>Stay tuned—we'll email you when this language is available</p>
+      :
+        <>
+          <p>Sign up to get notified when Protolang launches</p>
+          <br />
+          <br />
+          <Signup />
+        </>
+      }
+    </LayoutSimple>
+  }
+  if (user && !userLanguages?.map(ul => ul?.id).includes(currentLanguage?.id)) {
+    return <LayoutSimple>
+      <UserLanguageOnboarding />
     </LayoutSimple>
   }
 
@@ -63,47 +114,11 @@ export default ({children}) => {
     </Header>
 
     <Main>
-
       {!user && <Banner>
           To start saving your progress, <Link to="/signup">create an account</Link>.
         </Banner>
       }
-
-      {
-        fetching ?
-          'Loading...' :
-        error ?
-          error.message : 
-        !urlLang ?
-          <LanguagePicker /> :
-        (user && !userLanguages?.map(ul => ul?.id).includes(currentLanguage?.id)) ?
-          <UserLanguageOnboarding /> :
-        !currentLanguage ?
-          `no language, loading...` :
-        !currentLanguage.is_live ?
-          <>
-            <h2>The {currentLanguage?.name_en} language course isn't ready yet</h2>
-            {
-              !user ?
-              <p>
-                <Link to="/signup">Create an account</Link>
-                {' '}
-                to get notified about new courses
-              </p>
-              :
-              <p>
-                {/* TODO - let people request a course here */}
-              </p>
-            }
-            <p>
-              Do you know {currentLanguage?.name_en}? Why not
-              {' '}
-              <Link to="/contribute">help us write the course</Link>?
-            </p>
-          </>
-          :
-        children
-      }
+      {children}
     </Main>
 
     <Footer />
