@@ -1,5 +1,7 @@
+import { OneCol } from "@/styles/Layout"
+
 export default () => {
-  return <>
+  return <OneCol>
 
     <h1>Contact us</h1>
 
@@ -12,5 +14,5 @@ export default () => {
       </li>
     </ul>
 
-  </>
+  </OneCol>
 }

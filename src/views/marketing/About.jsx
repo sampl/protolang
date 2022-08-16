@@ -1,7 +1,8 @@
+import { OneCol } from "@/styles/Layout"
 import { Link } from "react-router-dom"
 
 export default () => {
-  return <>
+  return <OneCol>
 
     <h1>About this site</h1>
 
@@ -17,5 +18,5 @@ export default () => {
 
     <Link to="/contact">Contact</Link>
 
-  </>
+  </OneCol>
 }
