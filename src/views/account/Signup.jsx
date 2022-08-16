@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import { useUser } from '@/_state/user'
-import { Navigate } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import { Button } from '@/styles/Button'
 
 export default () => {
@@ -38,5 +38,6 @@ export default () => {
       <br />
       <Button disabled={loading} type="submit">{loading ? "Logging in..." : "Log in"}</Button>
     </form>
+    <p>Already have an account? <Link to="/login">Log in</Link></p>
   </>
 }
