@@ -5,7 +5,7 @@ export const Link = styled(RouterLink)`
   color: inherit;
   cursor: pointer;
   font-size: inherit;
-  text-decoration: ${p => p.plain ? 'none' : 'underline'};
+  text-decoration: ${p => p.$plain ? 'none' : 'underline'};
 
   &:hover {
     text-decoration: underline;

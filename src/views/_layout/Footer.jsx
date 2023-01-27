@@ -41,11 +41,11 @@ export default () => {
     <p style={{fontSize: 'var(--s)'}}>
       &copy; 2022{new Date().getFullYear()>2022 && ("-"+new Date().getFullYear())}
       {' '}
-      <Link plain as="a" href="https://directedworks.com/" target="_blank">Directed Works LLC</Link>
+      <Link $plain as="a" href="https://directedworks.com/" target="_blank">Directed Works LLC</Link>
       {' · '}
-      <Link plain as="span" onClick={toggleBetaAccess}>Beta access</Link>
+      <Link $plain as="span" onClick={toggleBetaAccess}>Beta access</Link>
       {' · '}
-      <Link plain to="/legal">Legal</Link>
+      <Link $plain to="/legal">Legal</Link>
     </p>
   </Footer>
 }
