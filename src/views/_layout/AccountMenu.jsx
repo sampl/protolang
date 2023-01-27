@@ -7,11 +7,11 @@ export default () => {
 
   return <>
     <Link to="/feedback">Feedback</Link>
-    <div style={{width: '2rem', display: 'inline-block'}} />
+    <div style={{width: '1rem', display: 'inline-block'}} />
     {
       user ?
       <>
-        <Link to="/settings">👤</Link>
+        <Link to="/settings">Account</Link>
       </>
       :
       <>
