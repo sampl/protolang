@@ -9,6 +9,7 @@ import Practice from '@/views/practice/Practice'
 import WordItem from '@/views/words/WordItem'
 import Login from '@/views/account/Login'
 import Logout from '@/views/account/Logout'
+import FeedbackForm from '@/views/account/FeedbackForm'
 import About from '@/views/marketing/About'
 import Contribute from '@/views/marketing/Contribute'
 import Sponsor from '@/views/marketing/Sponsor'
@@ -86,6 +87,11 @@ export default [
   {
     path: `/logout`,
     component: Logout,
+    layout: LayoutSimple,
+  },
+  {
+    path: `/feedback`,
+    component: FeedbackForm,
     layout: LayoutSimple,
   },
 

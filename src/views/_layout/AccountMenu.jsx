@@ -6,6 +6,8 @@ export default () => {
   const { user } = useUser()
 
   return <>
+    <Link to="/feedback">Feedback</Link>
+    <div style={{width: '2rem', display: 'inline-block'}} />
     {
       user ?
       <>
