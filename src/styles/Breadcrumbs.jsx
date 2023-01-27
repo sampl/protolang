@@ -7,6 +7,9 @@ export const BreadcrumbWrapper = styled.div`
 export const BreadcrumbSeparator = styled.span`
   &:after {
     content: '›';
+    display: inline-block;
+    text-align: center;
+    width: 1rem;
   }
 `
 export const BreadcrumbItem = styled(Link)`
