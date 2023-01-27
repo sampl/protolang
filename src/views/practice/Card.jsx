@@ -97,7 +97,7 @@ export default ({ word, type, direction, next }) => {
       </>
       :
       cardState === "incorrect" ? <>
-        Whoops not quite. The answer is "{word.name}"
+        Whoops not quite. The answer is "{correctAnswer}"
         <Link to={`/${currentLanguage.code}/words/${word && encodeURIComponent(word.name)}`}>go to word</Link>
         <Button autoFocus onClick={next}>Next</Button>
       </>
