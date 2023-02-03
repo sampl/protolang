@@ -103,6 +103,7 @@ export default ({ closeModal }) => {
       <br />
     </>}
 
+    {/* spellchecker: disable */}
     <label>Do you already speak some Italian?</label>
     <RadioRoot
       value={selectedSkill}
@@ -122,6 +123,7 @@ export default ({ closeModal }) => {
         In realtà parlo un ottimo italiano
       </RadioItem>
     </RadioRoot>
+    {/* spell-checker: enable */}
 
     <br />
 
