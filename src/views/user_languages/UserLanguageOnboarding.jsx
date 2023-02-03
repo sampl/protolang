@@ -16,6 +16,11 @@ export default ({ closeModal }) => {
   const [selectedVisitPlans, setSelectedVisitPlans] = useState()
   const [selectedVisitDate, setSelectedVisitDate] = useState()
   const [selectedSkill, setSelectedSkill] = useState()
+  // const [extroversion, setExtroversion] = useState()
+  // const [conversationMedium, setConversationMedium] = useState()
+  // const [mediaTypes, setMediaTypes] = useState()
+  // const [socialNetworks, setSocialNetworks] = useState()
+  // const [emailUpdates, setEmailUpdates] = useState()
   const [saving, setSaving] = useState(false)
 
   async function addUserLanguage( event ) {
@@ -29,6 +34,11 @@ export default ({ closeModal }) => {
         visit_plans: selectedVisitPlans,
         visit_date: selectedVisitDate,
         self_reported_skill: selectedSkill,
+        // extroversion: extroversion,
+        // conversation_medium: conversationMedium,
+        // media_types: mediaTypes,
+        // social_media_networks: socialNetworks,
+        // email_updates: emailUpdates
       }
       if (user) {
         let { error } = await supabase.from('user_languages').insert([newData])
@@ -46,6 +56,32 @@ export default ({ closeModal }) => {
   }
 
   return <form onSubmit={addUserLanguage}>
+
+    <h2>Language goals</h2>
+    <p>We'll use your answer to set up some casual learning milestones</p>
+
+    {/* spellchecker: disable */}
+    <label>Do you already speak some Italian?</label>
+    <RadioRoot
+      value={selectedSkill}
+      onValueChange={value => setSelectedSkill(value)}
+      required
+    >
+      <RadioItem value="no">
+        <RadioIndicator />
+        Nope!
+      </RadioItem>
+      <RadioItem value="some">
+        <RadioIndicator />
+        Sì, I know a little bit
+      </RadioItem>
+      <RadioItem value="lots">
+        <RadioIndicator />
+        In realtà parlo un ottimo italiano
+      </RadioItem>
+    </RadioRoot>
+    {/* spell-checker: enable */}
+
     <label>How serious are you about learning {currentLanguage?.name_en || 'this language'}?</label>
     <RadioRoot
       value={selectedGoal}
@@ -66,7 +102,10 @@ export default ({ closeModal }) => {
       </RadioItem>
     </RadioRoot>
 
-    <br />
+    <hr />
+
+    <h2>Travel plans</h2>
+    <p>This will help us set your learning pace</p>
 
     <label>Do you have plans to visit Italy (or an Italian-speaking part of the world)?</label>
     <RadioRoot
@@ -92,38 +131,201 @@ export default ({ closeModal }) => {
       </RadioItem>
     </RadioRoot>
 
-    <br />
-
     {selectedVisitPlans === 'yes_date' && <>
       <label>When is your trip?</label>
       <input
         type="date"
         onChange={e => setSelectedVisitDate(e.target.value)}
       />
-      <br />
     </>}
 
-    {/* spellchecker: disable */}
-    <label>Do you already speak some Italian?</label>
+    {/*
+
+    // TODO - checkbox so they can pick multiple options!
+
+    <hr />
+
+    <h2>Conversation style</h2>
+    <p>Helps us decide when and how to match you to a conversation partner</p>
+
+    <label>How comfortable are you chatting with strangers?</label>
     <RadioRoot
-      value={selectedSkill}
-      onValueChange={value => setSelectedSkill(value)}
+      value={extroversion}
+      onValueChange={value => setExtroversion(value)}
       required
     >
-      <RadioItem value="no">
+      <RadioItem value="extroverted">
         <RadioIndicator />
-        Nope!
+        I love talking to strangers! Match me right away!
       </RadioItem>
-      <RadioItem value="some">
+      <RadioItem value="moderate">
         <RadioIndicator />
-        Sì, I learned a little bit
+        I'm a little hestitant, but I'm open to trying it soon
       </RadioItem>
-      <RadioItem value="lots">
+      <RadioItem value="introverted">
         <RadioIndicator />
-        In realtà parlo un ottimo italiano
+        Pretty unfomfortable, let's hold off for now
       </RadioItem>
     </RadioRoot>
-    {/* spell-checker: enable */}
+
+    <label>Are you more of a phone call or a texting person for long chats?</label>
+    <RadioRoot
+      value={conversationMedium}
+      onValueChange={value => setConversationMedium(value)}
+      required
+    >
+      <RadioItem value="talker">
+        <RadioIndicator />
+        I prefer long conversations over the phone
+      </RadioItem>
+      <RadioItem value="texter">
+        <RadioIndicator />
+        I prefer long conversations over text
+      </RadioItem>
+      <RadioItem value="both">
+        <RadioIndicator />
+        I like both!
+      </RadioItem>
+      <RadioItem value="neither">
+        <RadioIndicator />
+        I don't like either, really
+      </RadioItem>
+    </RadioRoot>
+
+    <hr />
+
+    <h2>Media preferences</h2>
+    <p>We'll recommend some Italian media to help you get immersed quickly</p>
+
+    <label>What kind of media do you use throughout the day?</label>
+    <RadioRoot
+      value={mediaTypes}
+      onValueChange={value => setMediaTypes(value)}
+      required
+    >
+      <RadioItem value="articles">
+        <RadioIndicator />
+        I read a lot of articles (magazines, newspapers, online, etc)
+      </RadioItem>
+      <RadioItem value="books">
+        <RadioIndicator />
+        I read a lot of books
+      </RadioItem>
+      <RadioItem value="audiobooks">
+        <RadioIndicator />
+        I listen to a lot of audiobooks
+      </RadioItem>
+      <RadioItem value="podcasts">
+        <RadioIndicator />
+        I listen to a lot of podcasts
+      </RadioItem>
+      <RadioItem value="film">
+        <RadioIndicator />
+        I watch a lot of movies/films
+      </RadioItem>
+      <RadioItem value="long_video">
+        <RadioIndicator />
+        I watch a lot of youtube and longer videos
+      </RadioItem>
+      <RadioItem value="short_video">
+        <RadioIndicator />
+        I watch a lot of short videos (tiktok, stories, etc)
+      </RadioItem>
+      <RadioItem value="social_media">
+        <RadioIndicator />
+        I browse social media feeds a lot (Twitter, Facebook, etc)
+      </RadioItem>
+      <RadioItem value="games">
+        <RadioIndicator />
+        I play a lot of video games
+      </RadioItem>
+      <RadioItem value="none">
+        <RadioIndicator />
+        None of these, really
+      </RadioItem>
+    </RadioRoot>
+
+    <label>Do you use social media? If so, which apps?</label>
+    <RadioRoot
+      value={socialNetworks}
+      onValueChange={value => setSocialNetworks(value)}
+      required
+    >
+      <RadioItem value="tiktok">
+        <RadioIndicator />
+        TikTok
+      </RadioItem>
+      <RadioItem value="youtube">
+        <RadioIndicator />
+        YouTube
+      </RadioItem>
+      <RadioItem value="instagram">
+        <RadioIndicator />
+        Instagram
+      </RadioItem>
+      <RadioItem value="snapchat">
+        <RadioIndicator />
+        Snapchat
+      </RadioItem>
+      <RadioItem value="twitter">
+        <RadioIndicator />
+        Twitter
+      </RadioItem>
+      <RadioItem value="facebook">
+        <RadioIndicator />
+        Facebook
+      </RadioItem>
+      <RadioItem value="none">
+        <RadioIndicator />
+        None of these, really
+      </RadioItem>
+    </RadioRoot>
+
+    <hr />
+
+    <h2>Italian updates</h2>
+
+    <label>Which email summaries would you like?</label>
+    <p>Weekly email updates will fill you in on Italian culture. We recommend choosing at least 2-3 to hit your learning goals (you can unsubscribe anythime).</p>
+
+    <RadioRoot
+      value={emailUpdates}
+      onValueChange={value => setEmailUpdates(value)}
+      required
+    >
+      <RadioItem value="pop_culture">
+        <RadioIndicator />
+        Italian pop culture and celebrities
+      </RadioItem>
+      <RadioItem value="politics">
+        <RadioIndicator />
+        Italian and European Union politics
+      </RadioItem>
+      <RadioItem value="sports">
+        <RadioIndicator />
+        Italian sports (mostly soccer)
+      </RadioItem>
+      <RadioItem value="history">
+        <RadioIndicator />
+        Italian history, including Rome and the Renaissance
+      </RadioItem>
+      <RadioItem value="arts">
+        <RadioIndicator />
+        Italian current arts, culture, and music
+      </RadioItem>
+      <RadioItem value="food">
+        <RadioIndicator />
+        Italian food and restaurants
+      </RadioItem>
+      <RadioItem value="parties">
+        <RadioIndicator />
+        Italian events and nightlife
+      </RadioItem>
+      <RadioItem value="none">
+        <RadioIndicator />
+        Don't send me any updates for now
+      </RadioItem>
+    </RadioRoot> */}
 
     <br />
 
