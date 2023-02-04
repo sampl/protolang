@@ -76,4 +76,26 @@ export default [
     path: `/words`,
     target: `/`,
   },
+  
+  // developers
+  {
+    path: `/style-guide`,
+    target: `/styleguide`,
+  },
+  {
+    path: `/style`,
+    target: `/styleguide`,
+  },
+  {
+    path: `/styles`,
+    target: `/styleguide`,
+  },
+  {
+    path: `/design-system`,
+    target: `/styleguide`,
+  },
+  {
+    path: `/components`,
+    target: `/styleguide`,
+  },
 ]

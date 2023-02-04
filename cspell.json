@@ -1,31 +1,33 @@
 {
     "version": "0.2",
     "ignorePaths": [
-      "./node_modules/**",
-      "./dist/**",
-      "./languages/**"
+        "./node_modules/**",
+        "./dist/**",
+        "./languages/**"
     ],
     "dictionaryDefinitions": [],
     "dictionaries": [],
-    "words": [],
+    "words": [
+        "styleguide"
+    ],
     "ignoreWords": [
-      "COFL",
-      "diablo",
-      "flateau",
-      "formspree",
-      "duolingo",
-      "frontmatter",
-      "hastscript",
-      "kaikki",
-      "ngram",
-      "protolang",
-      "rehype",
-      "signup",
-      "supabase",
-      "unist",
-      "upsert",
-      "wiktextract",
-      "xnqyjjgl"
+        "COFL",
+        "diablo",
+        "flateau",
+        "formspree",
+        "duolingo",
+        "frontmatter",
+        "hastscript",
+        "kaikki",
+        "ngram",
+        "protolang",
+        "rehype",
+        "signup",
+        "supabase",
+        "unist",
+        "upsert",
+        "wiktextract",
+        "xnqyjjgl"
     ],
     "import": []
 }

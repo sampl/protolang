@@ -59,7 +59,7 @@ Start the local server: `npm run dev`
 
 ### Development
 
-- Use our Styleguide to keep your UI consistent with the rest of the app
+- Use our [style guide](https://protolang.com/styleguide) to keep your UI consistent with the rest of the app
 
 ### Deploy
 

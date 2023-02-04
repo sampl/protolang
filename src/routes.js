@@ -23,6 +23,7 @@ import Conduct from './views/marketing/Conduct'
 import Legal from './views/marketing/Legal'
 import ResourceNew from './views/resources/ResourceNew'
 import OpenSource from './views/marketing/OpenSource'
+import Styleguide from './views/admin/Styleguide'
 
 // ROUTES
 // This is a simple JS list of routes in the app
@@ -148,5 +149,12 @@ export default [
     path: `/:lang`,
     component: Dashboard,
     layout: LayoutLanguage,
+  },
+
+  // Developers
+  {
+    path: `/styleguide`,
+    component: Styleguide,
+    layout: LayoutSimple,
   },
 ]
