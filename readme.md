@@ -4,10 +4,8 @@
 
 Do you speak multiple languages, and/or do you have experience teaching languages? [Help us develop our courses](contributing.md)
 
-{% warning %}
-  ⚠️⚠️⚠️ **Warning:** extremely early alpha software ⚠️⚠️⚠️
-  *Very unstable and incomplete*, use at your own risk
-{% endwarning %}
+⚠️⚠️⚠️ **Warning:** extremely early alpha software ⚠️⚠️⚠️
+*Very unstable and incomplete*, use at your own risk
 
 ## Features
 
@@ -25,26 +23,26 @@ Do you speak multiple languages, and/or do you have experience teaching language
 
 ## Under the hood
 
-- Protolang is a frontend-heavy [React](https://reactjs.org/) app with React Router, Radix, Remark, and Styled Components
-- Text-to-speech and speech-to-text via [browser Web Speech APIs](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API)
+- Protolang is a frontend-heavy [React](https://reactjs.org/) app with [React Router](https://reactrouter.com/en/main), [Radix UI](https://www.radix-ui.com/), [Remark](https://remark.js.org/), and [Styled Components](https://styled-components.com/) (see below for planned architecture updates)
 - Built with [Vite](https://vitejs.dev/), hosted on [Vercel](https://vercel.com/dashboard)
+- Text-to-speech and speech-to-text via [browser Web Speech APIs](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API)
 - Backend (database, auth) is [Supabase](https://supabase.com/) (Postgres platform as a service)
 - Dictionaries and pronunciation guides from [Wiktionary](https://en.wiktionary.org/) via [wiktextract](https://github.com/tatuylonen/wiktextract)
 - Translations with [Argos Translate](https://github.com/argosopentech/argos-translate/) via [LibreTranslate](https://libretranslate.com/)
 
 ## 💻 Docs
 
-[Development documentation](docs/readme.md)
+📝 [Developer documentation](docs/readme.md)
 
 ## 👨‍👩‍👧‍👦 Community
 
-- 💡 [Github discussions](https://github.com/sampl/protolang/discussions) (coming soon) - For feature requests
-- ⚠️ [Github issues](https://github.com/sampl/protolang/issues) (coming soon) - Reporting bugs
-- ✉️ [Email](mailto:sam@directedworks.com) - Issues with patron billing, press contact, etc
+- 💡 [Github discussions](https://github.com/sampl/protolang/discussions) (coming soon) - For feature requests, general discussion, etc
+- 🐞 [Github issues](https://github.com/sampl/protolang/issues) (coming soon) - Reporting bugs
+- ✉️ [Email](mailto:sam@directedworks.com) - General inquires
 
 ## 🙌 Contribute
 
-Help wanted! [Learn how you can contribute](contributing.md) or [sponsor](https://protolang.com/sponsor).
+Help wanted! [Learn how you can create lessons, submit features](contributing.md), or [sponsor](https://protolang.com/sponsor).
 
 ## ⚖️ License
 
