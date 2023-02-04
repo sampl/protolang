@@ -23,13 +23,11 @@ export default () => {
   return <Footer>
     <p style={{color: 'red', fontWeight: 'bold'}}>This site is in early alpha testing. Your progress may not be saved. Use at your own risk.</p>
     <p>
-      <Link to="/">Home</Link>
-      {' · '}
+      {/* <Link to="/">Home</Link>
+      {' · '} */}
       <Link to="/about">About</Link>
       {' · '}
-      <Link as="a" href="https://github.com/sampl/language-learning/blob/main/license.txt">License</Link>
-      {' · '}
-      <Link as="a" href="https://github.com/sampl/language-learning">Source</Link>
+      <Link to="/open-source">Open source</Link>
       {' · '}
       <Link to="/contribute">Contribute</Link>
       {' · '}
@@ -44,6 +42,8 @@ export default () => {
       <Link $plain as="a" href="https://directedworks.com/" target="_blank">Directed Works LLC</Link>
       {' · '}
       <Link $plain as="span" onClick={toggleBetaAccess}>Beta access</Link>
+      {' · '}
+      <Link $plain to="/conduct">Code of Conduct</Link>
       {' · '}
       <Link $plain to="/legal">Legal</Link>
     </p>

@@ -1,10 +1,10 @@
 # Language files
 
-This folder contain language data for all language courses.
+This folder contain language data for all Protolang language courses.
 
 ## Folders
 
-All files are grouped into folders by language. Each folder is named for the two-letter [ISO language code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) for that language (for ex, Italian is `it`, Spanish is `es` etc).
+All content for lessons lives in `./languages`, grouped into folders by language. Each folder is named for the two-letter [ISO language code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) for that language. For example, Italian is `it`, Spanish is `es`, etc.
 
 ```text
 languages/
@@ -12,6 +12,8 @@ languages/
   | ├─ lessons/
   | └─ ...
   ├─ es/
+  | ├─ lessons/
+  | └─ ...
   └─ ...
 ```
 

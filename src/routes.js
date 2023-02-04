@@ -22,6 +22,7 @@ import Contact from '@/views/marketing/Contact'
 import Conduct from './views/marketing/Conduct'
 import Legal from './views/marketing/Legal'
 import ResourceNew from './views/resources/ResourceNew'
+import OpenSource from './views/marketing/OpenSource'
 
 // ROUTES
 // This is a simple JS list of routes in the app
@@ -54,6 +55,11 @@ export default [
   {
     path: `/conduct`,
     component: Conduct,
+    layout: LayoutSimple,
+  },
+  {
+    path: `/open-source`,
+    component: OpenSource,
     layout: LayoutSimple,
   },
   {

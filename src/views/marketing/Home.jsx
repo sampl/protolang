@@ -23,7 +23,7 @@ export default () => {
       <li>
         <strong>🧑‍🏫 Lessons</strong>
         {' - '}
-        interactive courses in vocabulary, pronunciation, grammar, and culture
+        complete courses in vocabulary, pronunciation, grammar, tenses, common phrases, and culture
       </li>
       <li>
         <strong>🤔 Flashcards</strong>
@@ -38,7 +38,7 @@ export default () => {
       <li>
         <strong>📖 Dictionaries</strong>
         {' - '}
-        instant word definitions, tenses, and conjugations
+        searchable list of 40k+ words with definitions, conjugations, etc
       </li>
       <li>
         <strong>📺 Media</strong>
@@ -48,7 +48,7 @@ export default () => {
       <li>
         <strong>📈 Analytics</strong>
         {' - '}
-        track your vocabulary, days practiced, and more
+        track your progress toward fluency, with vocabulary, days practiced, and more
       </li>
       <li>
         <strong>💬 Chat</strong>
@@ -69,7 +69,7 @@ export default () => {
         practice with other language learners from around the world
       </li>
       <li>
-        <strong>🌍 Resources</strong>
+        <strong>🌍 Resource library</strong>
         <Badge>Coming soon</Badge>
         {' - '}
         other apps to round out your knowledge, ranked by our community
@@ -79,32 +79,37 @@ export default () => {
     <p>Why Protolang?</p>
     <ul>
       <li>
-        <strong>Freedom to learn your way</strong>
+        <strong>Learn your own way</strong>
         {' - '}
-        No fake prizes or narrow learning paths. Choose the lessons and tools that work for you.
+        Protolang doesn't prescribe learning paths. Choose the lessons and tools that work for you.
       </li>
-      <li>
+      {/* <li>
         <strong>Focus on listening and speaking</strong>
         {' - '}
         Protolang includes reading and writing, but focuses you on audio—the way we all learned our first language
-      </li>
+      </li> */}
       <li>
-        <strong>Immersive environment</strong>
+        <strong>Digital immersion</strong>
         {' - '}
-        Protolang surrounds you with your new language without ever leaving your seat
+        Protolang immediately surrounds you with your new language without ever leaving your seat, with audio, video, chat, and more
       </li>
       <li>
         <strong>Built on open data</strong>
         {' - '}
         Protolang uses vast, publicly-available datasets and the latest browser technology to make learning richer than ever before
       </li>
+      <li>
+        <strong>No passive-aggressive talking owls :)</strong>
+        {' - '}
+        Protolang encourages you to get to have real conversations with real people—without fake jewels or status games.
+      </li>
     </ul>
 
-    {/* <p>
+    <p>
       Considering a switch?
       {' '}
-      <a href="">Compare to Duolingo</a>
-    </p> */}
+      <a href="/about">Compare to Duolingo</a>
+    </p>
 
     <LanguagePicker />
 

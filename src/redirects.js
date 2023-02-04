@@ -2,6 +2,8 @@
 // URLs that should go to other routes, but have no page of their own
 
 export default [
+
+  // various legal URLs
   {
     path: `/terms-of-service`,
     target: `/legal`,
@@ -34,6 +36,30 @@ export default [
     path: `/dmca`,
     target: `/legal`,
   },
+  {
+    path: `/gdpr`,
+    target: `/legal`,
+  },
+  {
+    path: `/license`,
+    target: `/legal`,
+  },
+  {
+    path: `/licenses`,
+    target: `/legal`,
+  },
+  
+  // contributing
+  {
+    path: `/contributing`,
+    target: `/contribute`,
+  },
+  {
+    path: `/code-of-conduct`,
+    target: `/conduct`,
+  },
+
+  // urls w/o language param
   {
     path: `/lessons`,
     target: `/`,
