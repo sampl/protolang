@@ -47,6 +47,13 @@ export default () => {
         >
           Open in Wiktionary
         </a>
+        {' · '}
+        <a
+          href={`https://forvo.com/word/${word?.name}/#it`}
+          target="_blank"
+        >
+          Pronounce in Forvo
+        </a>
 
         <hr />
 
