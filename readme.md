@@ -9,7 +9,6 @@ Do you speak multiple languages, and/or do you have experience teaching language
 
 ## Features
 
-
 - **🧑‍🏫 Lessons** - complete courses in vocabulary, pronunciation, grammar, tenses, common phrases, and culture
 - **☝️ Flashcards** - Duolingo-style audio flashcards for practicing and retaining what you learned
 - **💡 Memorization hints** - user-contributed tips to help you speed up rote vocabulary memorization
