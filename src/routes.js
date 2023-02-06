@@ -19,8 +19,10 @@ import LayoutLanguage from '@/views/_layout/LayoutLanguage'
 import LanguagePicker from '@/views/user_languages/LanguagePicker'
 import Signup from '@/views/account/Signup'
 import Contact from '@/views/marketing/Contact'
-import Conduct from './views/marketing/Conduct'
-import Legal from './views/marketing/Legal'
+import Terms from './views/legal/Terms'
+import Privacy from './views/legal/Privacy'
+import Dmca from './views/legal/Dmca'
+import Conduct from './views/legal/Conduct'
 import ResourceNew from './views/resources/ResourceNew'
 import OpenSource from './views/marketing/OpenSource'
 import Styleguide from './views/admin/Styleguide'
@@ -54,11 +56,6 @@ export default [
     layout: LayoutSimple,
   },
   {
-    path: `/conduct`,
-    component: Conduct,
-    layout: LayoutSimple,
-  },
-  {
     path: `/open-source`,
     component: OpenSource,
     layout: LayoutSimple,
@@ -68,9 +65,26 @@ export default [
     component: Sponsor,
     layout: LayoutSimple,
   },
+  
+  // Legal stuff
   {
-    path: `/legal`,
-    component: Legal,
+    path: `/terms`,
+    component: Terms,
+    layout: LayoutSimple,
+  },
+  {
+    path: `/privacy`,
+    component: Privacy,
+    layout: LayoutSimple,
+  },
+  {
+    path: `/dmca`,
+    component: Dmca,
+    layout: LayoutSimple,
+  },
+  {
+    path: `/conduct`,
+    component: Conduct,
     layout: LayoutSimple,
   },
 

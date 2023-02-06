@@ -5,36 +5,32 @@ export default [
 
   // various legal URLs
   {
+    path: `/legal`,
+    target: `/terms`,
+  },
+  {
     path: `/terms-of-service`,
-    target: `/legal`,
+    target: `/terms`,
   },
   {
     path: `/terms_of_service`,
-    target: `/legal`,
-  },
-  {
-    path: `/terms`,
-    target: `/legal`,
+    target: `/terms`,
   },
   {
     path: `/tos`,
-    target: `/legal`,
-  },
-  {
-    path: `/privacy`,
-    target: `/legal`,
+    target: `/terms`,
   },
   {
     path: `/privacy-policy`,
-    target: `/legal`,
+    target: `/privacy`,
   },
   {
     path: `/privacy_policy`,
-    target: `/legal`,
+    target: `/privacy`,
   },
   {
-    path: `/dmca`,
-    target: `/legal`,
+    path: `/DMCA`,
+    target: `/dmca`,
   },
   {
     path: `/gdpr`,
@@ -42,11 +38,11 @@ export default [
   },
   {
     path: `/license`,
-    target: `/legal`,
+    target: `/open-source`,
   },
   {
     path: `/licenses`,
-    target: `/legal`,
+    target: `/open-source`,
   },
   
   // contributing

@@ -40,12 +40,17 @@ export default () => {
       &copy; 2022{new Date().getFullYear()>2022 && ("-"+new Date().getFullYear())}
       {' '}
       <Link $plain as="a" href="https://directedworks.com/" target="_blank">Directed Works LLC</Link>
-      {' · '}
+      {/* {' · '} */}
+      <br />
       <Link $plain as="span" onClick={toggleBetaAccess}>Beta access</Link>
       {' · '}
-      <Link $plain to="/conduct">Code of Conduct</Link>
+      <Link $plain to="/conduct">Conduct</Link>
       {' · '}
-      <Link $plain to="/legal">Legal</Link>
+      <Link $plain to="/privacy">Privacy</Link>
+      {' · '}
+      <Link $plain to="/terms">Terms</Link>
+      {' · '}
+      <Link $plain to="/dmca">DMCA</Link>
     </p>
   </Footer>
 }
