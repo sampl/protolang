@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "spellcheck": "cspell --config cspell.json \"**\""
+    "spellcheck": "cspell --config cspell.json \"**\"",
+    "migrate": "node scripts/migrate.js"
   },
   "dependencies": {
     "@formspree/react": "^2.4.1",
