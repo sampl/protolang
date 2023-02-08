@@ -64,7 +64,7 @@ Protolang is built on [Supabase](https://supabase.com/), a Postgres platform-as-
 Set up migrations:
 
 - Create a `.env` file in the root (`/`) directory and add the database connection string like so: `ADMIN_POSTGRES_CONNECTION_STRING=postgresql://postgres:password123@db.abc123.supabase.co:1234/postgres` (use your actual Postgres connection string from Supabase)
-- Run the migration to set up tables, seed data etc: `npm run migrate`
+- Run the migration to set up tables, seed data etc: `npm run migrate` (currently works on a new database only)
 
 See the [language directory](../languages/) for instructions on seeding and updating language data like dictionaries and lessons
 
