@@ -1,12 +1,14 @@
 import { Link } from 'react-router-dom'
 
 import { useUser } from '@/_state/user'
+import FeedbackForm from '../account/FeedbackForm'
 
 export default () => {
   const { user } = useUser()
 
   return <>
-    <Link to="/feedback">Feedback</Link>
+    <FeedbackForm />
+
     <div style={{width: '1rem', display: 'inline-block'}} />
     {
       user ?
