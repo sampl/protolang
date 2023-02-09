@@ -4,7 +4,7 @@ import {Word} from '@/styles/Word'
 import WordMini from '../words/WordMini'
 
 export default ({ it, en }) => {
-  return <span style={{display: 'block', border: '1.5px solid', padding: '.5rem', margin: '0 0 -1.5px 0'}}>
+  return <span style={{display: 'block', border: '1px solid', padding: '.5rem', margin: '0 0 -1px 0'}}>
     <Popover
       target={<Word>{it || '(Unknown word)'}</Word>}
       content={<WordMini name={it} />}

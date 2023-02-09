@@ -16,6 +16,6 @@ const PopoverContentWrapper = styled(Popover.Content)`
   position: absolute;
   background: white;
   padding: 1rem;
-  border: 1.5px solid;
+  border: 1px solid;
   min-width: 20rem;
 `

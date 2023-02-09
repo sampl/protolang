@@ -5,7 +5,7 @@ export default ({ children }) => {
 }
 
 const CardWrapper = styled.header`
-  border: 1.5px solid;
+  border: 1px solid;
   padding: 1rem;
   background: white;
 `
