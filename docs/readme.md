@@ -84,6 +84,8 @@ To deploy to Vercel, push to GitHub and connect a new project in the [Vercel das
 
 To deploy to a different static host, use `npm run build` to create a bundle in `/dist` and follow the directions for your hosting provider. See [Vite docs on building and deploying](https://vitejs.dev/guide/static-deploy.html#building-the-app).
 
+To self-host Protolang on your own server, create a separate Supabase project and add the connection string to an `.env.production` file. You'll also have to edit the [auth config in Supabase](https://app.supabase.com/project/_/auth/url-configuration) with the URL you wan to host on.
+
 ## Troubleshooting
 
 - Your local Postgres version must match Supabase for running some commands. Check it with `postgres -V` and update with `brew upgrade postgresql`.

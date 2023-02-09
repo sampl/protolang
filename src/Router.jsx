@@ -27,7 +27,7 @@ export default () => {
       />
     })}
 
-    {redirects.map(redirect => {      
+    {redirects.map(redirect => {
       return <Route
         key={redirect.path}
         path={redirect.path}
