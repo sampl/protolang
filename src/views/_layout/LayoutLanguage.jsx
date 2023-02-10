@@ -12,6 +12,7 @@ import Banner from '@/styles/Banner'
 import UserLanguageOnboarding from '../user_languages/UserLanguageOnboarding'
 import ErrorPage from '../ErrorPage'
 import LayoutSimple from './LayoutSimple'
+import SearchBox from './SearchBox'
 import Signup from '../account/Signup'
 
 export default ({children}) => {
@@ -139,6 +140,8 @@ export default ({children}) => {
         </DropdownNavMenu>
       </nav>
       <div>
+        <SearchBox />
+        {' '}
         <DropdownNavMenu trigger={currentLanguage?.flag}>
           {userLanguages?.map( userLanguage => {
             const { id, code, name_en } = userLanguage
