@@ -5,23 +5,24 @@ import { supabase } from '@/_util/supabaseClient'
 const Context = createContext()
 
 export default ({ children }) => {
-  const [user, setUser] = useState(supabase.auth.user())
+  const [user, setUser] = useState(null)
 
   const isBetaUser = !!localStorage.getItem('protolang_is_beta_user')
 
   useEffect(() => {
     const getUserProfile = async () => {
-      const sessionUser = supabase.auth.user()
+      const { data, error } = await supabase.auth.getSession()
+      const { session: { user } } = data
 
-      if (sessionUser) {
+      if (user) {
         const { data: profile } = await supabase
           .from('profiles')
           .select()
-          .eq('id', sessionUser.id)
+          .eq('id', user.id)
           .single()
 
         setUser({
-          ...sessionUser,
+          ...user,
           ...profile,
         })
       }
@@ -36,7 +37,7 @@ export default ({ children }) => {
 
   const login = async (email) => {
     try {
-      const { error } = await supabase.auth.signIn({ email })
+      const { error } = await supabase.auth.signInWithOtp({ email })
       if (error) throw error
       alert('Check your email for the login link!')
     } catch (error) {

@@ -1,9 +1,14 @@
 import styled from 'styled-components/macro'
-import * as Radio from '@radix-ui/react-radio-group'
+import * as Checkbox from '@radix-ui/react-checkbox'
 
-export const RadioRoot = Radio.Root
+export const CheckboxWrapper = ({ children, ...props }) => {
+  return <>
+    <CheckboxBox {...props} />
+    {children}
+  </>
+}
 
-export const RadioItem = styled(Radio.Item)`
+const CheckboxBox = styled(Checkbox.Root)`
   cursor: pointer;
   appearance: none;
   border: none;
@@ -26,7 +31,7 @@ export const RadioItem = styled(Radio.Item)`
     top: 5px;
     left: 0;
     box-shadow: inset 0 0 0 2px #eee;
-    border-radius: 100px;
+    border-radius: 0px;
 
     background: #ccc;
 
