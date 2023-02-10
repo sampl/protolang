@@ -1,5 +1,8 @@
 import { Link } from '@/styles/Links'
 
+import Well from '@/styles/Well'
+import Hump from '@/styles/Hump'
+
 export default () => {
 
   return <>
@@ -12,6 +15,18 @@ export default () => {
     </p>
 
     <hr />
+
+    <Well>Well</Well>
+    <br />
+    <Hump>Hump</Hump>
+    <br />
+    <Well>
+      <Hump>Hump in a well</Hump>
+    </Well>
+    <br />
+    <Hump>
+      <Well>Well in a hump</Well>
+    </Hump>
 
     <h1>Heading 1</h1>
     <p>Paragraph text goes here. Lorem ipsum dolor sin amet.</p>
