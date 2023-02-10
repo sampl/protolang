@@ -12,8 +12,6 @@ function FeedbackForm() {
   const [isGivingFeedback, setIsGivingFeedback] = useState(false)
   const [state, handleSubmit] = useForm("xnqyjjgl")
 
-  console.log(state)
-
   return <>
     <button onClick={() => setIsGivingFeedback(true)}>Feedback</button>
 

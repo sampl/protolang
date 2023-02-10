@@ -2,9 +2,11 @@ import { useState } from 'react'
 
 import { useUser } from '@/_state/user'
 import { supabase } from '@/_util/supabaseClient'
+import { useLanguage } from '@/_state/language'
 
-export default ({ wordId }) => {
+export default ({ string }) => {
   const { user } = useUser()
+  const { currentLanguage } = useLanguage()
 
   const [newMnemonic, setNewMnemonic] = useState('')
   const [saving, setSaving] = useState(false)
@@ -15,9 +17,10 @@ export default ({ wordId }) => {
       setSaving(true)
 
       const newData = {
+        language: currentLanguage.id,
+        target_phrase: string,
+        remember_method: newMnemonic,
         created_by: user.id,
-        word: wordId,
-        content_en: newMnemonic,
       }
 
       let { error } = await supabase.from('mnemonics').insert([newData])
@@ -40,7 +43,7 @@ export default ({ wordId }) => {
       placeholder="How do you remember this word?"
       onChange={e => setNewMnemonic(e.target.value)}
     />
-
+    <br />
     <button
       type="submit"
       disabled={saving}

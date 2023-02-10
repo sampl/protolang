@@ -25,13 +25,13 @@ export default () => {
     {
       error ? error.message :
       fetching ? 'loading...' :
-      (!lessons || lessons.length <= 0) ? 'no lessons' :
       <TwoColumns cols="auto max-content">
         <div>
-          {lessons.map(lesson => <LessonListItem key={lesson.slug} lesson={lesson} />)}
+          {(!lessons || lessons.length) <= 0 ? 'no lessons' : lessons?.map(lesson => <LessonListItem key={lesson.slug} lesson={lesson} />)}
         </div>
         <div>
-          {lessons.length} lesson{lessons.length !== 1 && 's'}
+          {lessons?.length || 0} lesson{lessons?.length !== 1 && 's'}
+          <Link to={`/${urlLang}/lessons/new`}>+ Add lesson</Link>
         </div>
       </TwoColumns>
     }

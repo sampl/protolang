@@ -64,7 +64,7 @@ export default ({ direction, question, correctAnswer, testAnswer, testPartialAns
     if (recognitionState === 'listening') {
       stopSpeechRecognition()
     } else {
-      const languageCode = direction === 'forward' ? currentLanguage.code : 'en'
+      const languageCode = direction === 'forward' ? currentLanguage.id : 'en'
       startSpeechRecognition(languageCode)
     }
   }

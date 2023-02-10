@@ -53,7 +53,7 @@ const migrate = async () => {
 
     // TODO - save which migrations have been run to the db 
 
-    console.log('  Running migrations')
+    console.log('  Applying migrations to the database')
     await Promise.all(migrationFiles.map(async migration => {
       console.log(`    Running migration ${migration.id}`)
       return client.query(migration.sql)

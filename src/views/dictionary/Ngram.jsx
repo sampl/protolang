@@ -1,11 +1,11 @@
-export default ({ word }) => {
+export default ({ wordString }) => {
   
-  if (!word?.name) {
+  if (!wordString) {
     return null
   }
   
   const corpusLangCode = 33 // italian
-  const wordUrl = word.name.split(' ').join('+')
+  const wordUrl = wordString.split(' ').join('+')
 
   return <>
     <h3>Word frequency</h3>

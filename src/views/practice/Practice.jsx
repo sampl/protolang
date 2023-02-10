@@ -4,45 +4,73 @@ import { useState } from 'react'
 import { useLanguage } from '@/_state/language'
 import Card from '@/views/practice/Card'
 import { TwoColumns } from '@/styles/Layout'
+import { useUser } from '@/_state/user'
+import AttemptsList from './AttemptsList'
 
 export default () => {
   const { currentLanguage } = useLanguage()
+  const { user } = useUser()
 
-  const [{ data: words, error, fetching }] = useSelect('words', {
+  const [{ data: lessons, lessonsError, lessonsFetching }] = useSelect('lessons', {
+    filter: useFilter(
+      (query) => query.eq('language', currentLanguage.id),
+      [currentLanguage.id],
+    ),
+  })
+
+  const [{ data: phrases, phrasesError, phrasesFetching }] = useSelect('phrases', {
     filter: useFilter(
       (query) => query.eq('language', currentLanguage.id),
       [currentLanguage.id],
     )
   })
 
-  const [currentWordIndex, setCurrentWordIndex] = useState(0)
+  const [phraseSource, setPhraseSource] = useState('')
+  const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0)
   const [cardType, setCardType] = useState('speech')
   const [direction, setDirection] = useState('reverse')
 
-  words && shuffleArray(words)
+  phrases && shuffleArray(phrases)
 
-  const nextWord = () => {
-    if (words.length - 1 <= currentWordIndex) {
-      setCurrentWordIndex(0)
+  const nextPhrase = () => {
+    if (phrases.length - 1 <= currentPhraseIndex) {
+      setCurrentPhraseIndex(0)
     } else {
-      setCurrentWordIndex(currentWordIndex + 1)
+      setCurrentPhraseIndex(currentPhraseIndex + 1)
     }
   }
 
   return <TwoColumns cols="2fr 1fr">
-    {
-      error ? error.message :
-      fetching ? 'loading...' :
-      (!words || words.length <= 0) ? 'no words' :
-      <Card
-      key={currentWordIndex}
-      word={words[currentWordIndex]}
-      type={cardType}
-      direction={direction}
-      next={nextWord}
-      />
-    }
     <div>
+      {
+        phrasesError ? phrasesError.message :
+        phrasesFetching ? 'loading...' :
+        (!phrases || phrases.length <= 0) ? 'no phrases' :
+        <Card
+          key={currentPhraseIndex}
+          phrase={phrases[currentPhraseIndex]}
+          type={cardType}
+          direction={direction}
+          next={nextPhrase}
+        />
+      }
+
+      <br />
+
+      <AttemptsList />
+    </div>
+
+    <div>
+      <select value={phraseSource} onChange={e => setPhraseSource(e.target.value)}>
+        <optgroup label="Lessons">
+          {
+            !lessonsError &&
+            !lessonsFetching &&
+            lessons?.map(lesson => <option key={lesson.id} value={lesson.id}>{lesson.title_en}</option>)
+          }
+        </optgroup>
+      </select>
+      <br />
       <select value={cardType} onChange={e => setCardType(e.target.value)}>
         <option value="text">Text</option>
         <option value="speech">Speech</option>

@@ -1,10 +1,10 @@
 
 import { useSpeechSynthesis } from "@/_state/speechSynthesis"
 
-export default ({ word, wordString, disabled }) => {
+export default ({ wordString, disabled }) => {
   const { speechSynthesisIsSupported, speak } = useSpeechSynthesis()
   return <button
-    onClick={() => speak(word?.name || wordString || '')}
+    onClick={() => speak(wordString || '')}
     disabled={!speechSynthesisIsSupported || disabled}
   >
     Speak

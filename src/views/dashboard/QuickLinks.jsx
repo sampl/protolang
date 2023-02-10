@@ -13,7 +13,7 @@ export default () => {
     filter: useFilter(
       (query) => query
         .eq('language', currentLanguage.id)
-        .order('order', { ascending: true }),
+        .order('sort_order', { ascending: true }),
       [currentLanguage.id],
     ),
   })

@@ -4,10 +4,10 @@ import { useUser } from '@/_state/user'
 import { supabase } from '@/_util/supabaseClient'
 import { Button } from '@/styles/Button'
 
-export default ({ word, close }) => {
+export default ({ phrase, close }) => {
   const { user } = useUser()
 
-  const [comments, setComments] = useState('')
+  const [comment, setComment] = useState('')
   const [saving, setSaving] = useState(false)
 
   async function reportError( event ) {
@@ -16,12 +16,13 @@ export default ({ word, close }) => {
       setSaving(true)
 
       const newData = {
+        language: phrase.language,
+        phrase: phrase.id,
+        comment: comment,
         created_by: user.id,
-        word: word.id,
-        comments,
       }
 
-      let { error } = await supabase.from('error_reports').insert([newData])
+      let { error } = await supabase.from('phrase_issues').insert([newData])
 
       if (error) {
         throw error
@@ -31,20 +32,20 @@ export default ({ word, close }) => {
       alert(error.message)
     } finally {
       setSaving(false)
-      setComments('')
+      setComment('')
       close && close()
     }
   }
 
   return <form onSubmit={reportError}>
 
-    <label htmlFor="comments">Comments</label>
+    <label htmlFor="comment">Comment</label>
     <br />
     <textarea
-      id="comments"
-      value={comments}
+      id="comment"
+      value={comment}
       placeholder="Why do you think there's an error?"
-      onChange={e => setComments(e.target.value)}
+      onChange={e => setComment(e.target.value)}
     />
 
     <br />

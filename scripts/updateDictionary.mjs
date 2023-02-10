@@ -39,8 +39,28 @@ const updateDictionary = async () => {
     if (LIVE) {
       console.log('Removing old dictionary...')
       await db.none(`
-        create schema if not exists dictionaries;
-        -- TODO - do we need to give permissions to postgres users?
+        create schema if not exists ${SCHEMA_NAME};
+
+        -- give permissions to postgres users
+        grant all on               schema ${SCHEMA_NAME} to postgres, anon, authenticated, service_role, dashboard_user;
+        grant all on all tables in schema ${SCHEMA_NAME} to postgres, anon, authenticated, service_role, dashboard_user;
+
+        -- https://stackoverflow.com/a/73282539/1061063
+        -- grant select, insert, update, delete on all tables in schema dictionaries to postgres, authenticated, service_role, dashboard_user, anon;
+        -- grant usage, select on all sequences in schema dictionaries to postgres, authenticated, service_role, dashboard_user, anon;
+
+        -- https://stackoverflow.com/a/69426939/1061063
+        -- grant usage on schema dictionary to postgres, anon, authenticated, service_role;
+        -- alter default privileges in schema dictionary grant all on tables to postgres, anon, authenticated, service_role;
+        -- alter default privileges in schema dictionary grant all on functions to postgres, anon, authenticated, service_role;
+        -- alter default privileges in schema dictionary grant all on sequences to postgres, anon, authenticated, service_role;
+
+        -- alter default privileges for user supabase_admin in schema dictionary grant all
+        --     on sequences to postgres, anon, authenticated, service_role;
+        -- alter default privileges for user supabase_admin in schema dictionary grant all
+        --     on tables to postgres, anon, authenticated, service_role;
+        -- alter default privileges for user supabase_admin in schema dictionary grant all
+        --     on functions to postgres, anon, authenticated, service_role;
 
         drop table if exists ${TABLE_NAME};
 

@@ -4,7 +4,7 @@ Welcome! We're so glad you're here :)
 
 We're currently looking for help in the following areas...
 
-## Building language courses
+## Writing language courses - HELP WANTED
 
 Are you proficient in a language besides English? Help us build a new course!
 
@@ -14,22 +14,23 @@ We need people to help with:
 - Creating new courses in other languages
 - Resolving user-reported errors in our translation
 
-Currently our lessons are written in a customized Markdown format. You can browse the [Italian lessons here](https://github.com/sampl/protolang/tree/main/languages/it/lessons) (coming soon) and submit your own using the Github pull request system. We know this is an extremely poor process for non-technIcal contributors and [we want your feedback](/contact) on how we can create a better process.
+Protolang is a wiki, so you can edit your language course directly in Protolang. **[Contact us](https://protolang.com/contact) to request edit access first** (only because we don't have good spam blocking yet). Currently our lessons are written in a customized [Markdown](https://www.markdownguide.org/basic-syntax/) format.
 
 ## Software development
 
-Our app is a React-based, front-end-heavy app with a Supabase/Postgres backend. The [developer documentation](https://github.com/sampl/protolang/blob/main/docs) has details on how to set up your own local development and testing environment.
+Our app is a React-based, front-end-heavy app with a Supabase/Postgres backend.
 
 We need help with:
 
-- Fixing bugs
 - Building new features
-- Ideally migrating to Next.js, Typescript, and Prisma
+- Fixing bugs
+- Migrating to Typescript
 - Making the app more responsive and work on more platforms
 - Working with open-source, ML-based translation and chatbot tools
 
 How to get started:
 
+- Read the [developer documentation](https://github.com/sampl/protolang/blob/main/docs)
 - If you have an idea for a new feature, [start a discussion](https://github.com/sampl/protolang/discussions) (coming soon)
 - Take a look at the [Github issues list](https://github.com/sampl/protolang/issues) (coming soon) for good first issues
 - Or [contact us](https://protolang.com/contact/) directly
@@ -37,7 +38,6 @@ How to get started:
 ## Other help
 
 - **Language practice partners** (coming soon) - No matter what language you speak, you can make yourself available to Protolang users who want to practice. Sometimes they will be trying to learn your language and you can split your time equally; others may give their time generously.
-- **Community moderators** (coming soon) - If you’ve been active with us for a few months, consider applying to be one of our community moderators
 - **Surprise us!** - Is there something else you think you can add to the project? [Get in touch](https://protolang.com/contact/) and let us know!
 
 ## Notes

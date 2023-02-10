@@ -16,9 +16,10 @@ export default () => {
       const updates = {
         id: user.id,
         username,
-        updated_at: new Date(),
       }
 
+      // TODO - don't upsert, add another trigger and make sure there is
+      // an actual profile and user for every auth account
       let { error } = await supabase.from('profiles').upsert(updates, {
         returning: 'minimal', // Don't return the value after inserting
       })

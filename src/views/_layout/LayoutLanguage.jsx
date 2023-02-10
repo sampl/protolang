@@ -20,7 +20,7 @@ export default ({children}) => {
   const { user, isBetaUser } = useUser()
   const navigate = useNavigate()
 
-  useEffect( () => setCurrentLanguageId(`lang_${urlLang}`), [urlLang])
+  useEffect( () => setCurrentLanguageId(urlLang), [urlLang])
 
   if (!urlLang) {
     return <LayoutSimple>
@@ -50,7 +50,7 @@ export default ({children}) => {
         <p>
           <Link to="/signup">Create an account</Link>
           {' '}
-          to get notified about new courses
+          to get notified about new courses.
         </p>
         :
         <p>
@@ -79,11 +79,11 @@ export default ({children}) => {
       }
     </LayoutSimple>
   }
-  if (user && !userLanguages?.map(ul => ul?.id).includes(currentLanguage?.id)) {
-    return <LayoutSimple>
-      <UserLanguageOnboarding />
-    </LayoutSimple>
-  }
+  // if (user && !userLanguages?.map(ul => ul?.id).includes(currentLanguage?.id)) {
+  //   return <LayoutSimple>
+  //     <UserLanguageOnboarding />
+  //   </LayoutSimple>
+  // }
 
   if (!isBetaUser && user) {
     return <LayoutSimple>
@@ -127,7 +127,16 @@ export default ({children}) => {
         {' '}
         <NavLink to={`/${urlLang}/practice`}>Practice</NavLink>
         {' '}
-        <NavLink to={`/${urlLang}/resources`}>Resources</NavLink>
+        <DropdownNavMenu trigger="More...">
+          <NavLink to={`/${urlLang}/resources`}>Resources</NavLink>
+          <br />
+          <NavLink to={`/${urlLang}/media`}>Media</NavLink>
+          <br />
+          <NavLink to={`/${urlLang}/dictionary`}>Dictionary (coming soon)</NavLink>
+          <br />
+          <div>Chat (coming soon)</div>
+          <div>Community (coming soon)</div>
+        </DropdownNavMenu>
       </nav>
       <div>
         <DropdownNavMenu trigger={currentLanguage?.flag}>
@@ -139,6 +148,7 @@ export default ({children}) => {
               </Link>
             </div>
           })}
+          <br />
           <Link to={`/languages`}>+ Learn another language</Link>
         </DropdownNavMenu>
         {' '}

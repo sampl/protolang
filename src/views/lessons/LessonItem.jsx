@@ -1,12 +1,9 @@
 import { useParams } from 'react-router-dom'
 import { useFilter, useSelect } from 'react-supabase'
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
-import remarkDirective from 'remark-directive'
-import remarkDirectiveRehype from 'remark-directive-rehype'
-import LessonEmbed from './LessonEmbed'
 import { BreadcrumbItem, BreadcrumbSeparator, BreadcrumbWrapper } from '@/styles/Breadcrumbs'
-import LessonVideo from './LessonVideo'
+import { Link } from 'react-router-dom'
+import LessonContent from './LessonContent'
+import { TwoColumns } from '@/styles/Layout'
 
 export default () => {
   const { slug, lang: urlLang } = useParams()
@@ -31,15 +28,19 @@ export default () => {
     {fetching && 'loading...'}
 
     <h1>{lesson?.title_en}</h1>
+    <hr />
 
-    <ReactMarkdown
-      children={lesson?.content_en || ''}
-      remarkPlugins={[remarkGfm, remarkDirective, remarkDirectiveRehype]}
-      components={{
-        'word': LessonEmbed,
-        'video': LessonVideo,
-      }}
-    />
-
+    <TwoColumns>
+      <div>
+        <LessonContent content={lesson?.content_en || ''} />
+      </div>
+      <div>
+        <Link to={`/${urlLang}/lessons/${lesson?.slug}/edit`}>Edit lesson</Link>
+        <br />
+        Created {lesson?.created_at}
+        <br />
+        Last edit {lesson?.updated_at}
+      </div>
+    </TwoColumns>
   </>
 }

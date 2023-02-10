@@ -15,10 +15,10 @@ const MAX_STRIKES = 1
 // https://stackoverflow.com/a/37511463/1061063
 const normalizeString = string => string.normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim().toLowerCase()
 
-export default ({ word, type, direction, next }) => {
+export default ({ phrase, type, direction, next }) => {
 
-  const question =      direction === 'forward' ? word?.translation_en : word?.name 
-  const correctAnswer = direction === 'forward' ? word?.name : word?.translation_en 
+  const question =      direction === 'forward' ? phrase?.translation_en : phrase?.name 
+  const correctAnswer = direction === 'forward' ? phrase?.name : phrase?.translation_en 
 
   const { user } = useUser()
   const { currentLanguage } = useLanguage()
@@ -36,7 +36,8 @@ export default ({ word, type, direction, next }) => {
     return normalizeString(correctAnswer).startsWith(normalizeString(answer))
   }
 
-  const submitAnswer = answer => {
+  const submitAnswer = async answer => {
+    // debugger
     const correct = testAnswer(answer)
     if (!correct && strikes < MAX_STRIKES) {
       setStrikes(s => s + 1)
@@ -44,21 +45,19 @@ export default ({ word, type, direction, next }) => {
       return
     }
     setCardState(correct ? 'correct' : 'incorrect')
-    saveAnswer(type, correct)
-  }
 
-  const saveAnswer = async (type, correct) => {
     if (!user) {
       return
     }
     try {
       const newData = {
-        type,
+        language: currentLanguage.id,
+        phrase: phrase?.id,
+        guess: answer,
+        is_correct: correct,
         created_by: user.id,
-        word: word?.id,
-        correct,
       }
-      let { error } = await supabase.from('attempts').insert([newData])
+      let { error } = await supabase.from('practice_attempts').insert([newData])
       if (error) {
         throw error
       }
@@ -73,7 +72,7 @@ export default ({ word, type, direction, next }) => {
 
   return <Card>
     <CardComponent
-      key={word?.id}
+      key={phrase?.id}
       type={type}
       direction={direction}
       question={question}
@@ -87,7 +86,7 @@ export default ({ word, type, direction, next }) => {
     {
       cardState === "correct" ? <>
         You're right!
-        <Link to={`/${currentLanguage.code}/words/${word && encodeURIComponent(word.name)}`}>go to word</Link>
+        <Link to={`/${currentLanguage.id}/practice/${phrase?.id}`}>go to phrase</Link>
         <br />
         <Button autoFocus onClick={next}>Next</Button>
       </>
@@ -98,7 +97,8 @@ export default ({ word, type, direction, next }) => {
       :
       cardState === "incorrect" ? <>
         Whoops not quite. The answer is "{correctAnswer}"
-        <Link to={`/${currentLanguage.code}/words/${word && encodeURIComponent(word.name)}`}>go to word</Link>
+        <Link to={`/${currentLanguage.id}/practice/${phrase?.id}`}>go to phrase</Link>
+        <Button onClick={() => setIsReportingError(true)}>Report error</Button>
         <Button autoFocus onClick={next}>Next</Button>
       </>
       :
@@ -107,7 +107,7 @@ export default ({ word, type, direction, next }) => {
     {
       (cardState === "correct" || cardState === "incorrect") && 
       isReportingError && 
-      <ReportError word={word} close={() => setIsReportingError(false)} />
+      <ReportError phrase={phrase} close={() => setIsReportingError(false)} />
     }
     <br /><span onClick={next}>skip</span>
   </Card>

@@ -26,6 +26,7 @@ export default ({children}) => {
               {name_en}
             </Link>
           })}
+          <br />
           <Link to={`/languages`}>+ Learn another language</Link>
         </DropdownNavMenu>}
         {' '}

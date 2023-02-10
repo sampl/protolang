@@ -58,7 +58,6 @@ create table users (
 create table profiles (
   id            uuid references auth.users(id) not null primary key,
 
-  profile_user  uuid references users(id) not null,
   username      text unique,
   full_name     text,
   bio           text,
@@ -184,7 +183,7 @@ create table lessons (
   sort_order  bigint,
   words       jsonb,
   slug        text unique,
-  is_public   boolean not null,
+  is_public   boolean default false not null,
 
   created_at  timestamptz default now() not null,
   updated_at  timestamptz default now() not null,
@@ -496,13 +495,19 @@ create trigger keep_mnemonic_votes_updated      before update on mnemonic_votes 
 create trigger keep_resources_updated           before update on resources          for each row execute procedure moddatetime (updated_at);
 create trigger keep_resource_ratings_updated    before update on resource_ratings   for each row execute procedure moddatetime (updated_at);
 
+-- TODO - this is broken, doesn't hurt but doesn't work
 -- This trigger automatically creates a profile entry when a new user signs up via Supabase Auth.
 -- See https://supabase.com/docs/guides/auth/managing-user-data#using-triggers for more details.
 create function handle_new_user()
 returns trigger as $$
 begin
-  insert into profiles (id, full_name, avatar_url)
-  values (new.id, new.raw_user_meta_data->>'full_name', new.raw_user_meta_data->>'avatar_url');
+  insert into public.profiles (id, full_name, avatar_url, created_by)
+  values (
+    new.id,
+    new.raw_user_meta_data->>'full_name',
+    new.raw_user_meta_data->>'avatar_url',
+    new.id
+  );
   return new;
 end;
 $$ language plpgsql security definer;
@@ -562,23 +567,6 @@ insert into languages
   ('id', '🇮🇩', 'Indonesian', false,   false  ),
   ('ko', '🇰🇷', 'Korean',     false,   false  ),
   ('es', '🇪🇸', 'Spanish',    false,   false  ),
-  ('it', '🇮🇹', 'Italian',    false,   false  ),
+  ('it', '🇮🇹', 'Italian',    true,    true   ),
   ('tp', '🏳', 'Toki Pona',  false,   false  ),
   ('nv', '🏳️‍🌈', 'Navajo',     false,   false  );
-
--- requires created_by column, so holding off for now
--- insert into phrases
---   (language,    translation_en,     name           ) values
---   ('it',        'cheers',           'salute'       ),
---   ('it',        'yes',              'si'           ),
---   ('it',        'no',               'no'           ),
---   ('it',        'I don''t know',    'non lo so'    ),
---   ('it',        'hi (or bye)',      'ciao'         ),
---   ('it',        'welcome',          'benvenuta/o'  ),
---   ('it',        'nice to meet you', 'piacere'      ),
---   ('it',        'excuse me',        'mi scusi'     ),
---   ('it',        'sorry',            'spiacente'    ),
---   ('it',        'maybe',            'può essere'   ),
---   ('it',        'please',           'per favore'   ),
---   ('it',        'thank you',        'grazie'       ),
---   ('it',        'you''re welcome',  'prego'        );

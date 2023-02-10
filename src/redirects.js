@@ -72,6 +72,10 @@ export default [
     path: `/words`,
     target: `/`,
   },
+  {
+    path: `/dictionary`,
+    target: `/`,
+  },
   
   // developers
   {

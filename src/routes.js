@@ -6,7 +6,7 @@ import Home from '@/views/marketing/Home'
 import Lessons from '@/views/lessons/Lessons'
 import LessonItem from '@/views/lessons/LessonItem'
 import Practice from '@/views/practice/Practice'
-import WordItem from '@/views/words/WordItem'
+import DictionaryItem from '@/views/dictionary/DictionaryItem'
 import Login from '@/views/account/Login'
 import Logout from '@/views/account/Logout'
 import FeedbackForm from '@/views/account/FeedbackForm'
@@ -26,6 +26,13 @@ import Conduct from './views/legal/Conduct'
 import ResourceNew from './views/resources/ResourceNew'
 import OpenSource from './views/marketing/OpenSource'
 import Styleguide from './views/admin/Styleguide'
+import MediaItem from './views/media/MediaItem'
+import MediaNew from './views/media/MediaNew'
+import Media from './views/media/Media'
+import LessonNew from './views/lessons/LessonNew'
+import LessonEdit from './views/lessons/LessonEdit'
+import PhraseItem from './views/practice/PhraseItem'
+import Dictionary from './views/dictionary/Dictionary'
 
 // ROUTES
 // This is a simple JS list of routes in the app
@@ -140,8 +147,33 @@ export default [
     layout: LayoutLanguage,
   },
   {
+    path: `/:lang/media`,
+    component: Media,
+    layout: LayoutLanguage,
+  },
+  {
+    path: `/:lang/media/new`,
+    component: MediaNew,
+    layout: LayoutLanguage,
+  },
+  {
+    path: `/:lang/media/:id`,
+    component: MediaItem,
+    layout: LayoutLanguage,
+  },
+  {
     path: `/:lang/lessons`,
     component: Lessons,
+    layout: LayoutLanguage,
+  },
+  {
+    path: `/:lang/lessons/new`,
+    component: LessonNew,
+    layout: LayoutLanguage,
+  },
+  {
+    path: `/:lang/lessons/:slug/edit`,
+    component: LessonEdit,
     layout: LayoutLanguage,
   },
   {
@@ -155,8 +187,18 @@ export default [
     layout: LayoutLanguage,
   },
   {
-    path: `/:lang/words/:string`,
-    component: WordItem,
+    path: `/:lang/practice/:phraseId`,
+    component: PhraseItem,
+    layout: LayoutLanguage,
+  },
+  {
+    path: `/:lang/dictionary`,
+    component: Dictionary,
+    layout: LayoutLanguage,
+  },
+  {
+    path: `/:lang/dictionary/:wordString`,
+    component: DictionaryItem,
     layout: LayoutLanguage,
   },
   {

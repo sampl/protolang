@@ -17,9 +17,8 @@ export default () => {
       setSaving(true)
 
       const newData = {
-        language: 'lang_'+urlLang,
+        language: urlLang,
         url,
-        created_at: new Date(),
         created_by: user.id,
       }
 
@@ -39,7 +38,7 @@ export default () => {
   return <form onSubmit={submit}>
     <h2>New resource</h2>
 
-    <label for="url">What's the url?</label>
+    <label htmlFor="url">What's the url?</label>
     <input
       id="url"
       type="url"

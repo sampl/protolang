@@ -1,12 +1,12 @@
 import { useFilter, useSelect } from 'react-supabase'
 
-export default ({ word }) => {
+export default ({ string }) => {
 
   const [{ data, error, fetching }] = useSelect('mnemonics', {
     columns: '*, mnemonic_votes(*)',
     filter: useFilter(
-      (query) => query.eq('word', word?.id),
-      [word?.id],
+      (query) => query.eq('target_phrase', string),
+      [string],
     ),
   })
 
@@ -17,9 +17,9 @@ export default ({ word }) => {
       error ? error.message :
       fetching ? 'loading...' :
       !mnemonic ? null :
-      <blockquote>
-        {mnemonic.content_en} - {mnemonic.mnemonic_votes.length} vote(s)
-      </blockquote>
+      <em>
+        {mnemonic.remember_method}
+      </em>
     }
   </div>
 }

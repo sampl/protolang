@@ -9,20 +9,13 @@ export default ({ children }) => {
 
   const [ currentLanguageId, setCurrentLanguageId ] = useState()
 
-  const [{ data, error, fetching }] = useSelect('languages', {
+  const [{ data: languages, error, fetching }] = useSelect('languages', {
     columns: user?.id ? '*, user_languages(*)' : '*',
     filter: useFilter(
       (query) => user?.id ? query.eq('user_languages.created_by', user?.id) : query,
       [user?.id],
     ),
   })
-
-  // make sure all langs have a "code" attr
-  // TODO - make code the same as ID ("lang_it" vs "it")
-  const languages = data?.map(l => ({
-    code: l.id?.slice(-2),
-    ...l,
-  }))
 
   const userLanguages = languages?.filter(l => l.user_languages && l.user_languages.length > 0)
 

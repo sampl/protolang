@@ -3,7 +3,7 @@ import Heatmap from "./Heatmap"
 import UserScore from "./UserScore"
 import Radio from "./Radio"
 import { TwoColumns } from "@/styles/Layout"
-import ProblemWords from "./ProblemWords"
+import ProblemPhrases from "./ProblemPhrases"
 import QuickLinks from "./QuickLinks"
 
 export default () => {
@@ -24,7 +24,7 @@ export default () => {
       <div>
         <UserScore />
         <Heatmap />
-        <ProblemWords />
+        <ProblemPhrases />
       </div>
       <div>
         <Radio />
