@@ -59,24 +59,39 @@ Protolang is built on [Supabase](https://supabase.com/), a Postgres platform-as-
 - Rename `.env.local.example` to `.env.local` and add your Supabase credentials from the previous step
 - Install dependencies from npm: `npm install`
 
-### Running migrations
-
-Set up migrations:
+### Set up the schema
 
 - Create a `.env` file in the root (`/`) directory and add the database connection string like so: `ADMIN_POSTGRES_CONNECTION_STRING=postgresql://postgres:password123@db.abc123.supabase.co:1234/postgres` (use your actual Postgres connection string from Supabase)
-- Run the migration to set up tables, seed data etc: `npm run migrate` (currently works on a new database only)
+- Run the migrations to set up tables: `npm run migrate` (currently works on a new database only)
 
-See the [language directory](../languages/) for instructions on seeding and updating language data like dictionaries and lessons
+### Configure Supabase
+
+Back in the Supabase dashboard, you have to expose your dictionaries schema so the API can see it.
+
+- Go to [your project's API settings](https://app.supabase.com/project/_/settings/api)
+- Under "Exposed schemas", add `dictionaries`
 
 ### Start the web server
 
 Start the local server: `npm run dev`
 
-### Development
+### Seed the database
 
-- Use our [style guide](https://protolang.com/styleguide) to keep your UI consistent with the rest of the app
+Some seed scripts require a valid `created_by` value. For example, seeding Lessons won't work unless each lesson has a valid `created_by` value reference in the `admin.users` table. To set this up, we just need to give your seed scripts a valid UID to use.
 
-- Future migrations: TODO
+- Sign into your Protolang app (not Supabase—the actual app, on `localhost`), then go to your [Supabase users dashboard](https://app.supabase.com/project/_/auth/users) and copy the User UID of your user.
+- Go back to your `.env.development` file and add the UID it as `ADMIN_USER_UID`
+
+The full language dictionaries are generated from the English-language [Wiktionary](https://en.wiktionary.org/) and parsed by [Wiktextract](https://github.com/tatuylonen/wiktextract).
+
+Parsed JSON language files are quite large, so they are not included in git as of yet. However they can be downloaded directly (already parsed from Wiktionary format) at [https://kaikki.org/dictionary/].
+
+- Download the language files you want to use from [https://kaikki.org/dictionary/]
+- Move the files into the `/dictionaries` directory
+
+Once this is all complete, run `npm run seed` to import everything into your database.
+
+That's it--you should be good to go!
 
 ## Deploy
 
