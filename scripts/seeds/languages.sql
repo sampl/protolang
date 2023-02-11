@@ -1,0 +1,20 @@
+insert into languages
+  (id,     flag,   name_en,      is_beta,   is_live ) values
+  ('en',   '🇺🇸',   'English',     false,     false   ),
+  ('fr',   '🇫🇷',   'French',      false,     false   ),
+  ('ja',   '🇯🇵',   'Japanese',    false,     false   ),
+  ('de',   '🇩🇪',   'German',      false,     false   ),
+  ('zh',   '🇨🇳',   'Chinese',     false,     false   ),
+  ('hi',   '🇮🇳',   'Hindi',       false,     false   ),
+  ('eo',   '🌍',   'Esperanto',   false,     false   ),
+  ('la',   '🏛',   'Latin',       false,     false   ),
+  ('pt',   '🇵🇹',   'Portuguese',  false,     false   ),
+  ('ru',   '🇷🇺',   'Russian',     false,     false   ),
+  ('ar',   '🇸🇦',   'Arabic',      false,     false   ),
+  ('bn',   '🇧🇩',   'Bengali',     false,     false   ),
+  ('id',   '🇮🇩',   'Indonesian',  false,     false   ),
+  ('ko',   '🇰🇷',   'Korean',      false,     false   ),
+  ('es',   '🇪🇸',   'Spanish',     false,     false   ),
+  ('it',   '🇮🇹',   'Italian',     true,      true    ),
+  ('tp',   '🏳',   'Toki Pona',   false,     false   ),
+  ('nv',   '🏳️‍🌈',   'Navajo',      false,     false   );
