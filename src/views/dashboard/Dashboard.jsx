@@ -3,6 +3,7 @@ import Heatmap from "./Heatmap"
 import Map from "./Map"
 import UserScore from "./UserScore"
 import Radio from "./Radio"
+import Flights from "./Flights"
 import { TwoColumns } from "@/styles/Layout"
 import ProblemPhrases from "./ProblemPhrases"
 import QuickLinks from "./QuickLinks"
@@ -29,6 +30,9 @@ export default () => {
       </div>
       <div>
         <Map />
+        <hr />
+        <Flights />
+        <hr />
         <Radio />
       </div>
     </TwoColumns>
