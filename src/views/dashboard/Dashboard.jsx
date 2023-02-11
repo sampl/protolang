@@ -7,6 +7,7 @@ import Flights from "./Flights"
 import { TwoColumns } from "@/styles/Layout"
 import ProblemPhrases from "./ProblemPhrases"
 import QuickLinks from "./QuickLinks"
+import DailyProgress from "@/views/practice/DailyProgress"
 
 export default () => {
   const { user } = useUser()
@@ -24,6 +25,8 @@ export default () => {
 
     <TwoColumns cols="2fr 1fr">
       <div>
+        <h3>Daily progress</h3>
+        <DailyProgress />
         <UserScore />
         <Heatmap />
         <ProblemPhrases />

@@ -6,6 +6,7 @@ import Card from '@/views/practice/Card'
 import { TwoColumns } from '@/styles/Layout'
 import { useUser } from '@/_state/user'
 import AttemptsList from './AttemptsList'
+import DailyProgress from './DailyProgress'
 
 export default () => {
   const { currentLanguage } = useLanguage()
@@ -63,6 +64,8 @@ export default () => {
     </div>
 
     <div>
+      <DailyProgress />
+      <hr />
       pull words from:
       <select value={phraseSource} onChange={e => setPhraseSource(e.target.value)} disabled>
         <option value="all">All phrases</option>
