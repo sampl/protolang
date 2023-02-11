@@ -28,6 +28,10 @@ export default () => {
     <Panel $raised>
       <Panel $dark $inset>Panel in a hump</Panel>
     </Panel>
+    <br />
+    <Panel $raised $roundedL>
+      <Panel $screen $roundedM>Screen with bezel</Panel>
+    </Panel>
 
     <h1>Heading 1</h1>
     <p>Paragraph text goes here. Lorem ipsum dolor sin amet.</p>
