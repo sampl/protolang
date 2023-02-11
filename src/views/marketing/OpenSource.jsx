@@ -16,14 +16,7 @@ export default () => {
     </ul>
 
     <h2>Lesson data</h2>
-    <p>Protolang lessons use a Creative Commons license</p>
-    <ul>
-      <li>
-        <a href="https://github.com/sampl/protolang/blob/main/languages">Browse source on Github</a> (coming soon)
-      </li>
-      <li>
-        <a href="https://github.com/sampl/protolang/blob/main/languages/license.txt">View license on Github</a> (coming soon)
-      </li>
-    </ul>
+    <p>You can download Protolang lessons and content from the site itself as Markdown files. Protolang lessons use a Creative Commons license.</p>
+
   </OneCol>
 }
