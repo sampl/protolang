@@ -101,9 +101,9 @@ export default () => {
             Protolang uses vast, publicly-available datasets and the latest browser technology to make learning richer than ever before
           </li>
           <li>
-            <strong>No passive-aggressive talking owls :)</strong>
+            <strong>No games</strong>
             {' - '}
-            Protolang encourages you to get to have real conversations with real people—without fake jewels or status games.
+            Protolang doesn't reward you with fake jewels. Instead, it gets you closer to conversations with real people.
           </li>
         </ul>
 
