@@ -3,11 +3,12 @@ import { useFilter, useSelect } from 'react-supabase'
 import { Link } from 'react-router-dom'
 
 import { BreadcrumbItem, BreadcrumbSeparator, BreadcrumbWrapper } from '@/styles/Breadcrumbs'
-import AttemptsList from './AttemptsList'
+// import AttemptsList from './AttemptsList'
 import SpeakWord from '../dictionary/SpeakWord'
 
 import { useLanguage } from '@/_state/language'
 import PhraseScore from './PhraseScore'
+import Definable from '../lessons/Definable'
 
 export default () => {
   const { phraseId } = useParams()
@@ -35,14 +36,14 @@ export default () => {
       fetching ? 'loading...' :
       !phrase ? 'Phrase not found' :
       <>
-        <h1>{phrase.name}</h1>
-        <SpeakWord wordString={phrase.name} />
+        <h1>
+          <Definable wordString={phrase.name} />
+          <SpeakWord wordString={phrase.name} />
+        </h1>
 
-        <div>({phrase.type})</div>
         <div>{phrase.translation_en}</div>
         <div>{phrase.context_en}</div>
 
-        <Link to={`/${currentLanguage.id}/dictionary/${phrase.name}`}>View definition?</Link>
         <hr />
 
         {/* TODO - attempts list here */}

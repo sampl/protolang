@@ -55,8 +55,10 @@ export default () => {
       fetching ? 'loading...' :
       !word ? 'Word not found' :
       <>
-        <h1>{word?.word}</h1>
-        <SpeakWord wordString={word?.word} />
+        <h1>
+          {word?.word}
+          <SpeakWord wordString={word?.word} />
+        </h1>
         <TwoColumns>
           <div>
             <p>Part of speech: {pos}</p>
