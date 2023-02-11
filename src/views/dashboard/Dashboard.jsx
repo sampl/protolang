@@ -1,5 +1,6 @@
 import { useUser } from "../../_state/user"
 import Heatmap from "./Heatmap"
+import Map from "./Map"
 import UserScore from "./UserScore"
 import Radio from "./Radio"
 import { TwoColumns } from "@/styles/Layout"
@@ -27,6 +28,7 @@ export default () => {
         <ProblemPhrases />
       </div>
       <div>
+        <Map />
         <Radio />
       </div>
     </TwoColumns>
