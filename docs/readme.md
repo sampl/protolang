@@ -57,7 +57,7 @@ Protolang is built on [Supabase](https://supabase.com/), a Postgres platform-as-
 - Clone this repository: `git clone https://github.com/sampl/protolang.git`
 - Move into the directory: `cd protolang`
 - Rename `.env.local.example` to `.env.local` and add your Supabase credentials from the previous step
-- Install dependencies from npm: `npm install`
+- Install dependencies from npm: `npm install --legacy-peer-deps` (note legacy deps, we need to get rid of dependencies for React 17)
 
 ### Set up the schema
 
