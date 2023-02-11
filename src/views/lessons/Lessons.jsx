@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom'
 import { useLanguage } from '@/_state/language'
 import { BreadcrumbItem, BreadcrumbWrapper } from '@/styles/Breadcrumbs'
 import { TwoColumns } from '@/styles/Layout'
+import LessonsDownload from './LessonsDownload'
 
 export default () => {
   const { currentLanguage } = useLanguage()
@@ -25,13 +26,14 @@ export default () => {
     {
       error ? error.message :
       fetching ? 'loading...' :
-      <TwoColumns cols="auto max-content">
+      <TwoColumns cols="5fr 2fr">
         <div>
           {(!lessons || lessons.length) <= 0 ? 'no lessons' : lessons?.map(lesson => <LessonListItem key={lesson.slug} lesson={lesson} />)}
         </div>
         <div>
-          {lessons?.length || 0} lesson{lessons?.length !== 1 && 's'}
+          <p>{lessons?.length || 0} lesson{lessons?.length !== 1 && 's'}</p>
           <Link to={`/${urlLang}/lessons/new`}>+ Add lesson</Link>
+          <LessonsDownload />
         </div>
       </TwoColumns>
     }
