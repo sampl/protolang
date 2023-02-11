@@ -1,7 +1,6 @@
 import { Link } from '@/styles/Links'
 
-import Well from '@/styles/Well'
-import Hump from '@/styles/Hump'
+import { Panel } from '@/styles/Panels'
 
 export default () => {
 
@@ -16,17 +15,19 @@ export default () => {
 
     <hr />
 
-    <Well>Well</Well>
+    <Panel $dark $inset>Panel</Panel>
     <br />
-    <Hump>Hump</Hump>
+    <Panel $dark $inset $grid>Grids</Panel>
     <br />
-    <Well>
-      <Hump>Hump in a well</Hump>
-    </Well>
+    <Panel $raised>Panel</Panel>
     <br />
-    <Hump>
-      <Well>Well in a hump</Well>
-    </Hump>
+    <Panel $dark $inset>
+      <Panel $raised>Panel in a well</Panel>
+    </Panel>
+    <br />
+    <Panel $raised>
+      <Panel $dark $inset>Panel in a hump</Panel>
+    </Panel>
 
     <h1>Heading 1</h1>
     <p>Paragraph text goes here. Lorem ipsum dolor sin amet.</p>
