@@ -27,7 +27,8 @@ export default () => {
 
   const [phraseSource, setPhraseSource] = useState('')
   const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0)
-  const [cardType, setCardType] = useState('speech')
+  const [cardQuestionType, setCardQuestionType] = useState('both')
+  const [cardAnswerType, setCardAnswerType] = useState('speech')
   const [direction, setDirection] = useState('reverse')
 
   phrases && shuffleArray(phrases)
@@ -49,7 +50,8 @@ export default () => {
         <Card
           key={currentPhraseIndex}
           phrase={phrases[currentPhraseIndex]}
-          type={cardType}
+          cardQuestionType={cardQuestionType}
+          cardAnswerType={cardAnswerType}
           direction={direction}
           next={nextPhrase}
         />
@@ -61,7 +63,9 @@ export default () => {
     </div>
 
     <div>
-      <select value={phraseSource} onChange={e => setPhraseSource(e.target.value)}>
+      pull words from:
+      <select value={phraseSource} onChange={e => setPhraseSource(e.target.value)} disabled>
+        <option value="all">All phrases</option>
         <optgroup label="Lessons">
           {
             !lessonsError &&
@@ -71,14 +75,23 @@ export default () => {
         </optgroup>
       </select>
       <br />
-      <select value={cardType} onChange={e => setCardType(e.target.value)}>
-        <option value="text">Text</option>
-        <option value="speech">Speech</option>
-      </select>
-      <br />
+      direction:
       <select value={direction} onChange={e => setDirection(e.target.value)}>
         <option value="forward">English to Italian</option>
         <option value="reverse">Italian to English</option>
+      </select>
+      <br />
+      question type:
+      <select value={cardQuestionType} onChange={e => setCardQuestionType(e.target.value)}>
+        <option value="both">Text and audio</option>
+        <option value="text">Text only</option>
+        <option value="audio">Audio only</option>
+      </select>
+      <br />
+      answer type:
+      <select value={cardAnswerType} onChange={e => setCardAnswerType(e.target.value)}>
+        <option value="text">Text</option>
+        <option value="speech">Speech</option>
       </select>
     </div>
   </TwoColumns>

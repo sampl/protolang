@@ -2,7 +2,14 @@ import { useLanguage } from "@/_state/language"
 import { useSpeechRecognition } from "@/_state/speechRecognition"
 import { useEffect } from "react"
 
-export default ({ direction, question, correctAnswer, testAnswer, testPartialAnswer, submitAnswer, disabled }) => {
+export default ({
+  direction,
+  correctAnswer,
+  testAnswer,
+  testPartialAnswer,
+  submitAnswer,
+  disabled,
+}) => {
 
   const { currentLanguage } = useLanguage()
   const {
@@ -69,9 +76,6 @@ export default ({ direction, question, correctAnswer, testAnswer, testPartialAns
     }
   }
   return <>
-    <p>Speak the {direction === 'forward' ? 'Italian' : 'English'} for...</p>
-    <h2>{question}</h2>
-
     <code><strong>{finalTranscript}</strong> {interimTranscript}</code>
     {!disabled && <button onClick={toggleSpeech}>
       {recognitionState === 'listening' ? 'Listening...' : 'Listen'}

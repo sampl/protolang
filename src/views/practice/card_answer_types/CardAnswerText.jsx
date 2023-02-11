@@ -1,4 +1,4 @@
-export default ({ direction, question, submitAnswer, disabled }) => {
+export default ({ submitAnswer, disabled }) => {
 
   const onSubmit = event => {
     event.preventDefault()
@@ -6,8 +6,6 @@ export default ({ direction, question, submitAnswer, disabled }) => {
   }
 
   return <>
-    <p>Type the {direction === 'forward' ? 'Italian' : 'English'} for...</p>
-    <h2>{question}</h2>
     <form onSubmit={onSubmit}>
       <input
         type="text"
