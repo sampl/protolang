@@ -9,6 +9,8 @@
     "preview": "vite preview",
     "spellcheck": "cspell --config cspell.json \"**\"",
     "migrate": "node scripts/migrate.js --new",
+    "seed": "node scripts/seed.js",
+    "clear": "node scripts/clear.js",
     "update-dict": "node scripts/updateDictionary.mjs"
   },
   "dependencies": {
