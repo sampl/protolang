@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import { useUser } from '@/_state/user'
 import { supabase } from '@/_util/supabaseClient'
 import { useLanguage } from '@/_state/language'
-import { RadioRoot, RadioItem } from '@/styles/Radio'
 import { Button } from '@/styles/Button'
+import { RadioGroup, CheckboxGroup } from '@/styles/RadioCheckbox'
 
 export default ({ closeModal }) => {
   const navigate = useNavigate()
@@ -16,11 +16,12 @@ export default ({ closeModal }) => {
   const [selectedVisitPlans, setSelectedVisitPlans] = useState()
   const [selectedVisitDate, setSelectedVisitDate] = useState()
   const [selectedSkill, setSelectedSkill] = useState()
-  // const [extroversion, setExtroversion] = useState()
-  // const [conversationMedium, setConversationMedium] = useState()
-  // const [mediaTypes, setMediaTypes] = useState()
-  // const [socialNetworks, setSocialNetworks] = useState()
-  // const [emailUpdates, setEmailUpdates] = useState()
+  const [extroversion, setExtroversion] = useState()
+  const [conversationMedium, setConversationMedium] = useState()
+  const [mediaTypes, setMediaTypes] = useState([])
+  const [socialNetworks, setSocialNetworks] = useState([])
+  const [emailUpdates, setEmailUpdates] = useState([])
+  const [topics, setTopics] = useState([])
   const [saving, setSaving] = useState(false)
 
   async function addUserLanguage( event ) {
@@ -28,17 +29,20 @@ export default ({ closeModal }) => {
     try {
       setSaving(true)
       const newData = {
-        created_by: user?.id,
         language: currentLanguage.id,
-        goal: selectedGoal,
-        visit_plans: selectedVisitPlans,
-        visit_date: selectedVisitDate,
-        self_reported_skill: selectedSkill,
-        // extroversion: extroversion,
-        // conversation_medium: conversationMedium,
-        // media_types: mediaTypes,
-        // social_media_networks: socialNetworks,
-        // email_updates: emailUpdates
+        preferences: {
+          goal: selectedGoal,
+          visit_plans: selectedVisitPlans,
+          visit_date: selectedVisitDate,
+          self_reported_skill: selectedSkill,
+          extroversion: extroversion,
+          conversation_medium: conversationMedium,
+          media_types: mediaTypes,
+          social_media_networks: socialNetworks,
+          email_updates: emailUpdates,
+          topics: topics,
+        },
+        created_by: user?.id,
       }
       if (user) {
         let { error } = await supabase.from('user_languages').insert([newData])
@@ -47,7 +51,13 @@ export default ({ closeModal }) => {
         }
       }
       closeModal && closeModal()
-      navigate('/lessons')
+      navigate(`/${currentLanguage.id}`)
+
+      // navigation isn't enough because we're already on that page
+      // and user_languages, which we use to decide whether to show onboarding or not,
+      // is not real-time updated. So instead we force reload the page.
+      // TODO - a better way to do this
+      location.reload()
     } catch (error) {
       alert(error.message)
     } finally {
@@ -57,69 +67,79 @@ export default ({ closeModal }) => {
 
   return <form onSubmit={addUserLanguage}>
 
+    <h1>{currentLanguage ? `Getting started with ${currentLanguage.name_en || ''}` : ""}</h1>
     <h2>Language goals</h2>
     <p>We'll use your answer to set up some casual learning milestones</p>
 
-    {/* spellchecker: disable */}
     <label>Do you already speak some Italian?</label>
-    <RadioRoot
+    <RadioGroup
       value={selectedSkill}
-      onValueChange={value => setSelectedSkill(value)}
-      required
-    >
-      <RadioItem value="no">
-        Nope!
-      </RadioItem>
-      <RadioItem value="some">
-        Sì, I know a little bit
-      </RadioItem>
-      <RadioItem value="lots">
-        In realtà parlo un ottimo italiano
-      </RadioItem>
-    </RadioRoot>
-    {/* spell-checker: enable */}
+      setValue={setSelectedSkill}
+      options={[
+        {
+          id: "no",
+          description: "Nope!",
+        },
+        {
+          id: "some",
+          description: "Sì, I know a little bit",
+        },
+        {
+          id: "lots",
+          // spellchecker: disable
+          description: "In realtà parlo un ottimo italiano",
+          // spell-checker: enable
+        },
+      ]}
+    />
 
     <label>How serious are you about learning {currentLanguage?.name_en || 'this language'}?</label>
-    <RadioRoot
+    <RadioGroup
       value={selectedGoal}
-      onValueChange={value => setSelectedGoal(value)}
-      required
-    >
-      <RadioItem value="playing_around">
-        Just playing around - hobby (your proficiency score goal is 100 words, enough to impress your friends and basic politeness in Italy)
-      </RadioItem>
-      <RadioItem value="some">
-        I want to have some basic conversations - travel coming up, tourists, travelers, (your proficiency score is 1,000 words, enough to have basic conversations in Italian)
-      </RadioItem>
-      <RadioItem value="fluency">
-        I want to be fluent in Italian - immigrants, spouses, employees etc (your proficiency goal is 10,000 words, the same as a fluent COFL B2 speaker)
-      </RadioItem>
-    </RadioRoot>
+      setValue={setSelectedGoal}
+      options={[
+        {
+          id: "playing_around",
+          description: "Just playing around - hobby (your proficiency score goal is 100 words, enough to impress your friends and basic politeness in Italy)",
+        },
+        {
+          id: "some",
+          description: "I want to have some basic conversations - travel coming up, tourists, travelers, (your proficiency score is 1,000 words, enough to have basic conversations in Italian)",
+        },
+        {
+          id: "fluency",
+          description: "I want to be fluent in Italian - immigrants, spouses, employees etc (your proficiency goal is 10,000 words, the same as a fluent COFL B2 speaker)",
+        },
+      ]}
+    />
 
-    <hr />
 
     <h2>Travel plans</h2>
     <p>This will help us set your learning pace</p>
 
     <label>Do you have plans to visit Italy (or an Italian-speaking part of the world)?</label>
-    <RadioRoot
+    <RadioGroup
       value={selectedVisitPlans}
-      onValueChange={value => setSelectedVisitPlans(value)}
-      required
-    >
-      <RadioItem value="yes_date">
-        Yes!
-      </RadioItem>
-      <RadioItem value="yes_no_date">
-        Yes, but no firm dates yet
-      </RadioItem>
-      <RadioItem value="someday">
-        I'd love to someday!
-      </RadioItem>
-      <RadioItem value="none">
-        Not really
-      </RadioItem>
-    </RadioRoot>
+      setValue={setSelectedVisitPlans}
+      options={[
+        {
+          id: "yes_date",
+          description: "Yes!",
+        },
+        {
+          id: "yes_no_date",
+          description: "Yes, but no firm dates yet",
+        },
+        {
+          id: "someday",
+          description: "I'd love to someday!",
+        },
+        {
+          id: "none",
+          description: "Not really",
+        },
+      ]}
+    />
 
     {selectedVisitPlans === 'yes_date' && <>
       <label>When is your trip?</label>
@@ -129,161 +149,217 @@ export default ({ closeModal }) => {
       />
     </>}
 
-    {/*
-
-    // TODO - checkbox so they can pick multiple options!
-
-    <hr />
 
     <h2>Conversation style</h2>
     <p>Helps us decide when and how to match you to a conversation partner</p>
 
     <label>How comfortable are you chatting with strangers?</label>
-    <RadioRoot
-      value={extroversion}
-      onValueChange={value => setExtroversion(value)}
-      required
-    >
-      <RadioItem value="extroverted">
-        I love talking to strangers! Match me right away!
-      </RadioItem>
-      <RadioItem value="moderate">
-        I'm a little hestitant, but I'm open to trying it soon
-      </RadioItem>
-      <RadioItem value="introverted">
-        Pretty unfomfortable, let's hold off for now
-      </RadioItem>
-    </RadioRoot>
+    <RadioGroup
+      groupName={extroversion}
+      setValue={setExtroversion}
+      options={[
+        {
+          id: "extroverted",
+          description: "I love talking to strangers! Match me right away!",
+        },
+        {
+          id: "moderate",
+          description: "I'm a little hestitant, but I'm open to trying it soon",
+        },
+        {
+          id: "introverted",
+          description: "Pretty uncomfortable, let's hold off for now",
+        },
+      ]}
+    />
 
     <label>Are you more of a phone call or a texting person for long chats?</label>
-    <RadioRoot
+    <RadioGroup
       value={conversationMedium}
-      onValueChange={value => setConversationMedium(value)}
-      required
-    >
-      <RadioItem value="talker">
-        I prefer long conversations over the phone
-      </RadioItem>
-      <RadioItem value="texter">
-        I prefer long conversations over text
-      </RadioItem>
-      <RadioItem value="both">
-        I like both!
-      </RadioItem>
-      <RadioItem value="neither">
-        I don't like either, really
-      </RadioItem>
-    </RadioRoot>
+      setValue={setConversationMedium}
+      options={[
+        {
+          id: "talker",
+          description: "I prefer long conversations over the phone",
+        },
+        {
+          id: "texter",
+          description: "I prefer long conversations over text",
+        },
+        {
+          id: "both",
+          description: "I like both!",
+        },
+        {
+          id: "neither",
+          description: "I don't like either, really",
+        },
+      ]}
+    />
 
-    <hr />
+
+    <h2>Topics</h2>
+    <p>Help us focus you on the parts of language you want to learn most</p>
+
+    <label>What kinds of things will you do in Italian?</label>
+    <CheckboxGroup
+      groupName="topics"
+      values={topics}
+      setValues={setTopics}
+      options={[
+        {
+          id: "romance",
+          description: "Dating, flirting, and romance",
+        },
+        {
+          id: "work",
+          description: "Work, professional conversations, and business",
+        },
+        {
+          id: "family",
+          description: "Seeing family, talking to relatives, researching ancestors",
+        },
+        {
+          id: "other",
+          description: "Other stuff",
+        }
+      ]}
+    />
+
 
     <h2>Media preferences</h2>
     <p>We'll recommend some Italian media to help you get immersed quickly</p>
 
     <label>What kind of media do you use throughout the day?</label>
-    <RadioRoot
-      value={mediaTypes}
-      onValueChange={value => setMediaTypes(value)}
-      required
-    >
-      <RadioItem value="articles">
-        I read a lot of articles (magazines, newspapers, online, etc)
-      </RadioItem>
-      <RadioItem value="books">
-        I read a lot of books
-      </RadioItem>
-      <RadioItem value="audiobooks">
-        I listen to a lot of audiobooks
-      </RadioItem>
-      <RadioItem value="podcasts">
-        I listen to a lot of podcasts
-      </RadioItem>
-      <RadioItem value="film">
-        I watch a lot of movies/films
-      </RadioItem>
-      <RadioItem value="long_video">
-        I watch a lot of youtube and longer videos
-      </RadioItem>
-      <RadioItem value="short_video">
-        I watch a lot of short videos (tiktok, stories, etc)
-      </RadioItem>
-      <RadioItem value="social_media">
-        I browse social media feeds a lot (Twitter, Facebook, etc)
-      </RadioItem>
-      <RadioItem value="games">
-        I play a lot of video games
-      </RadioItem>
-      <RadioItem value="none">
-        None of these, really
-      </RadioItem>
-    </RadioRoot>
+    <CheckboxGroup
+      groupName="mediaTypes"
+      values={mediaTypes}
+      setValues={setMediaTypes}
+      options={[
+        {
+          id: "articles",
+          description: "I read a lot of articles (magazines, newspapers, online, etc)",
+        },
+        {
+          id: "books",
+          description: "I read a lot of books",
+        },
+        {
+          id: "audiobooks",
+          description: "I listen to a lot of audiobooks",
+        },
+        {
+          id: "podcasts",
+          description: "I listen to a lot of podcasts",
+        },
+        {
+          id: "film",
+          description: "I watch a lot of movies/films",
+        },
+        {
+          id: "long_video",
+          description: "I watch a lot of youtube and longer videos",
+        },
+        {
+          id: "short_video",
+          description: "I watch a lot of short videos (tiktok, stories, etc)",
+        },
+        {
+          id: "social_media",
+          description: "I browse social media feeds a lot (Twitter, Facebook, etc)",
+        },
+        {
+          id: "games",
+          description: "I play a lot of video games",
+        },
+        {
+          id: "none",
+          description: "None of these, really",
+        }
+      ]}
+    />
 
     <label>Do you use social media? If so, which apps?</label>
-    <RadioRoot
-      value={socialNetworks}
-      onValueChange={value => setSocialNetworks(value)}
-      required
-    >
-      <RadioItem value="tiktok">
-        TikTok
-      </RadioItem>
-      <RadioItem value="youtube">
-        YouTube
-      </RadioItem>
-      <RadioItem value="instagram">
-        Instagram
-      </RadioItem>
-      <RadioItem value="snapchat">
-        Snapchat
-      </RadioItem>
-      <RadioItem value="twitter">
-        Twitter
-      </RadioItem>
-      <RadioItem value="facebook">
-        Facebook
-      </RadioItem>
-      <RadioItem value="none">
-        None of these, really
-      </RadioItem>
-    </RadioRoot>
+    <CheckboxGroup
+      groupName="socialNetworks"
+      values={socialNetworks}
+      setValues={setSocialNetworks}
+      options={[
+        {
+          id: "tiktok",
+          description: "TikTok",
+        },
+        {
+          id: "youtube",
+          description: "YouTube",
+        },
+        {
+          id: "instagram",
+          description: "Instagram",
+        },
+        {
+          id: "snapchat",
+          description: "Snapchat",
+        },
+        {
+          id: "twitter",
+          description: "Twitter",
+        },
+        {
+          id: "facebook",
+          description: "Facebook",
+        },
+        {
+          id: "none",
+          description: "None of these, really",
+        }
+      ]}
+    />
 
-    <hr />
 
     <h2>Italian updates</h2>
 
     <label>Which email summaries would you like?</label>
     <p>Weekly email updates will fill you in on Italian culture. We recommend choosing at least 2-3 to hit your learning goals (you can unsubscribe anythime).</p>
-
-    <RadioRoot
-      value={emailUpdates}
-      onValueChange={value => setEmailUpdates(value)}
-      required
-    >
-      <RadioItem value="pop_culture">
-        Italian pop culture and celebrities
-      </RadioItem>
-      <RadioItem value="politics">
-        Italian and European Union politics
-      </RadioItem>
-      <RadioItem value="sports">
-        Italian sports (mostly soccer)
-      </RadioItem>
-      <RadioItem value="history">
-        Italian history, including Rome and the Renaissance
-      </RadioItem>
-      <RadioItem value="arts">
-        Italian current arts, culture, and music
-      </RadioItem>
-      <RadioItem value="food">
-        Italian food and restaurants
-      </RadioItem>
-      <RadioItem value="parties">
-        Italian events and nightlife
-      </RadioItem>
-      <RadioItem value="none">
-        Don't send me any updates for now
-      </RadioItem>
-    </RadioRoot> */}
+    <CheckboxGroup
+      groupName="emailUpdates"
+      values={emailUpdates}
+      setValues={setEmailUpdates}
+      options={[
+        {
+          id: "pop_culture",
+          description: "Italian pop culture and celebrities",
+        },
+        {
+          id: "politics",
+          description: "Italian and European Union politics",
+        },
+        {
+          id: "sports",
+          description: "Italian sports (mostly soccer)",
+        },
+        {
+          id: "history",
+          description: "Italian history, including Rome and the Renaissance",
+        },
+        {
+          id: "arts",
+          description: "Italian current arts, culture, and music",
+        },
+        {
+          id: "food",
+          description: "Italian food and restaurants",
+        },
+        {
+          id: "parties",
+          description: "Italian events and nightlife",
+        },
+        {
+          id: "none",
+          description: "Don't send me any updates for now",
+        }
+      ]}
+    />
 
     <br />
 

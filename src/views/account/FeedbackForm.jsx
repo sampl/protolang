@@ -5,7 +5,7 @@ import Modal from '@/styles/Modal'
 
 // https://formspree.io/forms/xnqyjjgl/integration
 // https://formspr.ee/react-help
-function FeedbackForm() {
+export default () => {
 
   const { user } = useUser()
 
@@ -71,5 +71,3 @@ function FeedbackForm() {
     </Modal>
   </>
 }
-
-export default FeedbackForm

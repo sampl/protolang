@@ -80,11 +80,11 @@ export default ({children}) => {
       }
     </LayoutSimple>
   }
-  // if (user && !userLanguages?.map(ul => ul?.id).includes(currentLanguage?.id)) {
-  //   return <LayoutSimple>
-  //     <UserLanguageOnboarding />
-  //   </LayoutSimple>
-  // }
+  if (user && !userLanguages?.map(ul => ul?.id).includes(currentLanguage?.id)) {
+    return <LayoutSimple>
+      <UserLanguageOnboarding />
+    </LayoutSimple>
+  }
 
   if (!isBetaUser && user) {
     return <LayoutSimple>
