@@ -7,7 +7,7 @@ export default ({ isOpen, onClose, children }) => {
       <ModalOverlay onClick={onClose} />
       <ModalWrapper>
         <ModalContentWrapper>
-          <Dialog.Close onClick={onClose}>✖️</Dialog.Close>
+          <ModalX onClick={onClose}>✕</ModalX>
           {/* <Dialog.Title>{title}</Dialog.Title> */}
           {/* <Dialog.Description /> */}
           {children}
@@ -42,4 +42,13 @@ const ModalContentWrapper = styled(Dialog.Content)`
   padding: 1rem;
   border: 1px solid;
   max-width: calc(100vw - 2rem);
+`
+const ModalX = styled(Dialog.Close)`
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: white;
+  padding: 1rem;
+  border: none;
 `
