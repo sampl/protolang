@@ -12,17 +12,11 @@ import DailyProgress from "@/views/practice/DailyProgress"
 export default () => {
   const { user } = useUser()
   return <>
-
-    <h2>
-      {user?.username ? `Welcome, ${user.username}` : `Welcome`}
-    </h2>
-
-    <QuickLinks />
-
-    <br />
-
+    <h2>{user?.username ? `Welcome, ${user.username}` : `Welcome`}</h2>
     <TwoColumns cols="2fr 1fr">
       <div>
+        <QuickLinks />
+        <br />
         <h3>Daily progress</h3>
         <DailyProgress />
         <UserScore />
