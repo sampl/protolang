@@ -9,26 +9,23 @@ export default ({ children }) => {
 
   const [ currentLanguageId, setCurrentLanguageId ] = useState()
 
-  // TODO - don't fetch all languages when there's no user, just the relevant ones
-  // This logic is ported from the old react-supabase code, but it's weirdly inconsistent
-  let withUserQuery = supabase
-    .from('languages')
-    .select(user?.id ? '*, user_languages(*)' : '*')
-    .eq('user_languages.created_by', user?.id)
-  let withoutUserQuery = supabase
+  let CLQuery = supabase
     .from('languages')
     .select()
-  const [languages, loading, error] = useSupabaseQuery(user?.id ? withUserQuery : withoutUserQuery, [user?.id])
+    .eq('id', currentLanguageId)
+    .single()
+  const [currentLanguage, CLLoading, CLError] = useSupabaseQuery(CLQuery, [currentLanguageId], !currentLanguageId)
 
-  const userLanguages = languages?.filter(l => l.user_languages && l.user_languages.length > 0)
-  const currentLanguage = languages?.find(l => l.id === currentLanguageId)
+  let ULQuery = supabase
+    .from('user_languages')
+    .select('*, language(*)')
+  let [userLanguages, ULLoading, ULError] = useSupabaseQuery(ULQuery, [user?.id], !user)
 
   const exposed = {
-    loading,
-    error,
-    languages,
-    userLanguages,
-    currentLanguage,
+    loading: CLLoading || ULLoading,
+    error: CLError || ULError,
+    userLanguages: userLanguages || [],
+    currentLanguage: currentLanguage || {},
     setCurrentLanguageId,
   }
 

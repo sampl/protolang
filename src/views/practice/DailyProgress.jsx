@@ -2,14 +2,12 @@ import moment from 'moment'
 
 import { supabase, useSupabaseQuery } from '@/db/supabase'
 import { useUser } from '@/_state/user'
-import { useLanguage } from '@/_state/language'
 
 const DAILY_ATTEMPT_GOAL = 20
 
 export default () => {
 
   const { user } = useUser()
-  const { currentLanguage } = useLanguage()
 
   // TODO - filter to today in the query itself, and only return a count
   let query = supabase

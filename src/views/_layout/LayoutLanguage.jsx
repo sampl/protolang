@@ -15,6 +15,7 @@ import LayoutSimple from './LayoutSimple'
 import SearchBox from './SearchBox'
 import Signup from '../account/Signup'
 import Logo from './Logo'
+import UserLanguageDropdown from './UserLanguageDropdown'
 
 export default ({children}) => {
   const { currentLanguage, userLanguages, loading, error, setCurrentLanguageId } = useLanguage()
@@ -82,7 +83,7 @@ export default ({children}) => {
     </LayoutSimple>
   }
 
-  if (user && !userLanguages?.map(ul => ul.id).includes(langId)) {
+  if (user && !userLanguages?.map(ul => ul.language?.id).includes(langId)) {
     return <LayoutSimple>
       <UserLanguageOnboarding />
     </LayoutSimple>    
@@ -108,18 +109,7 @@ export default ({children}) => {
       </nav>
       <div>
         <SearchBox />
-        <DropdownNavMenu trigger={currentLanguage?.flag}>
-          {userLanguages?.map( userLanguage => {
-            const { id, code, name_en } = userLanguage
-            return <div key={id}>
-              <Link to={`/${code}`}>
-                {name_en}
-              </Link>
-            </div>
-          })}
-          <br />
-          <Link to={`/languages`}>+ Learn another language</Link>
-        </DropdownNavMenu>
+        <UserLanguageDropdown />
         <AccountMenu />
       </div>
     </Header>

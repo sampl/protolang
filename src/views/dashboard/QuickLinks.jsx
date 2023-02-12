@@ -4,7 +4,6 @@ import styled from 'styled-components/macro'
 import { supabase, useSupabaseQuery } from '@/db/supabase'
 import { useLanguage } from '@/_state/language'
 import { TwoColumns } from '@/styles/Layout'
-import Card from '@/styles/Card'
 
 export default () => {
   const { langId } = useParams()

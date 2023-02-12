@@ -67,7 +67,7 @@ export default ({ closeModal }) => {
 
   return <form onSubmit={addUserLanguage}>
 
-    <h1>{currentLanguage ? `Getting started with ${currentLanguage.name_en || ''}` : ""}</h1>
+    <h1>{`Getting started in ${currentLanguage.name_en || 'your new language'}`}</h1>
     <h2>Language goals</h2>
     <p>We'll use your answer to set up some casual learning milestones</p>
 

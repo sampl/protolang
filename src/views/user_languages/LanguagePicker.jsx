@@ -1,11 +1,18 @@
-import { useLanguage } from '@/_state/language'
+import { supabase, useSupabaseQuery } from '@/db/supabase'
 import { Link } from 'react-router-dom'
 
 export default () => {
-  const { languages } = useLanguage()
+
+  let query = supabase
+    .from('languages')
+    .select()
+  const [languages, loading, error] = useSupabaseQuery(query)
 
   const liveLanguages = languages?.filter(l => l.is_live)
   const soonLanguages = languages?.filter(l => !l.is_live)
+
+  if (loading) return 'loading...'
+  if (error) return error.message
 
   return <>
     <h2>Choose a language</h2>
