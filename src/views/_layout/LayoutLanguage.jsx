@@ -81,42 +81,11 @@ export default ({children}) => {
       }
     </LayoutSimple>
   }
-  if (user && !userLanguages?.map(ul => ul?.id).includes(currentLanguage?.id)) {
+
+  if (user && !userLanguages?.map(ul => ul.id).includes(langId)) {
     return <LayoutSimple>
       <UserLanguageOnboarding />
-    </LayoutSimple>
-  }
-
-  if (!isBetaUser && user) {
-    return <LayoutSimple>
-      Coming soon!
-    </LayoutSimple>
-  }
-
-  if (!isBetaUser && !user) {
-    return <LayoutSimple>
-      <h1>Coming soon!</h1>
-      <p>Sign up to get notified when Protolang launches</p>
-      <br />
-      <br />
-      <Signup />
-    </LayoutSimple>
-  }
-
-  if (!isBetaUser && user) {
-    return <LayoutSimple>
-      Coming soon!
-    </LayoutSimple>
-  }
-
-  if (!isBetaUser && !user) {
-    return <LayoutSimple>
-      <h1>Coming soon!</h1>
-      <p>Sign up to get notified when Protolang launches</p>
-      <br />
-      <br />
-      <Signup />
-    </LayoutSimple>
+    </LayoutSimple>    
   }
 
   return <HeaderFooterLayoutWrapper>
