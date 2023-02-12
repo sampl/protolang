@@ -14,6 +14,7 @@ import ErrorPage from '../ErrorPage'
 import LayoutSimple from './LayoutSimple'
 import SearchBox from './SearchBox'
 import Signup from '../account/Signup'
+import Logo from './Logo'
 
 export default ({children}) => {
   const { currentLanguage, userLanguages, loading, error, setCurrentLanguageId } = useLanguage()
@@ -122,12 +123,9 @@ export default ({children}) => {
 
     <Header>
       <nav>
-        <NavLink to={`/${langId}`}>Protolang</NavLink>
-        {' '}
+        <Logo to={`/${langId}`} />
         <NavLink to={`/${langId}/lessons`}>Lessons</NavLink>
-        {' '}
         <NavLink to={`/${langId}/practice`}>Practice</NavLink>
-        {' '}
         <DropdownNavMenu trigger="More...">
           <NavLink to={`/${langId}/resources`}>Resources</NavLink>
           <br />
@@ -141,7 +139,6 @@ export default ({children}) => {
       </nav>
       <div>
         <SearchBox />
-        {' '}
         <DropdownNavMenu trigger={currentLanguage?.flag}>
           {userLanguages?.map( userLanguage => {
             const { id, code, name_en } = userLanguage
@@ -154,7 +151,6 @@ export default ({children}) => {
           <br />
           <Link to={`/languages`}>+ Learn another language</Link>
         </DropdownNavMenu>
-        {' '}
         <AccountMenu />
       </div>
     </Header>

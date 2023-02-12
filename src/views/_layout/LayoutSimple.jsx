@@ -5,6 +5,7 @@ import DropdownNavMenu from '@/styles/DropdownNavMenu'
 import AccountMenu from '@/views/_layout/AccountMenu'
 import Footer from '@/views/_layout/Footer'
 import { HeaderFooterLayoutWrapper, Header, Main } from '@/styles/Layout'
+import Logo from './Logo'
 
 export default ({children}) => {
   const { currentLanguage, userLanguages } = useLanguage()
@@ -13,7 +14,7 @@ export default ({children}) => {
 
     <Header>
       <nav>
-        <NavLink to={`/`}>Protolang</NavLink>
+        <Logo to="/" />
       </nav>
       <div>
         {userLanguages?.length > 0 && currentLanguage?.id && <DropdownNavMenu trigger={currentLanguage?.flag}>

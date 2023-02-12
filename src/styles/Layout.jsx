@@ -12,6 +12,12 @@ export const Header = styled.header`
   padding: var(--leading) var(--gutter);
   border-bottom: 1px solid;
   margin: 0 0 1rem;
+
+  & > * {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+  }
 `
 export const Main = styled.main`
   padding: var(--leading) var(--gutter);

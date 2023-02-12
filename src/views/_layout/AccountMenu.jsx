@@ -9,7 +9,6 @@ export default () => {
   return <>
     <FeedbackForm />
 
-    <div style={{width: '1rem', display: 'inline-block'}} />
     {
       user?.id ?
       <>
