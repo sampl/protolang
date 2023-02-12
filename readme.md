@@ -2,10 +2,15 @@
 
 [Protolang](https://protolang.com/about) is an online language-learning website focused supporting multiple learning styles.
 
-Do you speak multiple languages, and/or do you have experience teaching languages? [Help us develop our courses](contributing.md)
+```md
+⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️
+WARNING: extremely early alpha software
+Very unstable and incomplete, use at your own risk
+```
 
-⚠️⚠️⚠️ **Warning:** extremely early alpha software ⚠️⚠️⚠️
-*Very unstable and incomplete*, use at your own risk
+## Contribute
+
+👉👉👉 Help wanted! Do you speak multiple languages? Do you have experience teaching a language? Or are you just interested in [Help us develop our free, open source language courses](contributing.md)
 
 ## Features
 
@@ -20,30 +25,24 @@ Do you speak multiple languages, and/or do you have experience teaching language
 - **👨‍👩‍👧‍👦 Community** - (coming soon) practice with other language learners from around the world
 - **🌍 Resource library** - (coming soon) other apps to round out your knowledge, ranked by our community
 
-## Under the hood
+## Docs
 
-- Protolang is a frontend-heavy [React](https://reactjs.org/) app with [React Router](https://reactrouter.com/en/main), [Radix UI](https://www.radix-ui.com/), [Remark](https://remark.js.org/), and [Styled Components](https://styled-components.com/) (see below for planned architecture updates)
-- Built with [Vite](https://vitejs.dev/), hosted on [Vercel](https://vercel.com/dashboard)
-- Text-to-speech and speech-to-text via [browser Web Speech APIs](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API)
-- Backend (database, auth) is [Supabase](https://supabase.com/) (Postgres platform as a service)
-- Dictionaries and pronunciation guides from [Wiktionary](https://en.wiktionary.org/) via [wiktextract](https://github.com/tatuylonen/wiktextract)
-- Translations with [Argos Translate](https://github.com/argosopentech/argos-translate/) via [LibreTranslate](https://libretranslate.com/)
+💻 [Developer documentation](docs/readme.md)
 
-## 💻 Docs
+## Community
 
-📝 [Developer documentation](docs/readme.md)
+- 👨‍👩‍👧‍👦 Forum coming soon - For feature requests, general discussion, etc
+- 🐛 [Github issues](https://github.com/sampl/protolang/issues) (coming soon) - Reporting bugs
+- ✉️ [Email](mailto:sam@directedworks.com)
 
-## 👨‍👩‍👧‍👦 Community
+## Thank yous
 
-- 💡 [Github discussions](https://github.com/sampl/protolang/discussions) (coming soon) - For feature requests, general discussion, etc
-- 🐞 [Github issues](https://github.com/sampl/protolang/issues) (coming soon) - Reporting bugs
-- ✉️ [Email](mailto:sam@directedworks.com) - General inquires
+This project would not be possible without:
 
-## 🙌 Contribute
+- [Wiktionary](https://en.wiktionary.org/) (via [wiktextract](https://github.com/tatuylonen/wiktextract)) for word definitions
+- [Argos Translate](https://github.com/argosopentech/argos-translate/) (via [LibreTranslate](https://libretranslate.com/)) for translations
+- The open source software under the hood: [React](https://reactjs.org/), [React Router](https://reactrouter.com/en/main), [Radix UI](https://www.radix-ui.com/), [Remark](https://remark.js.org/), [Styled Components](https://styled-components.com/), [Vite](https://vitejs.dev/), [Supabase](https://supabase.com/)
 
-Help wanted! [Learn how you can create lessons, submit features](contributing.md), or [sponsor](https://protolang.com/sponsor).
+## License
 
-## ⚖️ License
-
-- Web app is [GPL](license.txt)
-- Lesson content is [Creative Commons](language/license.txt)
+The Protolang web app (this repo) is licensed under the [GPL](license.txt). The [Protolang website](https://protolang.com/it/lessons) also contains community-contributed lessons, which are available to download and licensed under the Creative Commons (license coming soon).
