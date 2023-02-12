@@ -1,26 +1,26 @@
+import { useParams } from 'react-router-dom'
 import { useState } from 'react'
 
 import { supabase, useSupabaseQuery } from '@/db/supabase'
-import { useLanguage } from '@/_state/language'
 import Card from '@/views/practice/Card'
 import { TwoColumns } from '@/styles/Layout'
 import AttemptsList from './AttemptsList'
 import DailyProgress from './DailyProgress'
 
 export default () => {
-  const { currentLanguage } = useLanguage()
+  const { langId } = useParams()
 
   let lessonsQuery = supabase
     .from('lessons')
     .select()
-    .eq('language', currentLanguage.id)
-  const [lessons, lessonsLoading, lessonsError] = useSupabaseQuery(lessonsQuery, [currentLanguage.id])
+    .eq('language', langId)
+  const [lessons, lessonsLoading, lessonsError] = useSupabaseQuery(lessonsQuery, [langId])
 
   let phrasesQuery = supabase
     .from('phrases')
     .select()
-    .eq('language', currentLanguage.id)
-  const [phrases, phrasesLoading, phrasesError] = useSupabaseQuery(phrasesQuery, [currentLanguage.id])
+    .eq('language', langId)
+  const [phrases, phrasesLoading, phrasesError] = useSupabaseQuery(phrasesQuery, [langId])
 
   const [phraseSource, setPhraseSource] = useState('')
   const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0)

@@ -1,18 +1,16 @@
 import { Link, useParams } from 'react-router-dom'
 
 import { supabase, useSupabaseQuery } from '@/db/supabase'
-import { useLanguage } from '@/_state/language'
 
 export default () => {
 
-  const { currentLanguage } = useLanguage()
   const { langId } = useParams()
 
   let query = supabase
     .from('media')
     .select()
-    .eq('language', currentLanguage.id)
-  const [media, loading, error] = useSupabaseQuery(query, [currentLanguage.id])
+    .eq('language', langId)
+  const [media, loading, error] = useSupabaseQuery(query, [langId])
 
   return <>
     <h1>Media</h1>

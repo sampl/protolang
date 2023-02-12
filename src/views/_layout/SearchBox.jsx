@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components/macro'
-import { Link } from 'react-router-dom'
 
 import { useLanguage } from '@/_state/language'
 // import {supabaseDictionaries} from '@/_util/supabaseClient'

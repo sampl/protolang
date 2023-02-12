@@ -5,17 +5,14 @@ import { Link } from 'react-router-dom'
 import MnemonicsList from './MnemonicsList'
 import SpeakWord from './SpeakWord'
 import Ngram from './Ngram'
-import { useLanguage } from '@/_state/language'
 import { TwoColumns } from '@/styles/Layout'
 
 export default () => {
-  const { wordString } = useParams()
+  const { langId, wordString } = useParams()
   const wordName = decodeURIComponent(wordString)
 
-  const { currentLanguage } = useLanguage()
-
   let query = supabaseDictionaries
-    .from(currentLanguage.id)
+    .from(langId)
     .select()
     .eq('word', wordName)
     .single()
@@ -57,7 +54,7 @@ export default () => {
             <h2>Forms</h2>
             {forms?.map( f => {
               return <span key={f.form}>
-                <Link to={`/${currentLanguage.id}/dictionary/${f.form}`}>{f.form}</Link>
+                <Link to={`/${langId}/dictionary/${f.form}`}>{f.form}</Link>
                 {' '}
               </span>
             })}
@@ -72,7 +69,7 @@ export default () => {
           </div>
           <div>
             <a
-              href={`https://translate.google.com/?sl=${currentLanguage.id}&tl=en&text=${word.word}&op=translate`}
+              href={`https://translate.google.com/?sl=${langId}&tl=en&text=${word.word}&op=translate`}
               target="_blank"
             >
               Open in Google Translate

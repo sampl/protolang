@@ -1,11 +1,11 @@
+import { useParams } from 'react-router-dom'
 import JSZip from 'jszip'
 import { saveAs } from 'file-saver'
 
-import { useLanguage } from '@/_state/language'
 import { supabase } from '@/db/supabase'
 
 export default () => {
-  const { currentLanguage } = useLanguage()
+  const { langId } = useParams()
 
   const downloadAll = async () => {
 
@@ -14,7 +14,7 @@ export default () => {
     const { data: lessons, error } = await supabase
       .from('lessons')
       .select()
-      .eq('language', currentLanguage.id)
+      .eq('language', langId)
     
     if (error) {
       alert('Sorry, could not download lessons right now. Try again later?')
@@ -37,7 +37,7 @@ export default () => {
     
     // save file
     console.log('saving lessonFiles')
-    saveAs(zipFile, `Protolang lessons (${currentLanguage.id.toUpperCase()}).zip`)
+    saveAs(zipFile, `Protolang lessons (${langId.toUpperCase()}).zip`)
   }
 
   return <div>

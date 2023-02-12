@@ -2,19 +2,17 @@ import { Link, useParams } from 'react-router-dom'
 import styled from 'styled-components/macro'
 
 import { supabase, useSupabaseQuery } from '@/db/supabase'
-import { useLanguage } from '@/_state/language'
 import { TwoColumns } from '@/styles/Layout'
 import LessonsDownload from './LessonsDownload'
 
 export default () => {
-  const { currentLanguage } = useLanguage()
   const { langId } = useParams()
 
   let query = supabase
     .from('lessons')
     .select()
-    .eq('language', currentLanguage.id)
-  const [lessons, loading, error] = useSupabaseQuery(query, [currentLanguage.id])
+    .eq('language', langId)
+  const [lessons, loading, error] = useSupabaseQuery(query, [langId])
 
   return <>
     <h1>Lessons</h1>

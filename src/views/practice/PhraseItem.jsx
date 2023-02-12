@@ -5,14 +5,12 @@ import { BreadcrumbItem, BreadcrumbSeparator, BreadcrumbWrapper } from '@/styles
 // import AttemptsList from './AttemptsList'
 import SpeakWord from '../dictionary/SpeakWord'
 
-import { useLanguage } from '@/_state/language'
 import PhraseScore from './PhraseScore'
 import Definable from '../lessons/Definable'
 
 export default () => {
-  const { phraseId } = useParams()
+  const { langId, phraseId } = useParams()
   // const phraseIdDecoded = decodeURIComponent(phraseId)
-  const { currentLanguage } = useLanguage()
 
   let query = supabase
     .from('phrases')
@@ -23,9 +21,9 @@ export default () => {
 
   return <>
     <BreadcrumbWrapper>
-      <BreadcrumbItem to={`/${currentLanguage.id}/practice`}>Practice</BreadcrumbItem>
+      <BreadcrumbItem to={`/${langId}/practice`}>Practice</BreadcrumbItem>
       <BreadcrumbSeparator />
-      <BreadcrumbItem to={`/${currentLanguage.id}/practice/${phrase?.id}`}>{phrase?.name}</BreadcrumbItem>
+      <BreadcrumbItem to={`/${langId}/practice/${phrase?.id}`}>{phrase?.name}</BreadcrumbItem>
     </BreadcrumbWrapper>
 
     {
