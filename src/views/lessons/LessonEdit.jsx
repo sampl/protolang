@@ -9,7 +9,7 @@ import { TwoColumns } from '@/styles/Layout'
 
 export default () => {
   const { user } = useUser()
-  const { lang: urlLang, slug } = useParams()
+  const { langId, slug } = useParams()
 
   let query = supabase
     .from('lessons')
@@ -50,7 +50,7 @@ export default () => {
         throw error
       }
       alert('Saved!')
-      navigate(`/${urlLang}/lessons/${slug}`)
+      navigate(`/${langId}/lessons/${slug}`)
     } catch (error) {
       alert(error.message)
     } finally {
@@ -70,7 +70,7 @@ export default () => {
 
   return <>
     <h2>Edit lesson</h2>
-    <Link to={`/${urlLang}/lessons/${lesson?.slug}`}>View live</Link>
+    <Link to={`/${langId}/lessons/${lesson?.slug}`}>View live</Link>
     <hr />
     <TwoColumns>
       <form onSubmit={submit}>

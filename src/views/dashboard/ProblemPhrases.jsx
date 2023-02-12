@@ -5,7 +5,7 @@ import { Link, useParams } from 'react-router-dom'
 export default () => {
 
   const { user } = useUser()
-  const { lang: urlLang } = useParams()
+  const { langId } = useParams()
 
   let query = supabase
     .from('user_phrase_scores')
@@ -28,7 +28,7 @@ export default () => {
       (!phraseScores || phraseScores.length <= 0) ? 'no problem phrases!' :
       phraseScores?.map(phraseScore => {
         return <div key={phraseScore.phrase.id}>
-          <Link to={`/${urlLang}/practice/${phraseScore.phrase.id}`}>{phraseScore.phrase.name}</Link>
+          <Link to={`/${langId}/practice/${phraseScore.phrase.id}`}>{phraseScore.phrase.name}</Link>
           {' - '}
           {Math.round(phraseScore.percent_correct * 100)}% correct
         </div>

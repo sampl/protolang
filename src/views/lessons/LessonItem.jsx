@@ -7,7 +7,7 @@ import LessonContent from './LessonContent'
 import { TwoColumns } from '@/styles/Layout'
 
 export default () => {
-  const { slug, lang: urlLang } = useParams()
+  const { slug, langId } = useParams()
 
   let query = supabase
     .from('lessons')
@@ -18,9 +18,9 @@ export default () => {
 
   return <>
     <BreadcrumbWrapper>
-      <BreadcrumbItem to={`/${urlLang}/lessons`}>Lessons</BreadcrumbItem>
+      <BreadcrumbItem to={`/${langId}/lessons`}>Lessons</BreadcrumbItem>
       <BreadcrumbSeparator />
-      <BreadcrumbItem to={`/${urlLang}/lessons/${slug}`}>{lesson?.title_en}</BreadcrumbItem>
+      <BreadcrumbItem to={`/${langId}/lessons/${slug}`}>{lesson?.title_en}</BreadcrumbItem>
     </BreadcrumbWrapper>
 
     {error && error.message}
@@ -34,7 +34,7 @@ export default () => {
         <LessonContent content={lesson?.content_en || ''} />
       </div>
       <div>
-        <Link to={`/${urlLang}/lessons/${lesson?.slug}/edit`}>Edit lesson</Link>
+        <Link to={`/${langId}/lessons/${lesson?.slug}/edit`}>Edit lesson</Link>
         <br />
         Created {lesson?.created_at}
         <br />

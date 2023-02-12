@@ -6,7 +6,7 @@ import { supabase } from '@/db/supabase'
 
 export default () => {
   const { user } = useUser()
-  const { lang: urlLang } = useParams()
+  const { langId } = useParams()
 
   const [url, setUrl] = useState('')
   const [saving, setSaving] = useState(false)
@@ -17,7 +17,7 @@ export default () => {
       setSaving(true)
 
       const newData = {
-        language: urlLang,
+        language: langId,
         url,
         created_by: user.id,
       }

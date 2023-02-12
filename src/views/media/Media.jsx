@@ -6,7 +6,7 @@ import { useLanguage } from '@/_state/language'
 export default () => {
 
   const { currentLanguage } = useLanguage()
-  const { lang: urlLang } = useParams()
+  const { langId } = useParams()
 
   let query = supabase
     .from('media')
@@ -16,7 +16,7 @@ export default () => {
 
   return <>
     <h1>Media</h1>
-    <Link to={`/${urlLang}/media/new`}>+ Add media item</Link>
+    <Link to={`/${langId}/media/new`}>+ Add media item</Link>
 
     <hr />
 
@@ -30,10 +30,10 @@ export default () => {
 }
 
 const ResourceListItem = ({mediaItem}) => {
-  const { lang: urlLang } = useParams()
+  const { langId } = useParams()
 
   return <div>
-    <Link to={`/${urlLang}/media/${mediaItem.id}`}>
+    <Link to={`/${langId}/media/${mediaItem.id}`}>
       {mediaItem.url || 'Unknown url'}
     </Link>
   </div>

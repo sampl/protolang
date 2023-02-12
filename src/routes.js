@@ -132,77 +132,77 @@ export default [
 
   // Normal language routes
   {
-    path: `/:lang/resources`,
+    path: `/:langId/resources`,
     component: Resources,
     layout: LayoutLanguage,
   },
   {
-    path: `/:lang/resources/new`,
+    path: `/:langId/resources/new`,
     component: ResourceNew,
     layout: LayoutLanguage,
   },
   {
-    path: `/:lang/resources/:id`,
+    path: `/:langId/resources/:id`,
     component: ResourceItem,
     layout: LayoutLanguage,
   },
   {
-    path: `/:lang/media`,
+    path: `/:langId/media`,
     component: Media,
     layout: LayoutLanguage,
   },
   {
-    path: `/:lang/media/new`,
+    path: `/:langId/media/new`,
     component: MediaNew,
     layout: LayoutLanguage,
   },
   {
-    path: `/:lang/media/:id`,
+    path: `/:langId/media/:id`,
     component: MediaItem,
     layout: LayoutLanguage,
   },
   {
-    path: `/:lang/lessons`,
+    path: `/:langId/lessons`,
     component: Lessons,
     layout: LayoutLanguage,
   },
   {
-    path: `/:lang/lessons/new`,
+    path: `/:langId/lessons/new`,
     component: LessonNew,
     layout: LayoutLanguage,
   },
   {
-    path: `/:lang/lessons/:slug/edit`,
+    path: `/:langId/lessons/:slug/edit`,
     component: LessonEdit,
     layout: LayoutLanguage,
   },
   {
-    path: `/:lang/lessons/:slug`,
+    path: `/:langId/lessons/:slug`,
     component: LessonItem,
     layout: LayoutLanguage,
   },
   {
-    path: `/:lang/practice`,
+    path: `/:langId/practice`,
     component: Practice,
     layout: LayoutLanguage,
   },
   {
-    path: `/:lang/practice/:phraseId`,
+    path: `/:langId/practice/:phraseId`,
     component: PhraseItem,
     layout: LayoutLanguage,
   },
   {
-    path: `/:lang/dictionary`,
+    path: `/:langId/dictionary`,
     component: Dictionary,
     layout: LayoutLanguage,
   },
   {
-    path: `/:lang/dictionary/:wordString`,
+    path: `/:langId/dictionary/:wordString`,
     component: DictionaryItem,
     layout: LayoutLanguage,
   },
   {
-    path: `/:lang`,
+    path: `/:langId`,
     component: Dashboard,
     layout: LayoutLanguage,
   },

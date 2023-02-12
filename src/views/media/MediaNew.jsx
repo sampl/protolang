@@ -38,7 +38,7 @@ const MEDIA_TYPES = [
 
 export default () => {
   const { user } = useUser()
-  const { lang: urlLang } = useParams()
+  const { langId } = useParams()
 
   const [name, setName] = useState('')
   const [url, setUrl] = useState('')
@@ -52,7 +52,7 @@ export default () => {
       setSaving(true)
 
       const newData = {
-        language: urlLang,
+        language: langId,
         name,
         url,
         type,

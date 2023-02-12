@@ -6,7 +6,7 @@ import { TwoColumns } from '@/styles/Layout'
 import Card from '@/styles/Card'
 
 export default () => {
-  const { lang: urlLang } = useParams()
+  const { langId } = useParams()
   const { currentLanguage } = useLanguage()
 
   let query = supabase
@@ -28,10 +28,10 @@ export default () => {
       loading ? 'loading...' :
       <TwoColumns>
         <Card>
-          { nextLesson && <Link to={`/${urlLang}/lessons/${nextLesson.slug}`}>Lesson: {nextLesson.title_en} →</Link> }
+          { nextLesson && <Link to={`/${langId}/lessons/${nextLesson.slug}`}>Lesson: {nextLesson.title_en} →</Link> }
         </Card>
         <Card>
-          <Link to={`/${urlLang}/practice`}>Practice →</Link>
+          <Link to={`/${langId}/practice`}>Practice →</Link>
         </Card>
       </TwoColumns>
     }

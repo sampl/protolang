@@ -8,7 +8,7 @@ import LessonsDownload from './LessonsDownload'
 
 export default () => {
   const { currentLanguage } = useLanguage()
-  const { lang: urlLang } = useParams()
+  const { langId } = useParams()
 
   let query = supabase
     .from('lessons')
@@ -18,7 +18,7 @@ export default () => {
 
   return <>
     <BreadcrumbWrapper>
-      <BreadcrumbItem to={`/${urlLang}/lessons`}>Lessons</BreadcrumbItem>
+      <BreadcrumbItem to={`/${langId}/lessons`}>Lessons</BreadcrumbItem>
     </BreadcrumbWrapper>
 
     <h1>Lessons</h1>
@@ -31,7 +31,7 @@ export default () => {
         </div>
         <div>
           <p>{lessons?.length || 0} lesson{lessons?.length !== 1 && 's'}</p>
-          <Link to={`/${urlLang}/lessons/new`}>+ Add lesson</Link>
+          <Link to={`/${langId}/lessons/new`}>+ Add lesson</Link>
           <LessonsDownload />
         </div>
       </TwoColumns>
@@ -40,9 +40,9 @@ export default () => {
 }
 
 const LessonListItem = ({lesson}) => {
-  const { lang: urlLang } = useParams()
+  const { langId } = useParams()
   return <div>
-    <Link to={`/${urlLang}/lessons/${lesson.slug}`}>
+    <Link to={`/${langId}/lessons/${lesson.slug}`}>
       {lesson.title_en || 'Unknown'}
     </Link>
   </div>

@@ -6,7 +6,7 @@ import { useLanguage } from '@/_state/language'
 export default () => {
 
   const { currentLanguage } = useLanguage()
-  const { lang: urlLang } = useParams()
+  const { langId } = useParams()
 
   let query = supabase
     .from('resources')
@@ -16,7 +16,7 @@ export default () => {
 
   return <>
     <h1>Resources</h1>
-    <Link to={`/${urlLang}/resources/new`}>+ Add resource</Link>
+    <Link to={`/${langId}/resources/new`}>+ Add resource</Link>
 
     <hr />
 
@@ -30,10 +30,10 @@ export default () => {
 }
 
 const ResourceListItem = ({resource}) => {
-  const { lang: urlLang } = useParams()
+  const { langId } = useParams()
 
   return <div>
-    <Link to={`/${urlLang}/resources/${resource.id}`}>
+    <Link to={`/${langId}/resources/${resource.id}`}>
       {resource.url || 'Unknown url'}
     </Link>
   </div>

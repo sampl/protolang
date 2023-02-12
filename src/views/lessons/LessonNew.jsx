@@ -6,7 +6,7 @@ import { supabase } from '@/db/supabase'
 
 export default () => {
   const { user } = useUser()
-  const { lang: urlLang } = useParams()
+  const { langId } = useParams()
   const navigate = useNavigate()
 
   const [name, setName] = useState('')
@@ -20,7 +20,7 @@ export default () => {
       setSaving(true)
 
       const newData = {
-        language: urlLang,
+        language: langId,
         title_en: name,
         slug,
         is_public: false,
@@ -33,7 +33,7 @@ export default () => {
         throw error
       }
       console.log('saved')
-      navigate(`/${urlLang}/lessons/${slug}/edit`)
+      navigate(`/${langId}/lessons/${slug}/edit`)
     } catch (error) {
       alert(error.message)
     } finally {

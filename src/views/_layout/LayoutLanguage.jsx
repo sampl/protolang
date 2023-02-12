@@ -17,19 +17,19 @@ import Signup from '../account/Signup'
 
 export default ({children}) => {
   const { currentLanguage, userLanguages, loading, error, setCurrentLanguageId } = useLanguage()
-  const { lang: urlLang } = useParams()
+  const { langId } = useParams()
   const { user, isBetaUser } = useUser()
   const navigate = useNavigate()
 
-  useEffect( () => setCurrentLanguageId(urlLang), [urlLang])
+  useEffect( () => setCurrentLanguageId(langId), [langId])
 
-  if (!urlLang) {
+  if (!langId) {
     return <LayoutSimple>
       <LanguagePicker />
     </LayoutSimple>
   }
   // somehow we got a bad link and undefined ended up in the url bar as a string
-  if (urlLang === 'undefined') {
+  if (langId === 'undefined') {
     navigate('/')
   }
   if (error) {
@@ -122,18 +122,18 @@ export default ({children}) => {
 
     <Header>
       <nav>
-        <NavLink to={`/${urlLang}`}>Protolang</NavLink>
+        <NavLink to={`/${langId}`}>Protolang</NavLink>
         {' '}
-        <NavLink to={`/${urlLang}/lessons`}>Lessons</NavLink>
+        <NavLink to={`/${langId}/lessons`}>Lessons</NavLink>
         {' '}
-        <NavLink to={`/${urlLang}/practice`}>Practice</NavLink>
+        <NavLink to={`/${langId}/practice`}>Practice</NavLink>
         {' '}
         <DropdownNavMenu trigger="More...">
-          <NavLink to={`/${urlLang}/resources`}>Resources</NavLink>
+          <NavLink to={`/${langId}/resources`}>Resources</NavLink>
           <br />
-          <NavLink to={`/${urlLang}/media`}>Media</NavLink>
+          <NavLink to={`/${langId}/media`}>Media</NavLink>
           <br />
-          <NavLink to={`/${urlLang}/dictionary`}>Dictionary (coming soon)</NavLink>
+          <NavLink to={`/${langId}/dictionary`}>Dictionary (coming soon)</NavLink>
           <br />
           <div>Chat (coming soon)</div>
           <div>Community (coming soon)</div>
