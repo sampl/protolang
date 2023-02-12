@@ -110,8 +110,8 @@ export default ({ phrase, cardQuestionType, cardAnswerType, direction, next }) =
       cardState === "incorrect" ? <>
         Whoops not quite. The answer is "{correctAnswer}"
         <Link to={`/${currentLanguage.id}/practice/${phrase?.id}`}>go to phrase</Link>
-        <Button onClick={() => setIsReportingError(true)}>Report error</Button>
         <Button autoFocus onClick={next}>Next</Button>
+        <div onClick={() => setIsReportingError(true)}>Report error</div>
       </>
       :
       null
@@ -121,6 +121,9 @@ export default ({ phrase, cardQuestionType, cardAnswerType, direction, next }) =
       isReportingError && 
       <ReportError phrase={phrase} close={() => setIsReportingError(false)} />
     }
-    <br /><span onClick={next}>skip</span>
+    {
+      (cardState === "waiting" || cardState === "try_again") && 
+      <div onClick={next}>skip</div>
+    }
   </Card>
 }
