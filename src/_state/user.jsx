@@ -1,40 +1,40 @@
 import { createContext, useState, useEffect, useContext } from 'react'
 
-import { supabase } from '@/db/supabase'
+import { supabase, useSupabaseQuery } from '@/db/supabase'
 
 const Context = createContext()
 
 export default ({ children }) => {
   const [user, setUser] = useState(null)
+  const [userError, setUserError] = useState(null)
+  const [userLoading, setUserLoading] = useState(true)
 
-  const isBetaUser = !!localStorage.getItem('protolang_is_beta_user')
+  const getAuthUser = async () => {
+    setUserLoading(true)
+    const { data, error } = await supabase.auth.getSession()
+    const user = data?.session?.user
+    setUser(user)
+    setUserError(error)
+    setUserLoading(false)
+  }
 
   useEffect(() => {
-    const getUserProfile = async () => {
-      const { data, error } = await supabase.auth.getSession()
-      const user = data?.session?.user
-      // const { session: { user } } = data
-
-      if (user) {
-        const { data: profile } = await supabase
-          .from('profiles')
-          .select()
-          .eq('id', user.id)
-          .single()
-
-        setUser({
-          ...user,
-          ...profile,
-        })
-      }
-    }
-
-    getUserProfile()
-
-    supabase.auth.onAuthStateChange(() => {
-      getUserProfile()
-    })
+    getAuthUser()
+    supabase.auth.onAuthStateChange(getAuthUser)
+    // TODO - return function that unsubscribes
   }, [])
+
+  let query = supabase
+    .from('profiles')
+    .select()
+    .eq('id', user?.id)
+    .single()
+  const [profile, profileLoading, profileError] = useSupabaseQuery(query, [user?.id], !user)
+
+  const fullUser = user ? {
+    ...user,
+    ...profile,
+  } : null
 
   const login = async (email) => {
     try {
@@ -52,10 +52,12 @@ export default ({ children }) => {
   }
 
   const exposed = {
-    user,
+    user: fullUser,
+    loading: userLoading || profileLoading,
+    error: userError || profileError,
     login,
     logout,
-    isBetaUser,
+    isBetaUser: !!localStorage.getItem('protolang_is_beta_user'),
   }
 
   return <Context.Provider value={exposed}>
