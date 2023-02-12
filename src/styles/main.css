@@ -60,6 +60,13 @@ td {
   padding: 0 1rem 0 0;
 }
 
+blockquote {
+  margin: 0 0 1rem;
+  padding: 0 1rem;
+  font-style: italic;
+  /* border-left: 1px solid; */
+}
+
 /* forms */
 
 a {

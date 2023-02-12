@@ -1,4 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
+import styled from 'styled-components/macro'
 
 import { supabase, useSupabaseQuery } from '@/db/supabase'
 import { useLanguage } from '@/_state/language'
@@ -21,9 +22,15 @@ export default () => {
       error ? error.message :
       loading ? 'loading...' :
       <TwoColumns cols="5fr 2fr">
-        <div>
-          {(!lessons || lessons.length) <= 0 ? 'no lessons' : lessons?.map(lesson => <LessonListItem key={lesson.slug} lesson={lesson} />)}
-        </div>
+        <LessonListWrapper>
+          {
+            (!lessons || lessons.length) <= 0 ? 'no lessons' : 
+            lessons?.map(lesson => {
+              return <LessonListItemWrapper key={lesson.slug} to={`/${langId}/lessons/${lesson.slug}`}>
+                {lesson.title_en || 'Unknown'}
+              </LessonListItemWrapper>
+            })}
+        </LessonListWrapper>
         <div>
           <p>{lessons?.length || 0} lesson{lessons?.length !== 1 && 's'}</p>
           <Link to={`/${langId}/lessons/new`}>+ Add lesson</Link>
@@ -34,11 +41,15 @@ export default () => {
   </>
 }
 
-const LessonListItem = ({lesson}) => {
-  const { langId } = useParams()
-  return <div>
-    <Link to={`/${langId}/lessons/${lesson.slug}`}>
-      {lesson.title_en || 'Unknown'}
-    </Link>
-  </div>
-}
+const LessonListWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  /* gap: 2rem 1rem; */
+  /* grid-template-columns: 1fr 1fr; */
+`
+const LessonListItemWrapper = styled(Link)`
+  /* border: 1px solid; */
+  /* padding: 1rem; */
+  /* text-decoration: none; */
+  /* min-height: 100px; */
+`

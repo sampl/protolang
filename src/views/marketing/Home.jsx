@@ -16,9 +16,7 @@ export default () => {
 
     <TwoColumns cols="2fr 1fr">
       <div>
-        <blockquote>
-          "It's like Duolingo for adults" - Joe Flateau
-        </blockquote>
+        <blockquote>"It's like Duolingo for adults" - Joe Flateau</blockquote>
 
         <p>Protolang includes:</p>
         <ul>

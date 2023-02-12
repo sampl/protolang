@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom'
 import { BreadcrumbItem, BreadcrumbSeparator, BreadcrumbWrapper } from '@/styles/Breadcrumbs'
 import { Link } from 'react-router-dom'
+import moment from 'moment'
 
 import { supabase, useSupabaseQuery } from '@/db/supabase'
 import LessonContent from './LessonContent'
@@ -29,16 +30,16 @@ export default () => {
     <h1>{lesson?.title_en}</h1>
     <hr />
 
-    <TwoColumns>
+    <TwoColumns cols="2fr 1fr">
       <div>
         <LessonContent content={lesson?.content_en || ''} />
       </div>
       <div>
+        Created {moment(lesson?.created_at).format("MMMM Do, YYYY")}
+        <br />
+        Last edit {moment(lesson?.updated_at).format("MMMM Do, YYYY")}
+        <br />
         <Link to={`/${langId}/lessons/${lesson?.slug}/edit`}>Edit lesson</Link>
-        <br />
-        Created {lesson?.created_at}
-        <br />
-        Last edit {lesson?.updated_at}
       </div>
     </TwoColumns>
   </>
