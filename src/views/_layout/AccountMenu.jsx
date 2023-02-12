@@ -11,7 +11,7 @@ export default () => {
 
     <div style={{width: '1rem', display: 'inline-block'}} />
     {
-      user ?
+      user?.id ?
       <>
         <Link to="/settings">Account</Link>
       </>

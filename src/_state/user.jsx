@@ -12,7 +12,8 @@ export default ({ children }) => {
   useEffect(() => {
     const getUserProfile = async () => {
       const { data, error } = await supabase.auth.getSession()
-      const { session: { user } } = data
+      const user = data?.session?.user
+      // const { session: { user } } = data
 
       if (user) {
         const { data: profile } = await supabase
