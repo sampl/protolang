@@ -2,7 +2,6 @@ import { Link, useParams } from 'react-router-dom'
 
 import { supabase, useSupabaseQuery } from '@/db/supabase'
 import { useLanguage } from '@/_state/language'
-import { BreadcrumbItem, BreadcrumbWrapper } from '@/styles/Breadcrumbs'
 import { TwoColumns } from '@/styles/Layout'
 import LessonsDownload from './LessonsDownload'
 
@@ -17,10 +16,6 @@ export default () => {
   const [lessons, loading, error] = useSupabaseQuery(query, [currentLanguage.id])
 
   return <>
-    <BreadcrumbWrapper>
-      <BreadcrumbItem to={`/${langId}/lessons`}>Lessons</BreadcrumbItem>
-    </BreadcrumbWrapper>
-
     <h1>Lessons</h1>
     {
       error ? error.message :
