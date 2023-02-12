@@ -39,5 +39,6 @@ const SearchForm = styled.form`
   display: inline-block;
 `
 const SearchInput = styled.input`
+  margin: 0px;
   border: 1px solid;
 `
