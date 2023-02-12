@@ -1,11 +1,11 @@
 import styled from 'styled-components/macro'
 import * as Popover from '@radix-ui/react-popover'
 
-export default ({ trigger, children }) => {
+export default ({ trigger, align = "start", children }) => {
   return <Popover.Root>
     <Popover.Trigger>{trigger}</Popover.Trigger>
-    <DropdownContentWrapper>
-      <Popover.Arrow />
+    <DropdownContentWrapper align={align}>
+      {/* <Popover.Arrow /> */}
       {/* <Popover.Close>✖️</Popover.Close> */}
       {children}
     </DropdownContentWrapper>

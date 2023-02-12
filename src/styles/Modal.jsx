@@ -26,6 +26,7 @@ const ModalWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 100;
 `
 const ModalOverlay = styled(Dialog.Overlay)`
   background: hsla(0, 0%, 30%, .5);
@@ -34,9 +35,10 @@ const ModalOverlay = styled(Dialog.Overlay)`
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 100;
 `
 const ModalContentWrapper = styled(Dialog.Content)`
-  z-index: 1;
+  z-index: 200;
   position: absolute;
   background: white;
   padding: 1rem;
