@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from 'react'
 import { useUser } from '@/_state/user'
-import { useSelect, useFilter } from 'react-supabase'
+import { supabase, useSupabaseQuery } from '@/db/supabase'
 
 const Context = createContext()
 
@@ -9,20 +9,22 @@ export default ({ children }) => {
 
   const [ currentLanguageId, setCurrentLanguageId ] = useState()
 
-  const [{ data: languages, error, fetching }] = useSelect('languages', {
-    columns: user?.id ? '*, user_languages(*)' : '*',
-    filter: useFilter(
-      (query) => user?.id ? query.eq('user_languages.created_by', user?.id) : query,
-      [user?.id],
-    ),
-  })
+  // TODO - don't fetch all languages when there's no user, just the relevant ones
+  // This logic is ported from the old react-supabase code, but it's weirdly inconsistent
+  let withUserQuery = supabase
+    .from('languages')
+    .select(user?.id ? '*, user_languages(*)' : '*')
+    .eq('user_languages.created_by', user?.id)
+  let withoutUserQuery = supabase
+    .from('languages')
+    .select()
+  const [languages, loading, error] = useSupabaseQuery(user?.id ? withUserQuery : withoutUserQuery, [user?.id])
 
   const userLanguages = languages?.filter(l => l.user_languages && l.user_languages.length > 0)
-
   const currentLanguage = languages?.find(l => l.id === currentLanguageId)
 
   const exposed = {
-    fetching,
+    loading,
     error,
     languages,
     userLanguages,

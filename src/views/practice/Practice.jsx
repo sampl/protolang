@@ -1,30 +1,26 @@
-import { useSelect, useFilter } from 'react-supabase'
 import { useState } from 'react'
 
+import { supabase, useSupabaseQuery } from '@/db/supabase'
 import { useLanguage } from '@/_state/language'
 import Card from '@/views/practice/Card'
 import { TwoColumns } from '@/styles/Layout'
-import { useUser } from '@/_state/user'
 import AttemptsList from './AttemptsList'
 import DailyProgress from './DailyProgress'
 
 export default () => {
   const { currentLanguage } = useLanguage()
-  const { user } = useUser()
 
-  const [{ data: lessons, lessonsError, lessonsFetching }] = useSelect('lessons', {
-    filter: useFilter(
-      (query) => query.eq('language', currentLanguage.id),
-      [currentLanguage.id],
-    ),
-  })
+  let lessonsQuery = supabase
+    .from('lessons')
+    .select()
+    .eq('language', currentLanguage.id)
+  const [lessons, lessonsLoading, lessonsError] = useSupabaseQuery(lessonsQuery, [currentLanguage.id])
 
-  const [{ data: phrases, phrasesError, phrasesFetching }] = useSelect('phrases', {
-    filter: useFilter(
-      (query) => query.eq('language', currentLanguage.id),
-      [currentLanguage.id],
-    )
-  })
+  let phrasesQuery = supabase
+    .from('phrases')
+    .select()
+    .eq('language', currentLanguage.id)
+  const [phrases, phrasesLoading, phrasesError] = useSupabaseQuery(phrasesQuery, [currentLanguage.id])
 
   const [phraseSource, setPhraseSource] = useState('')
   const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0)
@@ -46,7 +42,7 @@ export default () => {
     <div>
       {
         phrasesError ? phrasesError.message :
-        phrasesFetching ? 'loading...' :
+        phrasesLoading ? 'loading...' :
         (!phrases || phrases.length <= 0) ? 'no phrases' :
         <Card
           key={currentPhraseIndex}
@@ -72,7 +68,7 @@ export default () => {
         <optgroup label="Lessons">
           {
             !lessonsError &&
-            !lessonsFetching &&
+            !lessonsLoading &&
             lessons?.map(lesson => <option key={lesson.id} value={lesson.id}>{lesson.title_en}</option>)
           }
         </optgroup>

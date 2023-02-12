@@ -1,23 +1,21 @@
-import { useFilter, useSelect } from 'react-supabase'
 import { useParams } from 'react-router-dom'
+
+import { supabase, useSupabaseQuery } from '@/db/supabase'
 
 export default () => {
   let { id } = useParams()
 
-  const [{ data, error, fetching }] = useSelect('resources', {
-    columns: '*, resource_ratings(*)',
-    filter: useFilter(
-      (query) => query.eq('id', id),
-      [id],
-    ),
-  })
-  
-  const resource = data && data[0]
+  let query = supabase
+    .from('resources')
+    .select('*, resource_ratings(*)')
+    .eq('id', id)
+    .single()
+  const [resource, loading, error] = useSupabaseQuery(query, [id])
 
   return <>
     {
       error ? error.message :
-      fetching ? 'loading...' :
+      loading ? 'loading...' :
       !resource ? 'no resource found' :
       <>
         <h1>{resource.url}</h1>

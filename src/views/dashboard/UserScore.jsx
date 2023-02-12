@@ -1,6 +1,6 @@
-import { useSelect, useFilter } from 'react-supabase'
 import { Link } from 'react-router-dom'
 
+import { supabase, useSupabaseQuery } from '@/db/supabase'
 import { useUser } from "@/_state/user"
 import { useLanguage } from '@/_state/language'
 
@@ -9,13 +9,11 @@ export default () => {
   const { user } = useUser()
   const { currentLanguage } = useLanguage()
 
-  const [{ data, error, fetching }] = useSelect('user_scores', {
-    pause: !user,
-    filter: useFilter(
-      (query) => query.eq('created_by', user?.id),
-      [user?.id],
-    ),
-  })
+  let query = supabase
+    .from('user_scores')
+    .select()
+    .eq('created_by', user?.id)
+  const [data, loading, error] = useSupabaseQuery(query, [user?.id], !user)
 
   const score = data ? data[0]?.count : '0'
 
@@ -28,7 +26,7 @@ export default () => {
         to track your vocab score
       </> :
       error ? error.message :
-      fetching ? 'loading...' :
+      loading ? 'loading...' :
       <>
         {currentLanguage?.name_en || ''} vocabulary estimate:
         {' '}

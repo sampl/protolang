@@ -1,26 +1,23 @@
 import { useUser } from '@/_state/user'
-import { useFilter, useSelect } from 'react-supabase'
+
+import { supabase, useSupabaseQuery } from '@/db/supabase'
 
 export default ({ phrase }) => {
 
   const { user } = useUser()
 
-  const [{ data, error, fetching }] = useSelect('user_phrase_scores', {
-    pause: !user,
-    filter: useFilter(
-      (query) => query
-        .eq('phrase', phrase?.id)
-        .eq('created_by', user?.id),
-      [user?.id, phrase?.id],
-    )
-  })
-
-  const phraseScore = data && data[0]
+  let query = supabase
+    .from('user_phrase_scores')
+    .select()
+    .eq('phrase', phrase?.id)
+    .eq('created_by', user?.id)
+    .single()
+  const [phraseScore, loading, error] = useSupabaseQuery(query, [user?.id, phrase?.id], !user)
 
   if (!user) {
     return `??`
   }
-  if (fetching) {
+  if (loading) {
     return '...'
   }
   if (error) {

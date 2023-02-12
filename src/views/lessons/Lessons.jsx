@@ -1,6 +1,6 @@
-import { useSelect, useFilter } from 'react-supabase'
 import { Link, useParams } from 'react-router-dom'
 
+import { supabase, useSupabaseQuery } from '@/db/supabase'
 import { useLanguage } from '@/_state/language'
 import { BreadcrumbItem, BreadcrumbWrapper } from '@/styles/Breadcrumbs'
 import { TwoColumns } from '@/styles/Layout'
@@ -10,12 +10,11 @@ export default () => {
   const { currentLanguage } = useLanguage()
   const { lang: urlLang } = useParams()
 
-  const [{ data: lessons, error, fetching }] = useSelect('lessons', {
-    filter: useFilter(
-      (query) => query.eq('language', currentLanguage.id),
-      [currentLanguage.id],
-    ),
-  })
+  let query = supabase
+    .from('lessons')
+    .select()
+    .eq('language', currentLanguage.id)
+  const [lessons, loading, error] = useSupabaseQuery(query, [currentLanguage.id])
 
   return <>
     <BreadcrumbWrapper>
@@ -25,7 +24,7 @@ export default () => {
     <h1>Lessons</h1>
     {
       error ? error.message :
-      fetching ? 'loading...' :
+      loading ? 'loading...' :
       <TwoColumns cols="5fr 2fr">
         <div>
           {(!lessons || lessons.length) <= 0 ? 'no lessons' : lessons?.map(lesson => <LessonListItem key={lesson.slug} lesson={lesson} />)}

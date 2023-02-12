@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom'
-import { useFilter, useSelect } from 'react-supabase'
-import { Link } from 'react-router-dom'
 
+import { supabase, useSupabaseQuery } from '@/db/supabase'
 import { BreadcrumbItem, BreadcrumbSeparator, BreadcrumbWrapper } from '@/styles/Breadcrumbs'
 // import AttemptsList from './AttemptsList'
 import SpeakWord from '../dictionary/SpeakWord'
@@ -15,14 +14,12 @@ export default () => {
   // const phraseIdDecoded = decodeURIComponent(phraseId)
   const { currentLanguage } = useLanguage()
 
-  const [{ data, error, fetching }] = useSelect('phrases', {
-    filter: useFilter(
-      (query) => query.eq('id', phraseId),
-      [phraseId],
-    ),
-  })
-
-  const phrase = data && data[0]
+  let query = supabase
+    .from('phrases')
+    .select()
+    .eq('id', phraseId)
+    .single()
+  const [phrase, loading, error] = useSupabaseQuery(query, [phraseId])
 
   return <>
     <BreadcrumbWrapper>
@@ -33,7 +30,7 @@ export default () => {
 
     {
       error ? error.message :
-      fetching ? 'loading...' :
+      loading ? 'loading...' :
       !phrase ? 'Phrase not found' :
       <>
         <h1>

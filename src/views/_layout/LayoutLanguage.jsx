@@ -16,7 +16,7 @@ import SearchBox from './SearchBox'
 import Signup from '../account/Signup'
 
 export default ({children}) => {
-  const { currentLanguage, userLanguages, fetching, error, setCurrentLanguageId } = useLanguage()
+  const { currentLanguage, userLanguages, loading, error, setCurrentLanguageId } = useLanguage()
   const { lang: urlLang } = useParams()
   const { user, isBetaUser } = useUser()
   const navigate = useNavigate()
@@ -38,7 +38,7 @@ export default ({children}) => {
       <ErrorPage />
     </LayoutSimple>
   }
-  if (fetching || !currentLanguage) {
+  if (loading || !currentLanguage) {
     return <LayoutSimple>
       Loading...
     </LayoutSimple>

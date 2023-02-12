@@ -1,6 +1,6 @@
-import { useSelect, useFilter } from 'react-supabase'
 import { Link, useParams } from 'react-router-dom'
 
+import { supabase, useSupabaseQuery } from '@/db/supabase'
 import { useLanguage } from '@/_state/language'
 import { TwoColumns } from '@/styles/Layout'
 import Card from '@/styles/Card'
@@ -9,14 +9,12 @@ export default () => {
   const { lang: urlLang } = useParams()
   const { currentLanguage } = useLanguage()
 
-  const [{ data: lessons, error, fetching }] = useSelect('lessons', {
-    filter: useFilter(
-      (query) => query
-        .eq('language', currentLanguage.id)
-        .order('sort_order', { ascending: true }),
-      [currentLanguage.id],
-    ),
-  })
+  let query = supabase
+    .from('lessons')
+    .select()
+    .eq('language', currentLanguage.id)
+    .order('sort_order', { ascending: true })
+  const [lessons, loading, error] = useSupabaseQuery(query, [currentLanguage.id])
 
   // TODO - suggest lessons that aren't super complete
   // const isIncomplete = l => !l.user_lessons || l.user_lessons.length === 0 || !l.user_lessons[0].completed
@@ -27,7 +25,7 @@ export default () => {
   return <div>
     {
       error ? error.message :
-      fetching ? 'loading...' :
+      loading ? 'loading...' :
       <TwoColumns>
         <Card>
           { nextLesson && <Link to={`/${urlLang}/lessons/${nextLesson.slug}`}>Lesson: {nextLesson.title_en} →</Link> }

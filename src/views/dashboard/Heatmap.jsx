@@ -1,6 +1,6 @@
 import moment from 'moment'
-import { useSelect, useFilter } from 'react-supabase'
 
+import { supabase, useSupabaseQuery } from '@/db/supabase'
 import { HeatmapCell, HeatmapWrapper, HeatmapEmptyStateWrapper, HeatmapEmptyStateMessage } from "@/styles/Heatmap"
 import { useUser } from "@/_state/user"
 import { Link } from 'react-router-dom'
@@ -27,13 +27,11 @@ export default () => {
     }))
 
   // get activity data
-  const [{ data: dataDays, error, fetching }] = useSelect('heatmap_days', {
-    pause: !user,
-    filter: user && useFilter(
-      (query) => query.eq('created_by', user?.id),
-      [user?.id],
-    ),
-  })
+  let query = supabase
+    .from('heatmap_days')
+    .select()
+    .eq('created_by', user?.id)
+  const [dataDays, loading, error] = useSupabaseQuery(query, [user?.id], !user)
 
   // merge data with empty array
   const days = !user ? emptyDays : emptyDays.map(ed => {
@@ -47,7 +45,7 @@ export default () => {
   return <div>
     {
       error ? error.message :
-      fetching ? 'loading...' :
+      loading ? 'loading...' :
       <>
         <h3>Practice frequency</h3>
         <HeatmapWrapper padding={2}>

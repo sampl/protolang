@@ -9,3 +9,34 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 export const supabaseDictionaries = createClient(supabaseUrl, supabaseAnonKey, {
   db: { schema: 'dictionaries' }
 })
+
+// https://supabase.com/docs/reference/javascript/select
+// https://supabase.com/docs/reference/javascript/using-filters
+// https://supabase.com/docs/reference/javascript/using-modifiers
+// TODO - are dependencies and pause the same thing? Why run w/o dependencies?
+export function useSupabaseQuery(query, dependencies, pause) {
+  const [data, setData] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+
+  useEffect(() => {
+    const runQuery = async () => {
+      const { data, error } = await query
+      setLoading(false)
+      setData(data)
+      setError(error)
+    }
+    !pause && runQuery()
+    return () => {
+      setData(null)
+      setLoading(true)
+      setError(null)
+    }
+  }, dependencies || [])
+
+  return [
+    data,
+    loading,
+    error,
+  ]
+}

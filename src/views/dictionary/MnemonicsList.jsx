@@ -1,22 +1,19 @@
-import { useFilter, useSelect } from 'react-supabase'
-
+import { supabase, useSupabaseQuery } from '@/db/supabase'
 import NewMnemonic from '@/views/dictionary/NewMnemonic'
 
 export default ({ string }) => {
 
   // TODO - get with full text search?
-  const [{ data: mnemonics, error, fetching }] = useSelect('mnemonics', {
-    columns: '*, mnemonic_votes(*)',
-    filter: useFilter(
-      (query) => query.eq('target_phrase', string),
-      [string],
-    ),
-  })
+  let query = supabase
+    .from('mnemonics')
+    .select('*, mnemonic_votes(*)')
+    .eq('target_phrase', string)
+  const [mnemonics, loading, error] = useSupabaseQuery(query, [string])
 
   return <div>
     {
       error ? error.message :
-      fetching ? 'loading...' :
+      loading ? 'loading...' :
       (!mnemonics || mnemonics.length <= 0)
       ?
       'no mnemonics'

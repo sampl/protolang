@@ -1,6 +1,6 @@
-import { useSelect, useFilter } from 'react-supabase'
 import { Link, useParams } from 'react-router-dom'
 
+import { supabase, useSupabaseQuery } from '@/db/supabase'
 import { useLanguage } from '@/_state/language'
 
 export default () => {
@@ -8,12 +8,11 @@ export default () => {
   const { currentLanguage } = useLanguage()
   const { lang: urlLang } = useParams()
 
-  const [{ data: resources, error, fetching }] = useSelect('resources', {
-    filter: useFilter(
-      (query) => query.eq('language', currentLanguage.id),
-      [currentLanguage.id],
-    )
-  })
+  let query = supabase
+    .from('resources')
+    .select()
+    .eq('language', currentLanguage.id)
+  const [resources, loading, error] = useSupabaseQuery(query, [currentLanguage.id])
 
   return <>
     <h1>Resources</h1>
@@ -23,7 +22,7 @@ export default () => {
 
     {
       error ? error.message :
-      fetching ? 'loading...' :
+      loading ? 'loading...' :
       (!resources || resources.length <= 0) ? 'no resources' :
       resources.map(resource => <ResourceListItem key={resource.id} resource={resource} />)
     }

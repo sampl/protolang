@@ -1,23 +1,21 @@
-import { useFilter, useSelect } from 'react-supabase'
 import { useParams } from 'react-router-dom'
+
+import { supabase, useSupabaseQuery } from '@/db/supabase'
 
 export default () => {
   let { id } = useParams()
 
-  const [{ data, error, fetching }] = useSelect('media', {
-    columns: '*, media_ratings(*)',
-    filter: useFilter(
-      (query) => query.eq('id', id),
-      [id],
-    ),
-  })
-  
-  const media = data && data[0]
+  let query = supabase
+    .from('media')
+    .select('*, media_ratings(*)')
+    .eq('id', id)
+    .single()
+  const [media, loading, error] = useSupabaseQuery(query, [id])
 
   return <>
     {
       error ? error.message :
-      fetching ? 'loading...' :
+      loading ? 'loading...' :
       !media ? 'no media found' :
       <>
         <h1>{media.url}</h1>

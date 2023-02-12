@@ -1,5 +1,5 @@
 import { useUser } from '@/_state/user'
-import { useFilter, useSelect } from 'react-supabase'
+import { supabase, useSupabaseQuery } from '@/db/supabase'
 import { Link, useParams } from 'react-router-dom'
 
 export default () => {
@@ -7,17 +7,13 @@ export default () => {
   const { user } = useUser()
   const { lang: urlLang } = useParams()
 
-  const [{ data: phraseScores, error, fetching }] = useSelect('user_phrase_scores', {
-    columns: '*, phrase(*)',
-    pause: !user,
-    filter: useFilter(
-      (query) => query
-        .eq('created_by', user?.id)
-        .order('percent_correct', { ascending: true })
-        .limit(5),
-      [user?.id],
-    ),
-  })
+  let query = supabase
+    .from('user_phrase_scores')
+    .select('*, phrase(*)')
+    .eq('created_by', user?.id)
+    .order('percent_correct', { ascending: true })
+    .limit(5)
+  const [phraseScores, loading, error] = useSupabaseQuery(query, [user?.id], !user)
 
   return <>
     <h3>Problem phrases</h3>
@@ -28,7 +24,7 @@ export default () => {
         to see the phrases you make the most mistakes on
       </> :
       error ? error.message :
-      fetching ? 'loading...' :
+      loading ? 'loading...' :
       (!phraseScores || phraseScores.length <= 0) ? 'no problem phrases!' :
       phraseScores?.map(phraseScore => {
         return <div key={phraseScore.phrase.id}>

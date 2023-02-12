@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { supabaseDictionaries } from '@/db/supabase'
+import { supabaseDictionaries, useSupabaseQuery } from '@/db/supabase'
 import { Link } from 'react-router-dom'
 
 import MnemonicsList from './MnemonicsList'
@@ -15,24 +14,12 @@ export default () => {
 
   const { currentLanguage } = useLanguage()
 
-  const [fetching, setFetching] = useState(true)
-  const [data, setData] = useState()
-  const [error, setError] = useState()
-
-  useEffect(() => {
-    const doThing = async () => {
-      const { data, error } = await supabaseDictionaries
-        .from(currentLanguage.id)
-        .select()
-        .eq('word', wordName)
-      setFetching(false)
-      setData(data)
-      setError(error)
-    }
-    doThing()
-  }, [])
-
-  const word = data && data[0]
+  let query = supabaseDictionaries
+    .from(currentLanguage.id)
+    .select()
+    .eq('word', wordName)
+    .single()
+  const [word, loading, error] = useSupabaseQuery(query)
 
   if (word) {
     var {
@@ -52,7 +39,7 @@ export default () => {
   return <div>
     {
       error ? error.message :
-      fetching ? 'loading...' :
+      loading ? 'loading...' :
       !word ? 'Word not found' :
       <>
         <h1>

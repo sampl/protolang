@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { useSelect, useFilter } from 'react-supabase'
 import { useNavigate, Link } from 'react-router-dom'
 
+import { supabase, useSupabaseQuery } from '@/db/supabase'
 import { useUser } from '@/_state/user'
-import { supabase } from '@/db/supabase'
 import LessonContent from './LessonContent'
 import { TwoColumns } from '@/styles/Layout'
 
@@ -12,14 +11,12 @@ export default () => {
   const { user } = useUser()
   const { lang: urlLang, slug } = useParams()
 
-  const [{ data, lessonGetError, lessonGetFetching }] = useSelect('lessons', {
-    filter: useFilter(
-      (query) => query.eq('slug', slug),
-      [slug],
-    ),
-  })
-
-  const lesson = data && data[0]
+  let query = supabase
+    .from('lessons')
+    .select()
+    .eq('slug', slug)
+    .single()
+  const [lesson, loading, error] = useSupabaseQuery(query, [slug])
 
   useEffect(() => {
     setName(lesson?.title_en || '')
@@ -63,8 +60,12 @@ export default () => {
 
   const exampleString = `:word{ it="ciao }`
 
+  if (loading) {
+    return 'Loading...'
+  }
+
   if (!lesson) {
-    return 'loading...'
+    return 'Error - no lesson found' + error?.message
   }
 
   return <>

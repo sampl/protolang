@@ -1,10 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
-import { Provider as ReactSupabaseProvider } from 'react-supabase'
 
 import Router from '@/Router'
-import { supabase } from '@/db/supabase'
 import UserProvider from '@/_state/user'
 import LanguageProvider from '@/_state/language'
 import SpeechSynthesisProvider from '@/_state/speechSynthesis'
@@ -14,18 +12,16 @@ import '@/styles/main.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ReactSupabaseProvider value={supabase}>
-      <UserProvider>
-        <LanguageProvider>
-          <SpeechSynthesisProvider>
-            <SpeechRecognitionProvider>
-              <BrowserRouter>
-                <Router />
-              </BrowserRouter>
-            </SpeechRecognitionProvider>
-          </SpeechSynthesisProvider>
-        </LanguageProvider>
-      </UserProvider>
-    </ReactSupabaseProvider>
+    <UserProvider>
+      <LanguageProvider>
+        <SpeechSynthesisProvider>
+          <SpeechRecognitionProvider>
+            <BrowserRouter>
+              <Router />
+            </BrowserRouter>
+          </SpeechRecognitionProvider>
+        </SpeechSynthesisProvider>
+      </LanguageProvider>
+    </UserProvider>
   </React.StrictMode>
 )

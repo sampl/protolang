@@ -1,7 +1,7 @@
 import moment from 'moment'
-import { useFilter, useSelect } from 'react-supabase'
 import { Link } from 'react-router-dom'
 
+import { supabase, useSupabaseQuery } from '@/db/supabase'
 import { useUser } from '@/_state/user'
 import { useLanguage } from '@/_state/language'
 
@@ -10,14 +10,11 @@ export default () => {
   const { user } = useUser()
   const { currentLanguage } = useLanguage()
 
-  const [{ data, error, fetching }] = useSelect('practice_attempts', {
-    columns: '*, phrase(*)',
-    pause: !user,
-    filter: useFilter(
-      (query) => query.eq('created_by', user?.id),
-      [user?.id],
-    ),
-  })
+  let query = supabase
+    .from('practice_attempts')
+    .select('*, phrase(*)')
+    .eq('created_by', user?.id)
+  const [data, loading, error] = useSupabaseQuery(query, [user?.id], !user)
 
   const attempts = data?.sort((a, b) => moment(b.created_at).valueOf() - moment(a.created_at).valueOf())
 
@@ -29,7 +26,7 @@ export default () => {
         to track your attempts
       </> :
       error ? error.message :
-      fetching ? 'loading...' :
+      loading ? 'loading...' :
       (!attempts || attempts.length <= 0) ? `Try some flashcards to see your attempts` :
       <table style={{width: "100%"}}>
         <thead>
