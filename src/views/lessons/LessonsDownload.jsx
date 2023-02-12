@@ -2,7 +2,7 @@ import JSZip from 'jszip'
 import { saveAs } from 'file-saver'
 
 import { useLanguage } from '@/_state/language'
-import { supabase } from '@/_util/supabaseClient'
+import { supabase } from '@/db/supabase'
 
 export default () => {
   const { currentLanguage } = useLanguage()

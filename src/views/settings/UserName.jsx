@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { supabase } from '@/_util/supabaseClient'
+import { supabase } from '@/db/supabase'
 import { useUser } from '@/_state/user'
 
 export default () => {

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { supabaseDictionaries } from '@/_util/supabaseClient'
+import { supabaseDictionaries } from '@/db/supabase'
 
 import MnemonicSuggested from './MnemonicSuggested'
 import SpeakWord from './SpeakWord'

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import { useUser } from '@/_state/user'
-import { supabase } from '@/_util/supabaseClient'
+import { supabase } from '@/db/supabase'
 import { useLanguage } from '@/_state/language'
 
 export default ({ string }) => {

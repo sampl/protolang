@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { useUser } from '@/_state/user'
-import { supabase } from '@/_util/supabaseClient'
+import { supabase } from '@/db/supabase'
 
 // keep in sync with the database enums
 const MEDIA_TYPES = [

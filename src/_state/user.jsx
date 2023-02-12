@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect, useContext } from 'react'
 
-import { supabase } from '@/_util/supabaseClient'
+import { supabase } from '@/db/supabase'
 
 const Context = createContext()
 

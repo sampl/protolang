@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { Provider as ReactSupabaseProvider } from 'react-supabase'
 
 import Router from '@/Router'
-import { supabase } from '@/_util/supabaseClient'
+import { supabase } from '@/db/supabase'
 import UserProvider from '@/_state/user'
 import LanguageProvider from '@/_state/language'
 import SpeechSynthesisProvider from '@/_state/speechSynthesis'

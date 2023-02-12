@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import { useUser } from '@/_state/user'
-import { supabase } from '@/_util/supabaseClient'
+import { supabase } from '@/db/supabase'
 import { Button } from '@/styles/Button'
 
 export default ({ phrase, close }) => {

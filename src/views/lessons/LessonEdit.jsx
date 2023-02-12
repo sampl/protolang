@@ -4,7 +4,7 @@ import { useSelect, useFilter } from 'react-supabase'
 import { useNavigate, Link } from 'react-router-dom'
 
 import { useUser } from '@/_state/user'
-import { supabase } from '@/_util/supabaseClient'
+import { supabase } from '@/db/supabase'
 import LessonContent from './LessonContent'
 import { TwoColumns } from '@/styles/Layout'
 

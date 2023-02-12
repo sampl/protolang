@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import { supabase } from '@/_util/supabaseClient'
+import { supabase } from '@/db/supabase'
 import Card from '@/styles/Card'
 import { useUser } from '@/_state/user'
 import ReportError from '@/views/practice/ReportError'
