@@ -22,7 +22,6 @@
     "@supabase/supabase-js": "^2.7.1",
     "dotenv": "^16.0.1",
     "file-saver": "^2.0.5",
-    "hastscript": "^7.0.2",
     "jszip": "^3.10.1",
     "moment": "^2.29.4",
     "react": "^18.0.0",
@@ -38,10 +37,7 @@
     "remark-parse-yaml": "0.0.3",
     "remark-stringify": "^10.0.2",
     "slugify": "^1.6.5",
-    "styled-components": "^5.3.5",
-    "unified": "^10.1.2",
-    "unist-util-filter": "^4.0.0",
-    "unist-util-visit": "^4.1.0"
+    "styled-components": "^5.3.5"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.18.6",
