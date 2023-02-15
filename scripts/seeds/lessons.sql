@@ -12,4 +12,4 @@ insert into lessons
   ('it',       'Animals',         'Tiger lion',       'p',     true,      'USER_ID'  ),
   ('it',       'Art',             'Painting music',   'a',     true,      'USER_ID'  ),
   ('it',       'Holidays',        'Happy new year!',  's',     true,      'USER_ID'  ),
-  ('it',       'Weather',         '',                 'd',     true,      'USER_ID'  );
+  ('it',       'Weather',         '| past | present | future |\n| --- | | --- | | --- |\n| sup | sap | suuuup |\n', 'd',     true,      'USER_ID'  );
