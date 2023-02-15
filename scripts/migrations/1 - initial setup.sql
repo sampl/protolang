@@ -1,3 +1,6 @@
+-- Start transaction
+BEGIN;
+
 -------------------------------------------------
 -----------------     TABLES    -----------------
 -------------------------------------------------
@@ -504,3 +507,6 @@ create view user_phrase_scores as
     sum(case when is_correct = true then 1 else 0 end)::float/count(*)::float as percent_correct
   from practice_attempts
   group by created_by, phrase;
+
+-- End transaction
+COMMIT;
