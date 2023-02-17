@@ -4,7 +4,7 @@ Welcome! We're so glad you're here :)
 
 When you contribute to the Protolang project, all contributions are covered under [our open source licenses](https://protolang.com/open-source/). That means that anyone in the world can benefit from your work, even if they can't afford to pay for language education.
 
-(Please read our [code of conduct](https://github.com/sampl/protolang/blob/main/code_of_conduct.md) first.)
+(Please read our [code of conduct](https://github.com/sampl/protolang/blob/main/conduct.md) first.)
 
 ## Writing language courses [HELP WANTED]
 

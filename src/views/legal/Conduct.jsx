@@ -1,4 +1,4 @@
-import { ReactComponent } from '@/../code_of_conduct.md'
+import { ReactComponent } from '@/../conduct.md'
 import { OneCol } from '@/styles/Layout'
 
 export default () => {
