@@ -26,6 +26,6 @@ dist-ssr
 *.sw?
 
 # Large language files
-**/kaikki.org*
+/data/
 
 TODO.md

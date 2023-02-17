@@ -81,15 +81,17 @@ Some seed scripts require a valid `created_by` value. For example, seeding Lesso
 
 - Sign into your Protolang app (not Supabase—the actual app, on `localhost`), then go to your [Supabase users dashboard](https://app.supabase.com/project/_/auth/users) and copy the User UID of your user.
 - Go back to your `.env.development` file and add the UID it as `ADMIN_USER_UID`
+- Now run `npm run seed`
+
+You'll also want to seed the dictionary schema with the language files. 
 
 The full language dictionaries are generated from the English-language [Wiktionary](https://en.wiktionary.org/) and parsed by [Wiktextract](https://github.com/tatuylonen/wiktextract).
 
 Parsed JSON language files are quite large, so they are not included in git as of yet. However they can be downloaded directly (already parsed from Wiktionary format) at [https://kaikki.org/dictionary/].
 
 - Download the language files you want to use from [https://kaikki.org/dictionary/]
-- Move the files into the `/dictionaries` directory
-
-Once this is all complete, run `npm run seed` to import everything into your database.
+- Move the file into the `/data` directory
+- Run `npm run update-dict`
 
 That's it--you should be good to go!
 

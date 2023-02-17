@@ -18,7 +18,7 @@ const LIVE = process.argv[2] === '--live'
 const LANGUAGE_CODE = `it`
 const SCHEMA_NAME = `dictionaries`
 const TABLE_NAME = `${SCHEMA_NAME}.${LANGUAGE_CODE}`
-const DICTIONARY_FILE_PATH = `/../languages/${LANGUAGE_CODE}/kaikki.org-dictionary-Italian.json`
+const DICTIONARY_FILE_PATH = `/../data/kaikki.org-dictionary-Italian.json`
 const BATCH_SIZE = 1000
 
 // pg-promise setup
