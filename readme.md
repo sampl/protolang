@@ -2,15 +2,13 @@
 
 [Protolang](https://protolang.com/about) is an online language-learning website focused supporting multiple learning styles.
 
-```md
 ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️
-WARNING: extremely early alpha software
-Very unstable and incomplete, use at your own risk
-```
+**WARNING: this is extremely early alpha software**
+_Very unstable and incomplete, use at your own risk_
+⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️
+## 👉👉👉 Help wanted 👈👈👈
 
-## Contribute
-
-👉👉👉 Help wanted! Do you speak multiple languages? Do you have experience teaching a language? Or are you just interested in [Help us develop our free, open source language courses](contributing.md)
+Help us develop our free, open source language courses: [learn how](contributing.md)
 
 ## Features
 
@@ -27,22 +25,23 @@ Very unstable and incomplete, use at your own risk
 
 ## Docs
 
-💻 [Developer documentation](docs/readme.md)
+[Developer documentation](developers.md)
 
 ## Community
 
-- 👨‍👩‍👧‍👦 Forum coming soon - For feature requests, general discussion, etc
-- 🐛 [Github issues](https://github.com/sampl/protolang/issues) (coming soon) - Reporting bugs
-- ✉️ [Email](mailto:sam@directedworks.com)
+- Forum coming soon - For feature requests, general discussion, etc
+- [Github issues](https://github.com/sampl/protolang/issues) (coming soon) - Reporting bugs
+- [Email](mailto:sam@directedworks.com)
 
-## Thank yous
+## Thank you's
 
 This project would not be possible without:
 
 - [Wiktionary](https://en.wiktionary.org/) (via [wiktextract](https://github.com/tatuylonen/wiktextract)) for word definitions
 - [Argos Translate](https://github.com/argosopentech/argos-translate/) (via [LibreTranslate](https://libretranslate.com/)) for translations
-- The open source software under the hood: [React](https://reactjs.org/), [React Router](https://reactrouter.com/en/main), [Radix UI](https://www.radix-ui.com/), [Remark](https://remark.js.org/), [Styled Components](https://styled-components.com/), [Vite](https://vitejs.dev/), [Supabase](https://supabase.com/)
+- The [open source web dev stack](https://github.com/sampl/protolang/network/dependencies) under the hood
 
 ## License
 
-The Protolang web app (this repo) is licensed under the [GPL](license.txt). The [Protolang website](https://protolang.com/it/lessons) also contains community-contributed lessons, which are available to download and licensed under the Creative Commons (license coming soon).
+- This repo is licensed under the [GPL](license.txt).
+- Community-contributed lessons are licensed under the Creative Commons (license coming soon) and can be downloaded on [the website](https://protolang.com/it/lessons).

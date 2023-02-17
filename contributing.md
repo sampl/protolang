@@ -32,7 +32,7 @@ We need help with:
 
 How to get started:
 
-- Read the [developer documentation](https://github.com/sampl/protolang/blob/main/docs)
+- Read the [developer documentation](https://github.com/sampl/protolang/blob/main/developers.md)
 - If you have an idea for a new feature, [start a discussion](https://github.com/sampl/protolang/discussions) (coming soon)
 - Take a look at the [Github issues list](https://github.com/sampl/protolang/issues) (coming soon) for good first issues
 - Or [contact us](https://protolang.com/contact/) directly
