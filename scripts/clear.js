@@ -1,7 +1,4 @@
-// only to clear out test data while this file is being developed
-
-// TODO - get from env file to support different dev environments
-// but don't even code the part that does this on live, run it once and don't commit the code
+// don't even let devs do this on live
 require('dotenv').config({ path: '.env.development' })
 
 const { Client } = require('pg')

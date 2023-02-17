@@ -1,5 +1,4 @@
-// TODO - get from env file to support different dev environments
-// but don't even code the part that does this on live, run it once and don't commit the code
+// TODO - let people run this against the live db
 require('dotenv').config({ path: '.env.development' })
 
 const { Client } = require('pg')
