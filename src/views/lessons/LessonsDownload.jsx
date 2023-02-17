@@ -14,7 +14,7 @@ export default () => {
     const { data: lessons, error } = await supabase
       .from('lessons')
       .select()
-      .eq('language', langId)
+      .eq('language_id', langId)
     
     if (error) {
       alert('Sorry, could not download lessons right now. Try again later?')

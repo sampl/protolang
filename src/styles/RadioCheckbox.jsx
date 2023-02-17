@@ -39,7 +39,7 @@ export const CheckboxGroup = ({ groupName, options, values, setValues }) => {
     if (checked) {
       setValues([...values, optionId])
     } else {
-      let index = values.indexOf(optionId)
+      const index = values.indexOf(optionId)
       values.splice(index, 1)
       setValues(values)
     }

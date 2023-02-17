@@ -9,50 +9,46 @@ export default () => {
   const { langId } = useParams()
   const navigate = useNavigate()
 
-  const [name, setName] = useState('')
+  const [title, setTitle] = useState('')
   const [slug, setSlug] = useState('')
   const [saving, setSaving] = useState(false)
 
   async function submit( event ) {
     event.preventDefault()
-    debugger
     try {
       setSaving(true)
 
       const newData = {
-        language: langId,
-        title_en: name,
+        language_id: langId,
+        title_en: title,
         slug,
-        is_public: false,
         created_by: user.id,
       }
 
-      let { error } = await supabase.from('lessons').insert([newData])
+      const { data: newLesson, error } = await supabase
+        .from('lessons')
+        .insert([newData])
 
       if (error) {
         throw error
       }
-      console.log('saved')
-      navigate(`/${langId}/lessons/${slug}/edit`)
+      navigate(`/${langId}/lessons/${newLesson[0].slug}/edit`)
     } catch (error) {
-      alert(error.message)
-    } finally {
       setSaving(false)
-      setName('')
-      setSlug('')
+      alert(error.message)
     }
   }
 
   return <form onSubmit={submit}>
     <h2>New lesson</h2>
 
-    <label htmlFor="name">Name</label>
+    <label htmlFor="title">Title</label>
     <input
-      id="name"
+      id="title"
       type="text"
-      value={name}
+      value={title}
       placeholder=""
-      onChange={e => setName(e.target.value)}
+      onChange={e => setTitle(e.target.value)}
       required
     />
 
@@ -76,5 +72,3 @@ export default () => {
     </button>
   </form>
 }
-
-

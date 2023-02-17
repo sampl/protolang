@@ -1,16 +1,17 @@
 import { useParams } from 'react-router-dom'
 
 import { supabase, useSupabaseQuery } from '@/db/supabase'
+import ResourceVote from './ResourceVote'
 
 export default () => {
-  let { id } = useParams()
+  const { resourceId } = useParams()
 
-  let query = supabase
+  const query = supabase
     .from('resources')
-    .select('*, resource_ratings(*)')
-    .eq('id', id)
+    .select('*, resource_votes(*)')
+    .eq('id', resourceId)
     .single()
-  const [resource, loading, error] = useSupabaseQuery(query, [id])
+  const [resource, loading, error] = useSupabaseQuery(query, [resourceId])
 
   return <>
     {
@@ -20,13 +21,7 @@ export default () => {
       <>
         <h1>{resource.url}</h1>
         <a href={resource.url} target="_blank">Visit site ↗</a>
-        <br />
-        {
-          (!resource.resource_ratings || resource.resource_ratings.length <= 0) ? 'no ratings' :
-          resource.resource_ratings.map(rr => {
-            return <div key={rr.id}>{rr.stars} star(s): {rr.content}</div>
-          })
-        }
+        <ResourceVote resource={resource} />
       </>
     }
   </>

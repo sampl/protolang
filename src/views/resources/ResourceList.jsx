@@ -6,10 +6,10 @@ export default () => {
 
   const { langId } = useParams()
 
-  let query = supabase
+  const query = supabase
     .from('resources')
     .select()
-    .eq('language', langId)
+    .eq('language_id', langId)
   const [resources, loading, error] = useSupabaseQuery(query, [langId])
 
   return <>

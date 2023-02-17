@@ -9,7 +9,7 @@ export default () => {
   const { user } = useUser()
   const { currentLanguage } = useLanguage()
 
-  let query = supabase
+  const query = supabase
     .from('user_scores')
     .select()
     .eq('created_by', user?.id)

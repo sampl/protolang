@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { supabase } from '@/db/supabase'
 import Card from '@/styles/Card'
 import { useUser } from '@/_state/user'
-import ReportError from '@/views/practice/ReportError'
+import ReportIssue from '@/views/practice/ReportIssue'
 import CardAnswerText from './card_answer_types/CardAnswerText'
 import CardAnswerSpeech from './card_answer_types/CardAnswerSpeech'
 import { useLanguage } from '@/_state/language'
@@ -18,8 +18,8 @@ const normalizeString = string => string.normalize("NFD").replace(/[\u0300-\u036
 
 export default ({ phrase, cardQuestionType, cardAnswerType, direction, next }) => {
 
-  const question =      direction === 'forward' ? phrase?.translation_en : phrase?.name 
-  const correctAnswer = direction === 'forward' ? phrase?.name : phrase?.translation_en 
+  const question =      direction === 'forward' ? phrase?.content_en : phrase?.content_it 
+  const correctAnswer = direction === 'forward' ? phrase?.content_it : phrase?.content_en 
 
   const { user } = useUser()
   const { currentLanguage } = useLanguage()
@@ -27,7 +27,7 @@ export default ({ phrase, cardQuestionType, cardAnswerType, direction, next }) =
   // waiting, try_again, correct, incorrect
   const [cardState, setCardState] = useState('waiting')
   const [strikes, setStrikes] = useState(0)
-  const [isReportingError, setIsReportingError] = useState()
+  const [isReportingIssue, setIsReportingIssue] = useState()
 
   const testAnswer = answer => {
     return normalizeString(correctAnswer) === normalizeString(answer)
@@ -38,7 +38,6 @@ export default ({ phrase, cardQuestionType, cardAnswerType, direction, next }) =
   }
 
   const submitAnswer = async answer => {
-    // debugger
     const correct = testAnswer(answer)
     if (!correct && strikes < MAX_STRIKES) {
       setStrikes(s => s + 1)
@@ -52,13 +51,15 @@ export default ({ phrase, cardQuestionType, cardAnswerType, direction, next }) =
     }
     try {
       const newData = {
-        language: currentLanguage.id,
+        language_id: currentLanguage.id,
         phrase: phrase?.id,
         guess: answer,
         is_correct: correct,
         created_by: user.id,
       }
-      let { error } = await supabase.from('practice_attempts').insert([newData])
+      const { error } = await supabase
+        .from('practice_attempts')
+        .insert([newData])
       if (error) {
         throw error
       }
@@ -80,7 +81,7 @@ export default ({ phrase, cardQuestionType, cardAnswerType, direction, next }) =
       cardQuestionType === 'audio' ? <SpeakWord wordString={question} /> :
       <h2>
         {question}
-        <SpeakWord wordString={question} />
+        {direction !== 'forward' && <SpeakWord wordString={question} />}
       </h2>
     }
     <br />
@@ -111,15 +112,17 @@ export default ({ phrase, cardQuestionType, cardAnswerType, direction, next }) =
         Whoops not quite. The answer is "{correctAnswer}"
         <Link to={`/${currentLanguage.id}/practice/${phrase?.id}`}>go to phrase</Link>
         <Button autoFocus onClick={next}>Next</Button>
-        <div onClick={() => setIsReportingError(true)}>Report error</div>
       </>
       :
       null
     }
     {
-      (cardState === "correct" || cardState === "incorrect") && 
-      isReportingError && 
-      <ReportError phrase={phrase} close={() => setIsReportingError(false)} />
+      cardState !== 'waiting' && 
+      <button onClick={() => setIsReportingIssue(true)}>Report issue</button>
+    }
+    {
+      isReportingIssue && 
+      <ReportIssue phrase={phrase} close={() => setIsReportingIssue(false)} />
     }
     {
       (cardState === "waiting" || cardState === "try_again") && 

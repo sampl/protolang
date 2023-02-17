@@ -10,19 +10,21 @@ export default ({ phrase, close }) => {
   const [comment, setComment] = useState('')
   const [saving, setSaving] = useState(false)
 
-  async function reportError( event ) {
+  async function reportIssue( event ) {
     event.preventDefault()
     try {
       setSaving(true)
 
       const newData = {
-        language: phrase.language,
+        language_id: phrase.language_id,
         phrase: phrase.id,
         comment: comment,
         created_by: user.id,
       }
 
-      let { error } = await supabase.from('phrase_issues').insert([newData])
+      const { error } = await supabase
+        .from('phrase_issues')
+        .insert([newData])
 
       if (error) {
         throw error
@@ -37,7 +39,7 @@ export default ({ phrase, close }) => {
     }
   }
 
-  return <form onSubmit={reportError}>
+  return <form onSubmit={reportIssue}>
 
     <label htmlFor="comment">Comment</label>
     <br />

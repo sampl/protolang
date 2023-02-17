@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom'
 import { supabaseDictionaries, useSupabaseQuery } from '@/db/supabase'
 import { Link } from 'react-router-dom'
 
-import MnemonicsList from './MnemonicsList'
+import MnemonicsList from '../mnemonics/MnemonicsList'
 import SpeakWord from './SpeakWord'
 import Ngram from './Ngram'
 import { TwoColumns } from '@/styles/Layout'
@@ -11,7 +11,7 @@ export default () => {
   const { langId, wordString } = useParams()
   const wordName = decodeURIComponent(wordString)
 
-  let query = supabaseDictionaries
+  const query = supabaseDictionaries
     .from(langId)
     .select()
     .eq('word', wordName)
@@ -29,8 +29,6 @@ export default () => {
     } = word?._wiktionary_data
     var ipa = sounds?.[0]?.ipa
   }
-
-  // debugger
 
   // TODO - calculate your accuracy and word score here
   return <div>

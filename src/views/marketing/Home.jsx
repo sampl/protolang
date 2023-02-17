@@ -3,10 +3,10 @@
 // import { Button } from '@/styles/Button'
 import { Badge } from '@/styles/Badge'
 import { TwoColumns } from '@/styles/Layout'
-import LanguagePicker from '../user_languages/LanguagePicker'
+import LanguagePicker from '../languages/LanguagePicker'
 
 export default () => {
-  // let navigate = useNavigate()
+  // const navigate = useNavigate()
 
   return <>
 

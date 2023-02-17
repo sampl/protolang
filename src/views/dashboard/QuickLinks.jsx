@@ -7,10 +7,10 @@ import { TwoColumns } from '@/styles/Layout'
 export default () => {
   const { langId } = useParams()
 
-  let query = supabase
+  const query = supabase
     .from('lessons')
     .select()
-    .eq('language', langId)
+    .eq('language_id', langId)
     .order('sort_order', { ascending: true })
   const [lessons, loading, error] = useSupabaseQuery(query, [langId])
 

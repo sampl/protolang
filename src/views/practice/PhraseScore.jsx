@@ -6,7 +6,7 @@ export default ({ phrase }) => {
 
   const { user } = useUser()
 
-  let query = supabase
+  const query = supabase
     .from('user_phrase_scores')
     .select()
     .eq('phrase', phrase?.id)

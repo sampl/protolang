@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { useUser } from '@/_state/user'
 import { supabase } from '@/db/supabase'
@@ -7,6 +7,7 @@ import { supabase } from '@/db/supabase'
 export default () => {
   const { user } = useUser()
   const { langId } = useParams()
+  const navigate = useNavigate()
 
   const [url, setUrl] = useState('')
   const [saving, setSaving] = useState(false)
@@ -17,21 +18,22 @@ export default () => {
       setSaving(true)
 
       const newData = {
-        language: langId,
+        language_id: langId,
         url,
         created_by: user.id,
       }
 
-      let { error } = await supabase.from('resources').insert([newData])
+      const { data: newResource, error } = await supabase
+        .from('resources')
+        .insert([newData])
 
       if (error) {
         throw error
       }
+      navigate(`/${langId}/resources/${newResource[0].id}`)
     } catch (error) {
-      alert(error.message)
-    } finally {
       setSaving(false)
-      setUrl('')
+      alert(error.message)
     }
   }
 
@@ -43,9 +45,11 @@ export default () => {
       id="url"
       type="url"
       value={url}
-      placeholder="https://..."
+      placeholder="https://yourlink.here"
       onChange={e => setUrl(e.target.value)}
     />
+
+    <br />
 
     <button
       type="submit"

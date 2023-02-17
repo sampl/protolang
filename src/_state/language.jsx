@@ -9,20 +9,23 @@ export default ({ children }) => {
 
   const [ currentLanguageId, setCurrentLanguageId ] = useState()
 
-  let CLQuery = supabase
+  const CLQuery = supabase
     .from('languages')
     .select()
     .eq('id', currentLanguageId)
     .single()
   const [currentLanguage, CLLoading, CLError] = useSupabaseQuery(CLQuery, [currentLanguageId], !currentLanguageId)
 
-  let ULQuery = supabase
+  const ULQuery = supabase
     .from('user_languages')
-    .select('*, language(*)')
-  let [userLanguages, ULLoading, ULError] = useSupabaseQuery(ULQuery, [user?.id], !user)
+    .select('*, language_id(*)')
+    .eq('created_by', user?.id)
+  const [userLanguages, ULLoading, ULError] = useSupabaseQuery(ULQuery, [user?.id], !user)
+
+  const loading = CLLoading || (ULLoading && user?.id) // if user is not logged in, ULLoading will "pause" and load forever
 
   const exposed = {
-    loading: CLLoading || ULLoading,
+    loading,
     error: CLError || ULError,
     userLanguages: userLanguages || [],
     currentLanguage: currentLanguage || {},

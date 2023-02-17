@@ -24,16 +24,24 @@ export default ({ children }) => {
     // TODO - return function that unsubscribes
   }, [])
 
-  let query = supabase
+  const profileQuery = supabase
     .from('profiles')
     .select()
     .eq('id', user?.id)
     .single()
-  const [profile, profileLoading, profileError] = useSupabaseQuery(query, [user?.id], !user)
+  const [profile, profileLoading, profileError] = useSupabaseQuery(profileQuery, [user?.id], !user)
+
+  const roleQuery = supabase
+    .from('user_roles')
+    .select()
+    .eq('id', user?.id)
+    .single()
+  const [role, roleLoading, roleError] = useSupabaseQuery(roleQuery, [user?.id], !user)
 
   const fullUser = user ? {
     ...user,
     ...profile,
+    role,
   } : null
 
   const login = async (email) => {
@@ -53,11 +61,12 @@ export default ({ children }) => {
 
   const exposed = {
     user: fullUser,
-    loading: userLoading || profileLoading,
-    error: userError || profileError,
+    loading: userLoading || profileLoading || roleLoading,
+    error: userError || profileError || roleError,
     login,
     logout,
     isBetaUser: !!localStorage.getItem('protolang_is_beta_user'),
+    isAdmin: role?.role_type === 'admin',
   }
 
   return <Context.Provider value={exposed}>

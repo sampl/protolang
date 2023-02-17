@@ -57,7 +57,7 @@ table {
 th,
 td {
   border-bottom: 1px solid;
-  padding: 0 1rem 0 0;
+  padding: 2px 1rem 2px 0;
 }
 
 blockquote {
@@ -101,6 +101,13 @@ button {
   font-family: inherit;
   font-size: inherit;
   cursor: pointer;
+}
+
+table {
+  width: 100%;
+}
+th {
+  text-align: left;
 }
 
 /* misc */

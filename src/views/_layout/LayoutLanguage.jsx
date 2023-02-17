@@ -1,27 +1,27 @@
-import { Link, NavLink, useNavigate, useParams } from 'react-router-dom'
+import { Link, NavLink, useParams } from 'react-router-dom'
 
 import { useLanguage } from '@/_state/language'
 import DropdownNavMenu from '@/styles/DropdownNavMenu'
 import AccountMenu from '@/views/_layout/AccountMenu'
 import Footer from '@/views/_layout/Footer'
 import { HeaderFooterLayoutWrapper, Header, Main } from '@/styles/Layout'
-import LanguagePicker from '../user_languages/LanguagePicker'
+import LanguagePicker from '../languages/LanguagePicker'
 import { useUser } from "@/_state/user"
 import { useEffect } from 'react'
 import Banner from '@/styles/Banner'
-import UserLanguageOnboarding from '../user_languages/UserLanguageOnboarding'
+import UserLanguageOnboarding from '../onboarding/UserLanguageOnboarding'
 import ErrorPage from '../ErrorPage'
 import LayoutSimple from './LayoutSimple'
 import SearchBox from './SearchBox'
 import Signup from '../account/Signup'
 import Logo from './Logo'
 import UserLanguageDropdown from './UserLanguageDropdown'
+import LanguageVote from '../languages/LanguageVote'
 
 export default ({children}) => {
   const { currentLanguage, userLanguages, loading, error, setCurrentLanguageId } = useLanguage()
   const { langId } = useParams()
-  const { user, isBetaUser } = useUser()
-  const navigate = useNavigate()
+  const { user, isBetaUser, isAdmin } = useUser()
 
   useEffect( () => setCurrentLanguageId(langId), [langId])
 
@@ -32,7 +32,9 @@ export default ({children}) => {
   }
   // somehow we got a bad link and undefined ended up in the url bar as a string
   if (langId === 'undefined') {
-    navigate('/')
+    return <LayoutSimple>
+      <LanguagePicker />
+    </LayoutSimple>
   }
   if (error) {
     console.error(error.message)
@@ -53,11 +55,11 @@ export default ({children}) => {
         <p>
           <Link to="/signup">Create an account</Link>
           {' '}
-          to get notified about new courses.
+          to vote on new courses.
         </p>
         :
         <p>
-          {/* TODO - let people request a course here */}
+          <LanguageVote language={currentLanguage} />
         </p>
       }
       <p>
@@ -83,7 +85,7 @@ export default ({children}) => {
     </LayoutSimple>
   }
 
-  if (user && !userLanguages?.map(ul => ul.language?.id).includes(langId)) {
+  if (user && !userLanguages?.map(ul => ul.language_id?.id).includes(langId)) {
     return <LayoutSimple>
       <UserLanguageOnboarding />
     </LayoutSimple>    
@@ -108,6 +110,7 @@ export default ({children}) => {
         </DropdownNavMenu>
       </nav>
       <div>
+        {isAdmin && <Link to={`/${currentLanguage.id || 'it'}/admin`}>Admin</Link>}
         <SearchBox />
         <UserLanguageDropdown />
         <AccountMenu />

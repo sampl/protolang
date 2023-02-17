@@ -55,7 +55,6 @@ export default ({
       return
     }
 
-    // debugger
     // TODO - this isn't working... new cards still have the old transcripts and fail the test on load before speech. not getting cleared? need a state to test whether we started listening or something?
 
     // end if it's just plain wrong

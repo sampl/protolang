@@ -29,7 +29,7 @@ export default ({ closeModal }) => {
     try {
       setSaving(true)
       const newData = {
-        language: currentLanguage.id,
+        language_id: currentLanguage.id,
         preferences: {
           goal: selectedGoal,
           visit_plans: selectedVisitPlans,
@@ -45,7 +45,9 @@ export default ({ closeModal }) => {
         created_by: user?.id,
       }
       if (user) {
-        let { error } = await supabase.from('user_languages').insert([newData])
+        const { error } = await supabase
+          .from('user_languages')
+          .insert([newData])
         if (error) {
           throw error
         }

@@ -12,7 +12,7 @@ export default () => {
   const { langId, phraseId } = useParams()
   // const phraseIdDecoded = decodeURIComponent(phraseId)
 
-  let query = supabase
+  const query = supabase
     .from('phrases')
     .select()
     .eq('id', phraseId)
@@ -23,7 +23,7 @@ export default () => {
     <BreadcrumbWrapper>
       <BreadcrumbItem to={`/${langId}/practice`}>Practice</BreadcrumbItem>
       <BreadcrumbSeparator />
-      <BreadcrumbItem to={`/${langId}/practice/${phrase?.id}`}>{phrase?.name}</BreadcrumbItem>
+      <BreadcrumbItem to={`/${langId}/practice/${phrase?.id}`}>{phrase?.content_it}</BreadcrumbItem>
     </BreadcrumbWrapper>
 
     {
@@ -32,16 +32,16 @@ export default () => {
       !phrase ? 'Phrase not found' :
       <>
         <h1>
-          <Definable wordString={phrase.name} />
-          <SpeakWord wordString={phrase.name} />
+          <Definable wordString={phrase.content_it} />
+          <SpeakWord wordString={phrase.content_it} />
         </h1>
 
-        <div>{phrase.translation_en}</div>
-        <div>{phrase.context_en}</div>
+        <div>{phrase.content_en}</div>
 
         <hr />
 
         {/* TODO - attempts list here */}
+        {/* TODO - link to edit for admins */}
         <h3>
           Your accuracy:
           {' '}

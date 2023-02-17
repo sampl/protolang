@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { supabaseDictionaries, useSupabaseQuery } from '@/db/supabase'
 
-import MnemonicSuggested from './MnemonicSuggested'
+import MnemonicSuggested from '@/views/mnemonics/MnemonicSuggested'
 import SpeakWord from './SpeakWord'
 // import PhraseScore from './PhraseScore'
 import { useLanguage } from '@/_state/language'
@@ -10,7 +10,7 @@ export default ({ name }) => {
 
   const { currentLanguage } = useLanguage()
 
-  let query = supabaseDictionaries
+  const query = supabaseDictionaries
     .from(currentLanguage.id)
     .select()
     .eq('word', name)

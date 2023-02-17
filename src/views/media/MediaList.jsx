@@ -6,10 +6,10 @@ export default () => {
 
   const { langId } = useParams()
 
-  let query = supabase
+  const query = supabase
     .from('media')
     .select()
-    .eq('language', langId)
+    .eq('language_id', langId)
   const [media, loading, error] = useSupabaseQuery(query, [langId])
 
   return <>
@@ -22,12 +22,12 @@ export default () => {
       error ? error.message :
       loading ? 'loading...' :
       (!media || media.length <= 0) ? 'no media' :
-      media.map(mediaItem => <ResourceListItem key={mediaItem.id} mediaItem={mediaItem} />)
+      media.map(mediaItem => <MediaListItem key={mediaItem.id} mediaItem={mediaItem} />)
     }
   </>
 }
 
-const ResourceListItem = ({mediaItem}) => {
+const MediaListItem = ({mediaItem}) => {
   const { langId } = useParams()
 
   return <div>

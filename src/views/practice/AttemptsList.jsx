@@ -10,7 +10,7 @@ export default () => {
   const { user } = useUser()
   const { currentLanguage } = useLanguage()
 
-  let query = supabase
+  const query = supabase
     .from('practice_attempts')
     .select('*, phrase(*)')
     .eq('created_by', user?.id)
@@ -28,7 +28,7 @@ export default () => {
       error ? error.message :
       loading ? 'loading...' :
       (!attempts || attempts.length <= 0) ? `Try some flashcards to see your attempts` :
-      <table style={{width: "100%"}}>
+      <table>
         <thead>
           <tr>
             <td>Date</td>
@@ -45,10 +45,10 @@ export default () => {
                 <td>{moment(attempt.created_at).format('MM/DD/YYYY')}</td>
                 <td>
                   <Link to={`/${currentLanguage.id}/practice/${attempt.phrase.id}`}>
-                    {attempt.phrase.name}
+                    {attempt.phrase.content_it}
                   </Link>
                 </td>
-                <td>{attempt.phrase.translation_en}</td>
+                <td>{attempt.phrase.content_en}</td>
                 <td>"{attempt.guess}"</td>
                 <td>{attempt.is_correct ? '✅' : '❌'}</td>
               </tr>

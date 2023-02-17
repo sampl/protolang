@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export default () => {
 
-  let query = supabase
+  const query = supabase
     .from('languages')
     .select()
   const [languages, loading, error] = useSupabaseQuery(query)

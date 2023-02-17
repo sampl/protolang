@@ -2,7 +2,7 @@ import { supabase, useSupabaseQuery } from '@/db/supabase'
 
 export default ({ string }) => {
 
-  let query = supabase
+  const query = supabase
     .from('*, mnemonic_votes(*)')
     .select()
     .eq('target_phrase', string)

@@ -27,7 +27,7 @@ export default () => {
     }))
 
   // get activity data
-  let query = supabase
+  const query = supabase
     .from('heatmap_days')
     .select()
     .eq('created_by', user?.id)

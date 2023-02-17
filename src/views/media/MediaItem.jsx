@@ -1,16 +1,17 @@
 import { useParams } from 'react-router-dom'
 
 import { supabase, useSupabaseQuery } from '@/db/supabase'
+import MediaVote from './MediaVote'
 
 export default () => {
-  let { id } = useParams()
+  const { mediaId } = useParams()
 
-  let query = supabase
+  const query = supabase
     .from('media')
-    .select('*, media_ratings(*)')
-    .eq('id', id)
+    .select('*, media_votes(*)')
+    .eq('id', mediaId)
     .single()
-  const [media, loading, error] = useSupabaseQuery(query, [id])
+  const [media, loading, error] = useSupabaseQuery(query, [mediaId])
 
   return <>
     {
@@ -19,14 +20,8 @@ export default () => {
       !media ? 'no media found' :
       <>
         <h1>{media.url}</h1>
-        <a href={media.url} target="_blank">Visit media ↗</a>
-        <br />
-        {
-          (!media.media_ratings || media.media_ratings.length <= 0) ? 'no ratings' :
-          media.media_ratings.map(mediaRating => {
-            return <div key={mediaRating.id}>{mediaRating.stars} star(s): {mediaRating.content}</div>
-          })
-        }
+        <a href={media.url} target="_blank">View media ↗</a>
+        <MediaVote media={media} />
       </>
     }
   </>

@@ -1,91 +1,48 @@
 import { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { useUser } from '@/_state/user'
 import { supabase } from '@/db/supabase'
-
-// keep in sync with the database enums
-const MEDIA_TYPES = [
-  {
-    id: 'book',
-    label: 'Book',
-  },
-  {
-    id: 'article',
-    label: 'Article',
-  },
-  {
-    id: 'podcast',
-    label: 'Podcast',
-  },
-  {
-    id: 'video',
-    label: 'Video',
-  },
-  {
-    id: 'tv_show',
-    label: 'TV show',
-  },
-  {
-    id: 'film',
-    label: 'Film',
-  },
-  {
-    id: 'other',
-    label: 'Other',
-  },
-]
+import mediaTypes from '@/consts/mediaTypes'
 
 export default () => {
   const { user } = useUser()
   const { langId } = useParams()
+  const navigate = useNavigate()
 
-  const [name, setName] = useState('')
   const [url, setUrl] = useState('')
-  const [type, setType] = useState(MEDIA_TYPES[0].id)
+  const [type, setType] = useState(mediaTypes[0].id)
   const [saving, setSaving] = useState(false)
 
   async function submit( event ) {
     event.preventDefault()
-    debugger
     try {
       setSaving(true)
 
       const newData = {
-        language: langId,
-        name,
+        language_id: langId,
         url,
-        type,
+        media_type: type,
         created_by: user.id,
       }
 
-      let { error } = await supabase.from('media').insert([newData])
+      const { data: newMedia, error } = await supabase
+        .from('media')
+        .insert([newData])
+        .select()
 
       if (error) {
         throw error
       }
-      console.log('saved')
+      navigate(`/${langId}/media/${newMedia[0].id}`)
     } catch (error) {
-      alert(error.message)
-    } finally {
       setSaving(false)
-      setName('')
-      setUrl('')
+      alert(error.message)
     }
   }
 
   return <form onSubmit={submit}>
     <h2>New media item</h2>
-
-    <label htmlFor="name">Name</label>
-    <input
-      id="name"
-      type="text"
-      value={name}
-      placeholder=""
-      onChange={e => setName(e.target.value)}
-      required
-    />
 
     <label htmlFor="type">Type</label>
     <select
@@ -93,7 +50,7 @@ export default () => {
       onChange={e => setType(e.target.value)}
       required
     >
-      {MEDIA_TYPES.map(mediaType => {
+      {mediaTypes.map(mediaType => {
         return <option key={mediaType.id} value={mediaType.id}>{mediaType.label}</option>
       })}
     </select>
@@ -103,7 +60,7 @@ export default () => {
       id="url"
       type="url"
       value={url}
-      placeholder="https://..."
+      placeholder="https://yourlink.here"
       onChange={e => setUrl(e.target.value)}
       required
     />

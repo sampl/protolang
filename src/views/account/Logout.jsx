@@ -5,7 +5,7 @@ import { useUser } from '@/_state/user'
 
 export default () => {
   const { logout } = useUser()
-  let navigate = useNavigate()
+  const navigate = useNavigate()
 
   useEffect( () => {
     logout()

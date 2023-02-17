@@ -10,7 +10,7 @@ export default () => {
   const { user } = useUser()
 
   // TODO - filter to today in the query itself, and only return a count
-  let query = supabase
+  const query = supabase
     .from('practice_attempts')
     .select('*, phrase(*)')
     .eq('created_by', user?.id)

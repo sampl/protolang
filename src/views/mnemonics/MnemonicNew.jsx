@@ -8,7 +8,7 @@ export default ({ string }) => {
   const { user } = useUser()
   const { currentLanguage } = useLanguage()
 
-  const [newMnemonic, setNewMnemonic] = useState('')
+  const [rememberMethod, setRememberMethod] = useState('')
   const [saving, setSaving] = useState(false)
 
   async function addMnemonic( event ) {
@@ -17,38 +17,41 @@ export default ({ string }) => {
       setSaving(true)
 
       const newData = {
-        language: currentLanguage.id,
+        language_id: currentLanguage.id,
         target_phrase: string,
-        remember_method: newMnemonic,
+        remember_method: rememberMethod,
         created_by: user.id,
       }
 
-      let { error } = await supabase.from('mnemonics').insert([newData])
+      const { error } = await supabase
+        .from('mnemonics')
+        .insert([newData])
 
       if (error) {
         throw error
       }
+      location.reload()
     } catch (error) {
-      alert(error.message)
-    } finally {
       setSaving(false)
-      setNewMnemonic('')
+      alert(error.message)
     }
   }
 
   return <form onSubmit={addMnemonic}>
     <textarea
       id="content"
-      value={newMnemonic}
+      value={rememberMethod}
       placeholder="How do you remember this word?"
-      onChange={e => setNewMnemonic(e.target.value)}
+      onChange={e => setRememberMethod(e.target.value)}
     />
+
     <br />
+
     <button
       type="submit"
       disabled={saving}
     >
-      {saving ? 'Submitting...' : 'Submit'}
+      {saving ? 'Adding...' : 'Add'}
     </button>
   </form>
 }

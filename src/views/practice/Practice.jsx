@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { useState } from 'react'
 
 import { supabase, useSupabaseQuery } from '@/db/supabase'
@@ -6,20 +6,22 @@ import Card from '@/views/practice/Card'
 import { TwoColumns } from '@/styles/Layout'
 import AttemptsList from './AttemptsList'
 import DailyProgress from './DailyProgress'
+import { useUser } from '@/_state/user'
 
 export default () => {
   const { langId } = useParams()
+  const { isAdmin } = useUser()
 
-  let lessonsQuery = supabase
+  const lessonsQuery = supabase
     .from('lessons')
     .select()
-    .eq('language', langId)
+    .eq('language_id', langId)
   const [lessons, lessonsLoading, lessonsError] = useSupabaseQuery(lessonsQuery, [langId])
 
-  let phrasesQuery = supabase
+  const phrasesQuery = supabase
     .from('phrases')
     .select()
-    .eq('language', langId)
+    .eq('language_id', langId)
   const [phrases, phrasesLoading, phrasesError] = useSupabaseQuery(phrasesQuery, [langId])
 
   const [phraseSource, setPhraseSource] = useState('')
@@ -92,6 +94,11 @@ export default () => {
         <option value="text">Text</option>
         <option value="speech">Speech</option>
       </select>
+      { isAdmin && <div>
+          <hr />
+          <Link to={`/${langId}/practice/new`}>New phrase</Link>
+        </div>
+      }
     </div>
   </TwoColumns>
 }

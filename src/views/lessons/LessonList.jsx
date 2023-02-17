@@ -8,10 +8,10 @@ import LessonsDownload from './LessonsDownload'
 export default () => {
   const { langId } = useParams()
 
-  let query = supabase
+  const query = supabase
     .from('lessons')
     .select()
-    .eq('language', langId)
+    .eq('language_id', langId)
   const [lessons, loading, error] = useSupabaseQuery(query, [langId])
 
   return <>
