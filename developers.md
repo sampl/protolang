@@ -108,6 +108,7 @@ To self-host Protolang on your own server:
 - Edit the [auth config in Supabase](https://app.supabase.com/project/_/auth/url-configuration) with the URL you wan to host on
 - Edit `update-dict.js` and `migrate.js` to temporarily point to your production database (TODO - better way to hand environment switching)
 - Run `npm run migrate` and `npm run update-dict -- --live` to set up the database and seed it with the language files on the new db
+- You may want to manually copy/paste in some of the files in `/scripts/seed` to seed the database with some initial data (like languages). Be careful to replace instances of `USER_ID` with your production user ID.
 
 ## Troubleshooting
 
