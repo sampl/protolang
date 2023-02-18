@@ -100,10 +100,9 @@ export default () => {
       <BreadcrumbItem to={`/${langId}/lessons/${slug}/edit`}>Edit</BreadcrumbItem>
     </BreadcrumbWrapper>
 
-    <h2>Edit lesson: {lesson.title_en}</h2>
-    <Link to={`/${langId}/lessons/${lesson?.slug}`}>View live</Link>
-
     <button style={{float: 'right'}} onClick={() => setHelpIsOpen(true)}>Formatting help</button>
+
+    <h1>Edit lesson: {lesson.title_en}</h1>
 
     <Modal isOpen={helpIsOpen} onClose={() => setHelpIsOpen(false)}>
       <p>Lessons use <a target="_blank" href="https://talk.commonmark.org/t/generic-directives-plugins-syntax/444">markdown directives</a> to embed phrases.</p>

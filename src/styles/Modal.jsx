@@ -29,7 +29,7 @@ const ModalWrapper = styled.div`
   z-index: 100;
 `
 const ModalOverlay = styled(Dialog.Overlay)`
-  background: hsla(0, 0%, 30%, .5);
+  background: hsla(0, 0%, 100%, .8);
   position: fixed;
   top: 0;
   bottom: 0;

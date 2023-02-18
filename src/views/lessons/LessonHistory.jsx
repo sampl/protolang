@@ -40,7 +40,7 @@ export default () => {
       <BreadcrumbItem to={`/${langId}/lessons/${slug}/history`}>History</BreadcrumbItem>
     </BreadcrumbWrapper>
 
-    <h2>History: {lesson.title_en}</h2>
+    <h1>History: {lesson.title_en}</h1>
     <hr />
     <TwoColumns cols="2fr 1fr">
       <div>
@@ -56,8 +56,6 @@ export default () => {
         }
       </div>
       <div>
-        <Link to={`/${langId}/lessons/${slug}`}>View current</Link>
-        <br />
         <Link to={`/${langId}/lessons/${slug}/edit`}>Edit lesson</Link>
       </div>
     </TwoColumns>

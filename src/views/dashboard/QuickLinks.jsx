@@ -38,10 +38,17 @@ export default () => {
 
 const QuickLinkItemWrapper = styled(Link)`
   border: 1px solid;
+  box-shadow: 2px 2px;
   padding: 1rem;
   background: white;
   text-decoration: none;
   &:hover {
-    text-decoration: underline;
+    text-decoration: none;
+  }
+  &:active {
+    position: relative;
+    top: 1px;
+    left: 1px;
+    box-shadow: 1px 1px;
   }
 `
