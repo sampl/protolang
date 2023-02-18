@@ -11,16 +11,15 @@ export default ({ it, en }) => {
   const query = supabase
     .from('phrases')
     .select()
-    .or(`it.eq.${it},en.eq.${en}`)
+    .or(`content_it.eq.${it},content_en.eq.${en}`)
     .single()
   const [phrase, loading, error] = useSupabaseQuery(query, [en, it], !(en || it))
 
-  // TODO - mnemonics
-
-  if (loading) return <span>Loading...</span>
-  if (error) return <span>Error: {error.message}</span>
-  if (!it) return <LessonEmbedWrapper>Missing Italian translation for this phrase</LessonEmbedWrapper>
-  if (!en) return <LessonEmbedWrapper>Missing English translation for this phrase</LessonEmbedWrapper>
+  if (loading) return <LessonEmbedWrapper>Loading...</LessonEmbedWrapper>
+  if (error) return <LessonEmbedWrapper>Error: {error.message}</LessonEmbedWrapper>
+  if (!phrase) return <LessonEmbedWrapper>No phrase found</LessonEmbedWrapper>
+  if (!phrase.content_it) return <LessonEmbedWrapper>Missing Italian translation for this phrase</LessonEmbedWrapper>
+  if (!phrase.content_en) return <LessonEmbedWrapper>Missing English translation for this phrase</LessonEmbedWrapper>
 
   return <LessonEmbedWrapper>
     <div>
