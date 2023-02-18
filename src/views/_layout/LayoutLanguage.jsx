@@ -9,6 +9,7 @@ import LanguagePicker from '../languages/LanguagePicker'
 import { useUser } from "@/_state/user"
 import { useEffect } from 'react'
 import Banner from '@/styles/Banner'
+import UserOnboarding from '../onboarding/UserOnboarding'
 import UserLanguageOnboarding from '../onboarding/UserLanguageOnboarding'
 import ErrorPage from '../ErrorPage'
 import LayoutSimple from './LayoutSimple'
@@ -84,6 +85,13 @@ export default ({children}) => {
       }
     </LayoutSimple>
   }
+
+  // TODO - permissions so users can update their preferences
+  // if (user && !user.preferences) {
+  //   return <LayoutSimple>
+  //     <UserOnboarding />
+  //   </LayoutSimple>
+  // }
 
   if (user && !userLanguages?.map(ul => ul.language_id?.id).includes(langId)) {
     return <LayoutSimple>
