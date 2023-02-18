@@ -9,7 +9,9 @@
   <br />
 </p>
 
-[Protolang](https://protolang.com/about) is an online language-learning website focused supporting multiple learning styles. Open content, open source, and no ads.
+[Protolang](https://protolang.com/about) is an online language-learning website focused supporting multiple learning styles.
+
+Free to use, open source, open content, no account required, and no ads.
 
 👉👉👉 **[Help us develop our free, open source language courses](contributing.md)** 👈👈👈
 
