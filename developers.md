@@ -49,8 +49,8 @@ Tables:
 Protolang is built on [Supabase](https://supabase.com/), a Postgres platform-as-a-service.
 
 - [Sign up for Supabase](https://app.supabase.com/sign-up)
-- From the [Supabase dashboard](https://app.supabase.com/projects), create a new project
-- Save your Supabase project database credentials, you'll need these in a moment
+- From the [Supabase dashboard](https://app.supabase.com/projects), create a new project in your organization
+- Save your Supabase project database password in a safe place
 
 ### Clone the repo
 
@@ -64,13 +64,6 @@ Protolang is built on [Supabase](https://supabase.com/), a Postgres platform-as-
 - Create a `.env` file in the root (`/`) directory and add the database connection string like so: `ADMIN_POSTGRES_CONNECTION_STRING=postgresql://postgres:password123@db.abc123.supabase.co:1234/postgres` (use your actual Postgres connection string from Supabase)
 - Run the migrations to set up tables: `npm run migrate` (currently works on a new database only)
 
-### Configure Supabase
-
-Back in the Supabase dashboard, you have to expose your dictionaries schema so the API can see it.
-
-- Go to [your project's API settings](https://app.supabase.com/project/_/settings/api)
-- Under "Exposed schemas", add `dictionaries`
-
 ### Start the web server
 
 Start the local server: `npm run dev`
@@ -80,10 +73,10 @@ Start the local server: `npm run dev`
 Some seed scripts require a valid `created_by` value. For example, seeding Lessons won't work unless each lesson has a valid `created_by` value reference in the `admin.users` table. To set this up, we just need to give your seed scripts a valid UID to use.
 
 - Sign into your Protolang app (not Supabase—the actual app, on `localhost`), then go to your [Supabase users dashboard](https://app.supabase.com/project/_/auth/users) and copy the User UID of your user.
-- Go back to your `.env.development` file and add the UID it as `ADMIN_USER_UID`
+- Go back to your `.env.development` file and add the UID it as `SEED_USER_ID`
 - Now run `npm run seed`
 
-You'll also want to seed the dictionary schema with the language files. 
+You'll also want to seed the dictionary schema with the language files.
 
 The full language dictionaries are generated from the English-language [Wiktionary](https://en.wiktionary.org/) and parsed by [Wiktextract](https://github.com/tatuylonen/wiktextract).
 
@@ -91,17 +84,30 @@ Parsed JSON language files are quite large, so they are not included in git as o
 
 - Download the language files you want to use from [https://kaikki.org/dictionary/]
 - Move the file into the `/data` directory
-- Run `npm run update-dict`
+- Run `npm run update-dict -- --live`
+
+### Configure Supabase
+
+Back in the Supabase dashboard, you have to expose your dictionaries schema so the API can see it.
+
+- Go to [your project's API settings](https://app.supabase.com/project/_/settings/api)
+- Under "Exposed schemas", add `dictionaries`
 
 That's it--you should be good to go!
 
 ## Deploy
 
-To deploy to Vercel, push to GitHub and connect a new project in the [Vercel dashboard](https://vercel.com/docs/concepts/git/vercel-for-github).
+To deploy to Vercel, push to GitHub and connect a new project in the [Vercel dashboard](https://vercel.com/docs/concepts/git/vercel-for-github). You'll probably want to add your public environment variables to Vercel (**DO NOT** publish your `ADMIN_POSTGRES_CONNECTION_STRING` or other secrets).
 
 To deploy to a different static host, use `npm run build` to create a bundle in `/dist` and follow the directions for your hosting provider. See [Vite docs on building and deploying](https://vitejs.dev/guide/static-deploy.html#building-the-app).
 
-To self-host Protolang on your own server, create a separate Supabase project and add the connection string to an `.env.production` file. You'll also have to edit the [auth config in Supabase](https://app.supabase.com/project/_/auth/url-configuration) with the URL you wan to host on.
+To self-host Protolang on your own server:
+
+- Create a separate Supabase project for production.
+- Add all the database connection information to a new `.env.production` file
+- Edit the [auth config in Supabase](https://app.supabase.com/project/_/auth/url-configuration) with the URL you wan to host on
+- Edit `update-dict.js` and `migrate.js` to temporarily point to your production database (TODO - better way to hand environment switching)
+- Run `npm run migrate` and `npm run update-dict -- --live` to set up the database and seed it with the language files on the new db
 
 ## Troubleshooting
 

@@ -24,6 +24,7 @@
         "signup",
         "styleguide",
         "supabase",
+        "timestamptz",
         "upsert",
         "upvoted",
         "Waitlist",
