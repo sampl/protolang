@@ -1,9 +1,11 @@
 <p align="center">
   <br />
+  <br />
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/231851/219878191-d671e609-3365-45ca-b739-140eed7f45d0.png">
     <img src="https://user-images.githubusercontent.com/231851/219878190-4eff0ab8-2de7-4a89-86b6-3c9ecd4a8482.png" height="48">
   </picture>
+  <br />
   <br />
 </p>
 
