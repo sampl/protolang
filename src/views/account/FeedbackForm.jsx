@@ -22,7 +22,7 @@ export default () => {
 
       <form onSubmit={handleSubmit}>
         <label htmlFor="email">
-          Email address
+          Your email
         </label>
         <input
           id="email"

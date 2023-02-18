@@ -98,6 +98,7 @@ export default ({children}) => {
         <Logo to={`/${langId}`} />
         <NavLink to={`/${langId}/lessons`}>Lessons</NavLink>
         <NavLink to={`/${langId}/practice`}>Practice</NavLink>
+        <NavLink to={`/${langId}/chat`}>Chat</NavLink>
         <DropdownNavMenu trigger="More...">
           <NavLink to={`/${langId}/resources`}>Resources</NavLink>
           <br />
@@ -105,7 +106,6 @@ export default ({children}) => {
           <br />
           <NavLink to={`/${langId}/dictionary`}>Dictionary (coming soon)</NavLink>
           <br />
-          <div>Chat (coming soon)</div>
           <div>Community (coming soon)</div>
         </DropdownNavMenu>
       </nav>
