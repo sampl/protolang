@@ -13,7 +13,7 @@ export default () => {
     console.log('getting lessons')
     const { data: lessons, error } = await supabase
       .from('lessons')
-      .select()
+      .select('*, current_edit(*)')
       .eq('language_id', langId)
     
     if (error) {
@@ -26,7 +26,7 @@ export default () => {
     console.log('generating lessonFiles')
     const lessonFiles = lessons.map(lesson => ({
       name: `${lesson.title_en}.md`, // TODO - add sort order here
-      content: lesson.content_en,
+      content: lesson.current_edit ? lesson.current_edit.content_en : '',
     }))
 
     // make zip file
