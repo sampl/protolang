@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useUser } from '@/_state/user'
-import { supabase } from '@/db/supabase'
+import { supabase, useSupabaseQuery } from '@/db/supabase'
 import { useLanguage } from '@/_state/language'
 import { Button } from '@/styles/Button'
 import { RadioGroup, CheckboxGroup } from '@/styles/RadioCheckbox'
@@ -23,6 +23,11 @@ export default ({ closeModal }) => {
   const [emailUpdates, setEmailUpdates] = useState([])
   const [topics, setTopics] = useState([])
   const [saving, setSaving] = useState(false)
+
+  const topicsQuery = supabase
+    .from('topics')
+    .select()
+  const [topicsList, topicsLoading, topicsError] = useSupabaseQuery(topicsQuery)
 
   async function addUserLanguage( event ) {
     event.preventDefault()
@@ -66,6 +71,8 @@ export default ({ closeModal }) => {
       setSaving(false)
     }
   }
+
+  const topicOptions = !topicsList ? [] : topicsList.map(topic => ({id: topic.id, description: `${topic.title_en} - ${topic.description_en}`, }))
 
   return <form onSubmit={addUserLanguage}>
 
@@ -137,6 +144,10 @@ export default ({ closeModal }) => {
           description: "I'd love to someday!",
         },
         {
+          id: "already",
+          description: "Already been!",
+        },
+        {
           id: "none",
           description: "Not really",
         },
@@ -205,27 +216,11 @@ export default ({ closeModal }) => {
 
     <label>What kinds of things will you do in Italian?</label>
     <CheckboxGroup
+      disabled={topicsLoading || topicsError}
       groupName="topics"
       values={topics}
       setValues={setTopics}
-      options={[
-        {
-          id: "romance",
-          description: "Dating, flirting, and romance",
-        },
-        {
-          id: "work",
-          description: "Work, professional conversations, and business",
-        },
-        {
-          id: "family",
-          description: "Seeing family, talking to relatives, researching ancestors",
-        },
-        {
-          id: "other",
-          description: "Other stuff",
-        }
-      ]}
+      options={topicOptions}
     />
 
 
