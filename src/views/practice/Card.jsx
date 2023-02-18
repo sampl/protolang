@@ -39,6 +39,7 @@ export default ({ phrase, cardQuestionType, cardAnswerType, direction, next }) =
 
   const submitAnswer = async answer => {
     const correct = testAnswer(answer)
+    const wasSecondTry = strikes > 0
     if (!correct && strikes < MAX_STRIKES) {
       setStrikes(s => s + 1)
       setCardState('try_again')
@@ -53,8 +54,15 @@ export default ({ phrase, cardQuestionType, cardAnswerType, direction, next }) =
       const newData = {
         language_id: currentLanguage.id,
         phrase: phrase?.id,
+        direction,
+        prompt_type: cardQuestionType,
+        repeated_only: false, // TODO - built repeat-only attempts
         guess: answer,
         is_correct: correct,
+        answer_type: cardAnswerType,
+        // perfect_answer, // TODO - return in test algo
+        // with_hint, // TODO - detect hints
+        second_try: wasSecondTry,
         created_by: user.id,
       }
       const { error } = await supabase

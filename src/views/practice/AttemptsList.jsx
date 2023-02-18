@@ -14,6 +14,7 @@ export default () => {
     .from('practice_attempts')
     .select('*, phrase(*)')
     .eq('created_by', user?.id)
+    .eq('language_id', currentLanguage?.id)
   const [data, loading, error] = useSupabaseQuery(query, [user?.id], !user)
 
   const attempts = data?.sort((a, b) => moment(b.created_at).valueOf() - moment(a.created_at).valueOf())
@@ -32,8 +33,11 @@ export default () => {
         <thead>
           <tr>
             <td>Date</td>
+            <td>Direction</td>
             <td>Italian</td>
             <td>English</td>
+            <td>Prompt type</td>
+            <td>Answer type</td>
             <td>Your guess</td>
             <td>Correct?</td>
           </tr>
@@ -43,12 +47,15 @@ export default () => {
             attempts.map(attempt => {
               return <tr key={attempt?.id}>
                 <td>{moment(attempt.created_at).format('MM/DD/YYYY')}</td>
+                <td>{attempt.direction === 'forward' ? 'English to Italian' : 'Italian to English'}</td>
                 <td>
                   <Link to={`/${currentLanguage.id}/practice/${attempt.phrase.id}`}>
                     {attempt.phrase.content_it}
                   </Link>
                 </td>
                 <td>{attempt.phrase.content_en}</td>
+                <td>{attempt.prompt_type}</td>
+                <td>{attempt.answer_type}</td>
                 <td>"{attempt.guess}"</td>
                 <td>{attempt.is_correct ? '✅' : '❌'}</td>
               </tr>
