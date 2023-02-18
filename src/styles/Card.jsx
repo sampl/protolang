@@ -8,4 +8,5 @@ const CardWrapper = styled.header`
   border: 1px solid;
   padding: 1rem;
   background: white;
+  box-shadow: 3px 3px;
 `

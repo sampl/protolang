@@ -32,14 +32,14 @@ export default () => {
       <table>
         <thead>
           <tr>
-            <td>Date</td>
-            <td>Direction</td>
-            <td>Italian</td>
-            <td>English</td>
-            <td>Prompt type</td>
-            <td>Answer type</td>
-            <td>Your guess</td>
-            <td>Correct?</td>
+            <th>Date</th>
+            <th>Direction</th>
+            <th>Italian</th>
+            <th>English</th>
+            <th>Prompt type</th>
+            <th>Answer type</th>
+            <th>Your guess</th>
+            <th>Correct?</th>
           </tr>
         </thead>
         <tbody>

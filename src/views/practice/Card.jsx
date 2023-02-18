@@ -10,6 +10,7 @@ import CardAnswerSpeech from './card_answer_types/CardAnswerSpeech'
 import { useLanguage } from '@/_state/language'
 import { Button } from '@/styles/Button'
 import SpeakWord from '@/views/dictionary/SpeakWord'
+import { TwoColumns } from '@/styles/Layout'
 
 const MAX_STRIKES = 1
 
@@ -82,7 +83,16 @@ export default ({ phrase, cardQuestionType, cardAnswerType, direction, next }) =
 
   return <Card>
 
-    <p>{cardAnswerType === 'text' ? 'Type' : 'Speak'} the {direction === 'forward' ? 'Italian' : 'English'} for...</p>
+    <TwoColumns cols="auto max-content">
+      <p>{cardAnswerType === 'text' ? 'Type' : 'Speak'} the {direction === 'forward' ? 'Italian' : 'English'} for...</p>
+      <div>
+        <button onClick={() => setIsReportingIssue(true)}>Report issue</button>
+        {
+          isReportingIssue && 
+          <ReportIssue phrase={phrase} close={() => setIsReportingIssue(false)} />
+        }
+      </div>
+    </TwoColumns>
 
     {
       cardQuestionType === 'text' ? <h2>{question}</h2> :
@@ -103,38 +113,41 @@ export default ({ phrase, cardQuestionType, cardAnswerType, direction, next }) =
       testPartialAnswer={testPartialAnswer}
       submitAnswer={submitAnswer}
     />
-    <br />
-    {
-      cardState === "correct" ? <>
-        You're right!
-        <Link to={`/${currentLanguage.id}/practice/${phrase?.id}`}>go to phrase</Link>
-        <br />
-        <Button autoFocus onClick={next}>Next</Button>
-      </>
-      :
-      cardState === "try_again" ? <>
-        Not quite, try again...
-      </>
-      :
-      cardState === "incorrect" ? <>
-        Whoops not quite. The answer is "{correctAnswer}"
-        <Link to={`/${currentLanguage.id}/practice/${phrase?.id}`}>go to phrase</Link>
-        <Button autoFocus onClick={next}>Next</Button>
-      </>
-      :
-      null
-    }
-    {
-      cardState !== 'waiting' && 
-      <button onClick={() => setIsReportingIssue(true)}>Report issue</button>
-    }
-    {
-      isReportingIssue && 
-      <ReportIssue phrase={phrase} close={() => setIsReportingIssue(false)} />
-    }
-    {
-      (cardState === "waiting" || cardState === "try_again") && 
-      <div onClick={next}>skip</div>
-    }
+
+    {/* <hr /> */}
+
+    <TwoColumns cols="auto max-content">
+      <div>
+        {
+          cardState === "try_again" ? <>
+            Not quite, try again...
+          </>
+          :
+          cardState === "correct" ? <>
+            You're right!
+            {' · '}
+            <Link to={`/${currentLanguage.id}/practice/${phrase?.id}`}>go to phrase</Link>
+            <br />
+            <Button autoFocus onClick={next}>Next</Button>
+          </>
+          :
+          cardState === "incorrect" ? <>
+            Whoops not quite. The answer is "{correctAnswer}"
+            {' · '}
+            <Link to={`/${currentLanguage.id}/practice/${phrase?.id}`}>go to phrase</Link>
+            <br />
+            <Button autoFocus onClick={next}>Next</Button>
+          </>
+          :
+          null
+        }
+      </div>
+      <div>
+        {
+          (cardState === "waiting" || cardState === "try_again") && 
+          <div onClick={next}>skip</div>
+        }
+      </div>
+    </TwoColumns>
   </Card>
 }

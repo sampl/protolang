@@ -75,9 +75,12 @@ export default ({
     }
   }
   return <>
+    <button onClick={toggleSpeech} disabled={disabled} style={{fontSize: '20px'}}>
+      {
+        recognitionState === 'listening' ? 'Listening...' :
+        'Click to speak'
+      }
+    </button>
     <code><strong>{finalTranscript}</strong> {interimTranscript}</code>
-    {!disabled && <button onClick={toggleSpeech}>
-      {recognitionState === 'listening' ? 'Listening...' : 'Listen'}
-    </button>}
   </>
 }

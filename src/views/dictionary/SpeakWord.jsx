@@ -7,6 +7,6 @@ export default ({ wordString, disabled }) => {
     onClick={() => speak(wordString || '')}
     disabled={!speechSynthesisIsSupported || disabled}
   >
-    Speak
+    🔈
   </button>
 }
