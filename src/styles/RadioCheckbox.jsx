@@ -35,13 +35,15 @@ export const CheckboxItem = ({ groupName, optionId, checked, onChange, children 
 
 // https://medium.com/codex/handling-checkboxes-in-react-3a2514b140d2
 export const CheckboxGroup = ({ groupName, options, values, setValues }) => {
-  const onChange = (optionId, checked) =>{
+  const onChange = (optionId, checked) => {
+    let newValues = [...values]
     if (checked) {
-      setValues([...values, optionId])
+      newValues = [...newValues, optionId]
+      setValues(newValues)
     } else {
-      const index = values.indexOf(optionId)
-      values.splice(index, 1)
-      setValues(values)
+      const index = newValues.indexOf(optionId)
+      newValues.splice(index, 1)
+      setValues(newValues)
     }
   }
   return <CheckboxOptions>
@@ -76,6 +78,11 @@ const row = css`
   display: block;
   width: 100%;
   text-align: left;
+
+  // indicator
+  &:hover::before {
+    background: #999;
+  }
 `;
 const indicator = css`
   content: '';
