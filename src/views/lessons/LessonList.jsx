@@ -1,9 +1,11 @@
 import { Link, useParams } from 'react-router-dom'
 import styled from 'styled-components/macro'
+import {groupBy} from 'lodash'
 
 import { supabase, useSupabaseQuery } from '@/db/supabase'
 import { TwoColumns } from '@/styles/Layout'
 import LessonsDownload from './LessonsDownload'
+import SuggestedLessons from './SuggestedLessons'
 
 export default () => {
   const { langId } = useParams()
@@ -14,8 +16,21 @@ export default () => {
     .eq('language_id', langId)
   const [lessons, loading, error] = useSupabaseQuery(query, [langId])
 
+  const groupedLessons = groupBy(lessons, l => Math.floor(l.sort_order/10))
+  const groups = Object.keys(groupedLessons)
+    .map(k => ({ key: k, lessons: groupedLessons[k]}))
+    .map(g => ({
+      ...g,
+      title:  g.key === '1' ? 'Getting started' : 
+              g.key === '2' ? 'Beginner' :
+              g.key === '3' ? 'Moderate' :
+              g.key === '4' ? 'Advanced' :
+              'Group',
+    }))
+
   return <>
     <h1>Lessons</h1>
+    <SuggestedLessons />
     {
       error ? error.message :
       loading ? 'loading...' :
@@ -23,10 +38,15 @@ export default () => {
         <LessonListWrapper>
           {
             (!lessons || lessons.length) <= 0 ? 'no lessons' : 
-            lessons?.map(lesson => {
-              return <LessonListItemWrapper key={lesson.slug} to={`/${langId}/lessons/${lesson.slug}`}>
-                {lesson.title_en || 'Unknown'}
-              </LessonListItemWrapper>
+            groups?.map(group => {
+              return <LessonGroupWrapper key={group.key}>
+                <h2>{group.title}</h2>
+                {group.lessons.map(lesson => {
+                  return <LessonListItemWrapper key={lesson.slug} to={`/${langId}/lessons/${lesson.slug}`}>
+                    {lesson.title_en || 'Unknown'}
+                  </LessonListItemWrapper>
+                })}
+              </LessonGroupWrapper>
             })}
         </LessonListWrapper>
         <div>
@@ -45,9 +65,13 @@ const LessonListWrapper = styled.div`
   /* gap: 2rem 1rem; */
   /* grid-template-columns: 1fr 1fr; */
 `
+const LessonGroupWrapper = styled.div`
+  margin: 0 0 2rem;
+`
 const LessonListItemWrapper = styled(Link)`
   /* border: 1px solid; */
   /* padding: 1rem; */
   /* text-decoration: none; */
   /* min-height: 100px; */
+  display: block;
 `
