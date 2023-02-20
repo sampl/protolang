@@ -1,12 +1,16 @@
-import { supabase, useSupabaseQuery } from '@/db/supabase'
 import styled from 'styled-components/macro'
-import MnemonicSuggested from '@/views/mnemonics/MnemonicSuggested'
+import { useDebounce } from 'use-debounce'
 
+import { supabase, useSupabaseQuery } from '@/db/supabase'
+import MnemonicSuggested from '@/views/mnemonics/MnemonicSuggested'
 import SpeakWord from '../dictionary/SpeakWord'
 import Definable from './Definable'
 import PhraseNew from '../practice/PhraseNew'
 
-export default ({ it, en }) => {
+export default ({ it: initialIt, en: initialEn }) => {
+
+  const [en] = useDebounce(initialEn, 500, { leading: true })
+  const [it] = useDebounce(initialIt, 500, { leading: true })
 
   // https://supabase.com/docs/reference/javascript/or
   const query = supabase
