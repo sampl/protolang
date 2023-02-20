@@ -44,7 +44,6 @@ import AdminPhrases from './views/admin/AdminPhrases'
 import AdminLanguages from './views/admin/AdminLanguages'
 import AdminUsers from './views/admin/AdminUsers'
 import AdminPhraseIssues from './views/admin/AdminPhraseIssues'
-import PhraseNew from './views/practice/PhraseNew'
 import AdminLessons from './views/admin/AdminLessons'
 import Chat from './views/chat/Chat'
 
@@ -234,11 +233,6 @@ export default [
   {
     path: `/:langId/practice/:phraseId/edit`,
     component: PhraseEdit,
-    layout: LayoutLanguage,
-  },
-  {
-    path: `/:langId/practice/new`,
-    component: PhraseNew,
     layout: LayoutLanguage,
   },
 

@@ -1,20 +1,23 @@
 import { useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 import { useUser } from '@/_state/user'
 import { supabase } from '@/db/supabase'
+import Modal from '@/styles/Modal'
 
-export default () => {
+export default ({ it, en }) => {
   const { user } = useUser()
   const { langId } = useParams()
-  const navigate = useNavigate()
 
-  const [contentIt, setContentIt] = useState('')
-  const [contentEn, setContentEn] = useState('')
+  const [phraseCreatorIsOpen, setPhraseCreatorIsOpen] = useState(false)
+  const [contentIt, setContentIt] = useState(it || '')
+  const [contentEn, setContentEn] = useState(en || '')
   const [saving, setSaving] = useState(false)
 
   async function submit( event ) {
     event.preventDefault()
+    event.stopPropagation()
+
     try {
       setSaving(true)
       const newData = {
@@ -26,7 +29,7 @@ export default () => {
         created_by: user.id,
       }
 
-      const { data: newPhrase, error } = await supabase
+      const { error } = await supabase
         .from('phrases')
         .insert([newData])
         .select()
@@ -34,41 +37,50 @@ export default () => {
       if (error) {
         throw error
       }
-      navigate(`/${langId}/practice/${newPhrase[0].id}`)
+      // TODO - make sure other pages have reactivity on so they see the update
+      setPhraseCreatorIsOpen(false)
     } catch (error) {
       setSaving(false)
       alert(error.message)
     }
   }
 
-  return <form onSubmit={submit}>
-    <h2>New phrase</h2>
+  return <>
+    <button type="button" onClick={() => setPhraseCreatorIsOpen(true)}>Add phrase</button>
 
-    <label htmlFor="contentIt">Italian</label>
-    <textarea
-      id="contentIt"
-      value={contentIt}
-      placeholder=""
-      onChange={e => setContentIt(e.target.value)}
-      required
-    />
+    <Modal isOpen={phraseCreatorIsOpen} onClose={() => setPhraseCreatorIsOpen(false)}>
 
-    <label htmlFor="contentEn">English</label>
-    <textarea
-      id="contentEn"
-      value={contentEn}
-      placeholder=""
-      onChange={e => setContentEn(e.target.value)}
-      required
-    />
+      <form onSubmit={submit}>
+        <h2>New phrase</h2>
 
-    <br />
+        <label htmlFor="contentIt">Italian</label>
+        <textarea
+          id="contentIt"
+          value={contentIt}
+          placeholder=""
+          onChange={e => setContentIt(e.target.value)}
+          required
+        />
 
-    <button
-      type="submit"
-      disabled={saving}
-    >
-      {saving ? 'Adding...' : 'Add phrase'}
-    </button>
-  </form>
+        <label htmlFor="contentEn">English</label>
+        <textarea
+          id="contentEn"
+          value={contentEn}
+          placeholder=""
+          onChange={e => setContentEn(e.target.value)}
+          required
+        />
+
+        <br />
+
+        <button
+          type="submit"
+          disabled={saving}
+        >
+          {saving ? 'Adding...' : 'Add phrase'}
+        </button>
+      </form>
+
+    </Modal>
+  </>
 }

@@ -7,6 +7,7 @@ import { TwoColumns } from '@/styles/Layout'
 import AttemptsList from './AttemptsList'
 import DailyProgress from './DailyProgress'
 import { useUser } from '@/_state/user'
+import PhraseNew from './PhraseNew'
 
 export default () => {
   const { langId } = useParams()
@@ -96,7 +97,7 @@ export default () => {
       </select>
       { isAdmin && <div>
           <hr />
-          <Link to={`/${langId}/practice/new`}>New phrase</Link>
+          <PhraseNew />
         </div>
       }
     </div>

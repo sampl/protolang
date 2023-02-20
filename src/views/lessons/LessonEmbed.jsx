@@ -4,6 +4,7 @@ import MnemonicSuggested from '@/views/mnemonics/MnemonicSuggested'
 
 import SpeakWord from '../dictionary/SpeakWord'
 import Definable from './Definable'
+import PhraseNew from '../practice/PhraseNew'
 
 export default ({ it, en }) => {
 
@@ -16,8 +17,18 @@ export default ({ it, en }) => {
   const [phrase, loading, error] = useSupabaseQuery(query, [en, it], !(en || it))
 
   if (loading) return <LessonEmbedWrapper>Loading...</LessonEmbedWrapper>
-  if (error) return <LessonEmbedWrapper>Error: {error.message}</LessonEmbedWrapper>
-  if (!phrase) return <LessonEmbedWrapper>No phrase found</LessonEmbedWrapper>
+  if (error && error.code === "PGRST116") return <LessonEmbedWrapper>
+    ⚠️ No phrase found for "{it}" or "{en}"
+    <br />
+    <PhraseNew it={it} en={en} />
+  </LessonEmbedWrapper>
+  if (error) return <LessonEmbedWrapper>
+    ❌ Sorry, something went wrong on our end
+    <br />
+    <code style={{display: 'block'}}>
+      Error: {error.message}
+    </code>
+  </LessonEmbedWrapper>
   if (!phrase.content_it) return <LessonEmbedWrapper>Missing Italian translation for this phrase</LessonEmbedWrapper>
   if (!phrase.content_en) return <LessonEmbedWrapper>Missing English translation for this phrase</LessonEmbedWrapper>
 

@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 
 import { supabase, useSupabaseQuery } from '@/db/supabase'
 import SpeakWord from '@/views/dictionary/SpeakWord'
+import PhraseNew from '../practice/PhraseNew'
 // import ReportIssue from '@/views/practice/ReportIssue'
 
 export default () => {
@@ -33,7 +34,7 @@ export default () => {
   return <>
     <h1>Phrases</h1>
     {phrases.length} phrase{phrases.length === 1 ? '' : 's'}
-    <Link to={`/${langId}/practice/new`}>New phrase</Link>
+    <PhraseNew />
 
     <hr />
 
