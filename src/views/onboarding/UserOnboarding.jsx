@@ -70,7 +70,7 @@ export default ({ closeModal }) => {
 
   return <form onSubmit={addUserLanguage}>
 
-    <h1>Welcome to Protolang!</h1>
+    <h1>Welcome to Protolang</h1>
 
     <h2>Personal details</h2>
     <p>This info helps our AI chatbot speak to you with the correct grammar.</p>

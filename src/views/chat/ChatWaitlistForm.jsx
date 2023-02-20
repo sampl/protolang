@@ -11,7 +11,7 @@ export default () => {
   const [state, handleSubmit] = useForm("xnqyjjgl")
 
   return <form onSubmit={handleSubmit}>
-    {state.succeeded && <p>Thanks for your feedback!</p>}
+    {state.succeeded && <p>You're on the waitlist!</p>}
     {state.errors && <p>{state.errors[0]?.message}</p>}
 
     <input

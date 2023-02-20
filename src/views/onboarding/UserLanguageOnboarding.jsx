@@ -87,7 +87,7 @@ export default ({ closeModal }) => {
       options={[
         {
           id: "no",
-          description: "Nope!",
+          description: "Nope",
         },
         {
           id: "some",
@@ -133,7 +133,7 @@ export default ({ closeModal }) => {
       options={[
         {
           id: "yes_date",
-          description: "Yes!",
+          description: "Yes",
         },
         {
           id: "yes_no_date",
@@ -141,11 +141,11 @@ export default ({ closeModal }) => {
         },
         {
           id: "someday",
-          description: "I'd love to someday!",
+          description: "I'd love to someday",
         },
         {
           id: "already",
-          description: "Already been!",
+          description: "Already been",
         },
         {
           id: "none",
@@ -173,15 +173,15 @@ export default ({ closeModal }) => {
       options={[
         {
           id: "extroverted",
-          description: "I love talking to strangers! Match me right away!",
+          description: "I love talking to strangers! Match me right away.",
         },
         {
           id: "moderate",
-          description: "I'm a little hestitant, but I'm open to trying it soon",
+          description: "I'm a little hestitant, but I'm open to trying it soon.",
         },
         {
           id: "introverted",
-          description: "Pretty uncomfortable, let's hold off for now",
+          description: "Pretty uncomfortable, let's hold off for now.",
         },
       ]}
     />
@@ -201,7 +201,7 @@ export default ({ closeModal }) => {
         },
         {
           id: "both",
-          description: "I like both!",
+          description: "I like both",
         },
         {
           id: "neither",

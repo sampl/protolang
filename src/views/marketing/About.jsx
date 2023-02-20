@@ -71,7 +71,7 @@ export default () => {
       Unlike Duolingo (and every other major learning app), all the source code of this website is freely available under a permissive <a href="https://en.wikipedia.org/wiki/Open-source_software">open-source license</a>. That means you can copy the code, run it on for free your own computer, and contribute your own features back to the site.
     </p>
     <p>
-      The content of our lessons is also open source, which means you can download, print, and share these lessons for free (as long as you don't sell them for commercial profit). In theory, you could learn a language just by reading our lesson text and never use the website at all!
+      The content of our lessons is also open source, which means you can download, print, and share these lessons for free (as long as you don't sell them for commercial profit). In theory, you could learn a language just by reading our lesson text and never use the website at all.
     </p>
     <p>
       Learn more about the <a href="/open-source">open source licenses we use</a>, or browse/fork the the <a href="https://github.com/sampl/protolang">source</a> yourself.
@@ -82,7 +82,7 @@ export default () => {
       We are actively looking for multi-lingual volunteers, people with language teaching experience, and software developers to help build this site.
     </p>
     <p>
-      All of your contributions are released under the same <a href="/open-source">open licenses</a>, which means they will be made indefinitely available for free to everyone in the world ❤️
+      All of your contributions are released under the same <a href="/open-source">open licenses</a>, which means they will be made indefinitely available for free to everyone in the world.
     </p>
     <p>
       Read our <a href="/contributing">contributor guidelines</a> to learn how to get started.
@@ -101,7 +101,7 @@ export default () => {
 
     <h2>Why does the website look old?</h2>
     <p>
-      While Protolang is in active early development, we're focusing on making it useful before we make it pretty. Stay tuned for style updates!
+      While Protolang is in active early development, we're focusing on making it useful before we make it pretty. Stay tuned for style updates.
     </p>
 
     <h2>Who made this?</h2>
@@ -111,7 +111,7 @@ export default () => {
     </p>
 
     <h2>I have a question that's not answered here</h2>
-    Please <Link to="/contact">contact us</Link>, we would love to hear from you!
+    Please <Link to="/contact">contact us</Link>, we would love to hear from you.
 
   </OneCol>
 }

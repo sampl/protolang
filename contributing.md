@@ -1,14 +1,12 @@
 # Contribute to Protolang open-source
 
-Welcome! We're so glad you're here :)
+Welcome! When you contribute to the Protolang project, you're helping create a free, open, sharable library of educational material that anyone in the world can use to learn for free.
 
-When you contribute to the Protolang project, all contributions are covered under [our open source licenses](https://protolang.com/open-source/). That means that anyone in the world can benefit from your work, even if they can't afford to pay for language education.
-
-(Please read our [code of conduct](https://github.com/sampl/protolang/blob/main/conduct.md) first.)
+All contributions are covered under [our open source licenses](https://protolang.com/open-source/). Please also read our [code of conduct](https://github.com/sampl/protolang/blob/main/conduct.md).
 
 ## Writing language courses [HELP WANTED]
 
-Are you proficient in a language besides English? Help us build a new course!
+Are you proficient in a language besides English? We need your help building new courses.
 
 We need people to help with:
 
@@ -40,6 +38,8 @@ How to get started:
 ## Other help
 
 - **Language practice partners** (coming soon) - No matter what language you speak, you can make yourself available to Protolang users who want to practice. Sometimes they will be trying to learn your language and you can split your time equally; others may give their time generously.
-- **Surprise us!** - Is there something else you think you can add to the project? [Get in touch](https://protolang.com/contact/) and let us know!
+- **Surprise us** - Is there something else you think you can add to the project? [Get in touch](https://protolang.com/contact/).
 
-Questions/comments/suggestions? [Contact us](https://protolang.com/contact/). We can't wait to have you as part of our community <3
+Questions/comments/suggestions? [Contact us](https://protolang.com/contact/).
+
+Thanks again for your interest. We can't wait to have you as part of our community.
