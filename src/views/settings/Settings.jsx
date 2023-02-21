@@ -18,12 +18,5 @@ export default () => {
     </form>
 
     <UserName />
-
-    <hr />
-
-    <button onClick={() => logout()}>
-      Sign Out
-    </button>
-
   </>
 }
