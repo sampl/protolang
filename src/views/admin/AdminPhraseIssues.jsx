@@ -7,7 +7,7 @@ export default () => {
 
   const query = supabase
     .from('phrase_issues')
-    .select('*, phrase(*)')
+    .select('*, phrase_id(*)')
     .eq('language_id', langId)
   const [phraseIssues, loading, error] = useSupabaseQuery(query, [langId])
 

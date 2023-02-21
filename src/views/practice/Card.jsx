@@ -28,7 +28,6 @@ export default ({ phrase, cardQuestionType, cardAnswerType, direction, next }) =
   // waiting, try_again, correct, incorrect
   const [cardState, setCardState] = useState('waiting')
   const [strikes, setStrikes] = useState(0)
-  const [isReportingIssue, setIsReportingIssue] = useState()
 
   const testAnswer = answer => {
     return normalizeString(correctAnswer) === normalizeString(answer)
@@ -86,11 +85,7 @@ export default ({ phrase, cardQuestionType, cardAnswerType, direction, next }) =
     <TwoColumns cols="auto max-content">
       <p>{cardAnswerType === 'text' ? 'Type' : 'Speak'} the {direction === 'forward' ? 'Italian' : 'English'} for...</p>
       <div>
-        <button onClick={() => setIsReportingIssue(true)}>Report issue</button>
-        {
-          isReportingIssue && 
-          <ReportIssue phrase={phrase} close={() => setIsReportingIssue(false)} />
-        }
+        <ReportIssue phrase={phrase} />
       </div>
     </TwoColumns>
 

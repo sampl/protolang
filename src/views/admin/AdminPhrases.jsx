@@ -4,7 +4,6 @@ import { Link, useParams } from 'react-router-dom'
 import { supabase, useSupabaseQuery } from '@/db/supabase'
 import SpeakWord from '@/views/dictionary/SpeakWord'
 import PhraseNew from '../practice/PhraseNew'
-// import ReportIssue from '@/views/practice/ReportIssue'
 
 export default () => {
   const { langId } = useParams()
@@ -91,13 +90,6 @@ export default () => {
                 <button onClick={() => deletePhrase(phrase.id)}>
                   🗑️
                 </button>
-              </td> */}
-              {/* <td>
-                <button onClick={() => setIsReportingError(true)}>Report error</button>
-                {
-                  isReportingError && 
-                  <ReportIssue phrase={phrase} close={() => setIsReportingError(false)} />
-                }
               </td> */}
             </tr>
           })

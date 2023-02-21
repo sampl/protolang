@@ -129,7 +129,7 @@ create table phrase_issues (
   id            bigint primary key generated always as identity,
 
   language_id   text not null references languages(id),
-  phrase        bigint not null references phrases(id),
+  phrase_id     bigint not null references phrases(id),
   comment       text,
   is_resolved   boolean default false not null,
 
