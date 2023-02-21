@@ -14,6 +14,7 @@ export default () => {
     .from('lessons')
     .select()
     .eq('language_id', langId)
+    .order('sort_order',  { ascending: true })
   const [lessons, loading, error] = useSupabaseQuery(query, [langId])
 
   const groupedLessons = groupBy(lessons, l => Math.floor(l.sort_order/10))
