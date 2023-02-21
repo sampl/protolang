@@ -25,7 +25,7 @@ export default () => {
   const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0)
   const [cardQuestionType, setCardQuestionType] = useState('both')
   const [cardAnswerType, setCardAnswerType] = useState('speech')
-  const [direction, setDirection] = useState('reverse')
+  const [direction, setDirection] = useState('forward')
 
   phrases && shuffleArray(phrases)
 
