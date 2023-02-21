@@ -4,14 +4,10 @@ import { useState } from 'react'
 import { supabase, useSupabaseQuery } from '@/db/supabase'
 import Card from '@/views/practice/Card'
 import { TwoColumns } from '@/styles/Layout'
-import AttemptsList from './AttemptsList'
 import DailyProgress from './DailyProgress'
-import { useUser } from '@/_state/user'
-import PhraseNew from './PhraseNew'
 
 export default () => {
   const { langId } = useParams()
-  const { isAdmin } = useUser()
 
   const lessonsQuery = supabase
     .from('lessons')
@@ -57,9 +53,8 @@ export default () => {
         />
       }
 
-      <br />
+      {/* TODO - more info about the phrase you just attempted, or hints etc */}
 
-      <AttemptsList />
     </div>
 
     <div>
@@ -95,11 +90,8 @@ export default () => {
         <option value="text">Text</option>
         <option value="speech">Speech</option>
       </select>
-      { isAdmin && <div>
-          <hr />
-          <PhraseNew />
-        </div>
-      }
+      <hr />
+      <Link to={`/${langId}/practice/history`}>Practice history</Link>
     </div>
   </TwoColumns>
 }

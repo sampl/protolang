@@ -46,6 +46,7 @@ import AdminUsers from './views/admin/AdminUsers'
 import AdminPhraseIssues from './views/admin/AdminPhraseIssues'
 import AdminLessons from './views/admin/AdminLessons'
 import Chat from './views/chat/Chat'
+import PracticeHistory from './views/practice/PracticeHistory'
 
 // ROUTES
 // This is a simple JS list of routes in the app
@@ -223,6 +224,11 @@ export default [
   {
     path: `/:langId/practice`,
     component: Practice,
+    layout: LayoutLanguage,
+  },
+  {
+    path: `/:langId/practice/history`,
+    component: PracticeHistory,
     layout: LayoutLanguage,
   },
   {
