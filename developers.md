@@ -91,7 +91,7 @@ Parsed JSON language files are quite large, so they are not included in git as o
 Back in the Supabase dashboard, you have to expose your dictionaries schema so the API can see it.
 
 - Go to [your project's API settings](https://app.supabase.com/project/_/settings/api)
-- Under "Exposed schemas", add `dictionaries`
+- Under "Exposed schemas", add `dictionaries`. (This will not work unless you've run the migrations first.)
 
 That's it--you should be good to go!
 
