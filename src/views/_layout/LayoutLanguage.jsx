@@ -1,7 +1,6 @@
 import { Link, NavLink, useParams } from 'react-router-dom'
 
 import { useLanguage } from '@/_state/language'
-import DropdownNavMenu from '@/styles/DropdownNavMenu'
 import AccountMenu from '@/views/_layout/AccountMenu'
 import Footer from '@/views/_layout/Footer'
 import { HeaderFooterLayoutWrapper, Header, Main } from '@/styles/Layout'
@@ -107,15 +106,7 @@ export default ({children}) => {
         <NavLink to={`/${langId}/lessons`}>Lessons</NavLink>
         <NavLink to={`/${langId}/practice`}>Practice</NavLink>
         <NavLink to={`/${langId}/chat`}>Chat</NavLink>
-        <DropdownNavMenu trigger="More...">
-          <NavLink to={`/${langId}/resources`}>Resources</NavLink>
-          <br />
-          <NavLink to={`/${langId}/media`}>Media</NavLink>
-          <br />
-          <NavLink to={`/${langId}/dictionary`}>Dictionary (coming soon)</NavLink>
-          <br />
-          <div>Community (coming soon)</div>
-        </DropdownNavMenu>
+        <NavLink to={`/${langId}/media`}>Media</NavLink>
       </nav>
       <div>
         {isAdmin && <Link to={`/${currentLanguage.id || 'it'}/admin`}>Admin</Link>}
@@ -127,7 +118,7 @@ export default ({children}) => {
 
     <Main>
       {!user && <Banner>
-          To start saving your progress, <Link to="/signup">create an account</Link>.
+          <Link to="/signup">Create an account</Link> to save your progress
         </Banner>
       }
       {children}

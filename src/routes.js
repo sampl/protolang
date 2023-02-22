@@ -37,7 +37,6 @@ import LessonHistory from './views/lessons/LessonHistory'
 import LessonHistoryItem from './views/lessons/LessonHistoryItem'
 import PhraseItem from './views/practice/PhraseItem'
 import PhraseEdit from './views/practice/PhraseEdit'
-import Dictionary from './views/dictionary/Dictionary'
 import LayoutAdmin from './views/_layout/LayoutAdmin'
 import AdminLessonEdits from './views/admin/AdminLessonEdits'
 import AdminPhrases from './views/admin/AdminPhrases'
@@ -250,11 +249,6 @@ export default [
   },
 
   // Dictionary
-  {
-    path: `/:langId/dictionary`,
-    component: Dictionary,
-    layout: LayoutLanguage,
-  },
   {
     path: `/:langId/dictionary/:wordString`,
     component: DictionaryItem,
