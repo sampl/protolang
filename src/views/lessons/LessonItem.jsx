@@ -7,6 +7,7 @@ import { supabase, useSupabaseQuery } from '@/db/supabase'
 import LessonContent from './LessonContent'
 import { TwoColumns } from '@/styles/Layout'
 import { useUser } from "@/_state/user"
+import { Badge } from '@/styles/Badge'
 
 export default () => {
   const { slug, langId } = useParams()
@@ -32,7 +33,7 @@ export default () => {
     {loading && 'loading...'}
 
     <h1>{lesson?.title_en}</h1>
-    {lessonEdit?.topics?.join(', ')}
+
     <hr />
 
     <TwoColumns cols="2fr 1fr">
@@ -40,6 +41,8 @@ export default () => {
         <LessonContent content={lessonEdit?.content_en || ''} />
       </div>
       <div>
+        {lessonEdit?.topics?.map(topic => <Badge>{topic}</Badge>)}
+        <hr />
         Created {moment(lesson?.created_at).format("MMMM Do, YYYY")}
         <br />
         Last edit {moment(lessonEdit?.created_at).format("MMMM Do, YYYY")}
