@@ -17,7 +17,7 @@ const MAX_STRIKES = 1
 // https://stackoverflow.com/a/37511463/1061063
 const normalizeString = string => string.normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim().toLowerCase()
 
-export default ({ phrase, cardQuestionType, cardAnswerType, direction, next }) => {
+export default ({ phrase, cardQuestionType, cardAnswerType, direction, next, isUpcoming, placeInLine, isCurrent, isDone }) => {
 
   const question =      direction === 'forward' ? phrase?.content_en : phrase?.content_it 
   const correctAnswer = direction === 'forward' ? phrase?.content_it : phrase?.content_en 
@@ -80,7 +80,11 @@ export default ({ phrase, cardQuestionType, cardAnswerType, direction, next }) =
 
   const CardAnswerComponent = cardAnswerType === 'text' ? CardAnswerText : CardAnswerSpeech
 
-  return <CardWrapper>
+  return <CardWrapper key={phrase.id} style={{
+    display: isDone ? 'none' : 'block',
+    transform: isUpcoming && `translate(${placeInLine * 4}px, ${placeInLine * 4}px)`,
+    zIndex: isUpcoming ? 100 - placeInLine : 100,
+  }}>
 
     <TwoColumns cols="auto max-content">
       <p>{cardAnswerType === 'text' ? 'Type' : 'Speak'} the {direction === 'forward' ? 'Italian' : 'English'} for...</p>
@@ -152,5 +156,7 @@ export const CardWrapper = styled.div`
   border: 1px solid;
   padding: 1rem;
   background: white;
-  box-shadow: 3px 3px;
+  position: absolute;
+  width: 100%;
+  /* box-shadow: 1px 1px; */
 `

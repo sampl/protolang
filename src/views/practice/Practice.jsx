@@ -39,19 +39,31 @@ export default () => {
 
   return <TwoColumns cols="2fr 1fr">
     <div>
-      {
-        phrasesError ? phrasesError.message :
-        phrasesLoading ? 'loading...' :
-        (!phrases || phrases.length <= 0) ? 'no phrases' :
-        <Card
-          key={currentPhraseIndex}
-          phrase={phrases[currentPhraseIndex]}
-          cardQuestionType={cardQuestionType}
-          cardAnswerType={cardAnswerType}
-          direction={direction}
-          next={nextPhrase}
-        />
-      }
+      <div style={{position: 'relative', height: '240px', borderBottom: '1px solid'}}>
+        {
+          phrasesError ? phrasesError.message :
+          phrasesLoading ? 'loading...' :
+          (!phrases || phrases.length <= 0) ? 'no phrases' :
+          phrases.map( (phrase, index) => {
+            const placeInLine = index - currentPhraseIndex
+            if (placeInLine > 3) {
+              return null
+            }
+            return <Card
+              key={phrase.id}
+              phrase={phrase}
+              isUpcoming={index > currentPhraseIndex}
+              placeInLine={placeInLine}
+              isCurrent={index === currentPhraseIndex}
+              isDone={index < currentPhraseIndex}
+              cardQuestionType={cardQuestionType}
+              cardAnswerType={cardAnswerType}
+              direction={direction}
+              next={nextPhrase}
+            />
+          })
+        }
+      </div>
 
       {/* TODO - more info about the phrase you just attempted, or hints etc */}
 
