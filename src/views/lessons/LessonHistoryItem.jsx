@@ -34,7 +34,7 @@ export default () => {
       <BreadcrumbSeparator />
       <BreadcrumbItem to={`/${langId}/lessons/${slug}/history`}>History</BreadcrumbItem>
       <BreadcrumbSeparator />
-      <BreadcrumbItem to={`/${langId}/lessons/${slug}/history/${lessonEdit?.id}`}>{lessonEdit?.id}</BreadcrumbItem>
+      {lessonEdit?.id}
     </BreadcrumbWrapper>
 
     {lessonError && lessonError.message}

@@ -97,7 +97,7 @@ export default () => {
       <BreadcrumbSeparator />
       <BreadcrumbItem to={`/${langId}/lessons/${slug}`}>{lesson?.title_en}</BreadcrumbItem>
       <BreadcrumbSeparator />
-      <BreadcrumbItem to={`/${langId}/lessons/${slug}/edit`}>Edit</BreadcrumbItem>
+      Edit
     </BreadcrumbWrapper>
 
     <button style={{float: 'right'}} onClick={() => setHelpIsOpen(true)}>Formatting help</button>

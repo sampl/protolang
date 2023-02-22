@@ -23,7 +23,7 @@ export default () => {
     <BreadcrumbWrapper>
       <BreadcrumbItem to={`/${langId}/practice`}>Practice</BreadcrumbItem>
       <BreadcrumbSeparator />
-      <BreadcrumbItem to={`/${langId}/practice/${phrase?.id}`}>{phrase?.content_it}</BreadcrumbItem>
+      {phrase?.content_it}
     </BreadcrumbWrapper>
 
     {
