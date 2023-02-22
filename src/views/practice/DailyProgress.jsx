@@ -19,6 +19,8 @@ export default () => {
   // https://stackoverflow.com/a/47893042/1061063
   const attemptsToday = data?.filter(attempt => !moment(attempt.created_at).isBefore(moment().startOf('day')))
 
+  if (!user) return null
+
   return <div>
     {
       error ? error.message :

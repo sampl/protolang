@@ -45,19 +45,23 @@ export default () => {
     <TwoColumns cols="2fr 1fr">
       <div>
         {
-          (!lessonEdits || lessonEdits.length) <= 0 ? 'no lessons edits' : 
+          (!lessonEdits || lessonEdits.length) <= 0 ? `There's no content for this lesson yet` : 
           lessonEdits?.map(lessonEdit => {
             return <div key={lessonEdit.id}>
               <Link to={`/${langId}/lessons/${slug}/history/${lessonEdit.id}`}>
-                {lessonEdit.id || 'Unknown'} - {lessonEdit.created_by || 'No author'} - {lessonEdit.created_at || 'No timestamp'}
+                {lessonEdit.id || 'Unknown'} - {lessonEdit.created_by || 'No author'}
+                {' - '}
+                {new Intl.DateTimeFormat('en-US').format(new Date(language.lessonEdit)) || 'No timestamp'}
               </Link>
             </div>
           })
         }
       </div>
-      <div>
-        <Link to={`/${langId}/lessons/${slug}/edit`}>Edit lesson</Link>
-      </div>
+      {user?.isAdmin &&
+        <div>
+          <Link to={`/${langId}/lessons/${slug}/edit`}>Edit lesson</Link>
+        </div>
+      }
     </TwoColumns>
   </>
 
