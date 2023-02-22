@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useNavigate, Link } from 'react-router-dom'
+import styled from 'styled-components/macro'
 
 import { BreadcrumbItem, BreadcrumbSeparator, BreadcrumbWrapper } from '@/styles/Breadcrumbs'
 import { supabase, useSupabaseQuery } from '@/db/supabase'
@@ -19,7 +20,8 @@ export default () => {
   const [saving, setSaving] = useState(false)
   const navigate = useNavigate()
 
-  const [helpIsOpen, setHelpIsOpen] = useState(false)
+  const [helpModalOpen, setHelpModalOpen] = useState(false)
+  const [topicsModalOpen, setTopicsModalOpen] = useState(false)
 
   const lessonQuery = supabase
     .from('lessons')
@@ -100,11 +102,11 @@ export default () => {
       Edit
     </BreadcrumbWrapper>
 
-    <button style={{float: 'right'}} onClick={() => setHelpIsOpen(true)}>Formatting help</button>
+    <button style={{float: 'right'}} onClick={() => setHelpModalOpen(true)}>Formatting help</button>
 
     <h1>Edit lesson: {lesson.title_en}</h1>
 
-    <Modal isOpen={helpIsOpen} onClose={() => setHelpIsOpen(false)}>
+    <Modal isOpen={helpModalOpen} onClose={() => setHelpModalOpen(false)}>
       <p>Lessons use <a target="_blank" href="https://talk.commonmark.org/t/generic-directives-plugins-syntax/444">markdown directives</a> to embed phrases.</p>
       <p>Here's an example:</p>
       <code>{`:word{ it="ciao }`}</code>
@@ -112,10 +114,20 @@ export default () => {
       <a href="" target="_blank">Markdown docs</a>
     </Modal>
 
+    <Modal isOpen={topicsModalOpen} onClose={() => setTopicsModalOpen(false)}>
+      <h2>Lesson topics</h2>
+      <CheckboxGroup
+        groupName="topics"
+        values={topics}
+        setValues={setTopics}
+        options={!topicsList ? [] : topicsList.map(topic => ({id: topic.id, description: topic.title_en}))}
+      />
+    </Modal>
+
     <hr />
     <form onSubmit={submit}>
-      <TwoColumns cols="1fr 1fr">
-        <textarea
+      <TwoColumns cols="1fr 1fr" gap="2">
+        <EditTextarea
           id="content"
           type="text"
           value={content}
@@ -132,20 +144,34 @@ export default () => {
           <LessonContent content={content} />
         </div>
       </TwoColumns>
-      <CheckboxGroup
-        groupName="topics"
-        values={topics}
-        setValues={setTopics}
-        options={!topicsList ? [] : topicsList.map(topic => ({id: topic.id, description: topic.title_en}))}
-      />
-      <button
-        type="submit"
-        disabled={saving}
-      >
-        {saving ? 'Saving...' : 'Save lesson'}
-      </button>
-  </form>
+
+      <StickyLowNav>
+        <button type="button" onClick={() => setTopicsModalOpen(true)}>Edit topics ({topics.length > 0 ? topics.join(', ') : 'none yet'})</button>
+
+        <button
+          type="submit"
+          disabled={saving}
+        >
+          {saving ? 'Saving...' : 'Save lesson'}
+        </button>
+      </StickyLowNav>
+
+    </form>
 
   </>
 
 }
+
+const EditTextarea = styled.textarea`
+  font-family: monospace;
+  background: #eee
+`
+const StickyLowNav = styled.div`
+  z-index: 1;
+  background: white;
+  padding: 1rem 0;
+  border-top: 1px solid;
+  margin-top: 2rem;
+  position: sticky;
+  bottom: 0;
+`
