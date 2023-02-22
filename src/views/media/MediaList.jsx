@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom'
 
 import { supabase, useSupabaseQuery } from '@/db/supabase'
+import TV from './TV'
 
 export default () => {
 
@@ -15,6 +16,8 @@ export default () => {
   return <>
     <h1>Media</h1>
     <Link to={`/${langId}/media/new`}>+ Add media item</Link>
+
+    {/* <TV /> */}
 
     <hr />
 
