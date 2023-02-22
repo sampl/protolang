@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import styled from 'styled-components/macro'
 
 import { supabase } from '@/db/supabase'
-import Card from '@/styles/Card'
 import { useUser } from '@/_state/user'
 import ReportIssue from '@/views/practice/ReportIssue'
 import CardAnswerText from './card_answer_types/CardAnswerText'
@@ -80,7 +80,7 @@ export default ({ phrase, cardQuestionType, cardAnswerType, direction, next }) =
 
   const CardAnswerComponent = cardAnswerType === 'text' ? CardAnswerText : CardAnswerSpeech
 
-  return <Card>
+  return <CardWrapper>
 
     <TwoColumns cols="auto max-content">
       <p>{cardAnswerType === 'text' ? 'Type' : 'Speak'} the {direction === 'forward' ? 'Italian' : 'English'} for...</p>
@@ -144,5 +144,13 @@ export default ({ phrase, cardQuestionType, cardAnswerType, direction, next }) =
         }
       </div>
     </TwoColumns>
-  </Card>
+  </CardWrapper>
 }
+
+
+export const CardWrapper = styled.div`
+  border: 1px solid;
+  padding: 1rem;
+  background: white;
+  box-shadow: 3px 3px;
+`
