@@ -8,6 +8,7 @@ import SpeakWord from '../dictionary/SpeakWord'
 import Definable from './Definable'
 import PhraseNew from '../practice/PhraseNew'
 import { useUser } from '@/_state/user'
+import PhraseEdit from '../practice/PhraseEdit'
 
 export default ({ it: initialIt, en: initialEn }) => {
 
@@ -42,7 +43,7 @@ export default ({ it: initialIt, en: initialEn }) => {
   if (!phrase.content_en) return <LessonEmbedWrapper>Missing English translation for this phrase</LessonEmbedWrapper>
 
   return <LessonEmbedWrapper>
-    {isAdmin && <Link to={`/${langId}/practice/${phrase.id}/edit`} style={{float: 'right'}}>edit</Link>}
+    {isAdmin && <PhraseEdit phrase={phrase} />}
     <div>
       <Definable wordString={phrase.content_it} />
       <SpeakWord wordString={phrase.content_it} />

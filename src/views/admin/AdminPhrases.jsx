@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom'
 import { supabase, useSupabaseQuery } from '@/db/supabase'
 import SpeakWord from '@/views/dictionary/SpeakWord'
 import PhraseNew from '../practice/PhraseNew'
+import PhraseEdit from '../practice/PhraseEdit'
 
 export default () => {
   const { langId } = useParams()
@@ -85,9 +86,7 @@ export default () => {
                 {new Intl.DateTimeFormat('en-US').format(new Date(phrase.updated_at))}
               </td>
               <td>
-                <Link to={`/${langId}/practice/${phrase.id}/edit`}>
-                  Edit
-                </Link>
+                <PhraseEdit phrase={phrase} />
               </td>
               <td>
                 <Link to={`/${langId}/practice/${phrase.id}`}>

@@ -7,6 +7,7 @@ import SpeakWord from "../dictionary/SpeakWord"
 import Definable from "../lessons/Definable"
 import AnswerWord from './AnswerWord'
 import PhraseScore from './PhraseScore'
+import PhraseEdit from './PhraseEdit'
 
 // import { supabase, useSupabaseQuery } from '@/db/supabase'
 // import CardDeck from '@/views/practice/CardDeck'
@@ -47,7 +48,7 @@ export default ({ phrase }) => {
       <p>{phrase.content_en}</p>
       {phrase.en_alts && phrase.en_alts.length > 0 && <p>Other meanings: {phrase.en_alts?.join(', ')}</p>}
 
-      {isAdmin && <Link to={`/${langId}/practice/${phrase.id}/edit`} style={{float: 'right'}}>edit phrase</Link>}
+      {isAdmin && <PhraseEdit phrase={phrase} />}
 
       {/* TODO - attempts list? */}
       <h3>
