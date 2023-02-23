@@ -1,4 +1,6 @@
 import { OneCol } from '@/styles/Layout'
+import LessonsDownload from '../lessons/LessonsDownload'
+import PhrasesDownload from '../practice/PhrasesDownload'
 
 export default () => {
   return <OneCol>
@@ -16,7 +18,11 @@ export default () => {
     </ul>
 
     <h2>Lesson data</h2>
-    <p>You can download Protolang lessons and content from the site itself as Markdown files. Protolang lessons use a Creative Commons license.</p>
+    <p>Lesson text and flashcard phrases are available for use under a Creative Commons license (coming soon).</p>
+
+    <LessonsDownload />
+    {' '}
+    <PhrasesDownload />
 
   </OneCol>
 }

@@ -16,49 +16,53 @@ export default () => {
 
     setDownloadingState('working')
 
-    // get lessons
-    console.log('getting lessons')
-    const { data: lessons, error } = await supabase
-      .from('lessons')
-      .select('*, current_edit(*)')
+    // get phrases
+    console.log('getting phrases')
+    const { data: phrases, error } = await supabase
+      .from('phrases')
+      .select('*')
       .eq('language_id', LANG_CODE)
 
     if (error) {
-      alert('Sorry, could not download lessons right now. Try again later?')
+      alert('Sorry, could not download phrases right now. Try again later?')
       console.error(error)
       return
     }
 
     // generate object of markdown files
-    console.log('generating lessonFiles')
-    const lessonFiles = lessons.map(lesson => {
-      const topics = (!lesson.topics || lesson.topics.length === 0) ? '': ` (${lesson.topics.join(', ')})`
-      return {
-        name: `Unit ${lesson.unit || 0} - #${lesson.sort_order || 0} - ${lesson.title_en}${topics}.md`,
-        content: lesson.current_edit ? lesson.current_edit.content_en : '',
-      }
-    })
-
+    console.log('generating phraseFiles')
+    const phraseFiles = phrases.map(phrase => ({
+      name: `Phrase ID ${phrase.id || 0} - ${phrase.content_it}.md`,
+      content: [
+        phrase.id,
+        phrase.language_id,
+        phrase.content_it,
+        phrase.it_alts ? phrase.it_alts.join('\t') : '',
+        phrase.content_en,
+        phrase.en_alts ? phrase.en_alts.join('\t') : '',
+      ].join('\n'),
+    }))
+  
     // TODO - append CC license here
 
     // make zip file
-    console.log('zipping lessonFiles', lessonFiles)
+    console.log('zipping phraseFiles', phraseFiles)
     const zip = new JSZip()
-    lessonFiles.forEach( (file, index) => zip.file(file.name, file.content))
+    phraseFiles.forEach( (file, index) => zip.file(file.name, file.content))
     const zipFile = await zip.generateAsync({ type: 'blob' })
 
     // save file
-    console.log('saving lessonFiles')
+    console.log('saving phraseFiles')
     // https://stackoverflow.com/a/9456144
     const timestamp = Math.floor(new Date() / 1000)
-    saveAs(zipFile, `Protolang lessons (${LANG_CODE.toUpperCase()}) - ${timestamp}.zip`)
+    saveAs(zipFile, `Protolang phrases (${LANG_CODE.toUpperCase()}) - ${timestamp}.zip`)
 
     setDownloadingState('done')
   }
 
   return <button disabled={downloadingState === 'working' || downloadingState === 'done'} onClick={downloadAll}>
     {
-      downloadingState === 'ready' ? 'Download all lessons' :
+      downloadingState === 'ready' ? 'Download all phrases' :
       downloadingState === 'working' ? 'Downloading...' :
       downloadingState === 'done' ? 'Done!' :
       'Error'

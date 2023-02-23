@@ -31,29 +31,37 @@ export default () => {
 
   return <>
     <h1>Lessons</h1>
-    <SuggestedLessons />
     {
       error ? error.message :
       loading ? 'loading...' :
       <TwoColumns cols="5fr 2fr">
         <LessonListWrapper>
           {
-            (!lessons || lessons.length) <= 0 ? 'no lessons' : 
-            groups?.map(group => {
-              return <LessonGroupWrapper key={group.key}>
-                <h2>{group.title}</h2>
-                {group.lessons.map(lesson => {
-                  return <LessonListItemWrapper key={lesson.slug} to={`/${langId}/lessons/${lesson.slug}`}>
-                    {lesson.title_en || 'Unknown'}
-                  </LessonListItemWrapper>
-                })}
-              </LessonGroupWrapper>
-            })}
+            (!lessons || lessons.length) <= 0 ? 'no lessons' :
+            <>
+              <SuggestedLessons />
+              {groups?.map(group => {
+                return <LessonGroupWrapper key={group.key}>
+                  <h2>{group.title}</h2>
+                  {group.lessons.map(lesson => {
+                    return <LessonListItemWrapper key={lesson.slug} to={`/${langId}/lessons/${lesson.slug}`}>
+                      {lesson.title_en || 'Unknown'}
+                    </LessonListItemWrapper>
+                  })}
+                </LessonGroupWrapper>
+              })}
+            </>
+          }
         </LessonListWrapper>
         <div>
           <p>{lessons?.length || 0} lesson{lessons?.length !== 1 && 's'}</p>
           <Link to={`/${langId}/lessons/new`}>+ Add lesson</Link>
-          <LessonsDownload />
+          <hr />
+          <p style={{fontSize: 'small'}}>
+            Lessons are free to use under a Creative Commons license.
+            {' '}
+            <Link to={`/open-source`}>Browse data downloads</Link>
+          </p>
         </div>
       </TwoColumns>
     }
