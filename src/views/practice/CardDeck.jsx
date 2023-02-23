@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react'
 
 import Card from '@/views/practice/Card'
 
-export default ({ cardQuestionType, cardAnswerType, direction, phrases, phrasesLoading, phrasesError }) => {
+export default ({ cardQuestionType, cardAnswerType, direction, phrases, phrasesLoading, phrasesError, setPhraseToShowInfoAbout }) => {
 
   const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0)
 
   const nextPhrase = () => {
+    setPhraseToShowInfoAbout(null)
     setCurrentPhraseIndex(current => {
       if (phrases.length - 1 <= current) {
         return 0
@@ -33,6 +34,7 @@ export default ({ cardQuestionType, cardAnswerType, direction, phrases, phrasesL
         cardAnswerType={cardAnswerType}
         direction={direction}
         next={nextPhrase}
+        setPhraseToShowInfoAbout={setPhraseToShowInfoAbout}
       />
     })}
   </div>

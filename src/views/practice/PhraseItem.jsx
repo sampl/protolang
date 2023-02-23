@@ -2,15 +2,10 @@ import { useParams } from 'react-router-dom'
 
 import { supabase, useSupabaseQuery } from '@/db/supabase'
 import { BreadcrumbItem, BreadcrumbSeparator, BreadcrumbWrapper } from '@/styles/Breadcrumbs'
-// import AttemptsList from './AttemptsList'
-import SpeakWord from '../dictionary/SpeakWord'
-
-import PhraseScore from './PhraseScore'
-import Definable from '../lessons/Definable'
+import AnswerPhrase from './AnswerPhrase'
 
 export default () => {
   const { langId, phraseId } = useParams()
-  // const phraseIdDecoded = decodeURIComponent(phraseId)
 
   const query = supabase
     .from('phrases')
@@ -19,6 +14,10 @@ export default () => {
     .single()
   const [phrase, loading, error] = useSupabaseQuery(query, [phraseId])
 
+  if (error) return <div>Error: {error.message}</div>
+  if (loading) return <div>Loading...</div>
+  if (!phrase) return <div>No phrase found for ID {phraseId}</div>
+
   return <>
     <BreadcrumbWrapper>
       <BreadcrumbItem to={`/${langId}/practice`}>Practice</BreadcrumbItem>
@@ -26,28 +25,6 @@ export default () => {
       {phrase?.content_it}
     </BreadcrumbWrapper>
 
-    {
-      error ? error.message :
-      loading ? 'loading...' :
-      !phrase ? 'Phrase not found' :
-      <>
-        <h1>
-          <Definable wordString={phrase.content_it} />
-          <SpeakWord wordString={phrase.content_it} />
-        </h1>
-
-        <div>{phrase.content_en}</div>
-
-        <hr />
-
-        {/* TODO - attempts list here */}
-        {/* TODO - link to edit for admins */}
-        <h3>
-          Your accuracy:
-          {' '}
-          <PhraseScore phrase={phrase} />
-        </h3>
-      </>
-    }
+    <AnswerPhrase phrase={phrase} />
   </>
 }

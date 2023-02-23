@@ -5,6 +5,7 @@ import { supabase, useSupabaseQuery } from '@/db/supabase'
 import CardDeck from '@/views/practice/CardDeck'
 import { TwoColumns } from '@/styles/Layout'
 import DailyProgress from './DailyProgress'
+import AnswerPhrase from './AnswerPhrase'
 
 export default () => {
   const { langId } = useParams()
@@ -14,6 +15,7 @@ export default () => {
   const [cardQuestionType, setCardQuestionType] = useState('both')
   const [cardAnswerType, setCardAnswerType] = useState('speech')
   const [direction, setDirection] = useState('forward')
+  const [phraseToShowInfoAbout, setPhraseToShowInfoAbout] = useState(null)
 
   const lessonsQuery = supabase
     .from('lessons')
@@ -53,9 +55,11 @@ export default () => {
         phrases={phraseList}
         phrasesLoading={phrasesLoading}
         phrasesError={phrasesError}
+        setPhraseToShowInfoAbout={setPhraseToShowInfoAbout}
       />
 
-      {/* TODO - more info about the phrase you just attempted, or hints etc */}
+      {/* TODO - maybe refactor this out so we're not getting it from some buried component */}
+      { phraseToShowInfoAbout ? <AnswerPhrase phrase={phraseToShowInfoAbout} /> : '' }
 
     </div>
 

@@ -18,7 +18,18 @@ const STACK_SIZE = 3
 // https://stackoverflow.com/a/37511463/1061063
 const normalizeString = string => string.normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim().toLowerCase()
 
-export default ({ phrase, cardQuestionType, cardAnswerType, direction, next, isUpcoming, placeInLine, isCurrent, isDone }) => {
+export default ({
+  phrase,
+  cardQuestionType,
+  cardAnswerType,
+  direction,
+  next,
+  isUpcoming,
+  placeInLine,
+  isCurrent,
+  isDone,
+  setPhraseToShowInfoAbout,
+}) => {
 
   const question =      direction === 'forward' ? phrase?.content_en : phrase?.content_it 
   const correctAnswer = direction === 'forward' ? phrase?.content_it : phrase?.content_en 
@@ -49,6 +60,7 @@ export default ({ phrase, cardQuestionType, cardAnswerType, direction, next, isU
       return
     }
     setCardState(correct ? 'correct' : 'incorrect')
+    setPhraseToShowInfoAbout(phrase)
 
     if (!user) {
       return
@@ -138,16 +150,12 @@ export default ({ phrase, cardQuestionType, cardAnswerType, direction, next, isU
           cardState === "correct" ? <>
             You're right!
             {' · '}
-            <Link to={`/${currentLanguage.id}/practice/${phrase?.id}`}>go to phrase</Link>
-            <br />
             <Button autoFocus onClick={next}>Next</Button>
           </>
           :
           cardState === "incorrect" ? <>
             Whoops not quite. The answer is "{correctAnswer}"
             {' · '}
-            <Link to={`/${currentLanguage.id}/practice/${phrase?.id}`}>go to phrase</Link>
-            <br />
             <Button autoFocus onClick={next}>Next</Button>
           </>
           :
