@@ -43,7 +43,9 @@ export default () => {
           <th>ID</th>
           <th></th>
           <th>Italian</th>
+          <th>Italian alts</th>
           <th>English</th>
+          <th>English alts</th>
           <th>Created by</th>
           <th>Created at</th>
           <th>Last updated</th>
@@ -65,7 +67,13 @@ export default () => {
                 {phrase.content_it}
               </td>
               <td>
+                {!phrase.it_alts ? '' : phrase.it_alts.join('\n')}
+              </td>
+              <td>
                 {phrase.content_en}
+              </td>
+              <td>
+                {!phrase.en_alts ? '' : phrase.en_alts.join('\n')}
               </td>
               <td>
                 {phrase.created_by}

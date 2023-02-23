@@ -1,13 +1,18 @@
 import styled from 'styled-components/macro'
 import { useDebounce } from 'use-debounce'
+import {useParams, Link} from 'react-router-dom'
 
 import { supabase, useSupabaseQuery } from '@/db/supabase'
 import MnemonicSuggested from '@/views/mnemonics/MnemonicSuggested'
 import SpeakWord from '../dictionary/SpeakWord'
 import Definable from './Definable'
 import PhraseNew from '../practice/PhraseNew'
+import { useUser } from '@/_state/user'
 
 export default ({ it: initialIt, en: initialEn }) => {
+
+  const { langId } = useParams()
+  const { isAdmin } = useUser()
 
   const [en] = useDebounce(initialEn, 500, { leading: true })
   const [it] = useDebounce(initialIt, 500, { leading: true })
@@ -37,12 +42,20 @@ export default ({ it: initialIt, en: initialEn }) => {
   if (!phrase.content_en) return <LessonEmbedWrapper>Missing English translation for this phrase</LessonEmbedWrapper>
 
   return <LessonEmbedWrapper>
+    {isAdmin && <Link to={`/${langId}/practice/${phrase.id}/edit`} style={{float: 'right'}}>edit</Link>}
     <div>
       <Definable wordString={phrase.content_it} />
       <SpeakWord wordString={phrase.content_it} />
     </div>
+    <div style={{fontSize: 'small'}}>
+      {phrase.it_alts && phrase.it_alts.length > 0 && 'or '}
+      {phrase.it_alts?.join(', ') || ""}
+    </div>
     <p>{phrase.content_en}</p>
-    {phrase.en_alts?.map((alt, i) => <p key={i}>{alt}</p> || "")}
+    <div style={{fontSize: 'small'}}>
+      {phrase.en_alts && phrase.en_alts.length > 0 && 'or '}
+      {phrase.en_alts?.join(', ') || ""}
+    </div>
     <MnemonicSuggested string={phrase.content_it} />
   </LessonEmbedWrapper>
 }
