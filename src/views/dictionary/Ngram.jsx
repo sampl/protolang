@@ -23,14 +23,10 @@ export default ({ wordString }) => {
     {/* https://ell.meta.stackexchange.com/questions/4698/how-can-i-insert-a-google-ngram-chart-relatively-easily */}
     <iframe
       src={`https://books.google.com/ngrams/interactive_chart?content=${wordUrl}&corpus=${corpusLangCode}&year_start=1800`}
-      width="740"
-      height="340"
-      marginWidth="0"
-      marginHeight="0"
+      width="400"
+      height="240"
       hspace="0"
       vspace="0"
-      frameBorder="0"
-      scrolling="no"
     />
 
   </>
