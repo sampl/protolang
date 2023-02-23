@@ -17,15 +17,16 @@ export default ({ closeModal }) => {
   const [selectedVisitDate, setSelectedVisitDate] = useState()
   const [selectedSkill, setSelectedSkill] = useState()
   const [extroversion, setExtroversion] = useState()
-  const [conversationMedium, setConversationMedium] = useState()
-  const [mediaTypes, setMediaTypes] = useState([])
-  const [socialNetworks, setSocialNetworks] = useState([])
-  const [emailUpdates, setEmailUpdates] = useState([])
+  // const [conversationMedium, setConversationMedium] = useState()
+  // const [mediaTypes, setMediaTypes] = useState([])
+  // const [socialNetworks, setSocialNetworks] = useState([])
+  // const [emailUpdates, setEmailUpdates] = useState([])
   const [topics, setTopics] = useState([])
   const [saving, setSaving] = useState(false)
 
   const topicsQuery = supabase
     .from('topics')
+    // .eq('user_selectable', true)
     .select()
   const [topicsList, topicsLoading, topicsError] = useSupabaseQuery(topicsQuery)
 
@@ -41,10 +42,10 @@ export default ({ closeModal }) => {
           visit_date: selectedVisitDate,
           self_reported_skill: selectedSkill,
           extroversion: extroversion,
-          conversation_medium: conversationMedium,
-          media_types: mediaTypes,
-          social_media_networks: socialNetworks,
-          email_updates: emailUpdates,
+          // conversation_medium: conversationMedium,
+          // media_types: mediaTypes,
+          // social_media_networks: socialNetworks,
+          // email_updates: emailUpdates,
           topics: topics,
         },
         created_by: user?.id,
@@ -141,11 +142,7 @@ export default ({ closeModal }) => {
         },
         {
           id: "someday",
-          description: "I'd love to someday",
-        },
-        {
-          id: "already",
-          description: "Already been",
+          description: "I'd love to go someday (or go back someday)",
         },
         {
           id: "none",
@@ -186,7 +183,7 @@ export default ({ closeModal }) => {
       ]}
     />
 
-    <label>Are you more of a phone call or a texting person for long chats?</label>
+    {/* <label>Are you more of a phone call or a texting person for long chats?</label>
     <RadioGroup
       value={conversationMedium}
       setValue={setConversationMedium}
@@ -208,7 +205,7 @@ export default ({ closeModal }) => {
           description: "I don't like either, really",
         },
       ]}
-    />
+    /> */}
 
 
     <h2>Topics</h2>
@@ -224,7 +221,7 @@ export default ({ closeModal }) => {
     />
 
 
-    <h2>Media preferences</h2>
+    {/* <h2>Media preferences</h2>
     <p>We'll recommend some Italian media to help you get immersed quickly</p>
 
     <label>What kind of media do you use throughout the day?</label>
@@ -356,7 +353,7 @@ export default ({ closeModal }) => {
           description: "Don't send me any updates for now",
         }
       ]}
-    />
+    /> */}
 
     <br />
 
