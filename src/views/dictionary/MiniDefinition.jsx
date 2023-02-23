@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
 import { supabaseDictionaries, useSupabaseQuery } from '@/db/supabase'
+import styled from 'styled-components/macro'
 
 import MnemonicSuggested from '@/views/mnemonics/MnemonicSuggested'
 import SpeakWord from './SpeakWord'
-// import PhraseScore from './PhraseScore'
 import { useLanguage } from '@/_state/language'
 
 export default ({ name }) => {
@@ -14,36 +14,28 @@ export default ({ name }) => {
     .from(currentLanguage.id)
     .select()
     .eq('word', name)
-    .single()
-  const [word, loading, error] = useSupabaseQuery(query)
+  const [words, loading, error] = useSupabaseQuery(query)
 
-  return <>
-    {
-      error ? error.message :
-      loading ? 'loading...' :
-      !word ? <>
-        <p>Sorry, this word isn't in our dictionary yet</p>
-        <Link to="/contact">Contact us to request it</Link>
-      </>
-      :
-      <>
-        <strong>{word.word}</strong>
-        <SpeakWord wordString={word?.word} />
-        <br />
-        <Link to={`/${currentLanguage.id}/dictionary/${word.word}`}>view full definition</Link>
+  if (error) return <div>Error: {error.message}</div>
+  if (loading) return <div>loading...</div>
+  if (!words || words.length === 0) return <div>Sorry, this word isn't in our dictionary yet</div>
 
-        <div>{word._wiktionary_data?.senses[0].glosses.join(', ')}</div>
+  return <MiniDefWrapper>
+    {words.map(word => <>
+      <strong>{word.word}</strong>
+      <SpeakWord wordString={word?.word} />
+      <br />
+      <Link to={`/${currentLanguage.id}/dictionary/${word.word}`}>view full definition</Link>
 
-        <MnemonicSuggested string={word?.word} />
+      <div>{word._wiktionary_data?.senses[0].glosses.join(', ')}</div>
 
-        {/* <p>
-          You have
-          {' '}
-          <PhraseScore word={word} />
-          {' '}
-          accuracy on this word
-        </p> */}
-      </>
-    }
-  </>
+      <MnemonicSuggested string={word?.word} />
+      <hr />
+    </>)}
+  </MiniDefWrapper>
 }
+
+export const MiniDefWrapper = styled.div`
+  font-size: initial;
+  font-weight: initial;
+`
