@@ -28,6 +28,7 @@ export default ({ children }) => {
     loading,
     error: CLError || ULError,
     userLanguages: userLanguages || [],
+    currentUserLanguage: !userLanguages ? {} : userLanguages.find(ul => ul.language_id.id === currentLanguageId),
     currentLanguage: currentLanguage || {},
     setCurrentLanguageId,
   }
