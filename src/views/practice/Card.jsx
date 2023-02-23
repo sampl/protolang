@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
 
@@ -13,6 +13,7 @@ import SpeakWord from '@/views/dictionary/SpeakWord'
 import { TwoColumns } from '@/styles/Layout'
 
 const MAX_STRIKES = 1
+const STACK_SIZE = 3
 
 // https://stackoverflow.com/a/37511463/1061063
 const normalizeString = string => string.normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim().toLowerCase()
@@ -29,6 +30,8 @@ export default ({ phrase, cardQuestionType, cardAnswerType, direction, next, isU
   const [cardState, setCardState] = useState('waiting')
   const [strikes, setStrikes] = useState(0)
 
+  useEffect(() => console.log('newCard'), [phrase?.id])
+
   const testAnswer = answer => {
     return normalizeString(correctAnswer) === normalizeString(answer)
   }
@@ -38,8 +41,8 @@ export default ({ phrase, cardQuestionType, cardAnswerType, direction, next, isU
   }
 
   const submitAnswer = async answer => {
+    console.log('SUBMITTING ANSWER', answer)
     const correct = testAnswer(answer)
-    const wasSecondTry = strikes > 0
     if (!correct && strikes < MAX_STRIKES) {
       setStrikes(s => s + 1)
       setCardState('try_again')
@@ -57,12 +60,12 @@ export default ({ phrase, cardQuestionType, cardAnswerType, direction, next, isU
         direction,
         prompt_type: cardQuestionType,
         repeated_only: false, // TODO - built repeat-only attempts
-        guess: answer,
+        guess: answer.trim(),
         is_correct: correct,
         answer_type: cardAnswerType,
         // perfect_answer, // TODO - return in test algo
         // with_hint, // TODO - detect hints
-        second_try: wasSecondTry,
+        second_try: strikes > 0,
         created_by: user.id,
       }
       const { error } = await supabase
@@ -80,10 +83,15 @@ export default ({ phrase, cardQuestionType, cardAnswerType, direction, next, isU
 
   const CardAnswerComponent = cardAnswerType === 'text' ? CardAnswerText : CardAnswerSpeech
 
-  return <CardWrapper key={phrase.id} style={{
-    display: isDone ? 'none' : 'block',
+  if (placeInLine > STACK_SIZE) return null
+  const isLastCard = placeInLine === STACK_SIZE
+
+  return <CardWrapper style={{
+    display: isDone ? 'none' : 'block', // TODO - animate done cards out
     transform: isUpcoming && `translate(${placeInLine * 4}px, ${placeInLine * 4}px)`,
     zIndex: isUpcoming ? 100 - placeInLine : 100,
+    transition: 'all 0.3s ease-in-out',
+    opacity: isLastCard ? 0 : 1,
   }}>
 
     <TwoColumns cols="auto max-content">
@@ -102,16 +110,21 @@ export default ({ phrase, cardQuestionType, cardAnswerType, direction, next, isU
       </h2>
     }
     <br />
-    <CardAnswerComponent
-      key={phrase?.id}
-      direction={direction}
-      question={question}
-      correctAnswer={correctAnswer}
-      disabled={disabled}
-      testAnswer={testAnswer}
-      testPartialAnswer={testPartialAnswer}
-      submitAnswer={submitAnswer}
-    />
+
+    {/* don't initialize any fancy voice stuff if it's not the current card, that way leads to pain */}
+    {isCurrent &&
+      <CardAnswerComponent
+        key={phrase?.id}
+        id={phrase?.id}
+        direction={direction}
+        question={question}
+        correctAnswer={correctAnswer}
+        disabled={disabled}
+        testAnswer={testAnswer}
+        testPartialAnswer={testPartialAnswer}
+        submitAnswer={submitAnswer}
+      />
+    }
 
     {/* <hr /> */}
 
@@ -157,6 +170,9 @@ export const CardWrapper = styled.div`
   padding: 1rem;
   background: white;
   position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100%;
   /* box-shadow: 1px 1px; */
 `

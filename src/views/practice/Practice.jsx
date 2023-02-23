@@ -1,17 +1,24 @@
 import { useParams, Link } from 'react-router-dom'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { supabase, useSupabaseQuery } from '@/db/supabase'
-import Card from '@/views/practice/Card'
+import CardDeck from '@/views/practice/CardDeck'
 import { TwoColumns } from '@/styles/Layout'
 import DailyProgress from './DailyProgress'
 
 export default () => {
   const { langId } = useParams()
 
+  const [phraseSource, setPhraseSource] = useState('')
+  const [phraseList, setPhraseList] = useState(null)
+  const [cardQuestionType, setCardQuestionType] = useState('both')
+  const [cardAnswerType, setCardAnswerType] = useState('speech')
+  const [direction, setDirection] = useState('forward')
+
   const lessonsQuery = supabase
     .from('lessons')
-    .select()
+    .select('*')
+    // .select('*, phrases(*)')
     .eq('language_id', langId)
   const [lessons, lessonsLoading, lessonsError] = useSupabaseQuery(lessonsQuery, [langId])
 
@@ -19,51 +26,34 @@ export default () => {
     .from('phrases')
     .select()
     .eq('language_id', langId)
-  const [phrases, phrasesLoading, phrasesError] = useSupabaseQuery(phrasesQuery, [langId])
+    .limit(50)
+  const [phrases, phrasesLoading, phrasesError] = useSupabaseQuery(phrasesQuery, [langId], !langId)
 
-  const [phraseSource, setPhraseSource] = useState('')
-  const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0)
-  const [cardQuestionType, setCardQuestionType] = useState('both')
-  const [cardAnswerType, setCardAnswerType] = useState('speech')
-  const [direction, setDirection] = useState('forward')
+  // const lessonPhrases = phraseSource === 'all' ? [] : 
+  //                       !lessons ? [] :
+  //                       lessons.find(l => l.id === phraseSource)?.phrases
 
-  phrases && shuffleArray(phrases)
+  // const phrasesToUse = phraseSource === 'all' ? phrases : lessonPhrases
 
-  const nextPhrase = () => {
-    if (phrases.length - 1 <= currentPhraseIndex) {
-      setCurrentPhraseIndex(0)
-    } else {
-      setCurrentPhraseIndex(currentPhraseIndex + 1)
-    }
-  }
+  // shuffle the deck once and only once per load
+  useEffect(() => {
+    if (phraseList || !phrases) return
+    shuffleArray(phrases)
+    setPhraseList([...phrases])
+  }, [phrases])
+
+  console.log('phrases is ', phraseList)
 
   return <TwoColumns cols="2fr 1fr">
     <div>
-      <div style={{position: 'relative', height: '240px', borderBottom: '1px solid'}}>
-        {
-          phrasesError ? phrasesError.message :
-          phrasesLoading ? 'loading...' :
-          (!phrases || phrases.length <= 0) ? 'no phrases' :
-          phrases.map( (phrase, index) => {
-            const placeInLine = index - currentPhraseIndex
-            if (placeInLine > 3) {
-              return null
-            }
-            return <Card
-              key={phrase.id}
-              phrase={phrase}
-              isUpcoming={index > currentPhraseIndex}
-              placeInLine={placeInLine}
-              isCurrent={index === currentPhraseIndex}
-              isDone={index < currentPhraseIndex}
-              cardQuestionType={cardQuestionType}
-              cardAnswerType={cardAnswerType}
-              direction={direction}
-              next={nextPhrase}
-            />
-          })
-        }
-      </div>
+      <CardDeck
+        cardQuestionType={cardQuestionType}
+        cardAnswerType={cardAnswerType}
+        direction={direction}
+        phrases={phraseList}
+        phrasesLoading={phrasesLoading}
+        phrasesError={phrasesError}
+      />
 
       {/* TODO - more info about the phrase you just attempted, or hints etc */}
 

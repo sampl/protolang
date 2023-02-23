@@ -1,6 +1,7 @@
 import { useLanguage } from "@/_state/language"
 import { useSpeechRecognition } from "@/_state/speechRecognition"
 import { useEffect } from "react"
+import { useTimer } from 'use-timer'
 
 export default ({
   direction,
@@ -9,7 +10,10 @@ export default ({
   testPartialAnswer,
   submitAnswer,
   disabled,
+  id,
 }) => {
+
+  console.log('correctAnswer is ', correctAnswer)
 
   const { currentLanguage } = useLanguage()
   const {
@@ -21,6 +25,11 @@ export default ({
     interimTranscript,
     finalTranscript,
   } = useSpeechRecognition()
+
+  const { time, start, pause, reset, status } = useTimer({
+    autostart: true,
+    // interval: 100,
+  })
 
   if (!speechRecognitionIsSupported) {
     return 'unfortunately speech is not supported in this browser'
@@ -36,30 +45,32 @@ export default ({
       clearSpeechRecognition()
       stopSpeechRecognition()
     }
-  }, [])
-  
+  }, [id])
+
   // test new transcripts
   useEffect( () => {
-    const isCorrect = testAnswer(interimTranscript) || testAnswer(finalTranscript)
+    const finalIsCorrect = testAnswer(interimTranscript)
+    const interimIsCorrect = testAnswer(interimTranscript)
     const isCorrectSoFar = testPartialAnswer(finalTranscript)
     const hasNotStarted = !finalTranscript || finalTranscript === ''
 
-    if (isCorrect) {
+    if (interimIsCorrect || finalIsCorrect) {
+      const userCorrectAnswer = interimIsCorrect ? interimTranscript : finalTranscript
+      console.log(`answer ${userCorrectAnswer} is correct, matches the answer "${correctAnswer}", submitting...`, {interimTranscript, finalTranscript})
       stopSpeechRecognition()
-      submitAnswer(finalTranscript)
+      submitAnswer(userCorrectAnswer)
     }
 
-    if (hasNotStarted || isCorrectSoFar) {
+    if (hasNotStarted || isCorrectSoFar || time < 2) {
       // wait
       // console.log('waiting...')
       return
     }
 
-    // TODO - this isn't working... new cards still have the old transcripts and fail the test on load before speech. not getting cleared? need a state to test whether we started listening or something?
-
     // end if it's just plain wrong
-    if (!isCorrect) {
-      console.log('wrong answer', finalTranscript, 'should be', correctAnswer)
+    // (we used to test for interim here too, seems wrong though)
+    if (!finalIsCorrect) {
+      console.log(finalTranscript, 'is wrong, does not match the answer "', correctAnswer, '", submitting...')
       stopSpeechRecognition()
       submitAnswer(finalTranscript)
       return

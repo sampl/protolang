@@ -39,7 +39,8 @@
     "remark-stringify": "^10.0.2",
     "slugify": "^1.6.5",
     "styled-components": "^5.3.6",
-    "use-debounce": "^9.0.3"
+    "use-debounce": "^9.0.3",
+    "use-timer": "^2.0.1"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.18.6",
