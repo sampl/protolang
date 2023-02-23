@@ -36,7 +36,6 @@ import LessonEdit from './views/lessons/LessonEdit'
 import LessonHistory from './views/lessons/LessonHistory'
 import LessonHistoryItem from './views/lessons/LessonHistoryItem'
 import PhraseItem from './views/practice/PhraseItem'
-import PhraseEdit from './views/practice/PhraseEdit'
 import LayoutAdmin from './views/_layout/LayoutAdmin'
 import AdminLessonEdits from './views/admin/AdminLessonEdits'
 import AdminPhrases from './views/admin/AdminPhrases'
@@ -233,11 +232,6 @@ export default [
   {
     path: `/:langId/practice/:phraseId`,
     component: PhraseItem,
-    layout: LayoutLanguage,
-  },
-  {
-    path: `/:langId/practice/:phraseId/edit`,
-    component: PhraseEdit,
     layout: LayoutLanguage,
   },
 
