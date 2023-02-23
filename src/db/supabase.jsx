@@ -21,6 +21,7 @@ export function useSupabaseQuery(query, dependencies, pause) {
 
   useEffect(() => {
     const runQuery = async () => {
+      // TODO - does this fire too much?
       const { data, error } = await query
       setLoading(false)
       setData(data)
