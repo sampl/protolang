@@ -13,7 +13,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 dotenv.config({ path: '.env.development' })
 const CONNECTION_STRING = process.env.ADMIN_POSTGRES_CONNECTION_STRING
 
-const LIVE = process.argv[2] === '--live'
+const myArgs = process.argv.slice(2)
+const LIVE = myArgs[0] === 'live'
 
 const LANGUAGE_CODE = `it`
 const SCHEMA_NAME = `dictionaries`
@@ -30,14 +31,14 @@ let errors = []
 let batchCount = 0
 
 const updateDictionary = async () => {
-  console.log('Updating dictionary...')
+  console.log('Updating dictionary')
 
   try {
     console.time('Duration')
 
     // clear out previous data
     if (LIVE) {
-      console.log('Removing old dictionary...')
+      console.log('Removing old dictionary')
       await db.none(`
         create schema if not exists ${SCHEMA_NAME};
 
@@ -75,7 +76,7 @@ const updateDictionary = async () => {
           }
         },
       );
-      console.log(`Got batch #${batchCount} of size ${rows.length}, starting with ${rows[0].word} ${LIVE ? '- sending to db...' : ''}`)
+      console.log(`Got batch #${batchCount} of size ${rows.length}, starting with ${rows[0].word} ${LIVE ? '- sending to db' : ''}`)
       if (LIVE) {
         const query = pgp.helpers.insert(rows, columnSet)
         return db.none(query)

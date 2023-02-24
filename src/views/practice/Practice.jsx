@@ -20,7 +20,7 @@ export default () => {
   const lessonsQuery = supabase
     .from('lessons')
     .select('*')
-    // .select('*, phrases(*)')
+    // .select('*, phrase_ids(*)') // someday
     .eq('language_id', langId)
   const [lessons, lessonsLoading, lessonsError] = useSupabaseQuery(lessonsQuery, [langId])
 
@@ -30,12 +30,20 @@ export default () => {
     .eq('language_id', langId)
     .limit(50)
   const [phrases, phrasesLoading, phrasesError] = useSupabaseQuery(phrasesQuery, [langId], !langId)
+  
+  // const lessonToUse = phraseSource === 'all' ? [] : 
+  //                     !lessons ? [] :
+  //                     lessons.find(l => l.id === phraseSource)
 
-  // const lessonPhrases = phraseSource === 'all' ? [] : 
-  //                       !lessons ? [] :
-  //                       lessons.find(l => l.id === phraseSource)?.phrases
-
+  // const lessonPhrasesQuery = supabase
+  //   .from('phrases')
+  //   .select()
+  //   .eq('content', lessonToUse?.phrase_strings_it) // TODO
+  // const [lessonPhrases, lessonPhrasesLoading, lessonPhrasesError] = useSupabaseQuery(lessonPhrasesQuery, [lessonToUse?.phrase_strings_it], !lessonToUse?.phrase_strings_it)
+  
+  // // will only pull from the phrases with it="foo"
   // const phrasesToUse = phraseSource === 'all' ? phrases : lessonPhrases
+  // console.log(phrasesToUse)
 
   // shuffle the deck once and only once per load
   useEffect(() => {

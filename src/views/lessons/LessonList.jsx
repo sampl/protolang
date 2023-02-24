@@ -17,16 +17,16 @@ export default () => {
     .order('sort_order',  { ascending: true })
   const [lessons, loading, error] = useSupabaseQuery(query, [langId])
 
-  const groupedLessons = groupBy(lessons, l => Math.floor(l.sort_order/10))
-  const groups = Object.keys(groupedLessons)
+  const groupedLessons = groupBy(lessons, l => l.unit)
+  const units = Object.keys(groupedLessons)
     .map(k => ({ key: k, lessons: groupedLessons[k]}))
     .map(g => ({
       ...g,
-      title:  g.key === '1' ? 'Getting started' : 
-              g.key === '2' ? 'Beginner' :
-              g.key === '3' ? 'Moderate' :
-              g.key === '4' ? 'Advanced' :
-              'Group',
+      title:  g.key === '0' ? 'Start here' : 
+              g.key === '1' ? 'Beginner' :
+              g.key === '2' ? 'Moderate' :
+              g.key === '3' ? 'Advanced' :
+              'Bonus unit',
     }))
 
   return <>
@@ -41,15 +41,15 @@ export default () => {
             (!lessons || lessons.length) <= 0 ? 'no lessons' :
             <>
               <SuggestedLessons />
-              {groups?.map(group => {
-                return <LessonGroupWrapper key={group.key}>
-                  <h2>{group.title}</h2>
-                  {group.lessons.map(lesson => {
+              {units?.map(unit => {
+                return <LessonUnitWrapper key={unit.key}>
+                  <h2>{unit.title}</h2>
+                  {unit.lessons.map(lesson => {
                     return <LessonListItemWrapper key={lesson.slug} to={`/${langId}/lessons/${lesson.slug}`}>
                       {lesson.title_en || 'Unknown'}
                     </LessonListItemWrapper>
                   })}
-                </LessonGroupWrapper>
+                </LessonUnitWrapper>
               })}
             </>
           }
@@ -75,7 +75,7 @@ const LessonListWrapper = styled.div`
   /* gap: 2rem 1rem; */
   /* grid-template-columns: 1fr 1fr; */
 `
-const LessonGroupWrapper = styled.div`
+const LessonUnitWrapper = styled.div`
   margin: 0 0 2rem;
 `
 const LessonListItemWrapper = styled(Link)`

@@ -202,21 +202,22 @@ create table lessons (
 );
 
 create table lesson_edits (
-  id            bigint primary key generated always as identity,
+  id                  bigint primary key generated always as identity,
 
-  language_id   text not null references languages(id),
-  lesson_id     bigint not null references lessons(id),
-  content_en    text not null,
+  language_id         text not null references languages(id),
+  lesson_id           bigint not null references lessons(id),
+  content_en          text not null,
+
   -- these arrays are just strings
   -- someday when postgres supports it, we should reference other tables with a FK
   -- or make a table called lesson_edit_phrases or something? seems like overkill
   -- https://stackoverflow.com/questions/41054507/postgresql-array-of-elements-that-each-are-a-foreign-key
-  phrases       bigint[],
-  topics        text[],
+  phrase_strings_it   text[], -- literally the text of the phrase for now, but we should be referencing the ID someday?
+  topics              text[],
 
-  created_at    timestamptz default now() not null,
-  updated_at    timestamptz default now() not null,
-  created_by    uuid not null references auth.users(id)
+  created_at          timestamptz default now() not null,
+  updated_at          timestamptz default now() not null,
+  created_by          uuid not null references auth.users(id)
 );
 
 -- not good apparently: https://stackoverflow.com/questions/10446641/in-sql-is-it-ok-for-two-tables-to-refer-to-each-other
