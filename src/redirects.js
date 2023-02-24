@@ -76,6 +76,10 @@ export default [
     path: `/dictionary`,
     target: `/`,
   },
+  {
+    path: `/profile`,
+    target: `/`,
+  },
   
   // developers
   {

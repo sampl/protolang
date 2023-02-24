@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router-dom'
 
 import { supabase, useSupabaseQuery } from '@/db/supabase'
 import TV from './TV'
+import Radio from "./Radio"
 
 export default () => {
 
@@ -27,6 +28,8 @@ export default () => {
       (!media || media.length <= 0) ? 'no media' :
       media.map(mediaItem => <MediaListItem key={mediaItem.id} mediaItem={mediaItem} />)
     }
+    <hr />
+    <Radio />
   </>
 }
 

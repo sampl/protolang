@@ -1,5 +1,4 @@
 import Settings from '@/views/settings/Settings'
-import Dashboard from '@/views/dashboard/Dashboard'
 import ResourceList from '@/views/resources/ResourceList'
 import ResourceItem from '@/views/resources/ResourceItem'
 import Home from '@/views/marketing/Home'
@@ -45,6 +44,7 @@ import AdminPhraseIssues from './views/admin/AdminPhraseIssues'
 import AdminLessons from './views/admin/AdminLessons'
 import Chat from './views/chat/Chat'
 import PracticeHistory from './views/practice/PracticeHistory'
+import Profile from './views/profile/Profile'
 
 // ROUTES
 // This is a simple JS list of routes in the app
@@ -108,6 +108,12 @@ export default [
   },
 
   // Account pages
+  {
+    path: `/:langId/profile`,
+    component: Profile,
+    layout: LayoutLanguage,
+    private_only: true,
+  },
   {
     path: `/settings`,
     component: Settings,
@@ -296,7 +302,7 @@ export default [
   // Language dashboard
   {
     path: `/:langId`,
-    component: Dashboard,
+    component: LessonList,
     layout: LayoutLanguage,
   },
 ]

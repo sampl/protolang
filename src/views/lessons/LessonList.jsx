@@ -4,8 +4,8 @@ import {groupBy} from 'lodash'
 
 import { supabase, useSupabaseQuery } from '@/db/supabase'
 import { TwoColumns } from '@/styles/Layout'
-import LessonsDownload from './LessonsDownload'
 import SuggestedLessons from './SuggestedLessons'
+import QuickLinks from "./QuickLinks"
 
 export default () => {
   const { langId } = useParams()
@@ -30,7 +30,8 @@ export default () => {
     }))
 
   return <>
-    <h1>Lessons</h1>
+    <QuickLinks />
+    <br />
     {
       error ? error.message :
       loading ? 'loading...' :
