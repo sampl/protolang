@@ -41,8 +41,6 @@ export default ({
   const [cardState, setCardState] = useState('waiting')
   const [strikes, setStrikes] = useState(0)
 
-  useEffect(() => console.log('newCard'), [phrase?.id])
-
   const testAnswer = answer => {
     return normalizeString(correctAnswer) === normalizeString(answer)
   }

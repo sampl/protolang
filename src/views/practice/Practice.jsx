@@ -52,8 +52,6 @@ export default () => {
     setPhraseList([...phrases])
   }, [phrases])
 
-  console.log('phrases is ', phraseList)
-
   return <TwoColumns cols="2fr 1fr">
     <div>
       <CardDeck
