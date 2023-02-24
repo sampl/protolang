@@ -6,9 +6,10 @@ import PhrasesDownload from '../practice/PhrasesDownload'
 export default () => {
   return <OneCol>
     <h1>Open source</h1>
+    <p>This project would not be possible without the open-source, community-driven projects it is built on. We are proud to offer our own work under free software licenses.</p>
 
-    <h2>Application source code</h2>
-    <p>The Protolang app is open source under the GPL.</p>
+    <h2>Source code</h2>
+    <p>The Protolang web app is available under the GPL.</p>
     <ul>
       <li>
         <a href="https://github.com/sampl/protolang">Browse source on Github</a> (coming soon)
@@ -18,8 +19,8 @@ export default () => {
       </li>
     </ul>
 
-    <h2>Lesson data</h2>
-    <p>Lesson text and flashcard phrases are available for use under a Creative Commons license (coming soon).</p>
+    <h2>Data downloads</h2>
+    <p>User-generated content is available to download here. All of this content is free to use under a Creative Commons license (coming soon).</p>
 
     <LessonsDownload />
     {' '}

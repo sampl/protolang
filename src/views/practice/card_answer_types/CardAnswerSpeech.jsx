@@ -13,8 +13,6 @@ export default ({
   id,
 }) => {
 
-  console.log('correctAnswer is ', correctAnswer)
-
   const { currentLanguage } = useLanguage()
   const {
     speechRecognitionIsSupported,
