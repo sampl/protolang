@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import slugify from 'slugify'
 
 import { useUser } from '@/_state/user'
-import { supabase } from '@/db/supabase'
+import { supabase, useSupabaseQuery } from '@/db/supabase'
 
 export default () => {
   const { user } = useUser()
@@ -10,8 +11,16 @@ export default () => {
   const navigate = useNavigate()
 
   const [title, setTitle] = useState('')
-  const [slug, setSlug] = useState('')
+  const [unit, setUnit] = useState(1)
   const [saving, setSaving] = useState(false)
+
+  const lessonCountQuery = supabase
+    .from('lessons')
+    .select('*', { count: 'exact', head: true })
+  const [lessonCount, lessonCountLoading, lessonCountError] = useSupabaseQuery(lessonCountQuery)
+
+  const count = lessonCount?.count || 0
+  const slug = slugify(title, { lower: true })
 
   async function submit( event ) {
     event.preventDefault()
@@ -22,6 +31,8 @@ export default () => {
         language_id: langId,
         title_en: title,
         slug,
+        unit,
+        sort_order: count,
         created_by: user.id,
       }
 
@@ -58,8 +69,25 @@ export default () => {
       id="slug"
       type="text"
       value={slug}
-      placeholder=""
-      onChange={e => setSlug(e.target.value)}
+      required
+      disabled
+    />
+
+    <label htmlFor="count">Sort order</label>
+    <input
+      id="count"
+      type="number"
+      value={count}
+      disabled
+    />
+
+    <label htmlFor="unit">Unit</label>
+    <input
+      id="unit"
+      type="number"
+      value={unit}
+      placeholder="Unit"
+      onChange={e => setUnit(e.target.value)}
       required
     />
 
@@ -67,7 +95,7 @@ export default () => {
 
     <button
       type="submit"
-      disabled={saving}
+      disabled={saving || lessonCountLoading || lessonCountError}
     >
       {saving ? 'Adding...' : 'Add lesson'}
     </button>
