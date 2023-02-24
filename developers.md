@@ -70,21 +70,29 @@ Start the local server: `npm run dev`
 
 ### Seed the database
 
+Before you can run the app, you'll need to seed the database with some basic data.
+
 Some seed scripts require a valid `created_by` value. For example, seeding Lessons won't work unless each lesson has a valid `created_by` value reference in the `admin.users` table. To set this up, we just need to give your seed scripts a valid UID to use.
 
 - Sign into your Protolang app (not Supabase—the actual app, on `localhost`), then go to your [Supabase users dashboard](https://app.supabase.com/project/_/auth/users) and copy the User UID of your user.
 - Go back to your `.env.development` file and add the UID it as `SEED_USER_ID`
 - Now run `npm run seed`
 
-You'll also want to seed the dictionary schema with the language files.
+You'll probably also want to seed the app with language data collected from other sources or the live version of Protolang.
 
-The full language dictionaries are generated from the English-language [Wiktionary](https://en.wiktionary.org/) and parsed by [Wiktextract](https://github.com/tatuylonen/wiktextract).
-
-Parsed JSON language files are quite large, so they are not included in git as of yet. However they can be downloaded directly (already parsed from Wiktionary format) at [https://kaikki.org/dictionary/].
+The full language dictionaries are generated from the English-language [Wiktionary](https://en.wiktionary.org/) and parsed by [Wiktextract](https://github.com/tatuylonen/wiktextract). Parsed JSON language files are quite large, so they are not included in git as of yet. However they can be downloaded directly (already parsed from Wiktionary format) at [https://kaikki.org/dictionary/].
 
 - Download the language files you want to use from [https://kaikki.org/dictionary/]
 - Move the file into the `/data` directory
-- Run `npm run update-dict -- --live`
+- Run `npm run update:dictionary -- --live`
+
+To seed lessons and phrases:
+
+- [Download lesson and phrase dumps](https://protolang.com/open-source)
+- Unzip the files, and place the unzipped folder in the `/data` folder of your repo
+- Run `npm run seed:lessons` and `npm run seed:phrases`
+
+The lesson and phrase file formats change occasionally as the app evolves. If you get an error, you may need to update the seed scripts to match the new format.
 
 ### Configure Supabase
 
@@ -106,8 +114,8 @@ To self-host Protolang on your own server:
 - Create a separate Supabase project for production.
 - Add all the database connection information to a new `.env.production` file
 - Edit the [auth config in Supabase](https://app.supabase.com/project/_/auth/url-configuration) with the URL you wan to host on
-- Edit `update-dict.js` and `migrate.js` to temporarily point to your production database (TODO - better way to hand environment switching)
-- Run `npm run migrate` and `npm run update-dict -- --live` to set up the database and seed it with the language files on the new db
+- Edit `updates/dictionary.js` and `migrate.js` to temporarily point to your production database (TODO - better way to hand environment switching)
+- Run `npm run migrate` and `npm run update:dictionary -- --live` to set up the database and seed it with the language files on the new db
 - You may want to manually copy/paste in some of the files in `/scripts/seed` to seed the database with some initial data (like languages). Be careful to replace instances of `USER_ID` with your production user ID.
 
 ## Troubleshooting

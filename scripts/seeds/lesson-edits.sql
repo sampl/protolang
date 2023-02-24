@@ -1,4 +1,0 @@
--- TODO
---   - pull from old lessons files
---   - add individually to each lesson by slug
---   - and update lessons to reference the latest edit

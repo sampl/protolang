@@ -12,6 +12,9 @@
     "seed": "node scripts/seed.js",
     "clear": "node scripts/clear.js",
     "backup": "node scripts/backup.js",
+    "update:dictionary": "node scripts/updates/dictionary.mjs",
+    "update:lessons": "node scripts/updates/lessons.mjs",
+    "update:phrases": "node scripts/updates/phrases.mjs"
   },
   "dependencies": {
     "@formspree/react": "^2.4.1",
