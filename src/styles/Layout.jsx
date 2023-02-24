@@ -38,5 +38,6 @@ export const TwoColumns = styled.div`
 
   @media (max-width: 800px) {
     grid-template-columns: auto;
+    grid-row-gap: 2rem;
   }
 `
