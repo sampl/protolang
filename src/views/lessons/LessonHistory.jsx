@@ -51,7 +51,7 @@ export default () => {
               <Link to={`/${langId}/lessons/${slug}/history/${lessonEdit.id}`}>
                 {lessonEdit.id || 'Unknown'} - {lessonEdit.created_by || 'No author'}
                 {' - '}
-                {new Intl.DateTimeFormat('en-US').format(new Date(language.lessonEdit)) || 'No timestamp'}
+                {new Intl.DateTimeFormat('en-US').format(new Date(lessonEdit.created_at)) || 'No timestamp'}
               </Link>
             </div>
           })

@@ -7,7 +7,7 @@ export default () => {
 
   const query = supabase
     .from('lessons')
-    .select()
+    .select('*, current_edit(*)')
     .eq('language_id', langId)
     .order('sort_order',  { ascending: true })
 
@@ -60,7 +60,11 @@ export default () => {
           <th>ID</th>
           <th>Title</th>
           <th>Slug</th>
+          <th>Unit</th>
           <th>Sort order</th>
+          <th>Topics</th>
+          <th>Phrase count</th>
+          <th>Chars</th>
           <th>Created by</th>
           <th>Created at</th>
           <th></th>
@@ -81,9 +85,21 @@ export default () => {
                 {lesson.slug}
               </td>
               <td>
+                {lesson.unit}
+              </td>
+              <td>
                 {lesson.sort_order}
                 <button onClick={() => sortLesson(lesson.id, -1)}>↑</button>
                 <button onClick={() => sortLesson(lesson.id,  1)}>↓</button>
+              </td>
+              <td>
+                {lesson.current_edit?.topics?.join(', ') || '-'}
+              </td>
+              <td>
+                {lesson.current_edit?.phrase_strings_it?.length || 0}
+              </td>
+              <td>
+                {lesson.current_edit?.content_en?.length || 0}
               </td>
               <td>
                 {lesson.created_by}

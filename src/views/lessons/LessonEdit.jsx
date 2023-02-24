@@ -39,7 +39,7 @@ export default () => {
   useEffect(() => {
     if (lesson) {
       setContent(!lesson.current_edit ? '' : lesson.current_edit.content_en)
-      setTopics( !lesson.current_edit ? [] : lesson.current_edit.topics)
+      setTopics( lesson.current_edit?.topics || [])
     }
   }, [lesson])
 
@@ -93,6 +93,7 @@ export default () => {
     return 'Error - could not load lesson ' + (topicsError?.message || lessonError?.message)
   }
 
+  console.log(topics)
   return <>
     <BreadcrumbWrapper>
       <BreadcrumbItem to={`/${langId}/lessons`}>Lessons</BreadcrumbItem>
@@ -146,7 +147,7 @@ export default () => {
       </TwoColumns>
 
       <StickyLowNav>
-        <button type="button" onClick={() => setTopicsModalOpen(true)}>Edit topics ({topics.length > 0 ? topics.join(', ') : 'none yet'})</button>
+        <button type="button" onClick={() => setTopicsModalOpen(true)}>Edit topics ({topics?.length > 0 ? topics.join(', ') : 'none yet'})</button>
 
         <button
           type="submit"
