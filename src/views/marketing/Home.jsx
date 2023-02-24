@@ -10,14 +10,18 @@ export default () => {
 
   return <>
 
-    <h1>Coming soon: the language site for serious learners</h1>
-    {/* <Button onClick={() => navigate('/languages')}>Choose your language</Button> */}
-    <p>Free & open source{/* · no account required */}</p>
+    <h1>Coming soon: free language learning that actually works</h1>
+    <p>
+      {/* Don't waste time playing games. */}
+      Protolang's powerful language tools get you to fluency faster
+    </p>
+    <p style={{fontSize: 'small'}}>Free & open source · no account required</p>
 
     <TwoColumns cols="2fr 1fr">
       <div>
         <blockquote>"It's like Duolingo for adults" - Joe Flateau</blockquote>
 
+        {/* <p>A complete toolbox for language acquisition:</p> */}
         <p>Protolang includes:</p>
         <ul>
           <li>
@@ -26,35 +30,20 @@ export default () => {
             complete courses in vocabulary, pronunciation, grammar, tenses, common phrases, and culture
           </li>
           <li>
-            <strong>🤔 Flashcards</strong>
+            <strong>🤔 Audio flashcards</strong>
             {' - '}
             practice your knowledge with simple, interactive audio and text quizzes
           </li>
           <li>
-            <strong>💡 Mnemonics</strong>
-            {' - '}
-            tips to help you retain words without rote memorization
-          </li>
-          <li>
-            <strong>📖 Dictionaries</strong>
-            {' - '}
-            searchable list of 40k+ words with definitions, conjugations, etc
-          </li>
-          <li>
-            <strong>📺 Media</strong>
-            {' - '}
-            watch and listen: videos, podcasts, radio and more
-          </li>
-          <li>
-            <strong>📈 Analytics</strong>
-            {' - '}
-            track your progress toward fluency, with vocabulary, days practiced, and more
-          </li>
-          <li>
-            <strong>💬 Chat</strong>
+            <strong>💬 AI Chat</strong>
             <Badge>Coming soon</Badge>
             {' - '}
             realistic AI-powered conversations in your target language
+          </li>
+          <li>
+            <strong>📺 Immersive media</strong>
+            {' - '}
+            videos, tv, podcasts, and radio in your target language
           </li>
           <li>
             <strong>🏰 Stories &amp; prompts</strong>
@@ -63,16 +52,25 @@ export default () => {
             read and write about realistic scenarios matched to your skill level
           </li>
           <li>
+            <strong>📖 Dictionaries</strong>
+            {' - '}
+            100k+ word definitions with pronunciation and conjugations
+          </li>
+          <li>
+            <strong>💡 Mnemonics</strong>
+            {' - '}
+            tips and tricks from our community to help you retain vocabulary
+          </li>
+          <li>
+            <strong>📈 Analytics</strong>
+            {' - '}
+            track your progress toward fluency with vocabulary, days practiced, and more
+          </li>
+          <li>
             <strong>👨‍👩‍👧‍👦 Community</strong>
             <Badge>Coming soon</Badge>
             {' - '}
             practice with other language learners from around the world
-          </li>
-          <li>
-            <strong>🌍 Resource library</strong>
-            <Badge>Coming soon</Badge>
-            {' - '}
-            other apps to round out your knowledge, ranked by our community
           </li>
         </ul>
 
