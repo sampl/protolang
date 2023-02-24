@@ -11,7 +11,7 @@ export default () => {
   const { currentLanguage } = useLanguage()
 
   const query = supabase
-    .from('practice_attempts')
+    .from('phrase_attempts')
     .select('*, phrase(*)')
     .eq('created_by', user?.id)
     .eq('language_id', currentLanguage?.id)

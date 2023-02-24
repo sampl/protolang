@@ -139,7 +139,7 @@ create table phrase_issues (
   created_by    uuid not null references auth.users(id)
 );
 
-create table practice_attempts (
+create table phrase_attempts (
   id              bigint primary key generated always as identity,
 
   language_id     text not null references languages(id),
@@ -428,11 +428,11 @@ create policy "Users can add a phrase issue"                        on phrase_is
 create policy "Users can update their own phrase issue, or admins"  on phrase_issues for update using ( auth.uid() = created_by or user_is_admin() );
 create policy "Nobody can delete a phrase issue"                    on phrase_issues for delete using (false);
 
-alter table practice_attempts enable row level security;
-create policy "Users can view their own practice attempt"   on practice_attempts for select using (auth.uid() = created_by);
-create policy "Users can add an practice attempt"           on practice_attempts for insert to authenticated with check (auth.uid() = created_by);
-create policy "Nobody can update an practice attempt"       on practice_attempts for update using (false);
-create policy "Nobody can delete an practice attempt"       on practice_attempts for delete using (false);
+alter table phrase_attempts enable row level security;
+create policy "Users can view their own phrase attempt"   on phrase_attempts for select using (auth.uid() = created_by);
+create policy "Users can add an phrase attempt"           on phrase_attempts for insert to authenticated with check (auth.uid() = created_by);
+create policy "Nobody can update an phrase attempt"       on phrase_attempts for update using (false);
+create policy "Nobody can delete an phrase attempt"       on phrase_attempts for delete using (false);
 
 -----------------   Chats   -----------------
 
@@ -534,7 +534,7 @@ create trigger keep_user_languages_updated      before update on user_languages 
 create trigger keep_topics_updated              before update on topics             for each row execute procedure moddatetime (updated_at);
 create trigger keep_phrases_updated             before update on phrases            for each row execute procedure moddatetime (updated_at);
 create trigger keep_phrase_issues_updated       before update on phrase_issues      for each row execute procedure moddatetime (updated_at);
-create trigger keep_practice_attempts_updated   before update on practice_attempts  for each row execute procedure moddatetime (updated_at);
+create trigger keep_phrase_attempts_updated   before update on phrase_attempts  for each row execute procedure moddatetime (updated_at);
 create trigger keep_chat_conversations_updated  before update on chat_conversations for each row execute procedure moddatetime (updated_at);
 create trigger keep_chat_messages_updated       before update on chat_messages      for each row execute procedure moddatetime (updated_at);
 create trigger keep_lessons_updated             before update on lessons            for each row execute procedure moddatetime (updated_at);
@@ -552,13 +552,13 @@ create trigger keep_mnemonic_votes_updated      before update on mnemonic_votes 
 -- https://supabase.com/blog/2020/11/18/postgresql-views
 create view heatmap_days as
   select    date(created_at), created_by, count(*)
-  from      practice_attempts
+  from      phrase_attempts
   where     created_at > current_date - interval '1 year'
   group by  date(created_at), created_by;
 
 create view user_scores as
   select    created_by, count(distinct phrase)
-  from      practice_attempts
+  from      phrase_attempts
   where     is_correct = true
   group by  created_by;
 
@@ -571,7 +571,7 @@ create view user_phrase_scores as
     count(*),
     sum(case when is_correct = true then 1 else 0 end) as num_correct,
     sum(case when is_correct = true then 1 else 0 end)::float/count(*)::float as percent_correct
-  from practice_attempts
+  from phrase_attempts
   group by created_by, phrase;
 
 -- End transaction

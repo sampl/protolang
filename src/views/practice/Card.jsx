@@ -81,7 +81,7 @@ export default ({
         created_by: user.id,
       }
       const { error } = await supabase
-        .from('practice_attempts')
+        .from('phrase_attempts')
         .insert([newData])
       if (error) {
         throw error

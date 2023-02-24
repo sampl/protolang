@@ -25,6 +25,7 @@ const clearSql = `
   drop table if exists public.chat_messages;
   drop table if exists public.chat_conversations;
   drop table if exists public.practice_attempts;
+  drop table if exists public.phrase_attempts;
   drop table if exists public.phrase_issues;
   drop table if exists public.phrases;
   drop table if exists public.topics;
@@ -38,6 +39,7 @@ const clearSql = `
 
   drop type if exists public.phrase_types;
   drop type if exists public.practice_attempts_correct_types;
+  drop type if exists public.phrase_attempts_correct_types;
   drop type if exists public.chat_message_sender_types;
   drop type if exists public.media_types;
 
