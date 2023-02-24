@@ -15,6 +15,7 @@
     "backup": "node scripts/backup.js",
     "update:dictionary": "node scripts/updates/dictionary.mjs",
     "update:lessons": "node scripts/updates/lessons.mjs",
+    "update:mnemonics": "node scripts/updates/mnemonics.mjs",
     "update:phrases": "node scripts/updates/phrases.mjs"
   },
   "dependencies": {
