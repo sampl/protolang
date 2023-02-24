@@ -32,10 +32,11 @@ export default () => {
     // generate object of markdown files
     console.log('generating lessonFiles')
     const lessonFiles = lessons.map(lesson => {
-      const topics = (!lesson.topics || lesson.topics.length === 0) ? '': ` (${lesson.topics.join(', ')})`
+      const hasTopics = lesson.current_edit?.topics && lesson.current_edit?.topics.length >= 0
+      const topics = hasTopics ? ` - (${lesson.current_edit?.topics.join(', ')})` : ''
       return {
         name: `Unit ${lesson.unit || 0} - #${lesson.sort_order || 0} - ${lesson.title_en}${topics}.md`,
-        content: lesson.current_edit ? lesson.current_edit.content_en : '',
+        content: lesson.current_edit?.content_en || '',
       }
     })
 
