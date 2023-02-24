@@ -1,5 +1,6 @@
 import { OneCol } from '@/styles/Layout'
 import LessonsDownload from '../lessons/LessonsDownload'
+import MnemonicsDownload from '../lessons/MnemonicsDownload'
 import PhrasesDownload from '../practice/PhrasesDownload'
 
 export default () => {
@@ -23,6 +24,8 @@ export default () => {
     <LessonsDownload />
     {' '}
     <PhrasesDownload />
+    {' '}
+    <MnemonicsDownload />
 
   </OneCol>
 }
