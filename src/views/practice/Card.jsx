@@ -24,11 +24,11 @@ export default ({
   cardAnswerType,
   direction,
   next,
-  isUpcoming,
   placeInLine,
   isCurrent,
   isDone,
   setPhraseToShowInfoAbout,
+  isRecentlyDone,
 }) => {
 
   const question =      direction === 'forward' ? phrase?.content_en : phrase?.content_it 
@@ -97,13 +97,15 @@ export default ({
 
   if (placeInLine > STACK_SIZE) return null
   const isLastCard = placeInLine === STACK_SIZE
+  const SPEED = '.3s'
 
   return <CardWrapper style={{
-    display: isDone ? 'none' : 'block', // TODO - animate done cards out
-    transform: isUpcoming && `translate(${placeInLine * 4}px, ${placeInLine * 4}px)`,
-    zIndex: isUpcoming ? 100 - placeInLine : 100,
-    transition: 'all 0.3s ease-in-out',
-    opacity: isLastCard ? 0 : 1,
+    visibility: (isDone && !isRecentlyDone) ? 'hidden' : 'visible',
+    pointerEvents: isRecentlyDone ? 'none' : 'auto',
+    transform: isRecentlyDone ? `translate(${placeInLine * 8}px, ${placeInLine * 8}px)` : `translate(${placeInLine * 4}px, ${placeInLine * 4}px)`,
+    opacity: (isLastCard || isRecentlyDone) ? 0 : 1,
+    zIndex: 100 - placeInLine,
+    transition: `visibility 0s, opacity ${SPEED} ease-in-out, transform ${SPEED} ease-in-out`,
   }}>
 
     <TwoColumns cols="auto max-content">

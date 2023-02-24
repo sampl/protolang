@@ -21,14 +21,14 @@ export default ({ cardQuestionType, cardAnswerType, direction, phrases, phrasesL
   if (phrasesLoading) return <div>loading...</div>
   if (!phrases || phrases.length <= 0) return <div>no phrases (try refreshing)</div>
 
-  return <div style={{position: 'relative', height: '240px', borderBottom: '1px solid'}}>
+  return <div style={{position: 'relative', height: '240px', margin: '0 0 2rem'}}>
     {phrases.map( (phrase, index) => {
       return <Card
         key={phrase.id}
         phrase={phrase}
-        isUpcoming={index > currentPhraseIndex}
         placeInLine={index - currentPhraseIndex}
         isCurrent={index === currentPhraseIndex}
+        isRecentlyDone={currentPhraseIndex - index === 1}
         isDone={index < currentPhraseIndex}
         cardQuestionType={cardQuestionType}
         cardAnswerType={cardAnswerType}
