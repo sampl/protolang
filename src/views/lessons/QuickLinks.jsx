@@ -26,7 +26,7 @@ export default () => {
       loading ? 'loading...' :
       <TwoColumns gap="1">
         <QuickLinkItemWrapper to={nextLesson ? `/${langId}/lessons/${nextLesson.slug}` : '/'}>
-          Next lesson: {nextLesson?.title_en || 'No lesson'} →
+          Next lesson: {nextLesson?.title_eng || 'No lesson'} →
         </QuickLinkItemWrapper>
         <QuickLinkItemWrapper to={`/${langId}/practice`}>
           Practice →

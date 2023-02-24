@@ -59,26 +59,26 @@ const parsePhraseFile = async ({ fileName, fileContents }) => {
 
   // const id = fileContentsLines[0]
   // const language_id = fileContentsLines[1]
-  const content_it = fileContentsLines[2]
-  const it_alts_string = fileContentsLines[3]
-  const content_en = fileContentsLines[4]
-  const en_alts_string = fileContentsLines[5]
+  const content_ita = fileContentsLines[2]
+  const content_ita_alts_string = fileContentsLines[3]
+  const content_eng = fileContentsLines[4]
+  const content_eng_alts_string = fileContentsLines[5]
 
-  const it_alts = it_alts_string ? it_alts_string.split('\t') : []
-  const en_alts = en_alts_string ? en_alts_string.split('\t') : []
+  const content_ita_alts = content_ita_alts_string ? content_ita_alts_string.split('\t') : []
+  const content_eng_alts = content_eng_alts_string ? content_eng_alts_string.split('\t') : []
 
-  if (!content_it) {
-    throw new Error(`Invalid content_it "${fileContentsLines[0]}" in phrase ${fileName}`)
+  if (!content_ita) {
+    throw new Error(`Invalid content_ita "${fileContentsLines[0]}" in phrase ${fileName}`)
   }
-  if (!content_en) {
-    throw new Error(`Invalid content_en "${fileContentsLines[1]}" in phrase ${fileName}`)
+  if (!content_eng) {
+    throw new Error(`Invalid content_eng "${fileContentsLines[1]}" in phrase ${fileName}`)
   }
 
   return {
-    content_it,
-    content_en,
-    en_alts,
-    it_alts,
+    content_ita,
+    content_eng,
+    content_eng_alts,
+    content_ita_alts,
   }
 }
 
@@ -98,19 +98,19 @@ const updateDatabase = async phrases => {
   // TODO - run in batches!
   await Promise.all(phrases.map(async phrase => {
 
-    console.log(`    Adding phrase: ${phrase.content_it}`)
+    console.log(`    Adding phrase: ${phrase.content_ita}`)
 
     const phraseValues = [
       LANGUAGE_CODE,
-      phrase.content_it,
-      phrase.content_en,
-      phrase.en_alts,
-      phrase.it_alts,
+      phrase.content_ita,
+      phrase.content_eng,
+      phrase.content_eng_alts,
+      phrase.content_ita_alts,
       new Date(),
       SEED_USER_ID,
     ]
     const phraseQuery = `
-      INSERT INTO phrases(language_id, content_it, content_en, en_alts, it_alts, created_at, created_by)
+      INSERT INTO phrases(language_id, content_ita, content_eng, content_eng_alts, content_ita_alts, created_at, created_by)
       VALUES($1, $2, $3, $4, $5, $6, $7)
       RETURNING *
     `

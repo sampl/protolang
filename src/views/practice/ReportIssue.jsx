@@ -48,10 +48,10 @@ export default ({ phrase }) => {
       <form onSubmit={reportIssue}>
 
         <label>English</label>
-        <p>"{phrase.content_en}"</p>
+        <p>"{phrase.content_eng}"</p>
 
         <label>Italian</label>
-        <p>"{phrase.content_it}"</p>
+        <p>"{phrase.content_ita}"</p>
 
         <label htmlFor="comment">Comment</label>
         <textarea

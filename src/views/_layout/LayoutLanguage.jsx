@@ -49,7 +49,7 @@ export default ({children}) => {
   }
   if (!currentLanguage.is_live) {
     return <LayoutSimple>
-      <h2>The {currentLanguage?.name_en} language course isn't ready yet</h2>
+      <h2>The {currentLanguage?.name_eng} language course isn't ready yet</h2>
       {
         !user ?
         <p>
@@ -63,7 +63,7 @@ export default ({children}) => {
         </p>
       }
       <p>
-        Do you know {currentLanguage?.name_en}?
+        Do you know {currentLanguage?.name_eng}?
         {' '}
         <Link to="/contribute">Help us write the course</Link>!
       </p>

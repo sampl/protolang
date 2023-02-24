@@ -79,7 +79,7 @@ export default () => {
                 {lesson.id}
               </td>
               <td>
-                <Link to={`/${langId}/lessons/${lesson.slug}`}>{lesson.title_en}</Link>
+                <Link to={`/${langId}/lessons/${lesson.slug}`}>{lesson.title_eng}</Link>
               </td>
               <td>
                 {lesson.slug}
@@ -96,7 +96,7 @@ export default () => {
                 {lesson.current_edit?.topics?.join(', ') || '-'}
               </td>
               <td>
-                {lesson.current_edit?.phrase_strings_it?.length || 0}
+                {lesson.current_edit?.phrase_strings_ita?.length || 0}
               </td>
               <td>
                 {lesson.current_edit?.content_en?.length || 0}

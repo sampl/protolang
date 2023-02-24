@@ -30,7 +30,7 @@ export default () => {
     <BreadcrumbWrapper>
       <BreadcrumbItem to={`/${langId}/lessons`}>Lessons</BreadcrumbItem>
       <BreadcrumbSeparator />
-      <BreadcrumbItem to={`/${langId}/lessons/${slug}`}>{lesson?.title_en}</BreadcrumbItem>
+      <BreadcrumbItem to={`/${langId}/lessons/${slug}`}>{lesson?.title_eng}</BreadcrumbItem>
       <BreadcrumbSeparator />
       <BreadcrumbItem to={`/${langId}/lessons/${slug}/history`}>History</BreadcrumbItem>
       <BreadcrumbSeparator />
@@ -41,12 +41,12 @@ export default () => {
     {lessonEditError && lessonEditError.message}
     {(lessonEditLoading || lessonLoading) && 'loading...'}
 
-    <h1>{lesson?.title_en}: {lessonEdit?.id}</h1>
+    <h1>{lesson?.title_eng}: {lessonEdit?.id}</h1>
     <hr />
 
     <TwoColumns cols="2fr 1fr">
       <div>
-        <LessonContent content={lessonEdit?.content_en || ''} />
+        <LessonContent content={lessonEdit?.content_eng || ''} />
       </div>
       <div>
         Created {moment(lessonEdit?.created_at).format("MMMM Do, YYYY")}

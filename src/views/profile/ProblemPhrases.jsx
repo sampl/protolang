@@ -28,7 +28,7 @@ export default () => {
       (!phraseScores || phraseScores.length <= 0) ? 'no problem phrases!' :
       phraseScores?.map(phraseScore => {
         return <div key={phraseScore.phrase.id}>
-          <Link to={`/${langId}/practice/${phraseScore.phrase.id}`}>{phraseScore.phrase.content_it}</Link>
+          <Link to={`/${langId}/practice/${phraseScore.phrase.id}`}>{phraseScore.phrase.content_ita}</Link>
           {' - '}
           {Math.round(phraseScore.percent_correct * 100)}% correct
         </div>

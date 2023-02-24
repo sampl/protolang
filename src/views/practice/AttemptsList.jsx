@@ -50,10 +50,10 @@ export default () => {
                 <td>{attempt.direction === 'forward' ? 'English to Italian' : 'Italian to English'}</td>
                 <td>
                   <Link to={`/${currentLanguage.id}/practice/${attempt.phrase.id}`}>
-                    {attempt.phrase.content_it}
+                    {attempt.phrase.content_ita}
                   </Link>
                 </td>
-                <td>{attempt.phrase.content_en}</td>
+                <td>{attempt.phrase.content_engw}</td>
                 <td>{attempt.prompt_type}</td>
                 <td>{attempt.answer_type}</td>
                 <td>"{attempt.guess}"</td>

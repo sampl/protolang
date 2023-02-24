@@ -11,8 +11,8 @@ export default () => {
 
   return <DropdownNavMenu trigger={currentLanguage?.flag || 'Choose language'} align="center">
     {userLanguages?.map( userLanguage => {
-      const { id, name_en } = userLanguage.language_id
-      return <Link key={id} to={`/${id}`} style={{display: 'block'}}>{name_en}</Link>
+      const { id, name_eng } = userLanguage.language_id
+      return <Link key={id} to={`/${id}`} style={{display: 'block'}}>{name_eng}</Link>
     })}
     <br />
     <Link to={`/languages`}>Browse all languages...</Link>

@@ -62,7 +62,7 @@ create table profile_follows (
 create table languages (
   id          text primary key,
 
-  name_en     text unique not null,
+  name_eng     text unique not null,
   flag        text unique not null,
   is_beta     boolean default false not null,
   is_live     boolean default false not null,
@@ -99,8 +99,8 @@ create table user_languages (
 create table topics (
   id                  text primary key,
 
-  title_en            text not null,
-  description_en      text not null,
+  title_eng           text not null,
+  description_eng     text not null,
   user_selectable     boolean default false not null,
 
   created_at          timestamptz default now() not null,
@@ -114,10 +114,10 @@ create table phrases (
   id                    bigint primary key generated always as identity,
 
   language_id           text not null references languages(id),
-  content_it            text not null,
-  content_en            text not null,
-  en_alts               text[],
-  it_alts               text[],
+  content_ita           text not null,
+  content_eng           text not null,
+  content_eng_alts      text[],
+  content_ita_alts      text[],
   original_source_desc  text,
   original_source_url   text,
 
@@ -191,7 +191,7 @@ create table lessons (
   id            bigint primary key generated always as identity,
 
   language_id   text not null references languages(id),
-  title_en      text not null,
+  title_eng     text not null,
   slug          text unique not null,
   sort_order    bigint,
   unit          bigint not null,
@@ -206,13 +206,13 @@ create table lesson_edits (
 
   language_id         text not null references languages(id),
   lesson_id           bigint not null references lessons(id),
-  content_en          text not null,
+  content_eng         text not null,
 
   -- these arrays are just strings
   -- someday when postgres supports it, we should reference other tables with a FK
   -- or make a table called lesson_edit_phrases or something? seems like overkill
   -- https://stackoverflow.com/questions/41054507/postgresql-array-of-elements-that-each-are-a-foreign-key
-  phrase_strings_it   text[], -- literally the text of the phrase for now, but we should be referencing the ID someday?
+  phrase_strings_ita  text[], -- literally the text of the phrase for now, but we should be referencing the ID someday?
   topics              text[],
 
   created_at          timestamptz default now() not null,

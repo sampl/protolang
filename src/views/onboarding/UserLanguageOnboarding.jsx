@@ -78,13 +78,13 @@ export default ({ closeModal }) => {
     topicOptions = topicsList.filter(topic => topic.user_selectable)
       .map(topic => ({
         id: topic.id,
-        description: `${topic.title_en} - ${topic.description_en}`,
+        description: `${topic.title_eng} - ${topic.description_eng}`,
       }))
   }
 
   return <form onSubmit={addUserLanguage}>
 
-    <h1>{`Getting started in ${currentLanguage.name_en || 'your new language'}`}</h1>
+    <h1>{`Getting started in ${currentLanguage.name_eng || 'your new language'}`}</h1>
     <h2>Language goals</h2>
     <p>We'll use your answer to set up some casual learning milestones</p>
 
@@ -110,7 +110,7 @@ export default ({ closeModal }) => {
       ]}
     />
 
-    <label>How serious are you about learning {currentLanguage?.name_en || 'this language'}?</label>
+    <label>How serious are you about learning {currentLanguage?.name_eng || 'this language'}?</label>
     <RadioGroup
       value={selectedGoal}
       setValue={setSelectedGoal}

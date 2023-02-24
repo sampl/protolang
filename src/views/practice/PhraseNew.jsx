@@ -10,7 +10,7 @@ export default ({ it, en }) => {
   const { langId } = useParams()
 
   const [phraseCreatorIsOpen, setPhraseCreatorIsOpen] = useState(false)
-  const [contentIt, setContentIt] = useState(it || '')
+  const [contentIta, setContentIta] = useState(it || '')
   const [itAlts, setItAlts] = useState([])
   const [contentEn, setContentEn] = useState(en || '')
   const [enAlts, setEnAlts] = useState([])
@@ -24,10 +24,10 @@ export default ({ it, en }) => {
       setSaving(true)
       const newData = {
         language_id: langId,
-        content_it: contentIt,
-        content_en: contentEn,
-        en_alts: enAlts,
-        it_alts: itAlts,
+        content_ita: contentIta,
+        content_eng: contentEn,
+        content_eng_alts: enAlts,
+        content_ita_alts: itAlts,
         created_by: user.id,
       }
 
@@ -63,13 +63,13 @@ export default ({ it, en }) => {
       <form onSubmit={submit}>
         <h2>New phrase</h2>
 
-        <label htmlFor="contentIt">Italian</label>
+        <label htmlFor="contentIta">Italian</label>
         <textarea
           style={{height: '50px'}}
-          id="contentIt"
-          value={contentIt}
+          id="contentIta"
+          value={contentIta}
           placeholder=""
-          onChange={e => setContentIt(e.target.value)}
+          onChange={e => setContentIta(e.target.value)}
           required
         />
 

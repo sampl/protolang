@@ -35,12 +35,12 @@ export default () => {
     <BreadcrumbWrapper>
       <BreadcrumbItem to={`/${langId}/lessons`}>Lessons</BreadcrumbItem>
       <BreadcrumbSeparator />
-      <BreadcrumbItem to={`/${langId}/lessons/${slug}`}>{lesson?.title_en}</BreadcrumbItem>
+      <BreadcrumbItem to={`/${langId}/lessons/${slug}`}>{lesson?.title_eng}</BreadcrumbItem>
       <BreadcrumbSeparator />
       History
     </BreadcrumbWrapper>
 
-    <h1>History: {lesson.title_en}</h1>
+    <h1>History: {lesson.title_eng}</h1>
     <hr />
     <TwoColumns cols="2fr 1fr">
       <div>

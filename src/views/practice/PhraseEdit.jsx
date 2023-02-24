@@ -6,10 +6,10 @@ import Modal from '@/styles/Modal'
 export default ({ phrase }) => {
 
   const [phraseEditorIsOpen, setPhraseEditorIsOpen] = useState(false)
-  const [contentIt, setContentIt] = useState(phrase.content_it || '')
-  const [itAlts, setItAlts] = useState(phrase.it_alts || [])
-  const [contentEn, setContentEn] = useState(phrase.content_en || '')
-  const [enAlts, setEnAlts] = useState(phrase.en_alts || [])
+  const [contentIta, setContentIta] = useState(phrase.content_ita || '')
+  const [itAlts, setItAlts] = useState(phrase.content_ita_alts || [])
+  const [contentEn, setContentEn] = useState(phrase.content_eng || '')
+  const [enAlts, setEnAlts] = useState(phrase.content_eng_alts || [])
   const [saving, setSaving] = useState(false)
 
   async function submit( event ) {
@@ -17,10 +17,10 @@ export default ({ phrase }) => {
     try {
       setSaving(true)
       const newData = {
-        content_it: contentIt,
-        content_en: contentEn,
-        it_alts: itAlts,
-        en_alts: enAlts,
+        content_ita: contentIta,
+        content_eng: contentEn,
+        content_ita_alts: itAlts,
+        content_eng_alts: enAlts,
       }
 
       const { error } = await supabase
@@ -53,13 +53,13 @@ export default ({ phrase }) => {
       <form onSubmit={submit} key={phrase.id}>
         <h2>Edit phrase</h2>
 
-        <label htmlFor="contentIt">Italian</label>
+        <label htmlFor="contentIta">Italian</label>
         <textarea
           style={{height: '50px'}}
-          id="contentIt"
-          value={contentIt}
+          id="contentIta"
+          value={contentIta}
           placeholder=""
-          onChange={e => setContentIt(e.target.value)}
+          onChange={e => setContentIta(e.target.value)}
           required
         />
 

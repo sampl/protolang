@@ -22,7 +22,7 @@ export default ({ it: initialIt, en: initialEn }) => {
   const query = supabase
     .from('phrases')
     .select()
-    .or(`content_it.eq.${it},content_en.eq.${en}`)
+    .or(`content_ita.eq.${it},content_en.eq.${en}`)
     .single()
   const [phrase, loading, error] = useSupabaseQuery(query, [en, it], !(en || it))
 
@@ -39,25 +39,25 @@ export default ({ it: initialIt, en: initialEn }) => {
       Error: {error.message}
     </code>
   </LessonEmbedWrapper>
-  if (!phrase.content_it) return <LessonEmbedWrapper>Missing Italian translation for this phrase</LessonEmbedWrapper>
-  if (!phrase.content_en) return <LessonEmbedWrapper>Missing English translation for this phrase</LessonEmbedWrapper>
+  if (!phrase.content_ita) return <LessonEmbedWrapper>Missing Italian translation for this phrase</LessonEmbedWrapper>
+  if (!phrase.content_eng) return <LessonEmbedWrapper>Missing English translation for this phrase</LessonEmbedWrapper>
 
   return <LessonEmbedWrapper>
     {isAdmin && <PhraseEdit phrase={phrase} />}
     <div>
-      <Definable wordString={phrase.content_it} />
-      <SpeakWord wordString={phrase.content_it} />
+      <Definable wordString={phrase.content_ita} />
+      <SpeakWord wordString={phrase.content_ita} />
     </div>
     <div style={{fontSize: 'small'}}>
-      {phrase.it_alts && phrase.it_alts.length > 0 && 'or '}
-      {phrase.it_alts?.join(', ') || ""}
+      {phrase.content_ita_alts && phrase.content_ita_alts.length > 0 && 'or '}
+      {phrase.content_ita_alts?.join(', ') || ""}
     </div>
-    <p>{phrase.content_en}</p>
+    <p>{phrase.content_eng}</p>
     <div style={{fontSize: 'small'}}>
-      {phrase.en_alts && phrase.en_alts.length > 0 && 'or '}
-      {phrase.en_alts?.join(', ') || ""}
+      {phrase.content_eng_alts && phrase.content_eng_alts.length > 0 && 'or '}
+      {phrase.content_eng_alts?.join(', ') || ""}
     </div>
-    <MnemonicSuggested string={phrase.content_it} />
+    <MnemonicSuggested string={phrase.content_ita} />
   </LessonEmbedWrapper>
 }
 

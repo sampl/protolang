@@ -63,7 +63,7 @@ export default ({ closeModal }) => {
   // should never happen, but just in case
   if (!user) return 'Error showing user onboarding - no user found.'
 
-  const languageOptionsSimple = !languages ? [] : languages.map(language => ({id: language.id, description: language.name_en, }))
+  const languageOptionsSimple = !languages ? [] : languages.map(language => ({id: language.id, description: language.name_eng, }))
   const languageOptions = [...languageOptionsSimple, {id: 'other', description: 'Other'}]
 
   // TODO - username, timezone

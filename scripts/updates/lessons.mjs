@@ -156,10 +156,10 @@ const parsePhrasesFromLessonContent = async ({order, content}) => {
   // TODO someday - instead of making phrases an array of strings, make it an array of phrase_ids
   // const dbOrOptionsArray = phraseStringObjects.map(pso => {
   //   let optionString = ''
-  //   if (pso.it && pso.it.length > 0) optionString += `content_it.eq.${pso.it},`
+  //   if (pso.it && pso.it.length > 0) optionString += `content_ita.eq.${pso.it},`
   //   if (pso.en && pso.en.length > 0) optionString += `content_en.eq.${pso.en},`
-  //   // `en_alts.in.(blue,light blue)`,
-  //   // `it_alts.in.(scuzi,mi scusi)`,
+  //   // `content_eng_alts.in.(blue,light blue)`,
+  //   // `content_ita_alts.in.(scuzi,mi scusi)`,
   //   return optionString
   // })
 
@@ -217,7 +217,7 @@ const updateDatabase = async lessons => {
       SEED_USER_ID,
     ]
     const lessonQuery = `
-      INSERT INTO lessons(language_id, title_en, slug, sort_order, unit, created_at, created_by)
+      INSERT INTO lessons(language_id, title_engw, slug, sort_order, unit, created_at, created_by)
       VALUES($1, $2, $3, $4, $5, $6, $7)
       RETURNING id
     `
@@ -236,7 +236,7 @@ const updateDatabase = async lessons => {
       SEED_USER_ID,
     ]
     const lessonEditQuery = `
-      INSERT INTO lesson_edits(language_id, lesson_id, content_en, phrase_strings_it, topics, created_at, created_by)
+      INSERT INTO lesson_edits(language_id, lesson_id, content_en, phrase_strings_ita, topics, created_at, created_by)
       VALUES($1, $2, $3, $4, $5, $6, $7)
       RETURNING id
     `

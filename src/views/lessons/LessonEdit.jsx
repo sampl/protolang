@@ -38,7 +38,7 @@ export default () => {
   // all this crap should go away when we start using a backend
   useEffect(() => {
     if (lesson) {
-      setContent(!lesson.current_edit ? '' : lesson.current_edit.content_en)
+      setContent(!lesson.current_edit ? '' : lesson.current_edit.content_eng)
       setTopics( lesson.current_edit?.topics || [])
     }
   }, [lesson])
@@ -98,14 +98,14 @@ export default () => {
     <BreadcrumbWrapper>
       <BreadcrumbItem to={`/${langId}/lessons`}>Lessons</BreadcrumbItem>
       <BreadcrumbSeparator />
-      <BreadcrumbItem to={`/${langId}/lessons/${slug}`}>{lesson?.title_en}</BreadcrumbItem>
+      <BreadcrumbItem to={`/${langId}/lessons/${slug}`}>{lesson?.title_eng}</BreadcrumbItem>
       <BreadcrumbSeparator />
       Edit
     </BreadcrumbWrapper>
 
     <button style={{float: 'right'}} onClick={() => setHelpModalOpen(true)}>Formatting help</button>
 
-    <h1>Edit lesson: {lesson.title_en}</h1>
+    <h1>Edit lesson: {lesson.title_eng}</h1>
 
     <Modal isOpen={helpModalOpen} onClose={() => setHelpModalOpen(false)}>
       <p>Lessons use <a target="_blank" href="https://talk.commonmark.org/t/generic-directives-plugins-syntax/444">markdown directives</a> to embed phrases.</p>
@@ -121,7 +121,7 @@ export default () => {
         groupName="topics"
         values={topics}
         setValues={setTopics}
-        options={!topicsList ? [] : topicsList.map(topic => ({id: topic.id, description: topic.title_en}))}
+        options={!topicsList ? [] : topicsList.map(topic => ({id: topic.id, description: topic.title_eng}))}
       />
     </Modal>
 

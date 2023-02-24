@@ -38,8 +38,8 @@ export default () => {
   // const lessonPhrasesQuery = supabase
   //   .from('phrases')
   //   .select()
-  //   .eq('content', lessonToUse?.phrase_strings_it) // TODO
-  // const [lessonPhrases, lessonPhrasesLoading, lessonPhrasesError] = useSupabaseQuery(lessonPhrasesQuery, [lessonToUse?.phrase_strings_it], !lessonToUse?.phrase_strings_it)
+  //   .eq('content', lessonToUse?.phrase_strings_ita) // TODO
+  // const [lessonPhrases, lessonPhrasesLoading, lessonPhrasesError] = useSupabaseQuery(lessonPhrasesQuery, [lessonToUse?.phrase_strings_ita], !lessonToUse?.phrase_strings_ita)
   
   // // will only pull from the phrases with it="foo"
   // const phrasesToUse = phraseSource === 'all' ? phrases : lessonPhrases
@@ -79,7 +79,7 @@ export default () => {
           {
             !lessonsError &&
             !lessonsLoading &&
-            lessons?.map(lesson => <option key={lesson.id} value={lesson.id}>{lesson.title_en}</option>)
+            lessons?.map(lesson => <option key={lesson.id} value={lesson.id}>{lesson.title_eng}</option>)
           }
         </optgroup>
       </select>

@@ -62,19 +62,19 @@ export default () => {
                 {phrase.id}
               </td>
               <td>
-                <SpeakWord wordString={phrase.content_it} />
+                <SpeakWord wordString={phrase.content_ita} />
               </td>
               <td>
-                {phrase.content_it}
+                {phrase.content_ita}
               </td>
               <td>
-                {!phrase.it_alts ? '' : phrase.it_alts.join('\n')}
+                {!phrase.content_ita_alts ? '' : phrase.content_ita_alts.join('\n')}
               </td>
               <td>
-                {phrase.content_en}
+                {phrase.content_eng}
               </td>
               <td>
-                {!phrase.en_alts ? '' : phrase.en_alts.join('\n')}
+                {!phrase.content_eng_alts ? '' : phrase.content_eng_alts.join('\n')}
               </td>
               <td>
                 {phrase.created_by}

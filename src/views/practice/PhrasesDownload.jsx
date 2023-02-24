@@ -32,14 +32,14 @@ export default () => {
     // generate object of markdown files
     console.log('generating phraseFiles')
     const phraseFiles = phrases.map(phrase => ({
-      name: `Phrase ID ${phrase.id || 0} - ${phrase.content_it}.md`,
+      name: `Phrase ID ${phrase.id || 0} - ${phrase.content_ita}.md`,
       content: [
         phrase.id,
         phrase.language_id,
-        phrase.content_it,
-        phrase.it_alts ? phrase.it_alts.join('\t') : '',
-        phrase.content_en,
-        phrase.en_alts ? phrase.en_alts.join('\t') : '',
+        phrase.content_ita,
+        phrase.content_ita_alts ? phrase.content_ita_alts.join('\t') : '',
+        phrase.content_eng,
+        phrase.content_eng_alts ? phrase.content_eng_alts.join('\t') : '',
       ].join('\n'),
     }))
   

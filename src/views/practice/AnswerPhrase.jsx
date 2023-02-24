@@ -30,13 +30,13 @@ export default ({ phrase }) => {
   return <>
     <PhraseWrapper>
       <strong style={{fontSize: 'large'}}>
-        <Definable wordString={phrase.content_it} />
-        <SpeakWord wordString={phrase.content_it} />
+        <Definable wordString={phrase.content_ita} />
+        <SpeakWord wordString={phrase.content_ita} />
       </strong>
-      {phrase.it_alts && phrase.it_alts.length > 0 && <div>
+      {phrase.content_ita_alts && phrase.content_ita_alts.length > 0 && <div>
         or
         {' '}
-        {phrase.it_alts?.map(alt => {
+        {phrase.content_ita_alts?.map(alt => {
           return <span key={alt}>
             <Definable wordString={alt} />
           </span>
@@ -45,8 +45,8 @@ export default ({ phrase }) => {
 
       <br />
 
-      <p>{phrase.content_en}</p>
-      {phrase.en_alts && phrase.en_alts.length > 0 && <p>Other meanings: {phrase.en_alts?.join(', ')}</p>}
+      <p>{phrase.content_eng}</p>
+      {phrase.content_eng_alts && phrase.content_eng_alts.length > 0 && <p>Other meanings: {phrase.content_eng_alts?.join(', ')}</p>}
 
       {isAdmin && <PhraseEdit phrase={phrase} />}
 
@@ -58,7 +58,7 @@ export default ({ phrase }) => {
       </h3>
     </PhraseWrapper>
 
-    {phrase.content_it?.split(' ').map((word, i) => <AnswerWord key={i} wordString={word} />)}
+    {phrase.content_ita?.split(' ').map((word, i) => <AnswerWord key={i} wordString={word} />)}
   </>
 }
 

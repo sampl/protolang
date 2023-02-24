@@ -1,5 +1,5 @@
 insert into languages
-  (id,     flag,   name_en,      is_beta,   is_live ) values
+  (id,     flag,   name_eng,     is_beta,   is_live ) values
   ('en',   '🇺🇸',   'English',     false,     false   ),
   ('fr',   '🇫🇷',   'French',      false,     false   ),
   ('ja',   '🇯🇵',   'Japanese',    false,     false   ),

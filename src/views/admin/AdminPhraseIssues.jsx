@@ -56,10 +56,10 @@ export default () => {
                 {phraseIssue.id}
               </td>
               <td>
-                <Link to={`/${langId}/practice/${phraseIssue.phrase?.id}`}>{phraseIssue.phrase?.content_it}</Link>
+                <Link to={`/${langId}/practice/${phraseIssue.phrase?.id}`}>{phraseIssue.phrase?.content_ita}</Link>
               </td>
               <td>
-                <span>{phraseIssue.phrase?.content_en}</span>
+                <span>{phraseIssue.phrase?.content_eng}</span>
               </td>
               <td>
                 <span>{phraseIssue.comment}</span>

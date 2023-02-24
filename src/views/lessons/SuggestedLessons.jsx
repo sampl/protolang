@@ -31,7 +31,7 @@ export default () => {
     <SuggestedLessonsWrapper>
       {suggestedLessons.map(lesson => {
         return <SuggestedLessonWrapper key={lesson.slug} to={`/${langId}/lessons/${lesson.slug}`}>
-          {lesson.title_en || 'Unknown lesson'}
+          {lesson.title_eng || 'Unknown lesson'}
         </SuggestedLessonWrapper>
       })}
     </SuggestedLessonsWrapper>

@@ -46,7 +46,7 @@ export default () => {
                   <h2>{unit.title}</h2>
                   {unit.lessons.map(lesson => {
                     return <LessonListItemWrapper key={lesson.slug} to={`/${langId}/lessons/${lesson.slug}`}>
-                      {lesson.title_en || 'Unknown'}
+                      {lesson.title_eng || 'Unknown'}
                     </LessonListItemWrapper>
                   })}
                 </LessonUnitWrapper>

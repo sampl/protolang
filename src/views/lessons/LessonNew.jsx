@@ -29,7 +29,7 @@ export default () => {
 
       const newData = {
         language_id: langId,
-        title_en: title,
+        title_eng: title,
         slug,
         unit,
         sort_order: count,

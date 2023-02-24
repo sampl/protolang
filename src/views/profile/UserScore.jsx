@@ -28,7 +28,7 @@ export default () => {
       error ? error.message :
       loading ? 'loading...' :
       <>
-        {currentLanguage?.name_en || ''} vocabulary estimate:
+        {currentLanguage?.name_eng || ''} vocabulary estimate:
         {' '}
         <strong>{score}</strong>
         {' '}

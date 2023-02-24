@@ -42,7 +42,7 @@ export default () => {
                 {language.flag}
               </td>
               <td>
-                {language.name_en}
+                {language.name_eng}
               </td>
               <td>
                 {language.language_votes && language.language_votes[0].count}

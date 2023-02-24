@@ -26,19 +26,19 @@ export default () => {
     <BreadcrumbWrapper>
       <BreadcrumbItem to={`/${langId}/lessons`}>Lessons</BreadcrumbItem>
       <BreadcrumbSeparator />
-      {lesson?.title_en}
+      {lesson?.title_eng}
     </BreadcrumbWrapper>
 
     {error && error.message}
     {loading && 'loading...'}
 
-    <h1>{lesson?.title_en}</h1>
+    <h1>{lesson?.title_eng}</h1>
 
     <hr />
 
     <TwoColumns cols="2fr 1fr">
       <div>
-        <LessonContent content={lessonEdit?.content_en || ''} />
+        <LessonContent content={lessonEdit?.content_engw || ''} />
       </div>
       <div>
         {lessonEdit?.topics?.map(topic => <Badge>{topic}</Badge>)}

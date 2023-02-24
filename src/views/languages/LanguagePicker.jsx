@@ -19,7 +19,7 @@ export default () => {
 
     {liveLanguages?.map(lang => {
       return <Link key={lang.id} to={`/${lang.id}`} style={{border: '1px solid', padding: '1rem 2rem', display: 'inline-block', textDecoration: 'none'}}>
-        {lang.name_en}{lang.is_beta && ' (beta)'} →
+        {lang.name_eng}{lang.is_beta && ' (beta)'} →
       </Link>
     })}
 
@@ -32,7 +32,7 @@ export default () => {
       return <span key={lang.id}>
         {index > 0 && ' · '}
         <Link to={`/${lang.id}`}>
-          {lang.name_en}
+          {lang.name_eng}
         </Link>
       </span>
     })}

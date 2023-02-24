@@ -31,8 +31,8 @@ export default ({
   isRecentlyDone,
 }) => {
 
-  const question =      direction === 'forward' ? phrase?.content_en : phrase?.content_it 
-  const correctAnswer = direction === 'forward' ? phrase?.content_it : phrase?.content_en 
+  const question =      direction === 'forward' ? phrase?.content_eng : phrase?.content_ita
+  const correctAnswer = direction === 'forward' ? phrase?.content_ita : phrase?.content_eng
 
   const { user } = useUser()
   const { currentLanguage } = useLanguage()

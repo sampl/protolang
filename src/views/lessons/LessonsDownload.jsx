@@ -35,8 +35,8 @@ export default () => {
       const hasTopics = lesson.current_edit?.topics && lesson.current_edit?.topics.length >= 0
       const topics = hasTopics ? ` - (${lesson.current_edit?.topics.join(', ')})` : ''
       return {
-        name: `Unit ${lesson.unit || 0} - #${lesson.sort_order || 0} - ${lesson.title_en}${topics}.md`,
-        content: lesson.current_edit?.content_en || '',
+        name: `Unit ${lesson.unit || 0} - #${lesson.sort_order || 0} - ${lesson.title_eng}${topics}.md`,
+        content: lesson.current_edit?.content_eng || '',
       }
     })
 
