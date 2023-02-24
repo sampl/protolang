@@ -193,6 +193,7 @@ create table lessons (
   title_en      text not null,
   slug          text unique not null,
   sort_order    bigint,
+  unit          bigint not null,
 
   created_at    timestamptz default now() not null,
   updated_at    timestamptz default now() not null,
@@ -205,8 +206,11 @@ create table lesson_edits (
   language_id   text not null references languages(id),
   lesson_id     bigint not null references lessons(id),
   content_en    text not null,
-  -- we should reference other table with a FK (someday when postgres supports it)
+  -- these arrays are just strings
+  -- someday when postgres supports it, we should reference other tables with a FK
+  -- or make a table called lesson_edit_phrases or something? seems like overkill
   -- https://stackoverflow.com/questions/41054507/postgresql-array-of-elements-that-each-are-a-foreign-key
+  phrases       bigint[],
   topics        text[],
 
   created_at    timestamptz default now() not null,
