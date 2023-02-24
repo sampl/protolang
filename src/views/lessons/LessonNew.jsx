@@ -28,6 +28,7 @@ export default () => {
       const { data: newLesson, error } = await supabase
         .from('lessons')
         .insert([newData])
+        .select()
 
       if (error) {
         throw error
