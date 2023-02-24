@@ -5,50 +5,50 @@ const { Client } = require('pg')
 
 // delete tables in the reverse order of their creation to avoid foreign key errors
 const clearSql = `
-  alter table lessons drop column current_edit;
+  alter table public.lessons drop column current_edit;
 
-  drop view if exists heatmap_days;
-  drop view if exists user_scores;
-  drop view if exists user_phrase_scores;
+  drop view if exists public.heatmap_days;
+  drop view if exists public.user_scores;
+  drop view if exists public.user_phrase_scores;
 
-  drop table if exists migrations;
-  drop table if exists resource_votes;
-  drop table if exists resources;
-  drop table if exists mnemonic_votes;
-  drop table if exists mnemonics;
-  drop table if exists media_votes;
-  drop table if exists media;
-  drop table if exists list_items;
-  drop table if exists lists;
-  drop table if exists lesson_edits;
-  drop table if exists lessons;
-  drop table if exists chat_messages;
-  drop table if exists chat_conversations;
-  drop table if exists practice_attempts;
-  drop table if exists phrase_issues;
-  drop table if exists phrases;
-  drop table if exists topics;
-  drop table if exists words cascade;
-  drop table if exists user_languages;
-  drop table if exists language_votes;
-  drop table if exists languages cascade;
-  drop table if exists profile_follows;
-  drop table if exists profiles;
-  drop table if exists users;
+  drop table if exists public.migrations;
+  drop table if exists public.resource_votes;
+  drop table if exists public.resources;
+  drop table if exists public.mnemonic_votes;
+  drop table if exists public.mnemonics;
+  drop table if exists public.media_votes;
+  drop table if exists public.media;
+  drop table if exists public.list_items;
+  drop table if exists public.lists;
+  drop table if exists public.lesson_edits;
+  drop table if exists public.lessons;
+  drop table if exists public.chat_messages;
+  drop table if exists public.chat_conversations;
+  drop table if exists public.practice_attempts;
+  drop table if exists public.phrase_issues;
+  drop table if exists public.phrases;
+  drop table if exists public.topics;
+  drop table if exists public.words cascade;
+  drop table if exists public.user_languages;
+  drop table if exists public.language_votes;
+  drop table if exists public.languages cascade;
+  drop table if exists public.profile_follows;
+  drop table if exists public.profiles;
+  drop table if exists public.users;
 
-  drop type if exists phrase_types;
-  drop type if exists practice_attempts_correct_types;
-  drop type if exists chat_message_sender_types;
-  drop type if exists media_types;
+  drop type if exists public.phrase_types;
+  drop type if exists public.practice_attempts_correct_types;
+  drop type if exists public.chat_message_sender_types;
+  drop type if exists public.media_types;
 
-  drop table if exists user_roles;
+  drop table if exists public.user_roles;
   drop trigger if exists on_auth_user_created on auth.users;
 
-  drop function if exists handle_new_user;
-  drop function if exists user_is_admin;
-  drop function if exists user_admin_row;
+  drop function if exists public.handle_new_user;
+  drop function if exists public.user_is_admin;
+  drop function if exists public.user_admin_row;
 
-  drop type if exists user_role_types;
+  drop type if exists public.user_role_types;
 `
 
 console.log('Clearing database')
