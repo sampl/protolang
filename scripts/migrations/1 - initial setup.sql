@@ -101,6 +101,7 @@ create table topics (
 
   title_en            text not null,
   description_en      text not null,
+  user_selectable     boolean default false not null,
 
   created_at          timestamptz default now() not null,
   updated_at          timestamptz default now() not null,

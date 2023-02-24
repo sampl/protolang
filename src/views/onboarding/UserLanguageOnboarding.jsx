@@ -73,7 +73,14 @@ export default ({ closeModal }) => {
     }
   }
 
-  const topicOptions = !topicsList ? [] : topicsList.map(topic => ({id: topic.id, description: `${topic.title_en} - ${topic.description_en}`, }))
+  let topicOptions = []
+  if (topicsList) {
+    topicOptions = topicsList.filter(topic => topic.user_selectable)
+      .map(topic => ({
+        id: topic.id,
+        description: `${topic.title_en} - ${topic.description_en}`,
+      }))
+  }
 
   return <form onSubmit={addUserLanguage}>
 
@@ -211,7 +218,7 @@ export default ({ closeModal }) => {
     <h2>Topics</h2>
     <p>Help us focus you on the parts of language you want to learn most</p>
 
-    <label>What kinds of things will you do in Italian?</label>
+    <label>What kinds of things do you want to talk about in Italian?</label>
     <CheckboxGroup
       disabled={topicsLoading || topicsError}
       groupName="topics"
