@@ -1,6 +1,4 @@
 import Settings from '@/views/settings/Settings'
-import ResourceList from '@/views/resources/ResourceList'
-import ResourceItem from '@/views/resources/ResourceItem'
 import Home from '@/views/marketing/Home'
 import LessonList from '@/views/lessons/LessonList'
 import LessonItem from '@/views/lessons/LessonItem'
@@ -22,8 +20,6 @@ import Terms from './views/legal/Terms'
 import Privacy from './views/legal/Privacy'
 import Dmca from './views/legal/Dmca'
 import Conduct from './views/legal/Conduct'
-import ResourceNew from './views/resources/ResourceNew'
-import ResourceEdit from './views/resources/ResourceEdit'
 import OpenSource from './views/marketing/OpenSource'
 import Styleguide from './views/admin/Styleguide'
 import MediaItem from './views/media/MediaItem'
@@ -146,28 +142,6 @@ export default [
     path: `/languages`,
     component: LanguagePicker,
     layout: LayoutSimple,
-  },
-
-  // Resources
-  {
-    path: `/:langId/resources`,
-    component: ResourceList,
-    layout: LayoutLanguage,
-  },
-  {
-    path: `/:langId/resources/new`,
-    component: ResourceNew,
-    layout: LayoutLanguage,
-  },
-  {
-    path: `/:langId/resources/:resourceId/edit`,
-    component: ResourceEdit,
-    layout: LayoutLanguage,
-  },
-  {
-    path: `/:langId/resources/:resourceId`,
-    component: ResourceItem,
-    layout: LayoutLanguage,
   },
 
   // Media

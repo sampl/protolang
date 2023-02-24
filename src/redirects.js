@@ -65,10 +65,6 @@ export default [
     target: `/`,
   },
   {
-    path: `/resources`,
-    target: `/`,
-  },
-  {
     path: `/words`,
     target: `/`,
   },

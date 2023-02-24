@@ -305,32 +305,6 @@ create table mnemonic_votes (
   primary key(created_by, mnemonic_id)
 );
 
------------------ Resources -----------------
-
-create table resources (
-  id            bigint primary key generated always as identity,
-
-  language_id   text not null references languages(id),
-  url           text unique not null,
-  _scraped_info jsonb,
-
-  created_at    timestamptz default now() not null,
-  updated_at    timestamptz default now() not null,
-  created_by    uuid not null references auth.users(id)
-);
-
-create table resource_votes (
-  language_id   text not null references languages(id),
-  resource_id   bigint not null references resources(id),
-  is_upvoted    boolean not null,
-
-  created_at    timestamptz default now() not null,
-  updated_at    timestamptz default now() not null,
-  created_by    uuid not null references auth.users(id),
-
-  primary key(created_by, resource_id)
-);
-
 -----------------   Migrations    -----------------
 
 create table migrations (
@@ -531,20 +505,6 @@ create policy "Users can add a mnemonic vote"               on mnemonic_votes fo
 create policy "Users can update their own mnemonic vote"    on mnemonic_votes for update using (auth.uid() = created_by);
 create policy "Users can delete their own mnemonic vote"    on mnemonic_votes for delete using (auth.uid() = created_by);
 
------------------ Resources -----------------
-
-alter table resources enable row level security;
-create policy "Anyone can view a resource"            on resources for select using (true);
-create policy "Users can add a resource"              on resources for insert to authenticated with check (auth.uid() = created_by);
-create policy "Users can update their own resource"   on resources for update using (auth.uid() = created_by or user_is_admin() );
-create policy "Nobody can delete a resource"          on resources for delete using (false);
-
-alter table resource_votes enable row level security;
-create policy "Anyone can view a resource vote"            on resource_votes for select using (true);
-create policy "Users can add a resource vote"              on resource_votes for insert to authenticated with check (auth.uid() = created_by);
-create policy "Users can update their own resource vote"   on resource_votes for update using (auth.uid() = created_by);
-create policy "Users can delete their own resource vote"   on resource_votes for delete using (auth.uid() = created_by);
-
 -----------------   Migrations    -----------------
 
 -- may or may not need this, better to be explicit
@@ -584,8 +544,6 @@ create trigger keep_media_updated               before update on media          
 create trigger keep_media_votes_updated         before update on media_votes        for each row execute procedure moddatetime (updated_at);
 create trigger keep_mnemonics_updated           before update on mnemonics          for each row execute procedure moddatetime (updated_at);
 create trigger keep_mnemonic_votes_updated      before update on mnemonic_votes     for each row execute procedure moddatetime (updated_at);
-create trigger keep_resources_updated           before update on resources          for each row execute procedure moddatetime (updated_at);
-create trigger keep_resource_votes_updated      before update on resource_votes     for each row execute procedure moddatetime (updated_at);
 
 -------------------------------------------------
 -----------------     VIEWS     -----------------

@@ -24,7 +24,6 @@ Free to use, open source, open content, no account required, and no ads.
 - **📖 Dictionaries** - searchable list of 40k+ words with definitions, conjugations, etc
 - **📺 Media** - watch and listen: videos, podcasts, radio and more
 - **📈 Analytics** - track your progress toward fluency, with vocabulary, days practiced, and more
-- **🌍 Resource library** - other apps to round out your knowledge, ranked by our community
 - **🏰 Stories &amp; prompts** - (coming soon) read and write about realistic scenarios matched to your skill level
 - **👨‍👩‍👧‍👦 Community** - (coming soon) practice with other language learners from around the world
 
