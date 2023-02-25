@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
 import styled from 'styled-components/macro'
-import {groupBy} from 'lodash'
+// import {groupBy} from 'lodash'
 
 import { supabase, useSupabaseQuery } from '@/db/supabase'
 import { TwoColumns } from '@/styles/Layout'
@@ -17,19 +17,6 @@ export default () => {
     .order('sort_order',  { ascending: true })
   const [lessons, loading, error] = useSupabaseQuery(query, [langId])
 
-  const groupedLessons = groupBy(lessons, 'unit')
-  const units = Object.keys(groupedLessons)
-    .map(k => ({ key: k, lessons: groupedLessons[k]}))
-    .map(g => ({
-      ...g,
-      title:  g.key === '0' ? 'Start here' : 
-              g.key === '1' ? 'Beginner' :
-              g.key === '2' ? 'Intermediate I' :
-              g.key === '3' ? 'Intermediate II' :
-              g.key === '4' ? 'Advanced' :
-              'Bonus unit',
-    }))
-
   return <>
     <QuickLinks />
     <br />
@@ -38,22 +25,36 @@ export default () => {
       loading ? 'loading...' :
       <TwoColumns cols="5fr 2fr">
         <LessonListWrapper>
-          {
-            (!lessons || lessons.length) <= 0 ? 'no lessons' :
-            <>
-              <SuggestedLessons />
-              {units?.map(unit => {
-                return <LessonUnitWrapper key={unit.key}>
-                  <h2>{unit.title}</h2>
-                  {unit.lessons.map(lesson => {
-                    return <LessonListItemWrapper key={lesson.slug} to={`/${langId}/lessons/${lesson.slug}`}>
-                      {lesson.title_eng || 'Unknown'}
-                    </LessonListItemWrapper>
-                  })}
-                </LessonUnitWrapper>
+          {(!lessons || lessons.length) <= 0 && 'no lessons'}
+          <SuggestedLessons />
+          <LessonUnitWrapper>
+            <h2>Start here</h2>
+            {lessons.filter(l => l.unit === 0).map(lesson => {
+              return <LessonListItemWrapperBig key={lesson.slug} to={`/${langId}/lessons/${lesson.slug}`}>
+                {lesson.title_eng || 'Unknown'}
+              </LessonListItemWrapperBig>
+            })}
+          </LessonUnitWrapper>
+          <LessonUnitWrapper>
+            <h2>Beginner</h2>
+            <div style={{columns: 2}}>
+              {lessons.filter(l => l.unit === 1).map(lesson => {
+                return <LessonListItemWrapper key={lesson.slug} to={`/${langId}/lessons/${lesson.slug}`}>
+                  {lesson.title_eng || 'Unknown'}
+                </LessonListItemWrapper>
               })}
-            </>
-          }
+            </div>
+          </LessonUnitWrapper>
+          <LessonUnitWrapper>
+            <h2>Intermediate</h2>
+            <div style={{columns: 2}}>
+              {lessons.filter(l => l.unit > 2).map(lesson => {
+                return <LessonListItemWrapper key={lesson.slug} to={`/${langId}/lessons/${lesson.slug}`}>
+                  {lesson.title_eng || 'Unknown'}
+                </LessonListItemWrapper>
+              })}
+            </div>
+          </LessonUnitWrapper>
         </LessonListWrapper>
         <div>
           <p>{lessons?.length || 0} lesson{lessons?.length !== 1 && 's'}</p>
@@ -78,6 +79,15 @@ const LessonListWrapper = styled.div`
 `
 const LessonUnitWrapper = styled.div`
   margin: 0 0 2rem;
+`
+const LessonListItemWrapperBig = styled(Link)`
+  border: 1px solid;
+  padding: 1rem;
+  text-decoration: none;
+  min-height: 40px;
+  margin: 0 0 1rem;
+  display: block;
+  box-shadow: 1px 1px;
 `
 const LessonListItemWrapper = styled(Link)`
   /* border: 1px solid; */
