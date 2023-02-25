@@ -21,7 +21,7 @@ export default ({ name }) => {
   if (!words || words.length === 0) return <div>Sorry, this word isn't in our dictionary yet</div>
 
   return <MiniDefWrapper>
-    {words.map(word => <>
+    {words.map(word => <div key={word?.id}>
       <strong>{word.word}</strong>
       <SpeakWord wordString={word?.word} />
       <br />
@@ -31,7 +31,7 @@ export default ({ name }) => {
 
       <MnemonicSuggested string={word?.word} />
       <hr />
-    </>)}
+    </div>)}
   </MiniDefWrapper>
 }
 
