@@ -157,7 +157,7 @@ const parsePhrasesFromLessonContent = async ({order, content}) => {
   // const dbOrOptionsArray = phraseStringObjects.map(pso => {
   //   let optionString = ''
   //   if (pso.it && pso.it.length > 0) optionString += `content_ita.eq.${pso.it},`
-  //   if (pso.en && pso.en.length > 0) optionString += `content_en.eq.${pso.en},`
+  //   if (pso.en && pso.en.length > 0) optionString += `content_eng.eq.${pso.en},`
   //   // `content_eng_alts.in.(blue,light blue)`,
   //   // `content_ita_alts.in.(scuzi,mi scusi)`,
   //   return optionString
@@ -236,7 +236,7 @@ const updateDatabase = async lessons => {
       SEED_USER_ID,
     ]
     const lessonEditQuery = `
-      INSERT INTO lesson_edits(language_id, lesson_id, content_en, phrase_strings_ita, topics, created_at, created_by)
+      INSERT INTO lesson_edits(language_id, lesson_id, content_eng, phrase_strings_ita, topics, created_at, created_by)
       VALUES($1, $2, $3, $4, $5, $6, $7)
       RETURNING id
     `
