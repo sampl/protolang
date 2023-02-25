@@ -23,6 +23,7 @@ export default () => {
       <thead>
         <tr>
           <th>ID</th>
+          <th>Short ID</th>
           <th>Name</th>
           <th>Created at</th>
           <th>Last updated</th>
@@ -34,6 +35,9 @@ export default () => {
             return <tr key={user.id}>
               <td>
                 {user.id}
+              </td>
+              <td>
+                {user.id.slice(-6)}
               </td>
               <td>
                 {user.name}

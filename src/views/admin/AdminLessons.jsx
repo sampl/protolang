@@ -88,9 +88,11 @@ export default () => {
                 {lesson.unit}
               </td>
               <td>
-                {lesson.sort_order}
-                <button onClick={() => sortLesson(lesson.id, -1)}>↑</button>
-                <button onClick={() => sortLesson(lesson.id,  1)}>↓</button>
+                <span style={{display: 'flex'}}>
+                  <span>{lesson.sort_order}</span>
+                  <button onClick={() => sortLesson(lesson.id, -1)}>↑</button>
+                  <button onClick={() => sortLesson(lesson.id,  1)}>↓</button>
+                </span>
               </td>
               <td>
                 {lesson.current_edit?.topics?.join(', ') || '-'}
@@ -99,10 +101,10 @@ export default () => {
                 {lesson.current_edit?.phrase_strings_ita?.length || 0}
               </td>
               <td>
-                {lesson.current_edit?.content_en?.length || 0}
+                {lesson.current_edit?.content_eng?.length || 0}
               </td>
               <td>
-                {lesson.created_by}
+                {lesson.created_by.slice(-6)}
               </td>
               <td>
                 {new Intl.DateTimeFormat('en-US').format(new Date(lesson.created_at))}

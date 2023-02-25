@@ -65,7 +65,7 @@ export default () => {
                 <span>{phraseIssue.comment}</span>
               </td>
               <td>
-                {phraseIssue.created_by}
+                {phraseIssue.created_by.slice(-6)}
               </td>
               <td>
                 {new Intl.DateTimeFormat('en-US').format(new Date(phraseIssue.created_at))}

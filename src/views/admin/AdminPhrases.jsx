@@ -77,7 +77,7 @@ export default () => {
                 {!phrase.content_eng_alts ? '' : phrase.content_eng_alts.join('\n')}
               </td>
               <td>
-                {phrase.created_by}
+                {phrase.created_by.slice(-6)}
               </td>
               <td>
                 {new Intl.DateTimeFormat('en-US').format(new Date(phrase.created_at))}

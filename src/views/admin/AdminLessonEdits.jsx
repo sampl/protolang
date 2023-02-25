@@ -20,7 +20,7 @@ export default () => {
 
   return <>
     <h1>Lesson Edits</h1>
-    {lessonEdits.length} lesson edits{lessonEdits.length === 1 ? '' : 's'}
+    {lessonEdits.length} lesson edit{lessonEdits.length === 1 ? '' : 's'}
 
     <hr />
 
@@ -44,7 +44,7 @@ export default () => {
                 Lesson id {lessonEdit.lesson_id}
               </td>
               <td>
-                {lessonEdit.created_by}
+                {lessonEdit.created_by.slice(-6)}
               </td>
               <td>
                 {new Intl.DateTimeFormat('en-US').format(new Date(lessonEdit.created_at))}
