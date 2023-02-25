@@ -55,7 +55,8 @@ export default () => {
       }
     }, [])
 
-  const hitDailyLimit = chatMessages && chatMessages.length >= DAILY_LIMIT
+  const override = localStorage.getItem('protolang-temporary-chat-limit-override')
+  const hitDailyLimit = chatMessages && chatMessages.length >= DAILY_LIMIT && !override
 
   if (chatMessagesError) return <div>error: {chatMessagesError.message}</div>
   if (chatMessagesLoading) return <div>loading...</div>
