@@ -7,7 +7,7 @@ export default () => {
 
   const query = supabase
     .from('lesson_edits')
-    .select()
+    .select('*, lesson_id(*)')
     .eq('language_id', langId)
 
   const [lessonEdits, loading, error] = useSupabaseQuery(query, [langId])
@@ -15,8 +15,6 @@ export default () => {
   if (error) return <div>error: {error.message}</div>
   if (loading) return <div>loading...</div>
   if (!lessonEdits || lessonEdits.length <= 0) return <div>no lesson edits</div>
-
-  // TODO - link to the edit! need lesson slug for URL though
 
   return <>
     <h1>Lesson Edits</h1>
@@ -28,9 +26,13 @@ export default () => {
       <thead>
         <tr>
           <th>ID</th>
+          <th>Lesson ID</th>
           <th>Lesson</th>
           <th>Author</th>
           <th>Timestamp</th>
+          <th></th>
+          <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -41,13 +43,25 @@ export default () => {
                 {lessonEdit.id}
               </td>
               <td>
-                Lesson id {lessonEdit.lesson_id}
+                {lessonEdit.lesson_id?.id}
               </td>
               <td>
-                {lessonEdit.created_by.slice(-6)}
+                <Link to={`/${langId}/lessons/${lessonEdit.lesson_id?.slug}`}>{lessonEdit.lesson_id?.title_eng}</Link>
+              </td>
+              <td>
+                {lessonEdit?.created_by?.slice(-6)}
               </td>
               <td>
                 {new Intl.DateTimeFormat('en-US').format(new Date(lessonEdit.created_at))}
+              </td>
+              <td>
+                <Link to={`/${langId}/lessons/${lessonEdit.lesson_id?.slug}/history/${lessonEdit.id}`}>View edit</Link>
+              </td>
+              <td>
+                <Link to={`/${langId}/lessons/${lessonEdit.lesson_id?.slug}/edit`}>New edit</Link>
+              </td>
+              <td>
+                <Link to={`/${langId}/lessons/${lessonEdit.lesson_id?.slug}/history`}>Full history</Link>
               </td>
             </tr>
           })
