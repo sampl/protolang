@@ -17,6 +17,7 @@
     "update:lessons": "node scripts/updates/lessons.mjs",
     "update:mnemonics": "node scripts/updates/mnemonics.mjs",
     "update:phrases": "node scripts/updates/phrases.mjs",
+    "update:all": "npm run update:lessons -- live && npm run update:mnemonics -- live && npm run update:phrases -- live",
     "use:dev": "supabase link --project-ref ADD_PROJECT_ID_HERE",
     "use:prod": "supabase link --project-ref ADD_PROJECT_ID_HERE",
     "functions:serve": "supabase functions serve --env-file .env.development",
