@@ -169,6 +169,7 @@ create table chat_messages (
   content           text not null,
   sender_type       chat_message_sender_types not null,
   sender_id         uuid references auth.users(id),
+  -- TODO - which AI generated the response
 
   created_at        timestamptz default now() not null,
   updated_at        timestamptz default now() not null,

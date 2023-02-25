@@ -4,39 +4,11 @@ This guide will show you how to develop the Protolang web application.
 
 Before participating in our community, please see our [contributing guidelines](contributing.md) and .
 
-## How it works
-
-### Architecture
-
-- Protolang is a frontend-heavy [React](https://reactjs.org/) app with React Router, Radix UI, Remark markdown, and Styled Components
-- Built with [Vite](https://vitejs.dev/)
-- Hosted on [Vercel](https://vercel.com/dashboard) using the Github integration
-- Backend (database, auth) is [Supabase](https://supabase.com/) (Postgres platform as a service)
-- Database initialization and migrations are basically raw SQL
-- The frontend uses the [Supabase javascript client](https://en.wikipedia.org/wiki/List_of_languages_by_total_number_of_speakers) to query the database directly
-
-### Other services and data
-
-- Text-to-speech and speech-to-text via [browser Web Speech APIs](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API)
-- Dictionaries from [Wiktionary](https://en.wiktionary.org/) via [wiktextract](https://github.com/tatuylonen/wiktextract)
-- Translations with [Argos Translate](https://github.com/argosopentech/argos-translate/) via [LibreTranslate](https://libretranslate.com/)
-
-### Data model
-
-The Protolang database uses three Postgres schemas:
-
-- `public` - User data lives here
-- `auth` - Auth and login data, managed by Supabase (don't try to mess with it)
-
-Tables:
-
-- A **word** is a small word or phrase in another language. *Example: "mangiare": verb - to eat*
-- **Phrases** (coming soon) are written with wildcards that are swapped out to create random new prompts for each user. *Example: "The [person] eats the [food]"*
-- An **attempt** is a user trying to interact with the language, used in aggregate to create analytics. *Example: user123 tried to say "benvenuta", but they said "benvenuti" instead*
-- A **mnemonic** is a hint to help you memorize a particular word. *Example: "to remember 'caber' means "to fit", imagine a bear fitting inside of a cab ("cab bear")*
-- A **list** is a user-defined set of words or phrases that they wants to revisit later. *Example: My favorite words*
-
 ## Getting set up
+
+### Create API accounts
+
+You'll need a paid OpenAi account and private key to run AI chats.
 
 ### Install dependencies
 
@@ -62,7 +34,7 @@ Protolang is built on [Supabase](https://supabase.com/), a Postgres platform-as-
 ### Set up the schema
 
 - Create a `.env` file in the root (`/`) directory and add the database connection string like so: `ADMIN_POSTGRES_CONNECTION_STRING=postgresql://postgres:password123@db.abc123.supabase.co:1234/postgres` (use your actual Postgres connection string from Supabase)
-- Run the migrations to set up tables: `npm run migrate` (currently works on a new database only)
+- Run the migrations to set up tables: `npm run db:migrate` (currently works on a new database only)
 
 ### Start the web server
 
@@ -103,6 +75,19 @@ Back in the Supabase dashboard, you have to expose your dictionaries schema so t
 
 That's it--you should be good to go!
 
+### Working with functions
+
+Prerequisites:
+
+- [Install the Supabase CLI](https://supabase.com/docs/guides/cli) with `brew install supabase/tap/supabase` on MacOS or NPM or whatever you need.
+- Set env vars on servers by updating .env files and running `npm run functions:setSecrets:dev` and/or `npm run functions:setSecrets:prod`
+- Deploy functions to Supabase servers with `npm run functions:deploy:dev` and/or `npm run functions:deploy:prod`
+
+For developing functions locally:
+
+- Install Docker and run it
+- `npm run functions:serve`
+
 ## Deploy
 
 To deploy to Vercel, push to GitHub and connect a new project in the [Vercel dashboard](https://vercel.com/docs/concepts/git/vercel-for-github). You'll probably want to add your public environment variables to Vercel (**DO NOT** publish your `ADMIN_POSTGRES_CONNECTION_STRING` or other secrets).
@@ -115,7 +100,7 @@ To self-host Protolang on your own server:
 - Add all the database connection information to a new `.env.production` file
 - Edit the [auth config in Supabase](https://app.supabase.com/project/_/auth/url-configuration) with the URL you wan to host on
 - Edit `updates/dictionary.js` and `migrate.js` to temporarily point to your production database (TODO - better way to hand environment switching)
-- Run `npm run migrate` and `npm run update:dictionary -- --live` to set up the database and seed it with the language files on the new db
+- Run `npm run db:migrate` and `npm run update:dictionary -- --live` to set up the database and seed it with the language files on the new db
 - You may want to manually copy/paste in some of the files in `/scripts/seed` to seed the database with some initial data (like languages). Be careful to replace instances of `USER_ID` with your production user ID.
 
 ## Troubleshooting
@@ -123,6 +108,38 @@ To self-host Protolang on your own server:
 - Your local Postgres version must match Supabase for running some commands. Check it with `postgres -V` and update with `brew upgrade postgresql`.
 - Ensure you have the right version of NPM
 - Ensure your [Supabase CLI is up to date](https://supabase.com/docs/guides/cli#updates)
+
+## How it works
+
+### Architecture
+
+- Protolang is a frontend-heavy [React](https://reactjs.org/) app with React Router, Radix UI, Remark markdown, and Styled Components
+- Built with [Vite](https://vitejs.dev/)
+- Hosted on [Vercel](https://vercel.com/dashboard) using the Github integration
+- Backend (database, auth) is [Supabase](https://supabase.com/) (Postgres platform as a service)
+- Database initialization and migrations are basically raw SQL
+- The frontend uses the [Supabase javascript client](https://en.wikipedia.org/wiki/List_of_languages_by_total_number_of_speakers) to query the database directly
+
+### Other services and data
+
+- Text-to-speech and speech-to-text via [browser Web Speech APIs](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API)
+- Dictionaries from [Wiktionary](https://en.wiktionary.org/) via [wiktextract](https://github.com/tatuylonen/wiktextract)
+- Translations with [Argos Translate](https://github.com/argosopentech/argos-translate/) via [LibreTranslate](https://libretranslate.com/)
+
+### Data model
+
+The Protolang database uses three Postgres schemas:
+
+- `public` - User data lives here
+- `auth` - Auth and login data, managed by Supabase (don't try to mess with it)
+
+Tables:
+
+- A **word** is a small word or phrase in another language. *Example: "mangiare": verb - to eat*
+- **Phrases** (coming soon) are written with wildcards that are swapped out to create random new prompts for each user. *Example: "The [person] eats the [food]"*
+- An **attempt** is a user trying to interact with the language, used in aggregate to create analytics. *Example: user123 tried to say "benvenuta", but they said "benvenuti" instead*
+- A **mnemonic** is a hint to help you memorize a particular word. *Example: "to remember 'caber' means "to fit", imagine a bear fitting inside of a cab ("cab bear")*
+- A **list** is a user-defined set of words or phrases that they wants to revisit later. *Example: My favorite words*
 
 ## TODO
 

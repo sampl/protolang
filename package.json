@@ -16,7 +16,14 @@
     "update:dictionary": "node scripts/updates/dictionary.mjs",
     "update:lessons": "node scripts/updates/lessons.mjs",
     "update:mnemonics": "node scripts/updates/mnemonics.mjs",
-    "update:phrases": "node scripts/updates/phrases.mjs"
+    "update:phrases": "node scripts/updates/phrases.mjs",
+    "use:dev": "supabase link --project-ref ADD_PROJECT_ID_HERE",
+    "use:prod": "supabase link --project-ref ADD_PROJECT_ID_HERE",
+    "functions:serve": "supabase functions serve --env-file .env.development",
+    "functions:setSecrets:dev": "supabase secrets set --env-file .env.development",
+    "functions:setSecrets:prod": "supabase secrets set --env-file .env.production",
+    "functions:deploy:dev": "env-cmd -f .env.development supabase functions deploy hello --project-ref ADD_PROJECT_ID_HERE",
+    "functions:deploy:prod": "env-cmd -f .env.production supabase functions deploy hello --project-ref ADD_PROJECT_ID_HERE"
   },
   "dependencies": {
     "@formspree/react": "^2.4.1",
@@ -53,6 +60,7 @@
     "@types/react-dom": "^18.0.0",
     "@vitejs/plugin-react": "^1.3.0",
     "cspell": "^6.21.0",
+    "env-cmd": "^10.1.0",
     "esbuild": "^0.13.4",
     "line-by-line": "^0.1.6",
     "pg": "^8.9.0",
