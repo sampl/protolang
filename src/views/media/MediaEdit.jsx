@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 
 import { supabase, useSupabaseQuery } from '@/db/supabase'
 import mediaTypes from '@/consts/mediaTypes'
+import { logError } from '../../_util/error.js'
 
 export default () => {
   const { langId, mediaId } = useParams()
@@ -47,7 +48,7 @@ export default () => {
       navigate(`/${langId}/media/${mediaId}`)
     } catch (error) {
       setSaving(false)
-      alert(error.message)
+      logError('edit media', error)
     }
   }
 

@@ -4,6 +4,7 @@ import { useUser } from '@/_state/user'
 import { supabase } from '@/db/supabase'
 import { Button } from '@/styles/Button'
 import Modal from '@/styles/Modal'
+import { logError } from '../../_util/error.js'
 
 export default ({ phrase }) => {
   const { user } = useUser()
@@ -37,7 +38,7 @@ export default ({ phrase }) => {
       setIssueReporterIsOpen(false)
     } catch (error) {
       setSaving(false)
-      alert(error.message)
+      logError('report phrase issue', error)
     }
   }
 

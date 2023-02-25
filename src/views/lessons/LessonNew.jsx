@@ -4,6 +4,7 @@ import slugify from 'slugify'
 
 import { useUser } from '@/_state/user'
 import { supabase, useSupabaseQuery } from '@/db/supabase'
+import { logError } from '../../_util/error.js'
 
 export default () => {
   const { user } = useUser()
@@ -47,7 +48,7 @@ export default () => {
       navigate(`/${langId}/lessons/${newLesson[0].slug}/edit`)
     } catch (error) {
       setSaving(false)
-      alert(error.message)
+      logError('create lesson', error)
     }
   }
 

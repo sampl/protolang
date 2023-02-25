@@ -10,6 +10,7 @@ import LessonContent from '@/views/lessons/LessonContent'
 import { TwoColumns } from '@/styles/Layout'
 import Modal from '@/styles/Modal'
 import { CheckboxGroup } from '@/styles/RadioCheckbox'
+import { logError } from '../../_util/error.js'
 
 export default () => {
   const { user } = useUser()
@@ -80,8 +81,8 @@ export default () => {
       // alert('Saved!')
       navigate(`/${langId}/lessons/${slug}`)
     } catch (error) {
-      alert(error.message)
       setSaving(false)
+      logError('update lesson', error)
     }
   }
 

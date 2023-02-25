@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import { supabase } from '@/db/supabase'
 import { useUser } from '@/_state/user'
+import { logError } from '../../_util/error.js'
 
 export default () => {
   const { user } = useUser()
@@ -30,7 +31,7 @@ export default () => {
         throw error
       }
     } catch (error) {
-      alert(error.message)
+      logError('update username', error)
     } finally {
       setLoading(false)
       setIsEditing(false)

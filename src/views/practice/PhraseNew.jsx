@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import { useUser } from '@/_state/user'
 import { supabase } from '@/db/supabase'
 import Modal from '@/styles/Modal'
+import { logError } from '../../_util/error.js'
 
 export default ({ it, en }) => {
   const { user } = useUser()
@@ -43,7 +44,7 @@ export default ({ it, en }) => {
       setPhraseCreatorIsOpen(false)
     } catch (error) {
       setSaving(false)
-      alert(error.message)
+      logError('create phrase', error)
     }
   }
 

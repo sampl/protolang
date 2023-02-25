@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import { supabase } from '@/db/supabase'
 import Modal from '@/styles/Modal'
+import { logError } from '../../_util/error.js'
 
 export default ({ phrase }) => {
 
@@ -34,7 +35,7 @@ export default ({ phrase }) => {
       setPhraseEditorIsOpen(false)
     } catch (error) {
       setSaving(false)
-      alert(error.message)
+      logError('edit phrase', error)
     }
   }
 

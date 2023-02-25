@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect, useContext } from 'react'
 
 import { supabase, useSupabaseQuery } from '@/db/supabase'
+import { logError } from '../_util/error.js'
 
 const Context = createContext()
 
@@ -50,7 +51,7 @@ export default ({ children }) => {
       if (error) throw error
       alert('Check your email for the login link!')
     } catch (error) {
-      alert(error.error_description || error.message)
+      logError('log in', error, true)
     }
   }
 

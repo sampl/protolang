@@ -6,6 +6,7 @@ import { supabase, useSupabaseQuery } from '@/db/supabase'
 import { useLanguage } from '@/_state/language'
 import { Button } from '@/styles/Button'
 import { RadioGroup, CheckboxGroup } from '@/styles/RadioCheckbox'
+import { logError } from '../../_util/error.js'
 
 export default ({ closeModal }) => {
   const navigate = useNavigate()
@@ -53,7 +54,7 @@ export default ({ closeModal }) => {
       // TODO - a better way to do this
       location.reload()
     } catch (error) {
-      alert(error.message)
+      logError('create user preferences', error)
     } finally {
       setSaving(false)
     }

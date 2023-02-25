@@ -4,6 +4,7 @@ import styled from 'styled-components/macro'
 
 import { supabase } from '@/db/supabase'
 import { useUser } from '@/_state/user'
+import { logError } from '../../_util/error.js'
 
 export default ({ hitDailyLimit }) => {
 
@@ -43,7 +44,7 @@ export default ({ hitDailyLimit }) => {
       // location.reload() // use realtime now
     } catch (error) {
       setIsSendingMessage(false)
-      alert(error.message)
+      logError('send message', error)
     }
   }
 

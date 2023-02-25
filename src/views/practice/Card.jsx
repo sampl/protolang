@@ -11,6 +11,7 @@ import { useLanguage } from '@/_state/language'
 import { Button } from '@/styles/Button'
 import SpeakWord from '@/views/dictionary/SpeakWord'
 import { TwoColumns } from '@/styles/Layout'
+import { logError } from '../../_util/error.js'
 
 const MAX_STRIKES = 1
 const STACK_SIZE = 3
@@ -85,7 +86,7 @@ export default ({
         throw error
       }
     } catch (error) {
-      console.error(error.message)
+      logError('save your guess', error)
     }
   }
 

@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import { useUser } from '@/_state/user'
 import { supabase, useSupabaseQuery } from '@/db/supabase'
+import { logError } from '../../_util/error.js'
 
 export default ({ language }) => {
   const { user } = useUser()
@@ -45,7 +46,7 @@ export default ({ language }) => {
       setSaving(false)
       location.reload() // TODO - realtime or save state
     } catch (error) {
-      alert(error.message)
+      logError('toggle language vote', error)
     }
   }
 

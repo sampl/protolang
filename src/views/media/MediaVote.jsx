@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 
 import { useUser } from '@/_state/user'
 import { supabase, useSupabaseQuery } from '@/db/supabase'
+import { logError } from '../../_util/error.js'
 
 export default ({ media }) => {
   const { user } = useUser()
@@ -48,7 +49,7 @@ export default ({ media }) => {
       setSaving(false)
       location.reload() // TODO - realtime or save state
     } catch (error) {
-      alert(error.message)
+      logError('toggle media vote', error)
     }
   }
 

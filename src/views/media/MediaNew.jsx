@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useUser } from '@/_state/user'
 import { supabase } from '@/db/supabase'
 import mediaTypes from '@/consts/mediaTypes'
+import { logError } from '../../_util/error.js'
 
 export default () => {
   const { user } = useUser()
@@ -37,7 +38,7 @@ export default () => {
       navigate(`/${langId}/media/${newMedia[0].id}`)
     } catch (error) {
       setSaving(false)
-      alert(error.message)
+      logError('create media', error)
     }
   }
 

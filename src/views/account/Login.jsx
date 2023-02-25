@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useUser } from '@/_state/user'
 import { Link, Navigate } from 'react-router-dom'
 import { Button } from '@/styles/Button'
+import { logError } from '../../_util/error.js'
 
 export default () => {
   const [email, setEmail] = useState('')
@@ -13,9 +14,9 @@ export default () => {
     event.preventDefault()
     try {
       setLoading(true)
-      login(email)
+      await login(email)
     } catch (error) {
-      alert(error.message)
+      logError('log in', error)
     } finally {
       setLoading(false)
     }

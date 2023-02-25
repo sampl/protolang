@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom'
 
 import { supabase, useSupabaseQuery } from '@/db/supabase'
+import { logError } from '../../_util/error.js'
 
 export default () => {
   const { langId } = useParams()
@@ -39,8 +40,7 @@ export default () => {
       location.reload()
 
     } catch (error) {
-      console.error(error)
-      alert(error.message)
+      logError('sort lesson', error)
     }
   }
 
@@ -58,8 +58,7 @@ export default () => {
       location.reload()
 
     } catch (error) {
-      console.error(error)
-      alert(error.message)
+      logError('change lesson unit', error)
     }
   }
 

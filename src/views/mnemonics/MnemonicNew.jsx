@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useUser } from '@/_state/user'
 import { supabase } from '@/db/supabase'
 import { useLanguage } from '@/_state/language'
+import { logError } from '../../_util/error.js'
 
 export default ({ string }) => {
   const { user } = useUser()
@@ -33,7 +34,7 @@ export default ({ string }) => {
       location.reload()
     } catch (error) {
       setSaving(false)
-      alert(error.message)
+      logError('create mnemonic', error)
     }
   }
 
