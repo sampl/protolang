@@ -10,7 +10,7 @@ export default () => {
 
   return <>
 
-    <h1>Coming soon: free language learning that actually works</h1>
+    <h1>Language learning for serious learners</h1>
     <p>
       {/* Don't waste time playing games. */}
       Protolang's powerful language tools get you to fluency faster
