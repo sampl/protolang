@@ -38,7 +38,7 @@ export default () => {
 
     <TwoColumns cols="2fr 1fr">
       <div>
-        <LessonContent content={lessonEdit?.content_engw || ''} />
+        <LessonContent content={lessonEdit?.content_eng || ''} />
       </div>
       <div>
         {lessonEdit?.topics?.map(topic => <Badge>{topic}</Badge>)}

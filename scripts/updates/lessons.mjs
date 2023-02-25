@@ -217,7 +217,7 @@ const updateDatabase = async lessons => {
       SEED_USER_ID,
     ]
     const lessonQuery = `
-      INSERT INTO lessons(language_id, title_engw, slug, sort_order, unit, created_at, created_by)
+      INSERT INTO lessons(language_id, title_eng, slug, sort_order, unit, created_at, created_by)
       VALUES($1, $2, $3, $4, $5, $6, $7)
       RETURNING id
     `

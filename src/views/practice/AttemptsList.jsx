@@ -53,7 +53,7 @@ export default () => {
                     {attempt.phrase.content_ita}
                   </Link>
                 </td>
-                <td>{attempt.phrase.content_engw}</td>
+                <td>{attempt.phrase.content_eng}</td>
                 <td>{attempt.prompt_type}</td>
                 <td>{attempt.answer_type}</td>
                 <td>"{attempt.guess}"</td>
