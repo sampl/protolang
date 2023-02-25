@@ -13,6 +13,7 @@ You'll need a paid OpenAi account and private key to run AI chats.
 ### Install dependencies
 
 - [Node.js](https://nodejs.org/en/download/)
+- [Deno](https://deno.land/) for Edge Functions - `brew install deno` on MacOS
 - PostgreSQL - `brew install postgresql` on MacOS. (You may have to install a specific version to match Supabase, ie `brew install postgresql@15`. If so, make sure the homebrew service is running: `brew services list` and restart your computer if you see an error. Also read the notes during the brew install, you may have to update your zsh config to include the path to postgres.)
 - Supabase CLI - `npm install -g @supabase/cli` (or with homebrew?)
 
