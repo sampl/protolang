@@ -161,21 +161,11 @@ create table phrase_attempts (
 
 -----------------   Chats   -----------------
 
-create table chat_conversations (
-  id          bigint primary key generated always as identity,
-
-  language_id text not null references languages(id),
-
-  created_at  timestamptz default now() not null,
-  updated_at  timestamptz default now() not null,
-  created_by  uuid not null references auth.users(id)
-);
-
 create type chat_message_sender_types as enum ('user', 'robot');
 create table chat_messages (
   id                bigint primary key generated always as identity,
 
-  conversation_id   bigint not null references chat_conversations(id),
+  language_id       text not null references languages(id),
   content           text not null,
   sender_type       chat_message_sender_types not null,
   sender_id         uuid references auth.users(id),
@@ -436,13 +426,6 @@ create policy "Nobody can delete an phrase attempt"       on phrase_attempts for
 
 -----------------   Chats   -----------------
 
-alter table chat_conversations enable row level security;
-create policy "Users can view their own chat conversation"   on chat_conversations for select using (auth.uid() = created_by);
-create policy "Users can add a chat conversation"            on chat_conversations for insert to authenticated with check (auth.uid() = created_by);
-create policy "Users can update their chat conversation"     on chat_conversations for update using (auth.uid() = created_by);
-create policy "Nobody can delete a chat conversation"        on chat_conversations for delete using (false);
-
--- issue if others can see bot responses to users messages?
 alter table chat_messages enable row level security;
 create policy "Users can view their own chat message"   on chat_messages for select using (auth.uid() = created_by);
 create policy "Users can add a chat message"            on chat_messages for insert to authenticated with check (auth.uid() = created_by);
@@ -516,6 +499,13 @@ create policy "Nobody can delete a migration"           on migrations for delete
 
 
 -------------------------------------------------
+-----------------   REAL-TIME   -----------------
+-------------------------------------------------
+
+create publication supabase_realtime with (publish = 'insert');
+alter publication supabase_realtime add table chat_messages;
+
+-------------------------------------------------
 -----------------    TRIGGERS   -----------------
 -------------------------------------------------
 
@@ -535,7 +525,6 @@ create trigger keep_topics_updated              before update on topics         
 create trigger keep_phrases_updated             before update on phrases            for each row execute procedure moddatetime (updated_at);
 create trigger keep_phrase_issues_updated       before update on phrase_issues      for each row execute procedure moddatetime (updated_at);
 create trigger keep_phrase_attempts_updated   before update on phrase_attempts  for each row execute procedure moddatetime (updated_at);
-create trigger keep_chat_conversations_updated  before update on chat_conversations for each row execute procedure moddatetime (updated_at);
 create trigger keep_chat_messages_updated       before update on chat_messages      for each row execute procedure moddatetime (updated_at);
 create trigger keep_lessons_updated             before update on lessons            for each row execute procedure moddatetime (updated_at);
 create trigger keep_lists_updated               before update on lists              for each row execute procedure moddatetime (updated_at);

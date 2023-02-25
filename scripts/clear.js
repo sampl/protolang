@@ -7,6 +7,8 @@ const { Client } = require('pg')
 const clearSql = `
   alter table public.lessons drop column current_edit;
 
+  drop publication if exists supabase_realtime;
+
   drop view if exists public.heatmap_days;
   drop view if exists public.user_scores;
   drop view if exists public.user_phrase_scores;
