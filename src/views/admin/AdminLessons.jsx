@@ -44,6 +44,25 @@ export default () => {
     }
   }
 
+  const changeLessonUnit = async (lessonId, direction) => {
+    try {
+      const currentLessonIndex = lessons.findIndex(l => l.id === lessonId)
+      const currentLesson = lessons.find(l => l.id === lessonId)
+
+      const { error: lessonError } = await supabase
+        .from('lessons')
+        .update({ unit: currentLesson.unit + direction })
+        .eq('id', lessonId)
+      if (lessonError) throw new Error(`Could not update lesson ${lessonId} - ${lessonError.message}`)
+
+      location.reload()
+
+    } catch (error) {
+      console.error(error)
+      alert(error.message)
+    }
+  }
+
   if (error) return <div>error: {error.message}</div>
   if (loading) return <div>loading...</div>
   if (!lessons || lessons.length <= 0) return <div>no lessons</div>
@@ -85,7 +104,11 @@ export default () => {
                 {lesson.slug}
               </td>
               <td>
-                {lesson.unit}
+                <span style={{display: 'flex'}}>
+                  <span>{lesson.unit}</span>
+                  <button onClick={() => changeLessonUnit(lesson.id,  1)}>+</button>
+                  <button onClick={() => changeLessonUnit(lesson.id, -1)}>-</button>
+                </span>
               </td>
               <td>
                 <span style={{display: 'flex'}}>
