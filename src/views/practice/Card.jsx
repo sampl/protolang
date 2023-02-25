@@ -175,7 +175,7 @@ export default ({
 
 export const CardWrapper = styled.div`
   border: 1px solid;
-  padding: 1rem;
+  padding: 2rem;
   background: white;
   position: absolute;
   top: 0;
