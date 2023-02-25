@@ -52,7 +52,7 @@ export default () => {
       const lessonEditUpdates = {
         language_id: langId,
         lesson_id: lesson.id,
-        content_en: content,
+        content_eng: content,
         topics,
         created_by: user.id,
       }
