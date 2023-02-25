@@ -17,15 +17,16 @@ export default () => {
     .order('sort_order',  { ascending: true })
   const [lessons, loading, error] = useSupabaseQuery(query, [langId])
 
-  const groupedLessons = groupBy(lessons, l => l.unit)
+  const groupedLessons = groupBy(lessons, 'unit')
   const units = Object.keys(groupedLessons)
     .map(k => ({ key: k, lessons: groupedLessons[k]}))
     .map(g => ({
       ...g,
       title:  g.key === '0' ? 'Start here' : 
               g.key === '1' ? 'Beginner' :
-              g.key === '2' ? 'Moderate' :
-              g.key === '3' ? 'Advanced' :
+              g.key === '2' ? 'Intermediate I' :
+              g.key === '3' ? 'Intermediate II' :
+              g.key === '4' ? 'Advanced' :
               'Bonus unit',
     }))
 
