@@ -4,10 +4,12 @@ import * as Popover from '@radix-ui/react-popover'
 export default ({ target, content }) => {
   return <Popover.Root>
     <Popover.Trigger asChild={true}>{target}</Popover.Trigger>
-    <PopoverContentWrapper>
-      <Popover.Arrow />
-      {content}
-    </PopoverContentWrapper>
+    <Popover.Portal>
+      <PopoverContentWrapper>
+        <Popover.Arrow />
+        {content}
+      </PopoverContentWrapper>
+    </Popover.Portal>
   </Popover.Root>
 }
 
