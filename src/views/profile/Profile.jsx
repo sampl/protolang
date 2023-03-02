@@ -5,6 +5,7 @@ import UserScore from "./UserScore"
 import Flights from "./Flights"
 import { TwoColumns } from "@/styles/Layout"
 import ProblemPhrases from "./ProblemPhrases"
+import Goal from "./Goal"
 import DailyProgress from "@/views/practice/DailyProgress"
 
 export default () => {
@@ -21,6 +22,8 @@ export default () => {
         <ProblemPhrases />
       </div>
       <div>
+        <Goal />
+        <hr />
         <Map />
         <hr />
         <Flights />
