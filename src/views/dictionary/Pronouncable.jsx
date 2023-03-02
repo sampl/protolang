@@ -7,8 +7,9 @@ export default ({ ipa }) => {
   const syllables = ipa?.split('.')
   if (!syllables || syllables.length < 1) return 'SPLIT ISSUE'
   return <SyllablesWrapper>
-    {syllables.map(syllable => {
+    {syllables.map( (syllable, index) => {
       return <Popover
+        key={syllable+index}
         target={<SyllableWrapper>{syllable || 'NO TEXT'}</SyllableWrapper>}
         content={<div>
           <p>IPA: {ipa}</p>
