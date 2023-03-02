@@ -42,32 +42,7 @@ p {
   margin: 0 0 .5rem;
 }
 
-label {
-  font-weight: 500;
-  display: block;
-  margin: 1rem 0 0;
-}
-
-/* tables */
-
-table {
-  border-collapse: collapse;
-  margin: 0 0 1rem;
-}
-th,
-td {
-  border-bottom: 1px solid;
-  padding: 2px 1rem 2px 0;
-}
-
-blockquote {
-  margin: 0 0 1rem;
-  padding: 0 1rem;
-  font-style: italic;
-  /* border-left: 1px solid; */
-}
-
-/* forms */
+/* links */
 
 a {
   color: inherit;
@@ -78,16 +53,21 @@ a {
 }
 
 /* forms */
+
+label {
+  font-weight: 500;
+  display: block;
+  margin: 1rem 0 0;
+}
+
 input {
   font-family: inherit;
   font-size: inherit;
   padding: .25rem;
   margin: 0 0 .5rem;
-
-  /* background: white;
+  line-height: 1;
   border: 1px solid;
-  padding: 6px 6px;
-  line-height: 1; */
+  background: white;
 }
 textarea {
   font-family: inherit;
@@ -98,45 +78,99 @@ textarea {
   height: 100px;
   max-width: 100%;
   max-height: 100%;
-
-  /* background: white;
+  line-height: 1.5;
   border: 1px solid;
-  padding: 6px 6px;
-  line-height: 1.5; */
+  background: white;
 }
+
+/* should match .button */
 select {
-  font-family: inherit;
-  font-size: inherit;
+  font: inherit;
   cursor: pointer;
-  padding: .25rem;
+  display: inline-block;
+  padding: .25rem 0.5rem;
   margin: 0 0 .5rem;
-
-  /* background: white;
-  border: 1px solid;
-  box-shadow: 1px 1px;
-  padding: 6px 6px;
-  line-height: 1; */
-}
-button {
-  font-family: inherit;
-  font-size: inherit;
+  border-radius: 2px;
+  text-decoration: none;
   cursor: pointer;
-
-  /* background: white;
-  border: 1px solid;
-  box-shadow: 1px 1px;
-  padding: 6px 6px;
-  line-height: 1; */
+  font-size: 1rem;
+  font-weight: normal;
+  line-height: 1;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid #999;
+  background: linear-gradient(180deg, #fff, #eee);
 }
-/* button:active {
-  position: relative;
-  top: 1px;
-  left: 1px;
+select:hover {
+  border: 1px solid #666;
+  background: linear-gradient(180deg, #fafafa, #eaeaea);
+}
+select:active {
+  border: 1px solid #444;
+  background: #eee;
+}
+
+/* buttons */
+/* .button.cool {
+  background: white;
+  border: 1px solid;
+  padding: 20%;
+  box-shadow: 2px 2px;
+}
+.button.cool:active {
   box-shadow: none;
+  transform: translate(2px, 2px);
 } */
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+  text-decoration: underline;
+}
+
+/* should match select */
+.button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 2px;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  text-decoration: none !important;
+  border: 1px solid #999;
+  background: linear-gradient(180deg, #fff, #eee);
+}
+.button:hover {
+  border: 1px solid #666;
+  background: linear-gradient(180deg, #fafafa, #eaeaea);
+}
+.button:active {
+  border: 1px solid #444;
+  background: #eee;
+}
+
+/* tables */
 
 table {
   width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 1rem;
+}
+th,
+td {
+  border-bottom: 1px solid;
+  padding: 2px 1rem 2px 0;
 }
 th {
   text-align: left;
@@ -149,4 +183,11 @@ hr {
   border: none;
   border-bottom: 1.5px solid;
   margin: 1rem 0;
+}
+
+blockquote {
+  margin: 0 0 1rem;
+  padding: 0 1rem;
+  font-style: italic;
+  /* border-left: 1px solid; */
 }

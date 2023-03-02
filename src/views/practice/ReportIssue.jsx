@@ -2,7 +2,6 @@ import { useState } from 'react'
 
 import { useUser } from '@/_state/user'
 import { supabase } from '@/db/supabase'
-import { Button } from '@/styles/Button'
 import Modal from '@/styles/Modal'
 import { logError } from '../../_util/error.js'
 
@@ -63,12 +62,13 @@ export default ({ phrase }) => {
         />
 
         <br />
-        <Button
+        <button
+          className="button"
           type="submit"
           disabled={saving}
         >
           {saving ? 'Reporting...' : 'Report error'}
-        </Button>
+        </button>
       </form>
     </Modal>
   </>

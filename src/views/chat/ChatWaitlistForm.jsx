@@ -25,7 +25,7 @@ export default () => {
       style={{width: '100%', maxWidth: '260px'}}
     />
     {' '}
-    <button type="submit" disabled={state.submitting || state.succeeded}>
+    <button className="button" type="submit" disabled={state.submitting || state.succeeded}>
       Join waitlist
     </button>
 

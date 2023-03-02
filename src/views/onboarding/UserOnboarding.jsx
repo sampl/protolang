@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom'
 import { useUser } from '@/_state/user'
 import { supabase, useSupabaseQuery } from '@/db/supabase'
 import { useLanguage } from '@/_state/language'
-import { Button } from '@/styles/Button'
 import { RadioGroup, CheckboxGroup } from '@/styles/RadioCheckbox'
 import { logError } from '../../_util/error.js'
 
@@ -107,12 +106,13 @@ export default ({ closeModal }) => {
 
     <br />
 
-    <Button
+    <button
+      className="button"
       type="submit"
       disabled={saving}
     >
       {saving ? 'Getting ready...' : 'Start learning'}
-    </Button>
+    </button>
 
   </form>
 }

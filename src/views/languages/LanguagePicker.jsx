@@ -18,7 +18,7 @@ export default () => {
     <h2>Choose a language</h2>
 
     {liveLanguages?.map(lang => {
-      return <Link key={lang.id} to={`/${lang.id}`} style={{border: '1px solid', padding: '1rem 2rem', display: 'inline-block', textDecoration: 'none'}}>
+      return <Link key={lang.id} to={`/${lang.id}`} className="button" style={{padding: '1rem 2rem'}}>
         {lang.name_eng}{lang.is_beta && ' (beta)'} →
       </Link>
     })}

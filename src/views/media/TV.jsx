@@ -28,8 +28,8 @@ export default ({ youtubeUrl, onNext, onPrev }) => {
         </ScreenWrapper>
         <SidePanel>
           <Knobs>
-            <Knob onClick={onNext}>←</Knob>
-            <Knob onClick={onPrev}>→</Knob>
+            <button className="button" style={{padding: '1.5rem'}} onClick={onNext}>←</button>
+            <button className="button" style={{padding: '1.5rem'}} onClick={onPrev}>→</button>
           </Knobs>
           <Speaker />
       </SidePanel>
@@ -94,17 +94,6 @@ const Knobs = styled.div`
   grid-template-columns: auto auto;
   /* justify-content: space-between; */
   gap: 10%;
-`
-const Knob = styled.button`
-  background: white;
-  border: 1px solid;
-  padding: 20%;
-  box-shadow: 2px 2px;
-
-  &:active {
-    box-shadow: none;
-    transform: translate(2px, 2px);
-  }
 `
 const ScreenWrapper = styled.div`
   border-radius: 5%;

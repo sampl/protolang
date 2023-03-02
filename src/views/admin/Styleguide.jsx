@@ -35,7 +35,6 @@ export default () => {
 
     <h1>Heading 1</h1>
     <p>Paragraph text goes here. Lorem ipsum dolor sin amet.</p>
-    <Link to="/">Link</Link>
 
     <h2>Heading 2</h2>
     <ul>
@@ -69,7 +68,16 @@ export default () => {
 
     <br />
 
-    <button>Button</button>
+    <a href="https://github.com/sampl/protolang" target="_blank">External link</a>
+    <br />
+    <Link to="/">Internal link</Link>
+    <br />
+    <button onClick={e => alert('You clicked it')}>Plain button</button>
+    <br />
+    <button className="button" onClick={e => alert('You clicked it')}>Button with button class</button>
+    <br />
+    <Link to="/" className="button">Link as button</Link>
+    <br />
 
     <br />
   </>

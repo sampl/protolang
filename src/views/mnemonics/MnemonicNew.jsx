@@ -49,6 +49,7 @@ export default ({ string }) => {
     <br />
 
     <button
+      className="button"
       type="submit"
       disabled={saving}
     >

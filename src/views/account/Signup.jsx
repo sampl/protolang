@@ -2,7 +2,6 @@ import { useState } from 'react'
 
 import { useUser } from '@/_state/user'
 import { Link, Navigate } from 'react-router-dom'
-import { Button } from '@/styles/Button'
 import { logError } from '../../_util/error.js'
 
 export default () => {
@@ -37,7 +36,7 @@ export default () => {
         onChange={e => setEmail(e.target.value)}
       />
       <br />
-      <Button disabled={loading} type="submit">{loading ? "Logging in..." : "Log in"}</Button>
+      <button className="button" disabled={loading} type="submit">{loading ? "Signing up..." : "Sign up"}</button>
     </form>
     <p>Already have an account? <Link to="/login">Log in</Link></p>
   </>

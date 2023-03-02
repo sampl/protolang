@@ -95,6 +95,7 @@ export default () => {
     <br />
 
     <button
+      className="button"
       type="submit"
       disabled={saving || lessonCountLoading || lessonCountError}
     >

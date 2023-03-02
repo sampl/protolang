@@ -61,7 +61,7 @@ export default () => {
             value={username || ''}
             onChange={(e) => setUsername(e.target.value)}
           />
-          <button type="submit" disabled={loading}>{loading ? 'Updating...' : 'Update'}</button>
+          <button className="button" type="submit" disabled={loading}>{loading ? 'Updating...' : 'Update'}</button>
         </>
       }
     </form>

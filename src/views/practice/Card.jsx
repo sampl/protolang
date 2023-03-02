@@ -8,7 +8,6 @@ import ReportIssue from '@/views/practice/ReportIssue'
 import CardAnswerText from './card_answer_types/CardAnswerText'
 import CardAnswerSpeech from './card_answer_types/CardAnswerSpeech'
 import { useLanguage } from '@/_state/language'
-import { Button } from '@/styles/Button'
 import SpeakWord from '@/views/dictionary/SpeakWord'
 import { TwoColumns } from '@/styles/Layout'
 import { logError } from '../../_util/error.js'
@@ -151,13 +150,13 @@ export default ({
           cardState === "correct" ? <>
             You're right!
             {' · '}
-            <Button autoFocus onClick={next}>Next</Button>
+            <button className="button" autoFocus onClick={next}>Next</button>
           </>
           :
           cardState === "incorrect" ? <>
             Whoops not quite. The answer is "{correctAnswer}"
             {' · '}
-            <Button autoFocus onClick={next}>Next</Button>
+            <button className="button" autoFocus onClick={next}>Next</button>
           </>
           :
           null

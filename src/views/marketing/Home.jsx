@@ -1,6 +1,5 @@
 // import { useNavigate } from 'react-router-dom'
 
-// import { Button } from '@/styles/Button'
 import { Badge } from '@/styles/Badge'
 import { TwoColumns } from '@/styles/Layout'
 import LanguagePicker from '../languages/LanguagePicker'

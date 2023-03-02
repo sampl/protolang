@@ -14,7 +14,7 @@ export default ({ submitAnswer, disabled }) => {
         autoFocus
         required
       />
-      <button type="submit" disabled={disabled}>Submit</button>
+      <button className="button" type="submit" disabled={disabled}>Submit</button>
     </form>
   </>
 }

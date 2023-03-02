@@ -71,6 +71,7 @@ export default ({ hitDailyLimit }) => {
         placeholder="Ciao"
       />
       <button
+        className="button"
         type="submit"
         disabled={isSendingMessage || hitDailyLimit || !user}
       >

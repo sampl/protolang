@@ -61,6 +61,7 @@ export default () => {
         <br />
 
         <button
+          className="button"
           type="submit"
           disabled={state.submitting || state.succeeded}
         >

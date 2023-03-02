@@ -81,7 +81,11 @@ export default () => {
 
     <br />
 
-    <button type="submit" disabled={saving}>
+    <button
+      className="button"
+      type="submit"
+      disabled={saving}
+    >
       {saving ? 'Saving...' : 'Save media'}
     </button>
   </form>

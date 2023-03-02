@@ -270,7 +270,7 @@ export default [
   {
     path: `/styleguide`,
     component: Styleguide,
-    layout: LayoutAdmin,
+    layout: LayoutSimple,
   },
 
   // Language dashboard

@@ -151,6 +151,7 @@ export default () => {
         <button type="button" onClick={() => setTopicsModalOpen(true)}>Edit topics ({topics?.length > 0 ? topics.join(', ') : 'none yet'})</button>
 
         <button
+          className="button"
           type="submit"
           disabled={saving}
         >
