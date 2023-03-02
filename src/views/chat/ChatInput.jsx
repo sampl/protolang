@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState, useRef} from 'react'
 import {useParams, Link} from 'react-router-dom'
 import styled from 'styled-components/macro'
 import TextareaAutosize from 'react-textarea-autosize'
@@ -15,8 +15,17 @@ export default ({ hitDailyLimit }) => {
   const [message, setMessage] = useState('')
   const [isSendingMessage, setIsSendingMessage] = useState(false)
 
+  const formRef = useRef()
+
+  const onKeyDown = event => {
+    if (event.keyCode == 13 && event.shiftKey == false) {
+      event.preventDefault()
+      sendMessage()
+    }
+  }
+
   const sendMessage = async event => {
-    event.preventDefault()
+    event && event.preventDefault()
     if (!user) {
       alert('Sorry, you must be logged in to use this feature')
       return
@@ -64,10 +73,11 @@ export default ({ hitDailyLimit }) => {
 
   return <>
     {!user && <span style={{textAlign: 'center', fontWeight: 'bold'}}>Please <Link to="/login">Log in</Link> to send messages</span>}
-    <ChatInputForm onSubmit={sendMessage}>
+    <ChatInputForm onSubmit={sendMessage} ref={formRef}>
       <TextareaAutosize
         value={message}
         disabled={isSendingMessage || hitDailyLimit || !user}
+        onKeyDown={onKeyDown}
         onChange={e => setMessage(e.target.value)}
         placeholder="Ciao"
         autoFocus
