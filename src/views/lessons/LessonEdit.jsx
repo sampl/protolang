@@ -94,7 +94,7 @@ export default () => {
     return 'Error - could not load lesson ' + (topicsError?.message || lessonError?.message)
   }
 
-  console.log(topics)
+  // console.log(topics)
   return <>
     <BreadcrumbWrapper>
       <BreadcrumbItem to={`/${langId}/lessons`}>Lessons</BreadcrumbItem>

@@ -59,7 +59,7 @@ export default () => {
   const hitDailyLimit = chatMessages && chatMessages.length >= DAILY_LIMIT && !override
 
   if (chatMessagesError) return <div>error: {chatMessagesError.message}</div>
-  console.log(user, userLoading)
+  // console.log(user, userLoading)
   if (user && chatMessagesLoading) return <div>loading...</div>
 
   return <ChatWrapper>
