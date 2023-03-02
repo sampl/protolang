@@ -28,16 +28,17 @@ export default ({ closeModal }) => {
       if (!user) return
 
       const newData = {
+        id: user.id,
         preferences: {
           gender: genderPreference,
           languages: languagesYouSpeak,
         },
-        created_by: user?.id,
+        created_by: user.id,
       }
 
       const { error } = await supabase
         .from('users')
-        .update([newData])
+        .upsert(newData)
         .eq('created_by', user.id)
         .select()
 

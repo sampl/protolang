@@ -16,6 +16,7 @@ export default () => {
       setLoading(true)
       const updates = {
         id: user.id,
+        created_by: user.id,
         username,
       }
 

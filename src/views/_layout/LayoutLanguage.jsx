@@ -85,12 +85,11 @@ export default ({children}) => {
     </LayoutSimple>
   }
 
-  // TODO - permissions so users can update their preferences
-  // if (user && !user.preferences) {
-  //   return <LayoutSimple>
-  //     <UserOnboarding />
-  //   </LayoutSimple>
-  // }
+  if (user && !user.preferences) {
+    return <LayoutSimple>
+      <UserOnboarding />
+    </LayoutSimple>
+  }
 
   if (user && !userLanguages?.map(ul => ul.language_id?.id).includes(langId)) {
     return <LayoutSimple>
