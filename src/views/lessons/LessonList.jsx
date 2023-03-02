@@ -26,7 +26,6 @@ export default () => {
       <TwoColumns cols="5fr 2fr">
         <LessonListWrapper>
           {(!lessons || lessons.length) <= 0 && 'no lessons'}
-          <SuggestedLessons />
           <LessonUnitWrapper>
             <h2>Start here</h2>
             {lessons.filter(l => l.unit === 0).map(lesson => {
@@ -34,6 +33,9 @@ export default () => {
                 {lesson.title_eng || 'Unknown'}
               </LessonListItemWrapperBig>
             })}
+          </LessonUnitWrapper>
+          <LessonUnitWrapper>
+            <SuggestedLessons />
           </LessonUnitWrapper>
           <LessonUnitWrapper>
             <h2>Beginner</h2>
@@ -81,13 +83,13 @@ const LessonUnitWrapper = styled.div`
   margin: 0 0 2rem;
 `
 const LessonListItemWrapperBig = styled(Link)`
-  border: 1px solid;
+  /* border: 1px solid;
   padding: 1rem;
   text-decoration: none;
   min-height: 40px;
   margin: 0 0 1rem;
+  box-shadow: 1px 1px; */
   display: block;
-  box-shadow: 1px 1px;
 `
 const LessonListItemWrapper = styled(Link)`
   /* border: 1px solid; */

@@ -51,4 +51,5 @@ const SuggestedLessonWrapper = styled(Link)`
   text-decoration: none;
   min-height: 60px;
   min-width: 200px; */
+  display: block;
 `
