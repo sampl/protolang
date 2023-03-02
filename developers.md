@@ -41,6 +41,10 @@ Protolang is built on [Supabase](https://supabase.com/), a Postgres platform-as-
 
 Start the local server: `npm run dev`
 
+### Set up authentication
+
+Follow the [Supabase auth guide](https://supabase.com/docs/guides/auth/social-login/auth-google) to set up Google authentication.
+
 ### Seed the database
 
 Before you can run the app, you'll need to seed the database with some basic data.
