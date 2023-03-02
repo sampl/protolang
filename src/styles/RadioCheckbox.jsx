@@ -78,6 +78,7 @@ const row = css`
   display: block;
   width: 100%;
   text-align: left;
+  text-decoration: none;
 
   // indicator
   &:hover::before {
