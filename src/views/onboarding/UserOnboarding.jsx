@@ -98,7 +98,7 @@ export default ({ closeModal }) => {
     <label>What languages do you already speak?</label>
     <CheckboxGroup
       disabled={languagesLoading || languagesError}
-      groupName="topics"
+      groupName="languagesYouSpeak"
       values={languagesYouSpeak}
       setValues={setLanguagesYouSpeak}
       options={languageOptions}

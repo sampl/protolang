@@ -78,7 +78,7 @@ export default ({ closeModal }) => {
   if (topicsList) {
     topicOptions = topicsList.filter(topic => topic.user_selectable)
       .map(topic => ({
-        id: topic.id,
+        id: topic.slug,
         description: `${topic.title_eng} - ${topic.description_eng}`,
       }))
   }

@@ -122,7 +122,7 @@ export default () => {
         groupName="topics"
         values={topics}
         setValues={setTopics}
-        options={!topicsList ? [] : topicsList.map(topic => ({id: topic.id, description: topic.title_eng}))}
+        options={!topicsList ? [] : topicsList.map(topic => ({id: topic.slug, description: topic.title_eng}))}
       />
     </Modal>
 

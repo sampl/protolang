@@ -95,11 +95,11 @@ create table user_languages (
 
 -----------------   Topics   -----------------
 
--- TODO - use bigint or uuid for id instead of string (id cannot change)
 create table topics (
-  id                  text primary key,
+  id                  bigint primary key generated always as identity,
 
-  title_eng           text not null,
+  slug                text unique not null,
+  title_eng           text unique not null,
   description_eng     text not null,
   user_selectable     boolean default false not null,
 

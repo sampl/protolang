@@ -1,5 +1,5 @@
 insert into topics
-  (id,                  user_selectable,  title_eng,          description_eng,                                          created_by ) values
+  (slug,                user_selectable,  title_eng,          description_eng,                                          created_by ) values
   ('basics',            false,            'Basics',           'Basic words and phrases to get you started',             'USER_ID'  ),
   ('pronounciation',    false,            'Pronounciation',   'Learning to say words in Italian correctly',             'USER_ID'  ),
   ('verbs',             false,            'Verbs',            'How to describe actions and doing things',               'USER_ID'  ),
