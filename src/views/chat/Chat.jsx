@@ -12,7 +12,7 @@ const DAILY_LIMIT = 4
 export default () => {
 
   const { langId } = useParams()
-  const { user } = useUser()
+  const { user, loading: userLoading } = useUser()
 
   const [latestMessage, setLatestMessage] = useState(null)
 
@@ -31,7 +31,7 @@ export default () => {
     // https://supabase.com/docs/reference/javascript/rangegt
     // operator is not unique: timestamp with time zone <@ unknown
     // .containedBy('created_at', `${formattedDate} 00:00, ${formattedDate} 23:59)`)
-  const [chatMessages, chatMessagesLoading, chatMessagesError] = useSupabaseQuery(chatsQuery, [langId, user?.id, latestMessage], (!user.id || !langId))
+  const [chatMessages, chatMessagesLoading, chatMessagesError] = useSupabaseQuery(chatsQuery, [langId, user?.id, latestMessage], (!user?.id || !langId))
 
   useEffect(() => {
     const channel = supabase
@@ -59,7 +59,8 @@ export default () => {
   const hitDailyLimit = chatMessages && chatMessages.length >= DAILY_LIMIT && !override
 
   if (chatMessagesError) return <div>error: {chatMessagesError.message}</div>
-  if (chatMessagesLoading) return <div>loading...</div>
+  console.log(user, userLoading)
+  if (user && chatMessagesLoading) return <div>loading...</div>
 
   return <ChatWrapper>
     <ChatMessages chatMessages={chatMessages} hitDailyLimit={hitDailyLimit} />

@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import {useParams} from 'react-router-dom'
+import {useParams, Link} from 'react-router-dom'
 import styled from 'styled-components/macro'
 
 import { supabase } from '@/db/supabase'
@@ -61,21 +61,24 @@ export default ({ hitDailyLimit }) => {
     console.log(responseData)
   }
 
-  return <ChatInputForm onSubmit={sendMessage}>
-    <textarea
-      value={message}
-      disabled={isSendingMessage || hitDailyLimit}
-      onChange={e => setMessage(e.target.value)}
-      placeholder="Ciao"
-    />
-    <button
-      type="submit"
-      disabled={isSendingMessage || hitDailyLimit}
-    >
-      {isSendingMessage ? 'Sending...' : 'Send'}
-    </button>
-    {/* <span onClick={triggerRemoteFunction}>TEST</span> */}
-  </ChatInputForm>
+  return <>
+    {!user && <span style={{textAlign: 'center', fontWeight: 'bold'}}>Please <Link to="/login">Log in</Link> to send messages</span>}
+    <ChatInputForm onSubmit={sendMessage}>
+      <textarea
+        value={message}
+        disabled={isSendingMessage || hitDailyLimit || !user}
+        onChange={e => setMessage(e.target.value)}
+        placeholder="Ciao"
+      />
+      <button
+        type="submit"
+        disabled={isSendingMessage || hitDailyLimit || !user}
+      >
+        {isSendingMessage ? 'Sending...' : 'Send'}
+      </button>
+      {/* <span onClick={triggerRemoteFunction}>TEST</span> */}
+    </ChatInputForm>
+  </>
 }
 
 const ChatInputForm = styled.form`
@@ -83,7 +86,7 @@ const ChatInputForm = styled.form`
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  border-top: 1px solid;
+  /* border-top: 1px solid; */
 
   textarea,
   button {
