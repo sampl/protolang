@@ -1,6 +1,7 @@
 import {useState} from 'react'
 import {useParams, Link} from 'react-router-dom'
 import styled from 'styled-components/macro'
+import TextareaAutosize from 'react-textarea-autosize'
 
 import { supabase } from '@/db/supabase'
 import { useUser } from '@/_state/user'
@@ -64,11 +65,12 @@ export default ({ hitDailyLimit }) => {
   return <>
     {!user && <span style={{textAlign: 'center', fontWeight: 'bold'}}>Please <Link to="/login">Log in</Link> to send messages</span>}
     <ChatInputForm onSubmit={sendMessage}>
-      <textarea
+      <TextareaAutosize
         value={message}
         disabled={isSendingMessage || hitDailyLimit || !user}
         onChange={e => setMessage(e.target.value)}
         placeholder="Ciao"
+        autoFocus
       />
       <button
         className="button"
