@@ -84,7 +84,7 @@ export default ({
     }
   }
   return <>
-    <button className="button" onClick={toggleSpeech} disabled={disabled} style={{fontSize: '20px'}}>
+    <button className="button" onClick={toggleSpeech} disabled={disabled} style={{fontSize: '20px', width: "100%"}}>
       {
         recognitionState === 'listening' ? 'Listening...' :
         'Click to speak'
