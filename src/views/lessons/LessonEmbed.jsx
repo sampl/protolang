@@ -43,6 +43,7 @@ export default ({ it: initialIt, en: initialEn }) => {
   if (!phrase.content_eng) return <LessonEmbedWrapper>Missing English translation for this phrase</LessonEmbedWrapper>
 
   return <LessonEmbedWrapper>
+    {isAdmin && <PhraseEdit phrase={phrase} float />}
     <div>
       <strong><Definable wordString={phrase.content_ita} /></strong>
       <SpeakWord wordString={phrase.content_ita} />
@@ -57,13 +58,13 @@ export default ({ it: initialIt, en: initialEn }) => {
       {phrase.content_eng_alts?.join(', ') || ""}
     </div>
     <MnemonicSuggested string={phrase.content_ita} />
-    {isAdmin && <PhraseEdit phrase={phrase} />}
   </LessonEmbedWrapper>
 }
 
 export const LessonEmbedWrapper = styled.div`
   display: block;
   border: 1px solid;
-  padding: .5rem;
-  margin: 0 0 -1px 0;
+  padding: 1rem;
+  margin: 1rem 0;
+  box-shadow: 1px 1px;
 `

@@ -4,7 +4,7 @@ import { supabase } from '@/db/supabase'
 import Modal from '@/styles/Modal'
 import { logError } from '../../_util/error.js'
 
-export default ({ phrase }) => {
+export default ({ phrase, float }) => {
 
   const [phraseEditorIsOpen, setPhraseEditorIsOpen] = useState(false)
   const [contentIta, setContentIta] = useState(phrase.content_ita || '')
@@ -48,7 +48,7 @@ export default ({ phrase }) => {
   }
 
   return <>
-    <button type="button" onClick={() => setPhraseEditorIsOpen(true)}>edit</button>
+    <button type="button" onClick={() => setPhraseEditorIsOpen(true)} style={{float: float && 'right'}}>edit</button>
 
     <Modal isOpen={phraseEditorIsOpen} onClose={() => setPhraseEditorIsOpen(false)}>
       <form onSubmit={submit} key={phrase.id}>
