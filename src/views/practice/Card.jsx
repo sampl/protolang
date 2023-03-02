@@ -23,12 +23,13 @@ export default ({
   cardQuestionType,
   cardAnswerType,
   direction,
-  next,
   placeInLine,
   isCurrent,
   isDone,
   setPhraseToShowInfoAbout,
   isRecentlyDone,
+  cardState,
+  setCardState,
 }) => {
 
   const question =      direction === 'forward' ? phrase?.content_eng : phrase?.content_ita
@@ -37,8 +38,6 @@ export default ({
   const { user } = useUser()
   const { currentLanguage } = useLanguage()
 
-  // waiting, try_again, correct, incorrect
-  const [cardState, setCardState] = useState('waiting')
   const [strikes, setStrikes] = useState(0)
 
   const testAnswer = answer => {
@@ -137,38 +136,6 @@ export default ({
         submitAnswer={submitAnswer}
       />
     }
-
-    {/* <hr /> */}
-
-    <TwoColumns cols="auto max-content">
-      <div>
-        {
-          cardState === "try_again" ? <>
-            Not quite, try again...
-          </>
-          :
-          cardState === "correct" ? <>
-            You're right!
-            {' · '}
-            <button className="button" autoFocus onClick={next}>Next</button>
-          </>
-          :
-          cardState === "incorrect" ? <>
-            Whoops not quite. The answer is "{correctAnswer}"
-            {' · '}
-            <button className="button" autoFocus onClick={next}>Next</button>
-          </>
-          :
-          null
-        }
-      </div>
-      <div>
-        {
-          (cardState === "waiting" || cardState === "try_again") && 
-          <div onClick={next}>skip</div>
-        }
-      </div>
-    </TwoColumns>
   </CardWrapper>
 }
 
