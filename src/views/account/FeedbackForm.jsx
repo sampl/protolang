@@ -13,7 +13,7 @@ export default () => {
   const [state, handleSubmit] = useForm("xnqyjjgl")
 
   return <>
-    <span className="link" onClick={() => setIsGivingFeedback(true)}>Feedback</span>
+    <button onClick={() => setIsGivingFeedback(true)}>Feedback</button>
 
     <Modal isOpen={isGivingFeedback} onClose={() => setIsGivingFeedback(false)}>
 
