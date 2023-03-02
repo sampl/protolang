@@ -27,7 +27,7 @@ export default ({ phrase }) => {
       const { error } = await supabase
         .from('phrases')
         .update(newData)
-        .eq('id', phraseId)
+        .eq('id', phrase.id)
 
       if (error) {
         throw error
@@ -108,7 +108,7 @@ export default ({ phrase }) => {
 
         <hr />
 
-        <button type="submit" disabled={saving}>
+        <button className="button" type="submit" disabled={saving}>
           {saving ? 'Saving...' : 'Save phrase'}
         </button>
       </form>
