@@ -2,15 +2,11 @@ import { useEffect, useState } from 'react'
 import moment from 'moment'
 
 import { supabase } from '@/db/supabase'
-import { useUser } from '@/_state/user'
 import { logError } from '../../_util/error.js'
-import { useParams } from 'react-router-dom'
 import { useLanguage } from '@/_state/language.jsx'
 
 export default () => {
-  const { user } = useUser()
   const { currentUserLanguage } = useLanguage()
-  const { langId } = useParams()
 
   const oldVisitDate = currentUserLanguage?.preferences?.visit_date
   console.log('currentUserLanguage?.preferences', currentUserLanguage?.preferences)
@@ -36,8 +32,6 @@ export default () => {
         },
       }
 
-      // TODO - don't upsert, add another trigger and make sure there is
-      // an actual profile and user for every auth account
       const { error } = await supabase
         .from('user_languages')
         .update([updates])
