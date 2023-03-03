@@ -50,10 +50,12 @@ export default ({ phrase, float }) => {
   return <>
     <button type="button" onClick={() => setPhraseEditorIsOpen(true)} style={{float: float && 'right'}}>edit</button>
 
-    <Modal isOpen={phraseEditorIsOpen} onClose={() => setPhraseEditorIsOpen(false)}>
+    <Modal
+      title="Edit phrase"
+      isOpen={phraseEditorIsOpen}
+      onClose={() => setPhraseEditorIsOpen(false)}
+    >
       <form onSubmit={submit} key={phrase.id}>
-        <h2>Edit phrase</h2>
-
         <label htmlFor="contentIta">Italian</label>
         <textarea
           style={{height: '50px'}}

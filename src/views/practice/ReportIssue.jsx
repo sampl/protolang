@@ -44,7 +44,11 @@ export default ({ phrase }) => {
   return <>
     <button type="button" onClick={() => setIssueReporterIsOpen(true)}>flag</button>
 
-    <Modal isOpen={issueReporterIsOpen} onClose={() => setIssueReporterIsOpen(false)}>
+    <Modal
+      title="Flag phrase as incorrect/inappropriate"
+      isOpen={issueReporterIsOpen}
+      onClose={() => setIssueReporterIsOpen(false)}
+    >
       <form onSubmit={reportIssue}>
 
         <label>English</label>
@@ -57,7 +61,7 @@ export default ({ phrase }) => {
         <textarea
           id="comment"
           value={comment}
-          placeholder="Why do you think there's an error?"
+          placeholder="Tell us why you're flagging this phrase"
           onChange={e => setComment(e.target.value)}
         />
 

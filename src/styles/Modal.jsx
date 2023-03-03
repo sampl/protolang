@@ -1,14 +1,14 @@
 import styled from 'styled-components/macro'
 import * as Dialog from '@radix-ui/react-dialog'
 
-export default ({ isOpen, onClose, children }) => {
+export default ({ isOpen, onClose, title, children }) => {
   return <Dialog.Root open={isOpen}>
     <Dialog.Portal>
       <ModalOverlay onClick={onClose} />
       <ModalWrapper>
         <ModalContentWrapper>
           <ModalX onClick={onClose}>✕</ModalX>
-          {/* <Dialog.Title>{title}</Dialog.Title> */}
+          <ModalTitle>{title}</ModalTitle>
           {/* <Dialog.Description /> */}
           {children}
         </ModalContentWrapper>
@@ -55,4 +55,7 @@ const ModalX = styled(Dialog.Close)`
   padding: 1rem;
   border: none;
   text-decoration: none;
+`
+const ModalTitle = styled(Dialog.Title)`
+  margin: 0 0 1rem;
 `

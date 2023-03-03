@@ -59,11 +59,13 @@ export default ({ ita, eng }) => {
   return <>
     <button type="button" onClick={() => setPhraseCreatorIsOpen(true)}>Add phrase</button>
 
-    <Modal isOpen={phraseCreatorIsOpen} onClose={() => setPhraseCreatorIsOpen(false)}>
+    <Modal
+      title="New phrase"
+      isOpen={phraseCreatorIsOpen}
+      onClose={() => setPhraseCreatorIsOpen(false)}
+    >
 
       <form onSubmit={submit}>
-        <h2>New phrase</h2>
-
         <label htmlFor="contentIta">Italian</label>
         <textarea
           style={{height: '50px'}}

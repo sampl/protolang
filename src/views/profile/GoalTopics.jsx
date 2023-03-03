@@ -71,11 +71,13 @@ export default () => {
 
     <button type="button" onClick={() => setIsEditing(true)}>Edit</button>
 
-    <Modal isOpen={isEditing} onClose={() => setIsEditing(false)}>
+    <Modal
+      title="Areas of interest"
+      isOpen={isEditing}
+      onClose={() => setIsEditing(false)}
+    >
 
       <form onSubmit={onSubmit}>
-        <h2>Areas of interest</h2>
-
         <label htmlFor="topics">Choose topics</label>
         <CheckboxGroup
           disabled={topicsLoading || topicsError}

@@ -108,7 +108,11 @@ export default () => {
 
     <h1>Edit lesson: {lesson.title_eng}</h1>
 
-    <Modal isOpen={helpModalOpen} onClose={() => setHelpModalOpen(false)}>
+    <Modal
+      title="Lesson formatting help"
+      isOpen={helpModalOpen}
+      onClose={() => setHelpModalOpen(false)}
+    >
       <p>Lessons use <a target="_blank" href="https://talk.commonmark.org/t/generic-directives-plugins-syntax/444">markdown directives</a> to embed phrases.</p>
       <p>Here's an example:</p>
       <code>{`:word{ it="ciao }`}</code>
@@ -116,8 +120,11 @@ export default () => {
       <a href="" target="_blank">Markdown docs</a>
     </Modal>
 
-    <Modal isOpen={topicsModalOpen} onClose={() => setTopicsModalOpen(false)}>
-      <h2>Lesson topics</h2>
+    <Modal
+      title="Choose lesson topics"
+      isOpen={topicsModalOpen}
+      onClose={() => setTopicsModalOpen(false)}
+    >
       <CheckboxGroup
         groupName="topics"
         values={topics}

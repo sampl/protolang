@@ -15,8 +15,11 @@ export default () => {
   return <>
     <button onClick={() => setIsGivingFeedback(true)}>Feedback</button>
 
-    <Modal isOpen={isGivingFeedback} onClose={() => setIsGivingFeedback(false)}>
-
+    <Modal
+      title="Share feedback"
+      isOpen={isGivingFeedback}
+      onClose={() => setIsGivingFeedback(false)}
+    >
       {state.succeeded && <p>Thanks for your feedback!</p>}
       {state.errors && <p>{state.errors[0]?.message}</p>}
 
