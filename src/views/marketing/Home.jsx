@@ -36,7 +36,6 @@ export default () => {
           </li>
           <li>
             <strong>💬 AI Chat</strong>
-            <Badge>Coming soon</Badge>
             {' - '}
             realistic AI-powered conversations in your target language
           </li>
@@ -44,12 +43,6 @@ export default () => {
             <strong>📺 Immersive media</strong>
             {' - '}
             videos, tv, podcasts, and radio in your target language
-          </li>
-          <li>
-            <strong>🏰 Stories &amp; prompts</strong>
-            <Badge>Coming soon</Badge>
-            {' - '}
-            read and write about realistic scenarios matched to your skill level
           </li>
           <li>
             <strong>📖 Dictionaries</strong>
@@ -65,6 +58,12 @@ export default () => {
             <strong>📈 Analytics</strong>
             {' - '}
             track your progress toward fluency with vocabulary, days practiced, and more
+          </li>
+          <li>
+            <strong>🏰 Stories &amp; prompts</strong>
+            <Badge>Coming soon</Badge>
+            {' - '}
+            read and write about realistic scenarios matched to your skill level
           </li>
           <li>
             <strong>👨‍👩‍👧‍👦 Community</strong>
