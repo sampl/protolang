@@ -7,7 +7,7 @@ BEGIN;
 
 -----------------   Users   -----------------
 
-create table users (
+create table user_settings (
   id                uuid references auth.users(id) primary key,
 
   preferences       jsonb,
@@ -353,11 +353,11 @@ $$;
 
 -----------------   Users   -----------------
 
-alter table users enable row level security;
-create policy "Users can view their own user, or admins"   on users for select using ( auth.uid() = id or user_is_admin() );
-create policy "Users can add their own user"               on users for insert to authenticated with check (auth.uid() = id);
-create policy "Users can update their own user"            on users for update using (auth.uid() = id);
-create policy "Nobody can delete a user"                   on users for delete using (false);
+alter table user_settings enable row level security;
+create policy "Users can view their own settings, or admins"   on user_settings for select using ( auth.uid() = id or user_is_admin() );
+create policy "Users can add their own settings"               on user_settings for insert to authenticated with check (auth.uid() = id);
+create policy "Users can update their own settings"            on user_settings for update using (auth.uid() = id);
+create policy "Nobody can delete user settings"                on user_settings for delete using (false);
 
 alter table user_roles enable row level security;
 create policy "Users can view their own user role, or admins"    on user_roles for select using ( auth.uid() = id or user_is_admin() );
@@ -515,7 +515,7 @@ create extension if not exists moddatetime schema extensions;
 -- keep updated_at timestamps up to date on all tables
 -- https://github.com/supabase/supabase/issues/379#issuecomment-755289862
 -- TODO - also do updated_by? created_at? created_by?
-create trigger keep_users_updated               before update on users              for each row execute procedure moddatetime (updated_at);
+create trigger keep_user_settings_updated       before update on user_settings      for each row execute procedure moddatetime (updated_at);
 create trigger keep_user_roles_updated          before update on user_roles         for each row execute procedure moddatetime (updated_at);
 create trigger keep_profiles_updated            before update on profiles           for each row execute procedure moddatetime (updated_at);
 create trigger keep_profile_follows_updated     before update on profile_follows    for each row execute procedure moddatetime (updated_at);
@@ -525,7 +525,7 @@ create trigger keep_user_languages_updated      before update on user_languages 
 create trigger keep_topics_updated              before update on topics             for each row execute procedure moddatetime (updated_at);
 create trigger keep_phrases_updated             before update on phrases            for each row execute procedure moddatetime (updated_at);
 create trigger keep_phrase_issues_updated       before update on phrase_issues      for each row execute procedure moddatetime (updated_at);
-create trigger keep_phrase_attempts_updated   before update on phrase_attempts  for each row execute procedure moddatetime (updated_at);
+create trigger keep_phrase_attempts_updated     before update on phrase_attempts    for each row execute procedure moddatetime (updated_at);
 create trigger keep_chat_messages_updated       before update on chat_messages      for each row execute procedure moddatetime (updated_at);
 create trigger keep_lessons_updated             before update on lessons            for each row execute procedure moddatetime (updated_at);
 create trigger keep_lists_updated               before update on lists              for each row execute procedure moddatetime (updated_at);

@@ -5,17 +5,17 @@ import { supabase, useSupabaseQuery } from '@/db/supabase'
 export default () => {
 
   const query = supabase
-    .from('users')
+    .from('user_settings')
     .select()
-  const [users, loading, error] = useSupabaseQuery(query)
+  const [userSettings, loading, error] = useSupabaseQuery(query)
 
   if (error) return <div>error: {error.message}</div>
   if (loading) return <div>loading...</div>
-  if (!users || users.length <= 0) return <div>TODO - debug query and show users</div>
+  if (!userSettings || userSettings.length <= 0) return <div>TODO - debug query and show users</div>
 
   return <>
     <h1>Users</h1>
-    {users.length} user{users.length === 1 ? '' : 's'}
+    {userSettings.length} user{userSettings.length === 1 ? '' : 's'}
 
     <hr />
 
@@ -31,7 +31,7 @@ export default () => {
       </thead>
       <tbody>
         {
-          users.map(user => {
+          userSettings.map(user => {
             return <tr key={user.id}>
               <td>
                 {user.id}

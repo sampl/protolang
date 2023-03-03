@@ -41,12 +41,12 @@ export default ({ children }) => {
     // TODO - return function that unsubscribes
   }, [])
 
-  const dbUserQuery = supabase
-    .from('users')
+  const userSettingsQuery = supabase
+    .from('user_settings')
     .select()
     .eq('id', user?.id)
     .single()
-  const [dbUser, dbUserLoading, dbUserError] = useSupabaseQuery(dbUserQuery, [user?.id], !user)
+  const [useSettings, userSettingsLoading, userSettingsError] = useSupabaseQuery(userSettingsQuery, [user?.id], !user)
 
   const profileQuery = supabase
     .from('profiles')
@@ -64,7 +64,7 @@ export default ({ children }) => {
 
   const fullUser = user ? {
     ...user,
-    ...dbUser,
+    ...useSettings,
     ...profile,
     role,
   } : null
@@ -86,8 +86,8 @@ export default ({ children }) => {
 
   const exposed = {
     user: fullUser,
-    loading: userLoading || profileLoading || roleLoading || dbUserLoading,
-    error: userError || profileError || roleError || dbUserError,
+    loading: userLoading || profileLoading || roleLoading || userSettingsLoading,
+    error: userError || profileError || roleError || userSettingsError,
     login,
     logout,
     isBetaUser: !!localStorage.getItem('protolang_is_beta_user'),

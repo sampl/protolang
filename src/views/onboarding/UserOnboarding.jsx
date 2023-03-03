@@ -37,7 +37,7 @@ export default ({ closeModal }) => {
       }
 
       const { error } = await supabase
-        .from('users')
+        .from('user_settings')
         .upsert(newData)
         .eq('created_by', user.id)
         .select()
@@ -54,7 +54,7 @@ export default ({ closeModal }) => {
       // TODO - a better way to do this
       location.reload()
     } catch (error) {
-      logError('create user preferences', error)
+      logError('create user settings', error)
     } finally {
       setSaving(false)
     }

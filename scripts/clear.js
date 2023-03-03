@@ -38,6 +38,7 @@ const clearSql = `
   drop table if exists public.profile_follows;
   drop table if exists public.profiles;
   drop table if exists public.users;
+  drop table if exists public.user_settings;
 
   drop type if exists public.phrase_types;
   drop type if exists public.practice_attempts_correct_types;
