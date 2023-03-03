@@ -1,4 +1,5 @@
 // import { useNavigate } from 'react-router-dom'
+import styled from 'styled-components/macro'
 
 import { Badge } from '@/styles/Badge'
 import { TwoColumns } from '@/styles/Layout'
@@ -109,9 +110,16 @@ export default () => {
         </p>
       </div>
       <div>
-        <LanguagePicker />
+        <CtaWrapper>
+          <LanguagePicker />
+        </CtaWrapper>
       </div>
     </TwoColumns>
 
   </>
 }
+
+const CtaWrapper = styled.div`
+  position: sticky;
+  top: 2rem;
+`
