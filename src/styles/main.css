@@ -110,6 +110,13 @@ select:active {
   border: 1px solid #444;
   background: #eee;
 }
+select:disabled,
+select:disabled:hover {
+  border: 1px solid #666;
+  background: linear-gradient(180deg, #fafafa, #eaeaea);
+  opacity: .5;
+  cursor: auto;
+}
 
 /* buttons */
 /* .button.cool {
@@ -158,6 +165,13 @@ button {
 .button:active {
   border: 1px solid #444;
   background: #eee;
+}
+.button:disabled,
+.button:disabled:hover {
+  border: 1px solid #666;
+  background: linear-gradient(180deg, #fafafa, #eaeaea);
+  opacity: .5;
+  cursor: auto;
 }
 
 /* tables */
