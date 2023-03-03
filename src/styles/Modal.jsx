@@ -53,4 +53,5 @@ const ModalX = styled(Dialog.Close)`
   background: white;
   padding: 1rem;
   border: none;
+  text-decoration: none;
 `

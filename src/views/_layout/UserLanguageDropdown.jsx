@@ -9,7 +9,8 @@ export default () => {
 
   if (userLanguages?.length < 1 || !currentLanguage?.id) return null
 
-  return <DropdownNavMenu trigger={currentLanguage?.flag || 'Choose language'} align="center">
+  const triggerComponent = <button className="button">{currentLanguage?.flag || 'Choose language'}</button>
+  return <DropdownNavMenu trigger={triggerComponent} triggerAsChild align="center">
     {userLanguages?.map( userLanguage => {
       const { id, name_eng } = userLanguage.language_id
       return <Link key={id} to={`/${id}`} style={{display: 'block'}}>{name_eng}</Link>
