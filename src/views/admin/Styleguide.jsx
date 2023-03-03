@@ -1,6 +1,7 @@
 import { Link } from '@/styles/Links'
 
 import { Panel } from '@/styles/Panels'
+import { CheckboxGroup, RadioGroup } from '@/styles/RadioCheckbox'
 
 export default () => {
 
@@ -37,6 +38,7 @@ export default () => {
     <p>Paragraph text goes here. Lorem ipsum dolor sin amet.</p>
 
     <h2>Heading 2</h2>
+    <p>Foo bar baz</p>
     <ul>
       <li>List item 1</li>
       <li>List item 2</li>
@@ -66,17 +68,50 @@ export default () => {
       <option>Option 3</option>
     </select>
 
+    <label>Select list (disabled)</label>
+    <select disabled>
+      <option>-- Choose an option --</option>
+      <option>Option 1</option>
+      <option>Option 2</option>
+      <option>Option 3</option>
+    </select>
+
+    <label>Checkboxes</label>
+    <CheckboxGroup
+      groupName="test"
+      values={['1']}
+      setValues={values => console.log('checkbox', values)}
+      options={[
+        {id: '1', description: 'Option 1'},
+        {id: '2', description: 'Option 2'},
+        {id: '3', description: 'Option 3'},
+      ]}
+    />
+
+    <label>Radios</label>
+    <RadioGroup
+      value={'1'}
+      setValue={value => console.log('radio', value)}
+      options={[
+        {id: '1', description: 'Option 1'},
+        {id: '2', description: 'Option 2'},
+        {id: '3', description: 'Option 3'},
+      ]}
+    />
+
     <br />
 
     <a href="https://github.com/sampl/protolang" target="_blank">External link</a>
     <br />
     <Link to="/">Internal link</Link>
     <br />
-    <button onClick={e => alert('You clicked it')}>Plain button</button>
+    <button onClick={ () => alert('You clicked it')}>Plain button</button>
     <br />
-    <button className="button" onClick={e => alert('You clicked it')}>Button with button class</button>
+    <button className="button" onClick={ () => alert('You clicked it')}>Button with button class</button>
     <br />
     <Link to="/" className="button">Link as button</Link>
+    <br />
+    <button className="button" disabled onClick={ () => alert('Should not fire')}>Disabled button</button>
     <br />
 
     <br />
