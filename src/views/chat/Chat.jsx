@@ -6,6 +6,7 @@ import { supabase, useSupabaseQuery } from '@/db/supabase'
 import { useUser } from '@/_state/user'
 import ChatMessages from './ChatMessages'
 import ChatInput from './ChatInput'
+import { TwoColumns } from '@/styles/Layout'
 
 const DAILY_LIMIT = 4
 
@@ -62,10 +63,23 @@ export default () => {
   // console.log(user, userLoading)
   if (user && chatMessagesLoading) return <div>loading...</div>
 
-  return <ChatWrapper>
-    <ChatMessages chatMessages={chatMessages} hitDailyLimit={hitDailyLimit} />
-    <ChatInput hitDailyLimit={hitDailyLimit} />
-  </ChatWrapper>
+  return <TwoColumns cols="5fr 2fr" tall>
+    <ChatWrapper>
+      <ChatMessages chatMessages={chatMessages} hitDailyLimit={hitDailyLimit} />
+      <ChatInput hitDailyLimit={hitDailyLimit} />
+    </ChatWrapper>
+    <ChatSidebar>
+      Topics (coming soon):
+      <select disabled>
+        <option>All topics</option>
+      </select>
+      <br />
+      Skill level (coming soon):
+      <select disabled>
+        <option>Beginner</option>
+      </select>
+    </ChatSidebar>
+  </TwoColumns>
 }
 
 export const ChatWrapper = styled.div`
@@ -73,4 +87,8 @@ export const ChatWrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
+`
+export const ChatSidebar = styled.div`
+  border-left: 1px solid;
+  padding: 0 0 0 2rem;
 `
