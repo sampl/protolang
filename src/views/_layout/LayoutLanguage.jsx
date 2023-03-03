@@ -23,7 +23,7 @@ import LanguageVote from '../languages/LanguageVote'
 export default ({children}) => {
   const { currentLanguage, userLanguages, loading, error, setCurrentLanguageId } = useLanguage()
   const { langId } = useParams()
-  const { user, isBetaUser, isAdmin } = useUser()
+  const { user, isAdmin } = useUser()
   const { referenceIsOpen } = useReferencePanel()
 
   useEffect( () => setCurrentLanguageId(langId), [langId])
@@ -70,21 +70,6 @@ export default ({children}) => {
         {' '}
         <Link to="/contribute">Help us write the course</Link>!
       </p>
-    </LayoutSimple>
-  }
-  if (!isBetaUser) {
-    return <LayoutSimple>
-      <h1>Coming soon!</h1>
-      {user ?
-        <p>Stay tuned—we'll email you when this language is available</p>
-      :
-        <>
-          <p>Sign up to get notified when Protolang launches</p>
-          <br />
-          <br />
-          <Signup />
-        </>
-      }
     </LayoutSimple>
   }
 

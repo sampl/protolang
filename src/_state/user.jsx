@@ -90,7 +90,6 @@ export default ({ children }) => {
     error: userError || profileError || roleError || userSettingsError,
     login,
     logout,
-    isBetaUser: !!localStorage.getItem('protolang_is_beta_user'),
     isAdmin: role?.role_type === 'admin',
   }
 
