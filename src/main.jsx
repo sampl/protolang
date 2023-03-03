@@ -26,7 +26,6 @@ Sentry.init({
   environment,
 
   dsn: "https://8a39776e883f4130989e1e9ec2cf5185@o393330.ingest.sentry.io/4504774867877888",
-  integrations: [new BrowserTracing()],
   
   // Set tracesSampleRate to 1.0 to capture 100%
   // of transactions for performance monitoring.
@@ -43,10 +42,8 @@ Sentry.init({
   replaysOnErrorSampleRate: 1.0,
 
   integrations: [
-    new Sentry.Replay({
-      // maskAllText: true,
-      // blockAllMedia: true,
-    }),
+    new BrowserTracing(),
+    new Sentry.Replay(),
   ],
 })
 
