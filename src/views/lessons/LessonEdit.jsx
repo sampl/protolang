@@ -108,6 +108,8 @@ export default () => {
 
     <h1>Edit lesson: {lesson.title_eng}</h1>
 
+    <button type="button" onClick={() => setTopicsModalOpen(true)}>Edit topics ({topics?.length > 0 ? topics.join(', ') : 'none yet'})</button>
+
     <Modal
       title="Lesson formatting help"
       isOpen={helpModalOpen}
@@ -155,8 +157,6 @@ export default () => {
       </TwoColumns>
 
       <StickyLowNav>
-        <button type="button" onClick={() => setTopicsModalOpen(true)}>Edit topics ({topics?.length > 0 ? topics.join(', ') : 'none yet'})</button>
-
         <button
           className="button"
           type="submit"
@@ -179,9 +179,9 @@ const EditTextarea = styled.textarea`
 const StickyLowNav = styled.div`
   z-index: 1;
   background: white;
-  padding: 1rem 0;
+  padding: 1rem 1px;
   border-top: 1px solid;
-  margin-top: 2rem;
+  margin: 2rem -1px 0;
   position: sticky;
   bottom: 0;
 `
