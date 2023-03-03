@@ -41,9 +41,10 @@ const ModalContentWrapper = styled(Dialog.Content)`
   z-index: 200;
   position: absolute;
   background: white;
-  padding: 1rem;
+  padding: 2rem;
   border: 1px solid;
   max-width: calc(100vw - 2rem);
+  box-shadow: 3px 3px;
 `
 const ModalX = styled(Dialog.Close)`
   z-index: 1;

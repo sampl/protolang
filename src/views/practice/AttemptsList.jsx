@@ -24,7 +24,7 @@ export default () => {
       !user ? <>
         <Link to="/signup">Create an account</Link>
         {' '}
-        to track your attempts
+        to start saving your practice history
       </> :
       error ? error.message :
       loading ? 'loading...' :
