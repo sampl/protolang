@@ -1,5 +1,7 @@
 import { Link, NavLink, useParams } from 'react-router-dom'
+import styled from 'styled-components/macro'
 
+import { useReferencePanel } from '@/_state/reference'
 import { useLanguage } from '@/_state/language'
 import AccountMenu from '@/views/_layout/AccountMenu'
 import Footer from '@/views/_layout/Footer'
@@ -12,7 +14,7 @@ import UserOnboarding from '../onboarding/UserOnboarding'
 import UserLanguageOnboarding from '../onboarding/UserLanguageOnboarding'
 import ErrorPage from '../ErrorPage'
 import LayoutSimple from './LayoutSimple'
-import SearchBox from './SearchBox'
+import ReferencePanel from './ReferencePanel'
 import Signup from '../account/Signup'
 import Logo from './Logo'
 import UserLanguageDropdown from './UserLanguageDropdown'
@@ -22,6 +24,7 @@ export default ({children}) => {
   const { currentLanguage, userLanguages, loading, error, setCurrentLanguageId } = useLanguage()
   const { langId } = useParams()
   const { user, isBetaUser, isAdmin } = useUser()
+  const { referenceIsOpen } = useReferencePanel()
 
   useEffect( () => setCurrentLanguageId(langId), [langId])
 
@@ -95,7 +98,7 @@ export default ({children}) => {
   if (user && !userLanguages?.map(ul => ul.language_id?.id).includes(langId)) {
     return <LayoutSimple>
       <UserLanguageOnboarding />
-    </LayoutSimple>    
+    </LayoutSimple>
   }
 
   return <HeaderFooterLayoutWrapper>
@@ -110,21 +113,51 @@ export default ({children}) => {
       </nav>
       <div>
         {isAdmin && <Link to={`/${currentLanguage.id || 'it'}/admin`}>Admin</Link>}
-        <SearchBox />
         <UserLanguageDropdown />
         <AccountMenu />
       </div>
     </Header>
 
     <Main>
-      {!user && <Banner>
-          <Link to="/signup">Create an account</Link> to save your progress or edit lessons
-        </Banner>
-      }
-      {children}
+
+      <CenterColumnWrapper shift={referenceIsOpen}>
+        <CenterColumn>
+          {!user && <Banner>
+              <Link to="/signup">Create an account</Link> to save your progress or edit lessons
+            </Banner>
+          }
+          {children}
+        </CenterColumn>
+      </CenterColumnWrapper>
+
+      <SidebarWrapper open={referenceIsOpen}>
+        <ReferencePanel />
+      </SidebarWrapper>
+
     </Main>
 
     <Footer />
 
   </HeaderFooterLayoutWrapper>
 }
+
+const SIDEBAR_WIDTH = '360px'
+
+const CenterColumnWrapper = styled.div`
+  margin-right: ${props => props.shift ? SIDEBAR_WIDTH : '0'};
+  transition: margin .2s ease-in-out;
+`
+const CenterColumn = styled.div`
+  /* margin: 0 auto; */
+  /* max-width: 800px; */
+`
+const SidebarWrapper = styled.div`
+  position: fixed;
+  z-index: 200;
+  top: 50px;
+  bottom: 1rem;
+  width: ${SIDEBAR_WIDTH};
+  padding-right: var(--gutter);
+  right: ${props => props.open ? '0' : `-${SIDEBAR_WIDTH}`};
+  transition: right .2s ease-in-out;
+`

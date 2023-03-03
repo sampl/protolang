@@ -1,17 +1,15 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components/macro'
 
-import { useLanguage } from '@/_state/language'
+import { useReferencePanel } from '@/_state/reference'
+// import { useLanguage } from '@/_state/language'
 // import {supabaseDictionaries} from '@/_util/supabaseClient'
 
 export default () => {
-  const navigate = useNavigate()
-  const { currentLanguage } = useLanguage()
-
-  const [query, setQuery] = useState('')
+  const { query, setQuery, setMode, setReferenceIsOpen } = useReferencePanel()
 
   // TODO - full text search suggestions
+  // const { currentLanguage } = useLanguage()
   // https://supabase.com/docs/guides/database/full-text-search
   // const { data, error } = await supabaseDictionaries
   //   .from(currentLanguage.id)
@@ -19,13 +17,18 @@ export default () => {
   //   .textSearch('fts', `'${string}'`)
   // }
 
+  // console.log('query is', query)
+
   const onSubmit = async event => {
     event.preventDefault()
-    navigate(`/it/dictionary/${encodeURIComponent(query)}`)
+    setMode('dictionary')
+    setQuery(query)
+    setReferenceIsOpen(true)
   }
 
   return <SearchForm onSubmit={onSubmit}>
     <SearchInput
+      lang="it"
       type="search"
       placeholder="Search"
       value={query}
@@ -36,8 +39,12 @@ export default () => {
 
 const SearchForm = styled.form`
   display: inline-block;
+  width: 100%;
+  padding: 1rem;
 `
 const SearchInput = styled.input`
-  margin: 0px;
-  border: 1px solid;
+  width: 100%;
+  border-radius: 100px;
+  box-shadow: inset 1px 1px;
+  padding: 0.5rem 1rem;
 `
