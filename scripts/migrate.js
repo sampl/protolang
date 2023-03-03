@@ -43,20 +43,22 @@ const migrate = async () => {
       console.log('  New database and no migrations table found, running all migrations')
     } else {
       console.log('  Getting last run migration from database')
-      const lastMigrationResult = await client.query('SELECT id FROM migrations ORDER BY id DESC LIMIT 1')
-      const lastMigration = lastMigrationResult.rows[0].id
+      const mostRecentMigrationResult = await client.query('SELECT id FROM migrations ORDER BY id DESC LIMIT 1')
+      const mostRecentMigrationId = mostRecentMigrationResult.rows[0].id
 
       console.log('  Filtering list of migrations to run')
-      migrationFiles = migrationFiles.filter(m => m.id > lastMigration )
+      migrationFiles = migrationFiles.filter(m => m.id > mostRecentMigrationId )
     }
 
     // TODO - save which migrations have been run to the db 
 
     console.log('  Applying migrations to the database')
-    await Promise.all(migrationFiles.map(async migration => {
-      console.log(`    Running migration ${migration.id}`)
-      return client.query(migration.sql)
-    }))
+    for (const migration of migrationFiles) {
+      console.log(`    Running migration: ${migration.id}`)
+      await client.query(migration.sql)
+      console.log(`    Saving record to migrations table: ${migration.id}`)
+      await client.query('insert into migrations (id, created_at) values ($1, $2)', [migration.id, new Date()])
+    }
 
     console.log('✅ Migrations successful')
   } catch (error) {
