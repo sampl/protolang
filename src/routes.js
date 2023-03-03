@@ -41,6 +41,7 @@ import AdminLessons from './views/admin/AdminLessons'
 import Chat from './views/chat/Chat'
 import PracticeHistory from './views/practice/PracticeHistory'
 import Profile from './views/profile/Profile'
+import Help from './views/marketing/Help'
 
 // ROUTES
 // This is a simple JS list of routes in the app
@@ -78,6 +79,11 @@ export default [
   {
     path: `/sponsor`,
     component: Sponsor,
+    layout: LayoutSimple,
+  },
+  {
+    path: `/help`,
+    component: Help,
     layout: LayoutSimple,
   },
   

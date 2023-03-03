@@ -17,6 +17,8 @@ export default () => {
       <Link to="/sponsor">Sponsor</Link>
       {' · '}
       <Link to="/contact">Contact</Link>
+      {' · '}
+      <Link to="/help">Help</Link>
     </p>
 
     <p style={{fontSize: 'var(--s)'}}>

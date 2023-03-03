@@ -45,7 +45,7 @@ export default [
     target: `/open-source`,
   },
   
-  // contributing
+  // marketing pages
   {
     path: `/contributing`,
     target: `/contribute`,
@@ -53,6 +53,10 @@ export default [
   {
     path: `/code-of-conduct`,
     target: `/conduct`,
+  },
+  {
+    path: `/support`,
+    target: `/help`,
   },
 
   // urls w/o language param
