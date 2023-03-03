@@ -1,6 +1,5 @@
 import styled from 'styled-components/macro'
 import { useDebounce } from 'use-debounce'
-import {useParams, Link} from 'react-router-dom'
 
 import { supabase, useSupabaseQuery } from '@/db/supabase'
 import MnemonicSuggested from '@/views/mnemonics/MnemonicSuggested'
@@ -10,27 +9,26 @@ import PhraseNew from '../practice/PhraseNew'
 import { useUser } from '@/_state/user'
 import PhraseEdit from '../practice/PhraseEdit'
 
-export default ({ it: initialIt, en: initialEn }) => {
+export default ({ ita: initialIta, eng: initialEng }) => {
 
-  const { langId } = useParams()
   const { isAdmin } = useUser()
 
-  const [en] = useDebounce(initialEn, 500, { leading: true })
-  const [it] = useDebounce(initialIt, 500, { leading: true })
+  const [word_eng] = useDebounce(initialEng, 500, { leading: true })
+  const [word_ita] = useDebounce(initialIta, 500, { leading: true })
 
   // https://supabase.com/docs/reference/javascript/or
   const query = supabase
     .from('phrases')
     .select()
-    .or(`content_ita.eq.${it},content_eng.eq.${en}`)
+    .or(`content_ita.eq.${word_ita},content_eng.eq.${word_eng}`)
     .single()
-  const [phrase, loading, error] = useSupabaseQuery(query, [en, it], !(en || it))
+  const [phrase, loading, error] = useSupabaseQuery(query, [word_eng, word_ita], !(word_eng || word_ita))
 
   if (loading) return <LessonEmbedWrapper>Loading...</LessonEmbedWrapper>
   if (error && error.code === "PGRST116") return <LessonEmbedWrapper>
-    ⚠️ No phrase found for "{it}" or "{en}"
+    ⚠️ No phrase found for "{word_ita}" or "{word_eng}"
     <br />
-    <PhraseNew it={it} en={en} />
+    <PhraseNew ita={word_ita} eng={word_eng} />
   </LessonEmbedWrapper>
   if (error) return <LessonEmbedWrapper>
     ❌ Sorry, something went wrong on our end
