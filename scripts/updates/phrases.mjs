@@ -96,7 +96,7 @@ const updateDatabase = async phrases => {
   console.log('  Adding new phrases')
 
   // TODO - run in batches!
-  await Promise.all(phrases.map(async phrase => {
+    for (const phrase of phrases) {
 
     console.log(`    Adding phrase: ${phrase.content_ita}`)
 
@@ -115,7 +115,7 @@ const updateDatabase = async phrases => {
       RETURNING *
     `
     await client.query(phraseQuery, phraseValues)
-  }))
+  }
 
   await client.end()
 }

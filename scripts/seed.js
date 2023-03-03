@@ -43,12 +43,11 @@ const seed = async () => {
     })
 
     console.log('  Applying seeds to the database')
-    const seedQueryPromises = seedFiles.map(async sf => {
-      return client.query(sf.sql).then(res => {
-        console.log(`    Ran seed on seed ${sf.filename}`)
+    for (const sf of seedFiles) {
+      await client.query(sf.sql).then(res => {
+        console.log(`    Ran seed on seed file ${sf.filename}`)
       })
-    })
-    await Promise.all(seedQueryPromises)
+    }
 
     console.log('✅ Seed successful')
   } catch (error) {

@@ -80,7 +80,7 @@ const updateDatabase = async mnemonics => {
   console.log('  Adding new mnemonics')
 
   // TODO - run in batches!
-  await Promise.all(mnemonics.map(async mnemonic => {
+  for (const mnemonic of mnemonics) {
 
     console.log(`    Adding mnemonic: ${mnemonic.id}`)
 
@@ -100,7 +100,7 @@ const updateDatabase = async mnemonics => {
       RETURNING *
     `
     await client.query(mnemonicQuery, mnemonicValues)
-  }))
+  }
 
   await client.end()
 }
