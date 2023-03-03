@@ -13,8 +13,17 @@ export default () => {
     setReferenceIsOpen,
   } = useReferencePanel()
 
-  return <ReferencePanelWrapper>
-    <ReferencePanelToggle onClick={ ()=> setReferenceIsOpen(!referenceIsOpen) }>{referenceIsOpen ? '→' : '←'}</ReferencePanelToggle>
+  return <ReferencePanelWrapper onClick={() => setReferenceIsOpen(true)}>
+    <ReferencePanelToggle
+      style={{height: referenceIsOpen ? '2rem' : '0rem'}}
+      onClick={ e => {
+        // e.preventDefault()
+        e.stopPropagation()
+        setReferenceIsOpen(!referenceIsOpen)
+      }}
+    >
+      {referenceIsOpen ? '↓' : '↑'}
+    </ReferencePanelToggle>
     <SearchBox />
     <div style={{padding: '0 1rem'}}>
       <button style={{background: mode === 'dictionary' && '#aaa'}} onClick={() => setMode('dictionary')}>dictionary</button>
@@ -38,24 +47,20 @@ const ReferencePanelWrapper = styled.div`
   box-shadow: 2px 2px;
   display: flex;
   flex-direction: column;
+  background: white;
 `
 const ReferencePanelToggle = styled.button`
-  position: absolute;
-  top: 1rem;
-  left: -3rem;
-  width: 3rem;
-  height: 3rem;
-
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  border: 1px solid;
+  border-bottom: 1px solid;
   background: white;
 `
 const ReferencePanelContent = styled.div`
   overflow-y: auto;
   margin-top: 1rem;
-  padding: 1rem 1rem 0;
+  padding: 1rem 1rem;
   border-top: 1px solid;
 `

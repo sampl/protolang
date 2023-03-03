@@ -120,15 +120,11 @@ export default ({children}) => {
 
     <Main>
 
-      <CenterColumnWrapper shift={referenceIsOpen}>
-        <CenterColumn>
-          {!user && <Banner>
-              <Link to="/signup">Create an account</Link> to save your progress or edit lessons
-            </Banner>
-          }
-          {children}
-        </CenterColumn>
-      </CenterColumnWrapper>
+      {!user && <Banner>
+          <Link to="/signup">Create an account</Link> to save your progress or edit lessons
+        </Banner>
+      }
+      {children}
 
       <SidebarWrapper open={referenceIsOpen}>
         <ReferencePanel />
@@ -141,23 +137,12 @@ export default ({children}) => {
   </HeaderFooterLayoutWrapper>
 }
 
-const SIDEBAR_WIDTH = '360px'
-
-const CenterColumnWrapper = styled.div`
-  margin-right: ${props => props.shift ? SIDEBAR_WIDTH : '0'};
-  transition: margin .2s ease-in-out;
-`
-const CenterColumn = styled.div`
-  /* margin: 0 auto; */
-  /* max-width: 800px; */
-`
 const SidebarWrapper = styled.div`
   position: fixed;
   z-index: 200;
-  top: 50px;
-  bottom: 1rem;
-  width: ${SIDEBAR_WIDTH};
-  padding-right: var(--gutter);
-  right: ${props => props.open ? '0' : `-${SIDEBAR_WIDTH}`};
-  transition: right .2s ease-in-out;
+  right: 3rem;
+  bottom: 0;
+  width: 360px;
+  height: ${props => !props.open ? '4rem' : `60vh`};
+  transition: height .2s ease-in-out;
 `
