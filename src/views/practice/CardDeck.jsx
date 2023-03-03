@@ -9,6 +9,7 @@ import { useLanguage } from '@/_state/language'
 import { logError } from '../../_util/error.js'
 
 import Card from '@/views/practice/Card'
+import DiffSentences from '@/views/practice/DiffSentences'
 
 const MAX_STRIKES = 1
 
@@ -30,6 +31,7 @@ export default ({
   // waiting, try_again, correct, incorrect
   const [cardState, setCardState] = useState('waiting')
   const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0)
+  const [recentAnswer, setRecentAnswer] = useState(null)
   const [strikes, setStrikes] = useState(0)
 
   const phrase = phrases && phrases[currentPhraseIndex]
@@ -37,6 +39,7 @@ export default ({
   const nextPhrase = () => {
     setStrikes(0)
     setCardState('waiting')
+    setRecentAnswer(null)
     setPhraseToShowInfoAbout(null)
     setCurrentPhraseIndex(current => {
       if (phrases.length - 1 <= current) {
@@ -57,6 +60,7 @@ export default ({
 
   const submitAnswer = async answer => {
     console.log('SUBMITTING ANSWER', answer)
+    setRecentAnswer(answer.trim())
     const correct = testAnswer(answer)
     if (!correct && strikes < MAX_STRIKES) {
       setStrikes(s => s + 1)
@@ -103,6 +107,8 @@ export default ({
   const correctAnswer = direction === 'forward' ? phrase.content_ita : phrase.content_eng
   const CardAnswerComponent = cardAnswerType === 'text' ? CardAnswerText : CardAnswerSpeech
 
+  // console.log('correctAnswer', correctAnswer)
+
   return <>
     <div style={{position: 'relative', height: '240px', margin: '0 0 2rem'}}>
       {phrases.map( (phrase, index) => {
@@ -148,6 +154,7 @@ export default ({
       cardState === "incorrect" ? <>
         <button className="button" autoFocus onClick={nextPhrase} style={{fontSize: '20px', width: '100%'}}>Next</button>
         Whoops not quite. The answer is "{correctAnswer}"
+        <DiffSentences correctAnswer={correctAnswer} guess={recentAnswer} />
       </>
       :
       null
