@@ -12,7 +12,8 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-V7J0CB8E9Q');
+      const debug_mode = window.location.host !== 'www.protolang.com' && window.location.host !== 'protolang.com';
+      gtag('config', 'G-V7J0CB8E9Q', { 'debug_mode': debug_mode });
     </script>
 
     <!-- fonts -->
