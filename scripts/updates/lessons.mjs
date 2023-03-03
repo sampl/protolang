@@ -20,7 +20,8 @@ import { dirname } from 'path'
 import { fileURLToPath } from 'url'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
-dotenv.config({ path: '.env.development' })
+// dotenv.config({ path: '.env.development' })
+dotenv.config({ path: '.env.production' })
 const CONNECTION_STRING = process.env.ADMIN_POSTGRES_CONNECTION_STRING
 const SEED_USER_ID = process.env.SEED_USER_ID
 
@@ -256,7 +257,6 @@ const updateDatabase = async lessons => {
   })
 
   // TODO - run in batches!
-  // await Promise.all(lessonQueries)
   for(const query of lessonQueries) {
     await query
   }

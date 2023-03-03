@@ -1,5 +1,6 @@
 // don't even let devs do this on live
-require('dotenv').config({ path: '.env.development' })
+// require('dotenv').config({ path: '.env.development' })
+require('dotenv').config({ path: '.env.production' })
 
 const { Client } = require('pg')
 const fs = require('fs')
@@ -30,7 +31,7 @@ const seed = async () => {
     })
     seedFiles = await Promise.all(seedFilePromises)
     console.log('    '+seedFiles.map(sf => sf.filename).join('\n    '))
-    
+
     console.log('  Replacing placeholder data (user IDs etc)')
     seedFiles = seedFiles.map(sf => {
       console.log(`    Running replace on ${sf.filename}`)

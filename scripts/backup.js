@@ -2,6 +2,7 @@
 
 // TODO - different envs
 require('dotenv').config({ path: '.env.development' })
+// require('dotenv').config({ path: '.env.production' })
 const util = require('util')
 const exec = util.promisify(require('child_process').exec)
 
