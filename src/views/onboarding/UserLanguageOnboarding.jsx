@@ -369,7 +369,7 @@ export default ({ closeModal }) => {
       type="submit"
       disabled={saving}
     >
-      {saving ? 'Getting ready...' : 'Start learning'}
+      {saving ? 'Here we go...' : 'Start learning Italian!'}
     </button>
 
   </form>

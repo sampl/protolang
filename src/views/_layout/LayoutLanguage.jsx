@@ -105,7 +105,7 @@ export default ({children}) => {
     <Main>
 
       {!user && <Banner>
-          <Link to="/signup">Create an account</Link> to save your progress or edit lessons
+          <Link to="/signup">Create an account</Link> to save your progress
         </Banner>
       }
       {children}

@@ -60,7 +60,6 @@ export default ({ closeModal }) => {
     }
   }
 
-
   // should never happen, but just in case
   if (!user) return 'Error showing user onboarding - no user found.'
 
@@ -112,7 +111,7 @@ export default ({ closeModal }) => {
       type="submit"
       disabled={saving}
     >
-      {saving ? 'Getting ready...' : 'Start learning'}
+      {saving ? 'One moment...' : 'Next'}
     </button>
 
   </form>

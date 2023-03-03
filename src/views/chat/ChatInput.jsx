@@ -79,7 +79,7 @@ export default ({ hitDailyLimit }) => {
         disabled={isSendingMessage || hitDailyLimit || !user}
         onKeyDown={onKeyDown}
         onChange={e => setMessage(e.target.value)}
-        placeholder="Ciao"
+        placeholder={!user ? 'Log in to send messages' : 'Type your message here...'}
         autoFocus
       />
       <button
