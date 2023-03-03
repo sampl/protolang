@@ -11,7 +11,8 @@ import { logError } from '../../_util/error.js'
 import Card from '@/views/practice/Card'
 import DiffSentences from '@/views/practice/DiffSentences'
 
-const MAX_STRIKES = 1
+const MAX_TRANSLATION_STRIKES = 1
+const MAX_PRONUNCIATION_STRIKES = 3
 
 // https://stackoverflow.com/a/37511463/1061063
 const normalizeString = string => string.normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim().toLowerCase()
@@ -24,6 +25,8 @@ export default ({
   phrasesLoading,
   phrasesError,
   setPhraseToShowInfoAbout,
+  practiceType,
+  lessonEmbed,
 }) => {
   const { user } = useUser()
   const { currentLanguage } = useLanguage()
@@ -35,11 +38,13 @@ export default ({
   const [strikes, setStrikes] = useState(0)
 
   const phrase = phrases && phrases[currentPhraseIndex]
+  const singleCardMode = phrases && phrases.length === 1
 
   const nextPhrase = () => {
     setStrikes(0)
     setCardState('waiting')
     setRecentAnswer(null)
+    if (singleCardMode) return
     setPhraseToShowInfoAbout(null)
     setCurrentPhraseIndex(current => {
       if (phrases.length - 1 <= current) {
@@ -62,7 +67,8 @@ export default ({
     console.log('SUBMITTING ANSWER', answer)
     setRecentAnswer(answer.trim())
     const correct = testAnswer(answer)
-    if (!correct && strikes < MAX_STRIKES) {
+    const maxStrikes = practiceType === 'translation' ? MAX_TRANSLATION_STRIKES : MAX_PRONUNCIATION_STRIKES
+    if (!correct && strikes < maxStrikes) {
       setStrikes(s => s + 1)
       setCardState('try_again')
       return
@@ -77,16 +83,18 @@ export default ({
       const newData = {
         language_id: currentLanguage.id,
         phrase: phrase?.id,
-        direction,
         prompt_type: cardQuestionType,
-        repeated_only: false, // TODO - built repeat-only attempts
+        repeated_only: practiceType === 'pronunciation',
         guess: answer.trim(),
         is_correct: correct,
-        answer_type: cardAnswerType,
+        answer_type: practiceType === 'translation' ? cardAnswerType : 'speech',
         // perfect_answer, // TODO - return in test algo
         // with_hint, // TODO - detect hints
         second_try: strikes > 0,
         created_by: user.id,
+      }
+      if (practiceType === 'translation') {
+        newData.direction = direction
       }
       const { error } = await supabase
         .from('phrase_attempts')
@@ -103,14 +111,18 @@ export default ({
   if (phrasesLoading) return <div>loading...</div>
   if (!phrases || phrases.length <= 0) return <div>no phrases (try refreshing)</div>
 
-  const question =      direction === 'forward' ? phrase.content_eng : phrase.content_ita
-  const correctAnswer = direction === 'forward' ? phrase.content_ita : phrase.content_eng
+  let question, correctAnswer
+  if (practiceType === 'translation') {
+    question =      direction === 'forward' ? phrase.content_eng : phrase.content_ita
+    correctAnswer = direction === 'forward' ? phrase.content_ita : phrase.content_eng
+  } else if (practiceType === 'pronunciation') {
+    question = phrase.content_ita
+    correctAnswer = phrase.content_ita
+  }
   const CardAnswerComponent = cardAnswerType === 'text' ? CardAnswerText : CardAnswerSpeech
 
-  // console.log('correctAnswer', correctAnswer)
-
   return <>
-    <div style={{position: 'relative', height: '240px', margin: '0 0 2rem'}}>
+    <div style={{position: 'relative', height: !lessonEmbed && '240px', margin: !lessonEmbed && '0 0 2rem'}}>
       {phrases.map( (phrase, index) => {
         return <Card
           key={phrase.id}
@@ -124,43 +136,61 @@ export default ({
           direction={direction}
           next={nextPhrase}
           question={question}
+          practiceType={practiceType}
+          lessonEmbed={lessonEmbed}
         />
       })}
     </div>
 
-    <CardAnswerComponent
-      id={phrase?.id}
-      direction={direction}
-      question={question}
-      correctAnswer={correctAnswer}
-      disabled={cardState === 'correct' || cardState === 'incorrect'}
-      testAnswer={testAnswer}
-      testPartialAnswer={testPartialAnswer}
-      submitAnswer={submitAnswer}
-    />
+    {/*
+      TODO
+        - let people record a pronunciation practice right from the lesson
+        - show whether a phrase is in their library, ie
+        - phraseScore && phraseScore.num_correct > 0) ? '✅' : '❌'
+    */}
+    { !lessonEmbed && 
+      <CardAnswerComponent
+        id={phrase?.id}
+        direction={direction}
+        question={question}
+        correctAnswer={correctAnswer}
+        disabled={cardState === 'correct' || cardState === 'incorrect'}
+        testAnswer={testAnswer}
+        testPartialAnswer={testPartialAnswer}
+        submitAnswer={submitAnswer}
+      />
+    }
 
-    <br />
-
+    {
+      (cardState === "correct" || cardState === "incorrect") &&
+      !singleCardMode && 
+      <button className="button" autoFocus onClick={nextPhrase} style={{fontSize: '20px', width: '100%'}}>Next</button>
+    }
     {
       cardState === "try_again" ? <>
         Not quite, try again...
       </>
       :
       cardState === "correct" ? <>
-        <button className="button" autoFocus onClick={nextPhrase} style={{fontSize: '20px', width: '100%'}}>Next</button>
         You're right!
       </>
       :
       cardState === "incorrect" ? <>
-        <button className="button" autoFocus onClick={nextPhrase} style={{fontSize: '20px', width: '100%'}}>Next</button>
-        Whoops not quite. The answer is "{correctAnswer}"
-        <DiffSentences correctAnswer={correctAnswer} guess={recentAnswer} />
+        {practiceType === 'translation' ?
+          <>
+            Whoops, not quite. The answer is "{correctAnswer}"
+            <DiffSentences correctAnswer={correctAnswer} guess={recentAnswer} />
+          </> :
+          <>
+            That's not quite it. Let's skip this one for now.
+          </>
+        }
       </>
       :
       null
     }
     {
-      (cardState === "waiting" || cardState === "try_again") && 
+      (cardState === "waiting" || cardState === "try_again") && !singleCardMode && 
       <button onClick={nextPhrase} style={{padding: '1rem', textAlign: 'center', width: '100%'}}>skip</button>
     }
   </>

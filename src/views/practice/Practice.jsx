@@ -15,6 +15,7 @@ export default () => {
   const [cardQuestionType, setCardQuestionType] = useState('both')
   const [cardAnswerType, setCardAnswerType] = useState('speech')
   const [direction, setDirection] = useState('forward')
+  const [practiceType, setPracticeType] = useState('translation') // pronunciation, translation
   const [phraseToShowInfoAbout, setPhraseToShowInfoAbout] = useState(null)
 
   const lessonsQuery = supabase
@@ -55,13 +56,15 @@ export default () => {
   return <TwoColumns cols="2fr 1fr">
     <div>
       <CardDeck
+        practiceType={practiceType}
         cardQuestionType={cardQuestionType}
-        cardAnswerType={cardAnswerType}
-        direction={direction}
+        cardAnswerType={practiceType === 'translation' ? cardAnswerType : 'speech'}
+        direction={practiceType === 'translation' ? direction : null}
         phrases={phraseList}
         phrasesLoading={phrasesLoading}
         phrasesError={phrasesError}
         setPhraseToShowInfoAbout={setPhraseToShowInfoAbout}
+        lessonEmbed={false}
       />
 
       {/* TODO - maybe refactor this out so we're not getting it from some buried component */}
@@ -72,6 +75,12 @@ export default () => {
     <div>
       <DailyProgress />
       <hr />
+      practice type:
+      <select value={practiceType} onChange={e => setPracticeType(e.target.value)}>
+        <option value="translation">Translate</option>
+        <option value="pronunciation">Pronunciation only</option>
+      </select>
+      <br />
       pull words from:
       <select value={phraseSource} onChange={e => setPhraseSource(e.target.value)} disabled>
         <option value="all">All phrases</option>
@@ -84,24 +93,30 @@ export default () => {
         </optgroup>
       </select>
       <br />
-      direction:
-      <select value={direction} onChange={e => setDirection(e.target.value)}>
-        <option value="forward">English to Italian</option>
-        <option value="reverse">Italian to English</option>
-      </select>
-      <br />
-      question type:
-      <select value={cardQuestionType} onChange={e => setCardQuestionType(e.target.value)}>
-        <option value="both">Text and audio</option>
-        <option value="text">Text only</option>
-        <option value="audio">Audio only</option>
-      </select>
-      <br />
-      answer type:
-      <select value={cardAnswerType} onChange={e => setCardAnswerType(e.target.value)}>
-        <option value="text">Text</option>
-        <option value="speech">Speech</option>
-      </select>
+      {practiceType === 'translation' && <>
+        direction:
+        <select value={direction} onChange={e => setDirection(e.target.value)}>
+          <option value="forward">English to Italian</option>
+          <option value="reverse">Italian to English</option>
+        </select>
+        <br />
+      </>}
+      {(practiceType === 'pronunciation' || direction === 'forward') && <>
+        question type:
+        <select value={cardQuestionType} onChange={e => setCardQuestionType(e.target.value)}>
+          <option value="both">Text and audio</option>
+          <option value="text">Text only</option>
+          <option value="audio">Audio only</option>
+        </select>
+        <br />
+      </>}
+      {practiceType === 'translation' && <>
+        answer type:
+        <select value={cardAnswerType} onChange={e => setCardAnswerType(e.target.value)}>
+          <option value="text">Text</option>
+          <option value="speech">Speech</option>
+        </select>
+      </>}
       <hr />
       <Link to={`/${langId}/practice/history`}>Practice history</Link>
     </div>

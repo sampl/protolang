@@ -42,7 +42,7 @@ export default ({ phrase }) => {
   }
 
   return <>
-    <button type="button" onClick={() => setIssueReporterIsOpen(true)}>Report issue</button>
+    <button type="button" onClick={() => setIssueReporterIsOpen(true)}>flag</button>
 
     <Modal isOpen={issueReporterIsOpen} onClose={() => setIssueReporterIsOpen(false)}>
       <form onSubmit={reportIssue}>
