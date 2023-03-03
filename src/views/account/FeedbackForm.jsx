@@ -12,6 +12,7 @@ export default () => {
   const [isGivingFeedback, setIsGivingFeedback] = useState(false)
   const [state, handleSubmit] = useForm("xnqyjjgl")
 
+  console.log('state', state)
   return <>
     <button onClick={() => setIsGivingFeedback(true)}>Feedback</button>
 
@@ -19,9 +20,11 @@ export default () => {
       title="Share feedback"
       isOpen={isGivingFeedback}
       onClose={() => setIsGivingFeedback(false)}
+      maxWidth="460px"
     >
+      {!state.succeeded && !state.errors?.length > 0 && <p>Protolang is under active development. Your feedback is incredibly valuable to us as we build.</p>}
       {state.succeeded && <p>Thanks for your feedback!</p>}
-      {state.errors && <p>{state.errors[0]?.message}</p>}
+      {state.errors && state.errors.length > 0 && <p>{state.errors[0]?.message}</p>}
 
       <form onSubmit={handleSubmit}>
         <label htmlFor="email">

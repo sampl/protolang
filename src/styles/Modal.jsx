@@ -1,12 +1,12 @@
 import styled from 'styled-components/macro'
 import * as Dialog from '@radix-ui/react-dialog'
 
-export default ({ isOpen, onClose, title, children }) => {
+export default ({ isOpen, onClose, title, maxWidth = '600px', children }) => {
   return <Dialog.Root open={isOpen}>
     <Dialog.Portal>
       <ModalOverlay onClick={onClose} />
       <ModalWrapper>
-        <ModalContentWrapper>
+        <ModalContentWrapper style={{maxWidth}}>
           <ModalX onClick={onClose}>✕</ModalX>
           <ModalTitle>{title}</ModalTitle>
           {/* <Dialog.Description /> */}
