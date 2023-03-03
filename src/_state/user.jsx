@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect, useContext } from 'react'
+import * as Sentry from "@sentry/react"
 
 import { supabase, useSupabaseQuery } from '@/db/supabase'
 import { logError } from '../_util/error.js'
@@ -14,6 +15,21 @@ export default ({ children }) => {
     setUserLoading(true)
     const { data, error } = await supabase.auth.getSession()
     const user = data?.session?.user
+
+    if (user) {
+      const googleProvider = user.identities?.find(i => i.provider === 'google')
+      const fullName = googleProvider?.identity_data?.full_name
+
+      Sentry.setUser({ email: user.email })
+      if (fullName) Sentry.setExtra("name", fullName)
+      
+      // const logRocketInfo = { email: user.email }
+      // if (fullName) logRocketInfo.name = fullName
+      // // language_target: todo
+      // // debugger
+      // LogRocket.identify(user.id, logRocketInfo)
+    }
+
     setUser(user)
     setUserError(error)
     setUserLoading(false)
