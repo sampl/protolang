@@ -12,7 +12,6 @@ export default () => {
   const [isGivingFeedback, setIsGivingFeedback] = useState(false)
   const [state, handleSubmit] = useForm("xnqyjjgl")
 
-  console.log('state', state)
   return <>
     <button onClick={() => setIsGivingFeedback(true)}>Feedback</button>
 
