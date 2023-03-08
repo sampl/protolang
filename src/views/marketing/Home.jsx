@@ -1,13 +1,12 @@
-// import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
 
 import { Badge } from '@/styles/Badge'
 import { TwoColumns } from '@/styles/Layout'
+import OrBar from '@/styles/OrBar'
 import LanguagePicker from '../languages/LanguagePicker'
 
 export default () => {
-  // const navigate = useNavigate()
-
   return <>
 
     <h1>Language learning for serious learners</h1>
@@ -110,6 +109,8 @@ export default () => {
       </div>
       <div>
         <CtaWrapper>
+          <Link className="button" style={{width: '100%'}} to="/signup">Create your account</Link>
+          <OrBar />
           <LanguagePicker />
         </CtaWrapper>
       </div>
