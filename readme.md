@@ -56,5 +56,5 @@ This project would not be possible without:
 
 ## License
 
-- This repo is licensed under the [GPL](license.txt).
-- Community-contributed lessons are licensed under the Creative Commons (license coming soon) and can be downloaded on [the website](https://protolang.com/it/lessons).
+- Opens source license for this repo coming soon
+- Community-contributed lessons are licensed under the Creative Commons (specific license coming soon) and can be downloaded on [the website](https://protolang.com/it/lessons).

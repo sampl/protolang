@@ -9,7 +9,6 @@ export default () => {
     <p>This project would not be possible without the open-source, community-driven projects it is built on. We are proud to offer our own work under free software licenses.</p>
 
     <h2>Application source code</h2>
-    <p>The Protolang web app is available under the GPL.</p>
     <ul>
       <li>
         <a href="https://github.com/sampl/protolang">Browse source on Github</a>
