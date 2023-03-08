@@ -21,7 +21,7 @@ export default ({ closeModal }) => {
     .select()
   const [languages, languagesLoading, languagesError] = useSupabaseQuery(languagesQuery)
 
-  async function addUserLanguage( event ) {
+  async function updateUserOnboarding( event ) {
     event.preventDefault()
     try {
       setSaving(true)
@@ -68,7 +68,7 @@ export default ({ closeModal }) => {
 
   // TODO - username, timezone
 
-  return <form onSubmit={addUserLanguage}>
+  return <form onSubmit={updateUserOnboarding}>
 
     <h1>Welcome to Protolang</h1>
 

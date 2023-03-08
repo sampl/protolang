@@ -11,6 +11,7 @@ import { TwoColumns } from '@/styles/Layout'
 import Modal from '@/styles/Modal'
 import { CheckboxGroup } from '@/styles/RadioCheckbox'
 import { logError } from '../../_util/error.js'
+import EditorOnboarding from '../account/EditorOnboarding.jsx'
 
 export default () => {
   const { user } = useUser()
@@ -94,7 +95,8 @@ export default () => {
     return 'Error - could not load lesson ' + (topicsError?.message || lessonError?.message)
   }
 
-  // console.log(topics)
+  if (!user?.preferences?.hasAgreedToEditorTerms || !user.username) return <EditorOnboarding />
+
   return <>
     <BreadcrumbWrapper>
       <BreadcrumbItem to={`/${langId}/lessons`}>Lessons</BreadcrumbItem>
@@ -174,10 +176,10 @@ export default () => {
 
 const EditTextarea = styled.textarea`
   font-family: monospace;
-  background: #eee
+  background: #eee;
 `
 const StickyLowNav = styled.div`
-  z-index: 1;
+  z-index: 200;
   background: white;
   padding: 1rem 1px;
   border-top: 1px solid;

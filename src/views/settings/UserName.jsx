@@ -4,7 +4,7 @@ import { supabase } from '@/db/supabase'
 import { useUser } from '@/_state/user'
 import { logError } from '../../_util/error.js'
 
-export default () => {
+export default ({ refreshOnSet }) => {
   const { user } = useUser()
   const [username, setUsername] = useState(user?.username)
   const [isEditing, setIsEditing] = useState(false)
@@ -30,6 +30,8 @@ export default () => {
 
       if (error) {
         throw error
+      } else {
+        refreshOnSet && location.reload()
       }
     } catch (error) {
       logError('update username', error)
