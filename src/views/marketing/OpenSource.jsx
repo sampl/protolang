@@ -12,7 +12,7 @@ export default () => {
     <p>The Protolang web app is available under the GPL.</p>
     <ul>
       <li>
-        <a href="https://github.com/sampl/protolang">Browse source on Github</a> (coming soon)
+        <a href="https://github.com/sampl/protolang">Browse source on Github</a>
       </li>
       <li>
         <a href="https://github.com/sampl/protolang/blob/main/license.txt">View license on Github</a> (coming soon)

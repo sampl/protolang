@@ -5,7 +5,7 @@ export default () => {
     <h1>Contact us</h1>
     <ul>
       <li>
-        <a href="https://github.com/sampl/protolang/issues">Bug reports</a> (coming soon)
+        <a href="https://github.com/sampl/protolang/issues">Bug reports</a>
       </li>
       <li>
         <a href="mailto:sam@directedworks.com">Email</a>

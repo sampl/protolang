@@ -19,7 +19,7 @@ Free to use, open source, open content, no account required, and no ads.
 
 - **🧑‍🏫 Lessons** - complete courses in vocabulary, pronunciation, grammar, tenses, common phrases, and culture
 - **☝️ Flashcards** - Duolingo-style audio flashcards for practicing and retaining what you learned
-- **💬 Chat** - (coming soon) realistic AI-powered conversations in your target language
+- **💬 Chat** - realistic AI-powered conversations in your target language
 - **💡 Memorization hints** - user-contributed tips to help you speed up rote vocabulary memorization
 - **📖 Dictionaries** - searchable list of 40k+ words with definitions, conjugations, etc
 - **📺 Media** - watch and listen: videos, podcasts, radio and more
@@ -43,8 +43,7 @@ We need help with:
 
 ## Community
 
-- Forum coming soon - For feature requests, general discussion, etc
-- [Github issues](https://github.com/sampl/protolang/issues) (coming soon) - Reporting bugs
+- [Github issues](https://github.com/sampl/protolang/issues) - Reporting bugs
 - [Contact](https://protolang.com/contact)
 
 ## Acknowledgements
