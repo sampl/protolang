@@ -6,9 +6,11 @@ import { supabase, useSupabaseQuery } from '@/db/supabase'
 import { TwoColumns } from '@/styles/Layout'
 import SuggestedLessons from './SuggestedLessons'
 import QuickLinks from "./QuickLinks"
+import { useUser } from '@/_state/user'
 
 export default () => {
   const { langId } = useParams()
+  const { user } = useUser()
 
   const query = supabase
     .from('lessons')
@@ -60,7 +62,7 @@ export default () => {
         </LessonListWrapper>
         <div>
           <p>{lessons?.length || 0} lesson{lessons?.length !== 1 && 's'}</p>
-          <Link to={`/${langId}/lessons/new`}>+ Add lesson</Link>
+          { user && <Link to={`/${langId}/lessons/new`}>+ Add lesson</Link> }
           <hr />
           <p style={{fontSize: 'small'}}>
             Lessons are free to use under a Creative Commons license.

@@ -57,7 +57,7 @@ export default () => {
           })
         }
       </div>
-      {user?.isAdmin &&
+      {user &&
         <div>
           <Link to={`/${langId}/lessons/${slug}/edit`}>Edit lesson</Link>
         </div>

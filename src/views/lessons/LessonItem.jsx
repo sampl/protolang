@@ -11,7 +11,7 @@ import { Badge } from '@/styles/Badge'
 
 export default () => {
   const { slug, langId } = useParams()
-  const { isAdmin } = useUser()
+  const { user } = useUser()
 
   const query = supabase
     .from('lessons')
@@ -49,7 +49,7 @@ export default () => {
         <br />
         <Link to={`/${langId}/lessons/${lesson?.slug}/history`}>History</Link>
         <br />
-        { isAdmin && <Link to={`/${langId}/lessons/${lesson?.slug}/edit`}>Edit lesson</Link> }
+        { user && <Link to={`/${langId}/lessons/${lesson?.slug}/edit`}>Edit lesson</Link> }
       </div>
     </TwoColumns>
   </>

@@ -52,6 +52,8 @@ export default () => {
     }
   }
 
+  if (!user) return 'You must be logged in to create a lesson'
+
   return <form onSubmit={submit}>
     <h2>New lesson</h2>
 

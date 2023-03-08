@@ -1,16 +1,13 @@
 import { useParams } from 'react-router-dom'
 import { BreadcrumbItem, BreadcrumbSeparator, BreadcrumbWrapper } from '@/styles/Breadcrumbs'
-// import { Link } from 'react-router-dom'
 import moment from 'moment'
 
 import { supabase, useSupabaseQuery } from '@/db/supabase'
 import LessonContent from './LessonContent'
 import { TwoColumns } from '@/styles/Layout'
-// import { useUser } from "@/_state/user"
 
 export default () => {
   const { slug, langId, editId } = useParams()
-  // const { isAdmin } = useUser()
 
   const lessonQuery = supabase
     .from('lessons')
