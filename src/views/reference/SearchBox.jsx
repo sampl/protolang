@@ -21,7 +21,6 @@ export default () => {
 
   const onSubmit = async event => {
     event.preventDefault()
-    setMode('dictionary')
     setQuery(query)
     setReferenceIsOpen(true)
   }
@@ -47,4 +46,5 @@ const SearchInput = styled.input`
   border-radius: 100px;
   box-shadow: inset 1px 1px;
   padding: 0.5rem 1rem;
+  margin: 0;
 `

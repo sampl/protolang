@@ -64,7 +64,7 @@ export default ({ hitDailyLimit }) => {
     const requestData = {
       language_id: langId,
     }
-    const { data: responseData, error:invokeError } = await supabase.functions.invoke('hello', {
+    const { data: responseData, error:invokeError } = await supabase.functions.invoke('chat_response', {
       body: requestData,
     })
     if (invokeError) throw invokeError

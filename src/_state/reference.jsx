@@ -4,7 +4,7 @@ const Context = createContext()
 
 export default ({ children }) => {
 
-  // dictionary, translate, grammar
+  // dictionary, translate
   const [mode, setMode] = useState('dictionary')
   const [query, setQuery] = useState('')
   const [referenceIsOpen, setReferenceIsOpen] = useState(false)

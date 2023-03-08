@@ -3,6 +3,7 @@ import styled from 'styled-components/macro'
 import { useReferencePanel } from '@/_state/reference'
 import SearchBox from './SearchBox'
 import Definition from '../dictionary/Definition'
+import TranslatePane from './TranslatePane'
 
 export default () => {
   const {
@@ -25,15 +26,13 @@ export default () => {
       {referenceIsOpen ? '↓' : '↑'}
     </ReferencePanelToggle>
     <SearchBox />
-    <div style={{padding: '0 1rem'}}>
-      <button style={{background: mode === 'dictionary' && '#aaa'}} onClick={() => setMode('dictionary')}>dictionary</button>
-      <button style={{background: mode === 'translate'  && '#aaa'}} onClick={() => setMode('translate' )}>translate</button>
-      <button style={{background: mode === 'grammar'    && '#aaa'}} onClick={() => setMode('grammar'   )}>grammar</button>
-    </div>
+    <ReferencePanelTabs>
+      <ReferencePanelTab $selected={ mode === 'dictionary'} onClick={() => setMode('dictionary')}>dictionary</ReferencePanelTab>
+      <ReferencePanelTab $selected={ mode === 'translate' } onClick={() => setMode('translate' )}>translate</ReferencePanelTab>
+    </ReferencePanelTabs>
     <ReferencePanelContent>
       { mode === 'dictionary' && <Definition wordString={query} /> }
-      { mode === 'translate' && 'translate todo' }
-      { mode === 'grammar' && 'grammar todo' }
+      { mode === 'translate' && <TranslatePane wordString={query} /> }
     </ReferencePanelContent>
   </ReferencePanelWrapper>
 }
@@ -58,9 +57,20 @@ const ReferencePanelToggle = styled.button`
   border-bottom: 1px solid;
   background: white;
 `
+const ReferencePanelTabs = styled.div`
+  margin: 0 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid;
+`
+const ReferencePanelTab = styled.button`
+  text-align: center;
+  padding: 0.5rem 0;
+  text-decoration: none;
+  /* cursor: pointer; */
+  border-bottom: ${props => props.$selected ? '2px solid black' : '2px solid white'};
+`
 const ReferencePanelContent = styled.div`
   overflow-y: auto;
-  margin-top: 1rem;
   padding: 1rem 1rem;
-  border-top: 1px solid;
 `

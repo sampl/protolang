@@ -7,7 +7,7 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 import { corsHeaders } from '../_shared/cors.ts'
 // import { CreateCompletionRequest } from 'openai'
 
-console.log("Boom, started hello function")
+console.log("Boom, started chat reply function")
 
 serve(async (req: Request) => {
 
@@ -63,6 +63,7 @@ serve(async (req: Request) => {
     // https://supabase.com/docs/guides/functions/examples/openai
     const completionConfig = {
       model: 'text-davinci-003',
+      // model: 'gpt-3.5-turbo',
       prompt,
       max_tokens: 256,
       temperature: 0,
@@ -90,7 +91,6 @@ serve(async (req: Request) => {
     // Write response back to the db
     const chatResponse = {
       language_id: requestData.language_id,
-      // content: 'hello this is a bot response',
       content: AIResult.choices[0].text,
       sender_type: 'robot',
       sender_id: null,

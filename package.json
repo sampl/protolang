@@ -23,8 +23,8 @@
     "functions:serve": "supabase functions serve --env-file .env.development",
     "functions:setSecrets:dev": "supabase secrets set --env-file .env.development",
     "functions:setSecrets:prod": "supabase secrets set --env-file .env.production",
-    "functions:deploy:dev": "env-cmd -f .env.development supabase functions deploy hello --project-ref ADD_PROJECT_ID_HERE",
-    "functions:deploy:prod": "env-cmd -f .env.production supabase functions deploy hello --project-ref ADD_PROJECT_ID_HERE"
+    "functions:deploy:dev": "env-cmd -f .env.development supabase functions deploy ai_prompt --project-ref ADD_PROJECT_ID_HERE && supabase functions deploy chat_response --project-ref ADD_PROJECT_ID_HERE",
+    "functions:deploy:prod": "env-cmd -f .env.production supabase functions deploy ai_prompt --project-ref ADD_PROJECT_ID_HERE && supabase functions deploy chat_response --project-ref ADD_PROJECT_ID_HERE"
   },
   "dependencies": {
     "@formspree/react": "^2.4.1",
