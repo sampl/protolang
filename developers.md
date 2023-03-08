@@ -1,14 +1,12 @@
 # Developer guide
 
-This guide will show you how to develop the Protolang web application.
-
-Before participating in our community, please see our [contributing guidelines](contributing.md) and .
+Before contributing, please read our [contributing guidelines](https://github.com/sampl/protolang/blob/main/contributing.md) and [code of conduct](https://github.com/sampl/protolang/blob/main/conduct.md).
 
 ## Getting set up
 
 ### Create API accounts
 
-You'll need a paid OpenAi account and private key to run AI chats.
+You'll need an [OpenAI account](https://platform.openai.com/signup) and private key to run AI chats.
 
 ### Install dependencies
 
@@ -86,7 +84,6 @@ Prerequisites:
 
 - [Install the Supabase CLI](https://supabase.com/docs/guides/cli) with `brew install supabase/tap/supabase` on MacOS or NPM or whatever you need.
 - Set env vars on servers by updating .env files and running `npm run functions:setSecrets:dev` and/or `npm run functions:setSecrets:prod`
-- Deploy functions to Supabase servers with `npm run functions:deploy:dev` and/or `npm run functions:deploy:prod`
 
 For developing functions locally:
 
@@ -97,9 +94,13 @@ For developing functions locally:
 
 To deploy to Vercel, push to GitHub and connect a new project in the [Vercel dashboard](https://vercel.com/docs/concepts/git/vercel-for-github). You'll probably want to add your public environment variables to Vercel (**DO NOT** publish your `ADMIN_POSTGRES_CONNECTION_STRING` or other secrets).
 
-To deploy to a different static host, use `npm run build` to create a bundle in `/dist` and follow the directions for your hosting provider. See [Vite docs on building and deploying](https://vitejs.dev/guide/static-deploy.html#building-the-app).
+Deploy functions to Supabase servers with `npm run functions:deploy:dev` and/or `npm run functions:deploy:prod`
 
-To self-host Protolang on your own server:
+## Self-hosting
+
+These instructions apply only to those hosting a full version of Protolang on their own server. If you just want to contribute to the Protolang project, you can skip this.
+
+To self-host the Protolang backend:
 
 - Create a separate Supabase project for production.
 - Add all the database connection information to a new `.env.production` file
@@ -107,6 +108,8 @@ To self-host Protolang on your own server:
 - Edit `updates/dictionary.js` and `migrate.js` to temporarily point to your production database (TODO - better way to hand environment switching)
 - Run `npm run db:migrate` and `npm run update:dictionary -- --live` to set up the database and seed it with the language files on the new db
 - You may want to manually copy/paste in some of the files in `/scripts/seed` to seed the database with some initial data (like languages). Be careful to replace instances of `USER_ID` with your production user ID.
+
+To deploy the frontend, use `npm run build` to create a bundle in `/dist` and follow the directions for your hosting provider. See [Vite docs on building and deploying](https://vitejs.dev/guide/static-deploy.html#building-the-app).
 
 ## Troubleshooting
 
@@ -148,8 +151,7 @@ Tables:
 
 ## TODO
 
-- Real migrations (Prisma?)
-- Move to [Next.js](https://nextjs.org/) for speed and SEO
-- Build the "Coming soon" features on [the homepage](/)
 - Migrate to from Javascript to Typescript
+- Move to [Next.js](https://nextjs.org/) for speed and SEO
+- Real migrations (Prisma?)
 - More responsive/mobile support, PWA/mobile app?
