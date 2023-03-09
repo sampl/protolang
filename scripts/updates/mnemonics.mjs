@@ -18,7 +18,7 @@ const myArgs = process.argv.slice(2)
 const LIVE = myArgs[0] === 'live'
 
 const LANGUAGE_CODE = 'it'
-const FOLDER_NAME = 'Protolang mnemonics (IT) - 1677275362'
+const FOLDER_NAME = 'Protolang mnemonics (IT)'
 const MNEMONICS_FILE_PATH = `/../../data/${FOLDER_NAME}/`
 
 console.log('Updating mnemonics...')

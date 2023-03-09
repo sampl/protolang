@@ -18,7 +18,7 @@ const myArgs = process.argv.slice(2)
 const LIVE = myArgs[0] === 'live'
 
 const LANGUAGE_CODE = 'it'
-const FOLDER_NAME = 'Protolang phrases (IT) - 1677275289'
+const FOLDER_NAME = 'Protolang phrases (IT)'
 const PHRASES_FILE_PATH = `/../../data/${FOLDER_NAME}/`
 
 console.log('Updating phrases...')

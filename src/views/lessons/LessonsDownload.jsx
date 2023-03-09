@@ -42,6 +42,10 @@ export default () => {
 
     // TODO - append CC license here
 
+    // TODO - add timestamp to readme here
+    // https://stackoverflow.com/a/9456144
+    // const timestamp = Math.floor(new Date() / 1000)
+
     // make zip file
     console.log('zipping lessonFiles', lessonFiles)
     const zip = new JSZip()
@@ -50,9 +54,7 @@ export default () => {
 
     // save file
     console.log('saving lessonFiles')
-    // https://stackoverflow.com/a/9456144
-    const timestamp = Math.floor(new Date() / 1000)
-    saveAs(zipFile, `Protolang lessons (${LANG_CODE.toUpperCase()}) - ${timestamp}.zip`)
+    saveAs(zipFile, `Protolang lessons (${LANG_CODE.toUpperCase()}).zip`)
 
     setDownloadingState('done')
   }

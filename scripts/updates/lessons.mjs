@@ -29,7 +29,7 @@ const myArgs = process.argv.slice(2)
 const LIVE = myArgs[0] === 'live'
 
 const LANGUAGE_CODE = 'it'
-const FOLDER_NAME = 'Protolang lessons (IT) - 1677275288'
+const FOLDER_NAME = 'Protolang lessons (IT)'
 const LESSONS_FILE_PATH = `/../../data/${FOLDER_NAME}/`
 
 console.log('Updating lessons...')
