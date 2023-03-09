@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router-dom'
 
 import { supabase, useSupabaseQuery } from '@/db/supabase'
 import { logError } from '../../_util/error.js'
+import LessonAdminEdit from '../lessons/LessonAdminEdit.jsx'
 
 export default () => {
   const { langId } = useParams()
@@ -77,6 +78,7 @@ export default () => {
         <tr>
           <th>ID</th>
           <th>Title</th>
+          <th>Title Ita (coming soon)</th>
           <th>Slug</th>
           <th>Unit</th>
           <th>Sort order</th>
@@ -85,6 +87,7 @@ export default () => {
           <th>Chars</th>
           <th>Created by</th>
           <th>Created at</th>
+          <th></th>
           <th></th>
           <th></th>
         </tr>
@@ -98,6 +101,9 @@ export default () => {
               </td>
               <td>
                 <Link to={`/${langId}/lessons/${lesson.slug}`}>{lesson.title_eng}</Link>
+              </td>
+              <td>
+                {lesson.title_ita}
               </td>
               <td>
                 {lesson.slug}
@@ -133,6 +139,9 @@ export default () => {
               </td>
               <td>
                 <Link to={`/${langId}/lessons/${lesson.slug}/edit`}>Edit</Link>
+              </td>
+              <td>
+                <LessonAdminEdit lesson={lesson} />
               </td>
               <td>
                 <Link to={`/${langId}/lessons/${lesson.slug}/history`}>History</Link>

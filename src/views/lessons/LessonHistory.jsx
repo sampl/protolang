@@ -41,6 +41,8 @@ export default () => {
     </BreadcrumbWrapper>
 
     <h1>History: {lesson.title_eng}</h1>
+    {lesson?.title_ita && <p>{lesson.title_ita}</p> }
+
     <hr />
     <TwoColumns cols="2fr 1fr">
       <div>

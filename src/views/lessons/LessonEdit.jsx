@@ -12,9 +12,10 @@ import Modal from '@/styles/Modal'
 import { CheckboxGroup } from '@/styles/RadioCheckbox'
 import { logError } from '../../_util/error.js'
 import EditorOnboarding from '../account/EditorOnboarding.jsx'
+import LessonAdminEdit from './LessonAdminEdit'
 
 export default () => {
-  const { user } = useUser()
+  const { user, isAdmin } = useUser()
   const { langId, slug } = useParams()
 
   const [topics, setTopics] = useState([])
@@ -109,6 +110,7 @@ export default () => {
     <button style={{float: 'right'}} onClick={() => setHelpModalOpen(true)}>Formatting help</button>
 
     <h1>Edit lesson: {lesson.title_eng}</h1>
+    {lesson?.title_ita && <p>{lesson.title_ita}</p> }
 
     <button type="button" onClick={() => setTopicsModalOpen(true)}>Edit topics ({topics?.length > 0 ? topics.join(', ') : 'none yet'})</button>
 
@@ -136,6 +138,8 @@ export default () => {
         options={!topicsList ? [] : topicsList.map(topic => ({id: topic.slug, description: topic.title_eng}))}
       />
     </Modal>
+
+    { lesson && isAdmin && <p><LessonAdminEdit lesson={lesson} /></p> }
 
     <hr />
     <form onSubmit={submit}>

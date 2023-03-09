@@ -11,7 +11,8 @@ export default () => {
   const { langId } = useParams()
   const navigate = useNavigate()
 
-  const [title, setTitle] = useState('')
+  const [titleEng, setTitleEng] = useState('')
+  const [titleIta, setTitleIta] = useState('')
   const [unit, setUnit] = useState(1)
   const [saving, setSaving] = useState(false)
 
@@ -21,7 +22,7 @@ export default () => {
   const [lessonCount, lessonCountLoading, lessonCountError] = useSupabaseQuery(lessonCountQuery)
 
   const count = lessonCount?.count || 0
-  const slug = slugify(title, { lower: true })
+  const slug = slugify(titleEng, { lower: true })
 
   async function submit( event ) {
     event.preventDefault()
@@ -30,7 +31,8 @@ export default () => {
 
       const newData = {
         language_id: langId,
-        title_eng: title,
+        title_eng: titleEng,
+        title_ita: titleIta,
         slug,
         unit,
         sort_order: count,
@@ -57,23 +59,25 @@ export default () => {
   return <form onSubmit={submit}>
     <h2>New lesson</h2>
 
-    <label htmlFor="title">Title</label>
+    <label htmlFor="titleEng">Title</label>
     <input
-      id="title"
+      id="titleEng"
       type="text"
-      value={title}
+      value={titleEng}
       placeholder=""
-      onChange={e => setTitle(e.target.value)}
+      onChange={e => setTitleEng(e.target.value)}
       required
     />
+    <p>{slug}</p>
 
-    <label htmlFor="slug">Slug</label>
+    <label htmlFor="titleIta">Italian title (optional)</label>
     <input
-      id="slug"
+      id="titleIta"
       type="text"
-      value={slug}
+      value={titleIta}
+      placeholder=""
+      onChange={e => setTitleIta(e.target.value)}
       required
-      disabled
     />
 
     <label htmlFor="count">Sort order</label>

@@ -8,10 +8,11 @@ import LessonContent from './LessonContent'
 import { TwoColumns } from '@/styles/Layout'
 import { useUser } from "@/_state/user"
 import { Badge } from '@/styles/Badge'
+import LessonAdminEdit from './LessonAdminEdit'
 
 export default () => {
   const { slug, langId } = useParams()
-  const { user } = useUser()
+  const { user, isAdmin } = useUser()
 
   const query = supabase
     .from('lessons')
@@ -33,6 +34,7 @@ export default () => {
     {loading && 'loading...'}
 
     <h1>{lesson?.title_eng}</h1>
+    {lesson?.title_ita && <p>{lesson.title_ita}</p> }
 
     <hr />
 
@@ -50,6 +52,8 @@ export default () => {
         <Link to={`/${langId}/lessons/${lesson?.slug}/history`}>History</Link>
         <br />
         { user && <Link to={`/${langId}/lessons/${lesson?.slug}/edit`}>Edit lesson</Link> }
+        <br />
+        { lesson && isAdmin && <p><LessonAdminEdit lesson={lesson} /></p> }
       </div>
     </TwoColumns>
   </>

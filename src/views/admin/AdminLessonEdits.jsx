@@ -28,6 +28,7 @@ export default () => {
           <th>ID</th>
           <th>Lesson ID</th>
           <th>Lesson</th>
+          <th>Lesson Ita</th>
           <th>Author</th>
           <th>Timestamp</th>
           <th></th>
@@ -47,6 +48,9 @@ export default () => {
               </td>
               <td>
                 <Link to={`/${langId}/lessons/${lessonEdit.lesson_id?.slug}`}>{lessonEdit.lesson_id?.title_eng}</Link>
+              </td>
+              <td>
+                {lessonEdit.lesson_id?.title_ita || ''}
               </td>
               <td>
                 {lessonEdit?.created_by?.slice(-6)}

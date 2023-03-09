@@ -183,6 +183,7 @@ create table lessons (
 
   language_id   text not null references languages(id),
   title_eng     text not null,
+  title_ita     text,
   slug          text unique not null,
   sort_order    bigint,
   unit          bigint not null,
