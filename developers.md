@@ -59,7 +59,7 @@ The full language dictionaries are generated from the English-language [Wiktiona
 
 - Download the language files you want to use from [https://kaikki.org/dictionary/]
 - Move the file into the `/data` directory
-- Run `npm run update:dictionary -- --live`
+- Run `npm run import:dictionary -- --live`
 
 To seed lessons and phrases:
 
@@ -105,8 +105,8 @@ To self-host the Protolang backend:
 - Create a separate Supabase project for production.
 - Add all the database connection information to a new `.env.production` file
 - Edit the [auth config in Supabase](https://app.supabase.com/project/_/auth/url-configuration) with the URL you wan to host on
-- Edit `updates/dictionary.js` and `migrate.js` to temporarily point to your production database (TODO - better way to hand environment switching)
-- Run `npm run db:migrate` and `npm run update:dictionary -- --live` to set up the database and seed it with the language files on the new db
+- Edit `import/dictionary.js` and `migrate.js` to temporarily point to your production database (TODO - better way to hand environment switching)
+- Run `npm run db:migrate` and `npm run import:dictionary -- --live` to set up the database and seed it with the language files on the new db
 - You may want to manually copy/paste in some of the files in `/scripts/seed` to seed the database with some initial data (like languages). Be careful to replace instances of `USER_ID` with your production user ID.
 
 To deploy the frontend, use `npm run build` to create a bundle in `/dist` and follow the directions for your hosting provider. See [Vite docs on building and deploying](https://vitejs.dev/guide/static-deploy.html#building-the-app).
