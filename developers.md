@@ -59,7 +59,7 @@ The full language dictionaries are generated from the English-language [Wiktiona
 
 - Download the language files you want to use from [https://kaikki.org/dictionary/]
 - Move the file into the `/data` directory
-- Run `npm run import:dictionary -- --live`
+- Run `npm run import:dictionary -- live`
 
 To seed lessons and phrases:
 
@@ -83,18 +83,18 @@ That's it--you should be good to go!
 Prerequisites:
 
 - [Install the Supabase CLI](https://supabase.com/docs/guides/cli) with `brew install supabase/tap/supabase` on MacOS or NPM or whatever you need.
-- Set env vars on servers by updating .env files and running `npm run functions:setSecrets:dev` and/or `npm run functions:setSecrets:prod`
+- Add any env vars you need to `.env.development` and `.env.production`
 
 For developing functions locally:
 
 - Install Docker and run it
-- `npm run functions:serve`
+- `npm run serve:functions`
 
 ## Deploy
 
 To deploy to Vercel, push to GitHub and connect a new project in the [Vercel dashboard](https://vercel.com/docs/concepts/git/vercel-for-github). You'll probably want to add your public environment variables to Vercel (**DO NOT** publish your `ADMIN_POSTGRES_CONNECTION_STRING` or other secrets).
 
-Deploy functions to Supabase servers with `npm run functions:deploy:dev` and/or `npm run functions:deploy:prod`
+Deploy functions to Supabase servers with `npm run deploy:functions`
 
 ## Self-hosting
 
@@ -106,7 +106,7 @@ To self-host the Protolang backend:
 - Add all the database connection information to a new `.env.production` file
 - Edit the [auth config in Supabase](https://app.supabase.com/project/_/auth/url-configuration) with the URL you wan to host on
 - Edit `import/dictionary.js` and `migrate.js` to temporarily point to your production database (TODO - better way to hand environment switching)
-- Run `npm run db:migrate` and `npm run import:dictionary -- --live` to set up the database and seed it with the language files on the new db
+- Run `npm run db:migrate` and `npm run import:dictionary -- live` to set up the database and seed it with the language files on the new db
 - You may want to manually copy/paste in some of the files in `/scripts/seed` to seed the database with some initial data (like languages). Be careful to replace instances of `USER_ID` with your production user ID.
 
 To deploy the frontend, use `npm run build` to create a bundle in `/dist` and follow the directions for your hosting provider. See [Vite docs on building and deploying](https://vitejs.dev/guide/static-deploy.html#building-the-app).

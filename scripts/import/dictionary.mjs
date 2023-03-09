@@ -3,28 +3,29 @@
 // That means you should be able to run this script against the production database
 // whenever without affecting users or creating foreign key errors
 
-import pgPromise from 'pg-promise'
-import dotenv from 'dotenv'
 import LineByLineReader from 'line-by-line'
+
+import pgPromise from 'pg-promise'
+const pgp = pgPromise()
+const db = pgp(CONNECTION_STRING)
+
 import { dirname } from 'path'
 import { fileURLToPath } from 'url'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
-dotenv.config({ path: '.env.development' })
-const CONNECTION_STRING = process.env.ADMIN_POSTGRES_CONNECTION_STRING
+import minimist from 'minimist'
+const argv = minimist(process.argv.slice(2))
+const DRY_RUN = !argv._.includes('live')
 
-const myArgs = process.argv.slice(2)
-const LIVE = myArgs[0] === 'live'
+import dotenv from 'dotenv'
+dotenv.config({ path: argv._.includes('prod') ? '.env.production' : '.env.development' })
+const CONNECTION_STRING = process.env.ADMIN_POSTGRES_CONNECTION_STRING
 
 const LANGUAGE_CODE = `it`
 const SCHEMA_NAME = `dictionaries`
 const TABLE_NAME = `${SCHEMA_NAME}.${LANGUAGE_CODE}`
 const DICTIONARY_FILE_PATH = `/../../data/kaikki.org-dictionary-Italian.json`
 const BATCH_SIZE = 1000
-
-// pg-promise setup
-const pgp = pgPromise()
-const db = pgp(CONNECTION_STRING)
 
 let onDeck = []
 let errors = []
@@ -37,7 +38,7 @@ const updateDictionary = async () => {
     console.time('Duration')
 
     // clear out previous data
-    if (LIVE) {
+    if (!DRY_RUN) {
       console.log('Removing old dictionary')
       await db.none(`
         create schema if not exists ${SCHEMA_NAME};
@@ -76,8 +77,8 @@ const updateDictionary = async () => {
           }
         },
       );
-      console.log(`Got batch #${batchCount} of size ${rows.length}, starting with ${rows[0].word} ${LIVE ? '- sending to db' : ''}`)
-      if (LIVE) {
+      console.log(`Got batch #${batchCount} of size ${rows.length}, starting with ${rows[0].word} ${!DRY_RUN ? '- sending to db' : ''}`)
+      if (!DRY_RUN) {
         const query = pgp.helpers.insert(rows, columnSet)
         return db.none(query)
       }
@@ -114,7 +115,7 @@ const updateDictionary = async () => {
       // send whatever was queued up at the end of the list (but never hit the BATCH_SIZE limit)
       await sendBatch(onDeck)
 
-      console.log(`${batchCount} batches ${LIVE ? 'sent to the database' : 'processed as a test'}`)
+      console.log(`${batchCount} batches ${!DRY_RUN ? 'sent to the database' : 'processed as a test'}`)
       if (errors.length === 0) {
         console.log('Done, with no errors ✅')
       } else {

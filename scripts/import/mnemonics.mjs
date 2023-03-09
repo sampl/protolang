@@ -1,21 +1,22 @@
 // This script updates the Mnemonics table based on a text file archive generated in the app
 
+import { promises as fs } from 'fs'
+
 import pg from 'pg'
 const Client = pg.Client
-import { promises as fs } from 'fs'
-import dotenv from 'dotenv'
 
 import { dirname } from 'path'
 import { fileURLToPath } from 'url'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
-dotenv.config({ path: '.env.development' })
-// dotenv.config({ path: '.env.production' })
+import minimist from 'minimist'
+const argv = minimist(process.argv.slice(2))
+const DRY_RUN = !argv._.includes('live')
+
+import dotenv from 'dotenv'
+dotenv.config({ path: argv._.includes('prod') ? '.env.production' : '.env.development' })
 const CONNECTION_STRING = process.env.ADMIN_POSTGRES_CONNECTION_STRING
 const SEED_USER_ID = process.env.SEED_USER_ID
-
-const myArgs = process.argv.slice(2)
-const LIVE = myArgs[0] === 'live'
 
 const LANGUAGE_CODE = 'it'
 const FOLDER_NAME = 'Protolang mnemonics (IT)'
@@ -69,8 +70,8 @@ const parseMnemonicFile = async ({ fileName, fileContents }) => {
 
 const updateDatabase = async mnemonics => {
 
-  if (!LIVE) {
-    console.log('Skipping db update, to run it for real use "-- live"')
+  if (DRY_RUN) {
+    console.log('Dry run, skipping db update')
     return
   }
 

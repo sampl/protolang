@@ -1,12 +1,16 @@
-// don't even let devs do this on live
-require('dotenv').config({ path: '.env.development' })
-// require('dotenv').config({ path: '.env.production' })
+import pg from 'pg'
+const Client = pg.Client
 
-const { Client } = require('pg')
+import minimist from 'minimist'
+const argv = minimist(process.argv.slice(2))
+
+import dotenv from 'dotenv'
+dotenv.config({ path: argv._.includes('prod') ? '.env.production' : '.env.development' })
+const CONNECTION_STRING = process.env.ADMIN_POSTGRES_CONNECTION_STRING
 
 // delete tables in the reverse order of their creation to avoid foreign key errors
 const clearSql = `
-  alter table public.lessons drop column current_edit;
+  alter table if exists public.lessons drop column current_edit;
 
   drop publication if exists supabase_realtime;
 
@@ -60,13 +64,11 @@ const clearSql = `
 console.log('Clearing database')
 
 const clear = async () => {
-  const connectionString = process.env.ADMIN_POSTGRES_CONNECTION_STRING
-  if (!connectionString) throw new Error('No connection string found')
-  const client = new Client({ connectionString })
-  
+  if (!CONNECTION_STRING) throw new Error('No connection string found')
+  const client = new Client({ connectionString: CONNECTION_STRING })
+  console.log('  Connecting to database')
+  await client.connect()
   try {
-    console.log('  Connecting to database')
-    await client.connect()
     console.log('  Running clear script')
     await client.query(clearSql)
     console.log('✅ Clear successful')

@@ -1,11 +1,19 @@
-// TODO - let people run this against the live db
-require('dotenv').config({ path: '.env.development' })
-// require('dotenv').config({ path: '.env.production' })
+import { promises as fs } from 'fs'
 
-const { Client } = require('pg')
-const fs = require('fs')
+import pg from 'pg'
+const Client = pg.Client
 
-const NEW_DATABASE = process.argv[2] && process.argv[2] === '--new'
+import { dirname } from 'path'
+import { fileURLToPath } from 'url'
+const __dirname = dirname(fileURLToPath(import.meta.url))
+
+import minimist from 'minimist'
+const argv = minimist(process.argv.slice(2))
+const NEW_DATABASE = argv._.includes('new')
+
+import dotenv from 'dotenv'
+dotenv.config({ path: argv._.includes('prod') ? '.env.production' : '.env.development' })
+const CONNECTION_STRING = process.env.ADMIN_POSTGRES_CONNECTION_STRING
 
 const MIGRATION_DIR = '/migrations/'
 
@@ -14,17 +22,16 @@ console.log('Running migrations')
 const migrate = async () => {
 
   console.log('  Connecting to database')
-  const connectionString = process.env.ADMIN_POSTGRES_CONNECTION_STRING
-  if (!connectionString) throw new Error('No connection string found')
-  const client = new Client({ connectionString })
+  if (!CONNECTION_STRING) throw new Error('No connection string found')
+  const client = new Client({ connectionString: CONNECTION_STRING })
   await client.connect()
 
   try {
     console.log('  Getting migration files')
     const path = __dirname + MIGRATION_DIR
-    const filenames = await fs.promises.readdir(path)
+    const filenames = await fs.readdir(path)
     let migrationFiles = await Promise.all(filenames.map(async filename => {
-      const content = await fs.promises.readFile(path + filename, 'utf-8')
+      const content = await fs.readFile(path + filename, 'utf-8')
       const sql = content.toString()
       const id = parseInt(filename.split(' - ')[0])
       return { id, filename, sql }

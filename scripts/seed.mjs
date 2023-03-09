@@ -1,9 +1,18 @@
-// don't even let devs do this on live
-require('dotenv').config({ path: '.env.development' })
-// require('dotenv').config({ path: '.env.production' })
+import { promises as fs } from 'fs'
 
-const { Client } = require('pg')
-const fs = require('fs')
+import pg from 'pg'
+const Client = pg.Client
+
+import { dirname } from 'path'
+import { fileURLToPath } from 'url'
+const __dirname = dirname(fileURLToPath(import.meta.url))
+
+import minimist from 'minimist'
+const argv = minimist(process.argv.slice(2))
+
+import dotenv from 'dotenv'
+dotenv.config({ path: argv._.includes('prod') ? '.env.production' : '.env.development' })
+const CONNECTION_STRING = process.env.ADMIN_POSTGRES_CONNECTION_STRING
 
 const SEEDS_DIR = '/seeds/'
 const USER_ID = process.env.SEED_USER_ID
@@ -13,9 +22,8 @@ console.log('Running seeds')
 const seed = async () => {
 
   console.log('  Connecting to database')
-  const connectionString = process.env.ADMIN_POSTGRES_CONNECTION_STRING
-  if (!connectionString) throw new Error('No connection string found')
-  const client = new Client({ connectionString })
+  if (!CONNECTION_STRING) throw new Error('No connection string found')
+  const client = new Client({ connectionString: CONNECTION_STRING })
   await client.connect()
 
   let seedFiles
@@ -23,9 +31,9 @@ const seed = async () => {
   try {
     console.log('  Getting seed files')
     const path = __dirname + SEEDS_DIR
-    const filenames = await fs.promises.readdir(path)
+    const filenames = await fs.readdir(path)
     const seedFilePromises = filenames.map(async filename => {
-      const content = await fs.promises.readFile(path + filename, 'utf-8')
+      const content = await fs.readFile(path + filename, 'utf-8')
       const sql = content.toString()
       return { filename, sql }
     })
