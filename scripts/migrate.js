@@ -1,6 +1,6 @@
 // TODO - let people run this against the live db
-// require('dotenv').config({ path: '.env.development' })
-require('dotenv').config({ path: '.env.production' })
+require('dotenv').config({ path: '.env.development' })
+// require('dotenv').config({ path: '.env.production' })
 
 const { Client } = require('pg')
 const fs = require('fs')

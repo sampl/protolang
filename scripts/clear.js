@@ -1,6 +1,6 @@
 // don't even let devs do this on live
-// require('dotenv').config({ path: '.env.development' })
-require('dotenv').config({ path: '.env.production' })
+require('dotenv').config({ path: '.env.development' })
+// require('dotenv').config({ path: '.env.production' })
 
 const { Client } = require('pg')
 
