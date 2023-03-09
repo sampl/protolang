@@ -8,9 +8,9 @@ export default ({ phrase, float }) => {
 
   const [phraseEditorIsOpen, setPhraseEditorIsOpen] = useState(false)
   const [contentIta, setContentIta] = useState(phrase.content_ita || '')
-  const [itAlts, setItAlts] = useState(phrase.content_ita_alts || [])
-  const [contentEn, setContentEn] = useState(phrase.content_eng || '')
-  const [enAlts, setEnAlts] = useState(phrase.content_eng_alts || [])
+  const [itaAlts, setItaAlts] = useState(phrase.content_ita_alts || [])
+  const [contentEng, setContentEng] = useState(phrase.content_eng || '')
+  const [engAlts, setEngAlts] = useState(phrase.content_eng_alts || [])
   const [saving, setSaving] = useState(false)
 
   async function submit( event ) {
@@ -19,9 +19,9 @@ export default ({ phrase, float }) => {
       setSaving(true)
       const newData = {
         content_ita: contentIta,
-        content_eng: contentEn,
-        content_ita_alts: itAlts,
-        content_eng_alts: enAlts,
+        content_eng: contentEng,
+        content_ita_alts: itaAlts,
+        content_eng_alts: engAlts,
       }
 
       const { error } = await supabase
@@ -40,8 +40,8 @@ export default ({ phrase, float }) => {
   }
 
   const updateAlt = (lang, { index, value }) => {
-    const originalArray = lang === 'it' ? itAlts : enAlts
-    const updateFunction = lang === 'it' ? setItAlts : setEnAlts
+    const originalArray = lang === 'it' ? itaAlts : engAlts
+    const updateFunction = lang === 'it' ? setItaAlts : setEngAlts
     const newArray = [...originalArray]
     newArray[index] = value
     updateFunction(newArray)
@@ -67,7 +67,7 @@ export default ({ phrase, float }) => {
         />
 
         <label>Italian alternates</label>
-        {(!itAlts || itAlts.length < 1) ? 'no Italian alternates' : itAlts.map((alt, index) => {
+        {(!itaAlts || itaAlts.length < 1) ? 'no Italian alternates' : itaAlts.map((alt, index) => {
           return <div key={index}>
             <textarea
               style={{height: '50px'}}
@@ -76,24 +76,24 @@ export default ({ phrase, float }) => {
               onChange={e => updateAlt('it', { index, value: e.target.value})}
             />
             {/* https://stackoverflow.com/a/47024021 */}
-            <button type="button" onClick={() => setItAlts([...itAlts.slice(0, index), ...itAlts.slice(index + 1)])}>Delete</button>
+            <button type="button" onClick={() => setItaAlts([...itaAlts.slice(0, index), ...itaAlts.slice(index + 1)])}>Delete</button>
           </div>
         })}
         <br />
-        <button type="button" onClick={() => setItAlts([...itAlts, ''])}>Add alternate</button>
+        <button type="button" onClick={() => setItaAlts([...itaAlts, ''])}>Add alternate</button>
 
-        <label htmlFor="contentEn">English</label>
+        <label htmlFor="contentEng">English</label>
         <textarea
           style={{height: '50px'}}
-          id="contentEn"
-          value={contentEn}
+          id="contentEng"
+          value={contentEng}
           placeholder=""
-          onChange={e => setContentEn(e.target.value)}
+          onChange={e => setContentEng(e.target.value)}
           required
         />
 
         <label>English alternates</label>
-        {(!enAlts || enAlts.length < 1) ? 'no English alternates' : enAlts.map((alt, index) => {
+        {(!engAlts || engAlts.length < 1) ? 'no English alternates' : engAlts.map((alt, index) => {
           return <div key={index}>
             <textarea
               style={{height: '50px'}}
@@ -102,11 +102,11 @@ export default ({ phrase, float }) => {
               onChange={e => updateAlt('en', { index, value: e.target.value})}
             />
             {/* https://stackoverflow.com/a/47024021 */}
-            <button type="button" onClick={() => setEnAlts([...enAlts.slice(0, index), ...enAlts.slice(index + 1)])}>Delete</button>
+            <button type="button" onClick={() => setEngAlts([...engAlts.slice(0, index), ...engAlts.slice(index + 1)])}>Delete</button>
           </div>
         })}
         <br />
-        <button type="button" onClick={() => setEnAlts([...enAlts, ''])}>Add alternate</button>
+        <button type="button" onClick={() => setEngAlts([...engAlts, ''])}>Add alternate</button>
 
         <hr />
 
