@@ -1,14 +1,10 @@
-import {useEffect, useState} from 'react'
-import {useParams} from 'react-router-dom'
 import styled from 'styled-components/macro'
 import moment from 'moment'
 
-import { supabase, useSupabaseQuery } from '@/db/supabase'
-import { useUser } from '@/_state/user'
-import ChatInput from './ChatInput'
 import ChatEmptyState from './ChatEmptyState'
 import ChatUpgradePrompt from './ChatUpgradePrompt'
 import Definable from '@/views/lessons/Definable'
+import SpeakWord from '../dictionary/SpeakWord'
 
 export default ({ chatMessages, hitDailyLimit }) => {
 
@@ -22,6 +18,7 @@ export default ({ chatMessages, hitDailyLimit }) => {
           return <ChatMessageWrapper key={message.id} sender={message.sender_type}>
             <ChatMessageBubble sender={message.sender_type}>
               <Definable wordString={message.content} />
+              <SpeakWord wordString={message.content} />
             </ChatMessageBubble>
             <ChatMessageTime>{message.fake_time || moment(message.created_at).fromNow()}</ChatMessageTime>
           </ChatMessageWrapper>
