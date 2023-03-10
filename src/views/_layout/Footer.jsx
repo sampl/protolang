@@ -6,10 +6,10 @@ export default () => {
   return <Footer>
     <p style={{color: 'red', fontWeight: 'bold'}}>This site is in early alpha testing. Your progress may not be saved. Use at your own risk.</p>
     <p>
-      {/* <Link to="/">Home</Link>
-      {' · '} */}
-      <Link to="/about">About</Link>
+      <Link to="/">Home</Link>
       {' · '}
+      {/* <Link to="/about">About</Link> */}
+      {/* {' · '} */}
       <Link to="/open-source">Open source</Link>
       {' · '}
       <Link to="/contribute">Contribute</Link>
