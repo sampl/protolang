@@ -34,7 +34,7 @@ const deployFunctions = async () => {
 
     console.log('  Updating secrets')
     const { stdout: stdout1, stderr: stderr1 } = await exec(`supabase secrets set --env-file ${argv._.includes('prod') ? '.env.production' : '.env.development'}`)
-    if (stderr1) throw new Error(stderr1)
+    if (stderr1) console.error(stderr1)
     console.log(stdout1)
 
     // TODO - works in command link but not in exec
@@ -49,7 +49,7 @@ const deployFunctions = async () => {
 
     console.log('  Running deploy command')
     const { stdout: stdout2, stderr: stderr2 } = await exec(command)
-    if (stderr2) throw new Error(stderr2)
+    if (stderr2) console.error(stderr2)
     console.log(stdout2)
 
     console.log('✅ Deploy successful')
