@@ -23,6 +23,7 @@ export default () => {
       .from('lessons')
       .select('*, current_edit(*)')
       .eq('language_id', LANG_CODE)
+      .order('sort_order', { ascending: true })
 
     if (error) {
       alert('Sorry, could not download lessons right now. Try again later?')
@@ -33,27 +34,29 @@ export default () => {
     // generate object of markdown files
     console.log('generating lessonFiles')
     const lessonFiles = lessons.map(lesson => {
-      const hasTopics = lesson.current_edit?.topics && lesson.current_edit?.topics.length >= 0
-      const topics = hasTopics ? ` - (${lesson.current_edit?.topics.join(', ')})` : ''
-      const metadataYaml = yaml.stringify({ unit, order, title_eng, title_ita, topics })
+      const timestamp = Math.floor(new Date() / 1000) // https://stackoverflow.com/a/9456144
+      const license = 'Creative commons license coming soon' // TODO - real license
+      const { unit, sort_order, title_eng, topics } = lesson
+      const metadata = { unit, sort_order, title_eng, timestamp, license }
+      if (lesson.title_ita) {
+        metadata.title_ita = lesson.title_ita
+      }
+      if (lesson.current_edit?.topics) {
+        metadata.topics = lesson.current_edit.topics
+      }
+      const metadataYaml = yaml.stringify(metadata)
       const frontmatter = `---\n${metadataYaml}---\n\n`
 
       return {
-        name: `Unit ${lesson.unit || 0} - #${lesson.sort_order || 0} - ${lesson.title_eng}${topics}.md`,
+        name: `${lesson.unit || 0} - #${lesson.sort_order || 0} - ${lesson.title_eng}.md`,
         content: frontmatter + (lesson.current_edit?.content_eng || ''),
       }
     })
 
-    // TODO - append CC license here
-
-    // TODO - add timestamp to readme here
-    // https://stackoverflow.com/a/9456144
-    // const timestamp = Math.floor(new Date() / 1000)
-
     // make zip file
     console.log('zipping lessonFiles', lessonFiles)
     const zip = new JSZip()
-    lessonFiles.forEach( (file, index) => zip.file(file.name, file.content))
+    lessonFiles.forEach(file => zip.file(file.name, file.content))
     const zipFile = await zip.generateAsync({ type: 'blob' })
 
     // save file

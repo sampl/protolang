@@ -76,31 +76,34 @@ const parseLessonFile = async ({ fileName, fileContents }) => {
   const yamlStr = match[1]
   const metadata = yaml.parse(yamlStr)
 
-  if (!metadata) throw new Error('Could not parse yaml for frontmatter in' + fileName)
-  if (!metadata.unit) throw new Error('Missing unit in frontmatter in' + fileName)
-  if (!metadata.order) throw new Error('Missing order in frontmatter in' + fileName)
-  if (!metadata.title) throw new Error('Missing title in frontmatter in' + fileName)
-
-  const { unit, order, title, topics } = metadata
+  if (!metadata) throw new Error('Could not parse yaml for frontmatter in ' + fileName)
+  if (!metadata.unit && metadata.unit !== 0) throw new Error('Missing unit in frontmatter in ' + fileName)
+  if (!metadata.sort_order && metadata.sort_order !== 0) throw new Error('Missing sort_order in frontmatter in ' + fileName)
+  if (!metadata.title_eng) throw new Error('Missing title_eng in frontmatter in ' + fileName)
+  
+  let { unit, sort_order, title_eng, title_ita, topics } = metadata
 
   const content = fileContents.slice(match[0].length)
 
   const phrases = await parsePhrasesFromLessonContent(fileContents)
 
   // https://www.npmjs.com/package/slugify
-  const slug = slugify(title, {
+  const slug = slugify(title_eng, {
     lower: true,
     strict: true,
   })
   if (!slug || slug.length < 1) {
-    throw new Error(`Invalid slug generated for title "${title}" in file ${fileName}`)
+    throw new Error(`Invalid slug generated for title_eng "${title_eng}" in file ${fileName}`)
   }
 
-  console.log(`LESSON UNIT AND TOPICS, ${unit}, ${topics.join(' - ')}`)
+  topics = topics || []
+
+  console.log(`LESSON UNIT AND TOPICS, ${unit}, ${topics?.join(' - ')}`)
   const lesson = {
     unit,
-    order,
-    title,
+    sort_order,
+    title_eng,
+    title_ita,
     slug,
     topics,
     content,
@@ -152,10 +155,10 @@ const parsePhrasesFromLessonContent = async content => {
 
   // // ERROR - could not find array type for data type text[], maybe because we need a db update?
   // if (error) {
-  //   throw new Error(`Could not query phrases in lesson ${order}`, error)
+  //   throw new Error(`Could not query phrases in lesson ${sort_order}`, error)
   // }
 
-  const allPhrases = phraseStringObjects.map(pso => pso.it)
+  const allPhrases = phraseStringObjects.map(pso => pso.ita)
   const phrases = allPhrases.filter(p => p)
 
   console.log('  Got phrases from lesson: ', JSON.stringify(phrases).slice(0, 50))
@@ -178,32 +181,36 @@ const updateDatabase = async lessons => {
 
   const lessonQueries = lessons.map(async lesson => {
 
-    if (!Array.isArray(lesson.phrases) || !Array.isArray(lesson.topics)) {
-      throw new Error('lesson.phrases or lesson.topics is not an array', lesson.phrases, lesson.topics)
+    if (!Array.isArray(lesson.phrases)) {
+      throw new Error('lesson.phrases is not an array', lesson.phrases)
+    }
+    if (!Array.isArray(lesson.topics)) {
+      throw new Error('lesson.topics is not an array', lesson.topics)
     }
     const dbPhrases = prepareArrayForDb(lesson.phrases)
     const dbTopics = prepareArrayForDb(lesson.topics)
 
     // add the lesson
-    console.log(`  Adding lesson: ${lesson.title}`)
+    console.log(`  Adding lesson: ${lesson.title_eng}`)
     const lessonValues = [
       LANGUAGE_CODE,
-      lesson.title,
+      lesson.title_eng,
+      lesson.title_ita,
       lesson.slug,
-      lesson.order,
+      lesson.sort_order,
       lesson.unit,
       new Date(),
       SEED_USER_ID,
     ]
     const lessonQuery = `
-      INSERT INTO lessons(language_id, title_eng, slug, sort_order, unit, created_at, created_by)
-      VALUES($1, $2, $3, $4, $5, $6, $7)
+      INSERT INTO lessons(language_id, title_eng, title_ita, slug, sort_order, unit, created_at, created_by)
+      VALUES($1, $2, $3, $4, $5, $6, $7, $8)
       RETURNING id
     `
     const lessonResult = await client.query(lessonQuery, lessonValues)
 
     // add the lesson edit
-    console.log(`  Adding lesson edit: ${lesson.title}`)
+    console.log(`  Adding lesson edit: ${lesson.title_eng}`)
     const lessonId = lessonResult.rows[0].id
     const lessonEditValues = [
       LANGUAGE_CODE,
