@@ -53,6 +53,7 @@ const ReferencePanelToggle = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 
   border-bottom: 1px solid;
   background: white;
