@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import slugify from 'slugify'
+import { customAlphabet } from 'nanoid'
+// import slugify from 'slugify'
 
 import { useUser } from '@/_state/user'
 import { supabase, useSupabaseQuery } from '@/db/supabase'
@@ -22,7 +23,10 @@ export default () => {
   const [lessonCount, lessonCountLoading, lessonCountError] = useSupabaseQuery(lessonCountQuery)
 
   const count = lessonCount?.count || 0
-  const slug = slugify(titleEng, { lower: true })
+
+  const alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+  const nanoid = customAlphabet(alphabet, 12)
+  const slug = nanoid()
 
   async function submit( event ) {
     event.preventDefault()
@@ -68,7 +72,6 @@ export default () => {
       onChange={e => setTitleEng(e.target.value)}
       required
     />
-    <p>{slug}</p>
 
     <label htmlFor="titleIta">Italian title (optional)</label>
     <input

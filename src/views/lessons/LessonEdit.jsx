@@ -16,7 +16,9 @@ import LessonAdminEdit from './LessonAdminEdit'
 
 export default () => {
   const { user, isAdmin } = useUser()
-  const { langId, slug } = useParams()
+  const { langId, lessonString } = useParams()
+
+  const slug = lessonString.split('-').pop()
 
   const [topics, setTopics] = useState([])
   const [content, setContent] = useState('')

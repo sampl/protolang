@@ -184,22 +184,22 @@ export default [
     layout: LayoutLanguage,
   },
   {
-    path: `/:langId/lessons/:slug/edit`,
+    path: `/:langId/lessons/:lessonString/edit`,
     component: LessonEdit,
     layout: LayoutLanguage,
   },
   {
-    path: `/:langId/lessons/:slug/history`,
+    path: `/:langId/lessons/:lessonString/history`,
     component: LessonHistory,
     layout: LayoutLanguage,
   },
   {
-    path: `/:langId/lessons/:slug/history/:editId`,
+    path: `/:langId/lessons/:lessonString/history/:editId`,
     component: LessonHistoryItem,
     layout: LayoutLanguage,
   },
   {
-    path: `/:langId/lessons/:slug`,
+    path: `/:langId/lessons/:lessonString`,
     component: LessonItem,
     layout: LayoutLanguage,
   },

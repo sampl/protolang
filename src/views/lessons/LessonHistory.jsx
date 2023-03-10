@@ -8,7 +8,9 @@ import { TwoColumns } from '@/styles/Layout'
 
 export default () => {
   const { user } = useUser()
-  const { langId, slug } = useParams()
+  const { langId, lessonString } = useParams()
+
+  const slug = lessonString.split('-').pop()
 
   const lessonQuery = supabase
     .from('lessons')

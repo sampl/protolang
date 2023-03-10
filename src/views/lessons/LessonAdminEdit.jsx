@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import slugify from 'slugify'
 
 import { supabase } from '@/db/supabase'
 import Modal from '@/styles/Modal'
@@ -14,8 +13,6 @@ export default ({ lesson }) => {
   const [sortOrder, setSortOrder] = useState(lesson.sort_order || 0)
   const [saving, setSaving] = useState(false)
 
-  const slug = slugify(titleEng, { lower: true })
-
   async function submit( event ) {
     event.preventDefault()
     try {
@@ -23,7 +20,6 @@ export default ({ lesson }) => {
       const newData = {
         title_eng: titleEng,
         title_ita: titleIta,
-        slug,
         unit,
         sort_order: sortOrder,
       }
@@ -61,7 +57,6 @@ export default ({ lesson }) => {
           onChange={e => setTitleEng(e.target.value)}
           required
         />
-        <p style={{fontSize: 'small'}}>{slug}</p>
 
         <label htmlFor="titleIta">Italian title (optional)</label>
         <input

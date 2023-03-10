@@ -97,8 +97,8 @@ create table user_languages (
 
 create table topics (
   id                  bigint primary key generated always as identity,
-
   slug                text unique not null,
+
   title_eng           text unique not null,
   description_eng     text not null,
   user_selectable     boolean default false not null,
@@ -180,11 +180,11 @@ create table chat_messages (
 
 create table lessons (
   id            bigint primary key generated always as identity,
+  slug          text unique not null,
 
   language_id   text not null references languages(id),
   title_eng     text not null,
   title_ita     text,
-  slug          text unique not null,
   sort_order    bigint,
   unit          bigint not null,
 

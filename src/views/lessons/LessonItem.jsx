@@ -11,8 +11,10 @@ import { Badge } from '@/styles/Badge'
 import LessonAdminEdit from './LessonAdminEdit'
 
 export default () => {
-  const { slug, langId } = useParams()
+  const { lessonString, langId } = useParams()
   const { user, isAdmin } = useUser()
+
+  const slug = lessonString.split('-').pop()
 
   const query = supabase
     .from('lessons')

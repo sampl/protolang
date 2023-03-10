@@ -8,7 +8,9 @@ import { supabase, useSupabaseQuery } from '@/db/supabase'
 import { TwoColumns } from '@/styles/Layout'
 
 export default () => {
-  const { slug, langId, editId } = useParams()
+  const { lessonString, langId, editId } = useParams()
+
+  const slug = lessonString.split('-').pop()
 
   const lessonQuery = supabase
     .from('lessons')

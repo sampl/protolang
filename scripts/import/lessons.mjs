@@ -7,7 +7,7 @@ import {unified} from 'unified'
 import remarkParse from 'remark-parse'
 import remarkStringify from 'remark-stringify'
 import remarkDirective from 'remark-directive'
-import slugify from 'slugify'
+import { customAlphabet } from 'nanoid'
 import yaml from 'yaml'
 // import supabase from '@supabase/supabase-js'
 
@@ -87,14 +87,9 @@ const parseLessonFile = async ({ fileName, fileContents }) => {
 
   const phrases = await parsePhrasesFromLessonContent(fileContents)
 
-  // https://www.npmjs.com/package/slugify
-  const slug = slugify(title_eng, {
-    lower: true,
-    strict: true,
-  })
-  if (!slug || slug.length < 1) {
-    throw new Error(`Invalid slug generated for title_eng "${title_eng}" in file ${fileName}`)
-  }
+  const alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+  const nanoid = customAlphabet(alphabet, 12)
+  const slug = metadata.slug || nanoid()
 
   topics = topics || []
 
