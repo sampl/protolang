@@ -4,7 +4,7 @@ import MnemonicNew from '@/views/mnemonics/MnemonicNew'
 import MnemonicVote from '@/views/mnemonics/MnemonicVote'
 import { useUser } from '@/_state/user'
 
-export default ({ string }) => {
+export default ({ wordString }) => {
   const { user } = useUser()
 
   // TODO - get with full text search?
@@ -15,9 +15,9 @@ export default ({ string }) => {
       all_votes:mnemonic_votes(*),
       user_votes:mnemonic_votes(*)
     `)
-    .eq('target_phrase', string)
+    .eq('target_phrase', wordString)
     .eq('user_votes.created_by', user?.id)
-  const [mnemonics, loading, error] = useSupabaseQuery(query, [string])
+  const [mnemonics, loading, error] = useSupabaseQuery(query, [wordString])
 
   return <div>
     {
@@ -27,7 +27,7 @@ export default ({ string }) => {
       mnemonics.map(mnemonic => <MnemonicsListItem key={mnemonic.id} mnemonic={mnemonic} />)
     }
     <br />
-    <MnemonicNew string={string} />
+    <MnemonicNew wordString={wordString} />
   </div>
 }
 

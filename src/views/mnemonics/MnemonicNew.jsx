@@ -5,7 +5,7 @@ import { supabase } from '@/db/supabase'
 import { useLanguage } from '@/_state/language'
 import { logError } from '../../_util/error.js'
 
-export default ({ string }) => {
+export default ({ wordString }) => {
   const { user } = useUser()
   const { currentLanguage } = useLanguage()
 
@@ -19,7 +19,7 @@ export default ({ string }) => {
 
       const newData = {
         language_id: currentLanguage.id,
-        target_phrase: string,
+        target_phrase: wordString,
         remember_method: rememberMethod,
         created_by: user.id,
       }

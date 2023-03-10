@@ -1,12 +1,12 @@
 import { supabase, useSupabaseQuery } from '@/db/supabase'
 
-export default ({ string }) => {
+export default ({ wordString }) => {
 
   const query = supabase
     .from('mnemonics')
     .select('*, mnemonic_votes(*)')
-    .eq('target_phrase', string)
-  const [mnemonics, loading, error] = useSupabaseQuery(query, [string], !string)
+    .eq('target_phrase', wordString)
+  const [mnemonics, loading, error] = useSupabaseQuery(query, [wordString], !wordString)
 
   let mnemonic
   if (mnemonics?.length > 0) {

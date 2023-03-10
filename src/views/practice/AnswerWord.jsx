@@ -24,7 +24,7 @@ export default ({ wordString }) => {
   return <WordWrapper>
     <strong>{wordString}</strong>
     <SpeakWord wordString={wordString} />
-    <MnemonicSuggested string={wordString} />
+    <MnemonicSuggested wordString={wordString} />
 
     {
       error ? <div>Error getting definitions: {error.message}</div> :

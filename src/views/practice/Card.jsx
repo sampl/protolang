@@ -65,7 +65,7 @@ export default ({
           {phrase.content_eng_alts && phrase.content_eng_alts.length > 0 && 'or '}
           {phrase.content_eng_alts?.join(', ') || ""}
         </div>
-        <MnemonicSuggested string={phrase.content_ita} />
+        <MnemonicSuggested wordString={phrase.content_ita} />
       </>
     }
     {

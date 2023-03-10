@@ -92,7 +92,7 @@ export default () => {
           Pronounce in Forvo
         </a>
         <hr />
-        <MnemonicsList string={wordName} />
+        <MnemonicsList wordString={wordName} />
         <hr />
         <Ngram wordString={wordName} />
       </div>

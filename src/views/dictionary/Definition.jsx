@@ -68,7 +68,7 @@ export default ({ wordString }) => {
         }
       </>
     }
-    <MnemonicSuggested string={wordString} />
+    <MnemonicSuggested wordString={wordString} />
     <Link to={`/${langId}/dictionary/${wordString}`}>
       Full definition
     </Link>

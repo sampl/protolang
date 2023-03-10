@@ -29,7 +29,7 @@ export default ({ name }) => {
 
       <div>{word._wiktionary_data?.senses[0].glosses.join(', ')}</div>
 
-      <MnemonicSuggested string={word?.word} />
+      <MnemonicSuggested wordString={word?.word} />
       <hr />
     </div>)}
   </MiniDefWrapper>
