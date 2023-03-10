@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { supabase } from '@/db/supabase'
 import Modal from '@/styles/Modal'
 import { logError } from '../../_util/error.js'
+import TranslateHelper from '../dictionary/TranslateHelper.jsx'
 
 export default ({ phrase, float }) => {
 
@@ -65,6 +66,7 @@ export default ({ phrase, float }) => {
           onChange={e => setContentIta(e.target.value)}
           required
         />
+        <TranslateHelper eng={contentEng} />
 
         <label>Italian alternates</label>
         {(!itaAlts || itaAlts.length < 1) ? 'no Italian alternates' : itaAlts.map((alt, index) => {
@@ -91,6 +93,7 @@ export default ({ phrase, float }) => {
           onChange={e => setContentEng(e.target.value)}
           required
         />
+        <TranslateHelper ita={contentIta} />
 
         <label>English alternates</label>
         {(!engAlts || engAlts.length < 1) ? 'no English alternates' : engAlts.map((alt, index) => {

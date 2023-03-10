@@ -59,6 +59,7 @@ export default ({ hitDailyLimit }) => {
   }
 
   // TODO - listener in db that calls this instead?
+  // Even better, don't rely on the DB at all, just send the AI's responses to the db from the client
   const triggerRemoteFunction = async () => {
     console.log('triggering remote function')
     const requestData = {
