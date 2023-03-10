@@ -8,9 +8,7 @@ import remarkParse from 'remark-parse'
 import remarkStringify from 'remark-stringify'
 import remarkDirective from 'remark-directive'
 import slugify from 'slugify'
-// import remarkFrontmatter from 'remark-frontmatter'
-// import remarkParseYaml from 'remark-parse-yaml'
-// import { filter } from 'unist-util-filter'
+import yaml from 'yaml'
 // import supabase from '@supabase/supabase-js'
 
 import pg from 'pg'
@@ -67,32 +65,27 @@ const parseLessonFile = async ({ fileName, fileContents }) => {
 
   console.log(`  Parsing lesson file ${fileName}`)
 
-  const fileNameItems = fileName.split(' - ')
+  // https://chat.openai.com/chat/aa03c1c5-d8d6-4f70-a855-cbce64977104
+  const regex = /^---\n([\s\S]*?)\n---\n/
+  const match = fileContents.match(regex)
 
-  // ex: 'Unit 1'
-  const unit = parseInt(fileNameItems[0].split(' ')[1])
-  if (!(unit >= 0 && unit < 1000000)) {
-    throw new Error(`Invalid unit "${unit}" in file ${fileName}`)
+  if (!match) {
+    throw new Error(`Could not find frontmatter for file ${fileName}`)
   }
 
-  // ex: '#1'
-  const order = parseInt(fileNameItems[1].split('#')[1])
-  if (!(order >= 0 && order < 1000000)) {
-    throw new Error(`Invalid order "${order}" in file ${fileName}`)
-  }
+  const yamlStr = match[1]
+  const metadata = yaml.parse(yamlStr)
 
-  // ex: 'Getting around.md'
-  const title = fileNameItems[2].split('.')[0].trim()
-  if (!title || title.length < 1) {
-    throw new Error(`Invalid title "${title}" in file ${fileName}`)
-  }
+  if (!metadata) throw new Error('Could not parse yaml for frontmatter in' + fileName)
+  if (!metadata.unit) throw new Error('Missing unit in frontmatter in' + fileName)
+  if (!metadata.order) throw new Error('Missing order in frontmatter in' + fileName)
+  if (!metadata.title) throw new Error('Missing title in frontmatter in' + fileName)
 
-  // ex: '(food, people)'
-  let topics = []
-  if (fileName.includes('(')) {
-    const topicSection = fileName.split('(')[1].split(')')[0]
-    topics = topicSection.split(', ').map(t => t.trim())
-  }
+  const { unit, order, title, topics } = metadata
+
+  const content = fileContents.slice(match[0].length)
+
+  const phrases = await parsePhrasesFromLessonContent(fileContents)
 
   // https://www.npmjs.com/package/slugify
   const slug = slugify(title, {
@@ -102,9 +95,6 @@ const parseLessonFile = async ({ fileName, fileContents }) => {
   if (!slug || slug.length < 1) {
     throw new Error(`Invalid slug generated for title "${title}" in file ${fileName}`)
   }
-
-  const content = fileContents
-  const phrases = await parsePhrasesFromLessonContent({ order, content: fileContents})
 
   console.log(`LESSON UNIT AND TOPICS, ${unit}, ${topics.join(' - ')}`)
   const lesson = {
@@ -123,9 +113,7 @@ const parseLessonFile = async ({ fileName, fileContents }) => {
 }
 
 // TODO - make this an edge function called automatically on lesson edit?
-const parsePhrasesFromLessonContent = async ({order, content}) => {
-
-  console.log(`  Parsing phrases for lesson #${order}`)
+const parsePhrasesFromLessonContent = async content => {
 
   let phraseStringObjects
   await unified()
@@ -143,17 +131,6 @@ const parsePhrasesFromLessonContent = async ({order, content}) => {
     })
     .use(remarkStringify)
     .process(content)
-
-  // for stripping out yaml frontmatter someday
-  // // https://github.com/remarkjs/remark/blob/main/packages/remark-stringify/readme.md#use
-  // let markdownContent = await unified()
-  //   .use(remarkParse)
-  //   .use(remarkFrontmatter)
-  //   .use(() => tree => filter(tree, node => node.type !== 'yaml'))
-  //   .use(remarkStringify)
-  //   .process(content)
-  // const content = String(markdownContent)
-
 
   // TODO someday - instead of making phrases an array of strings, make it an array of phrase_ids
   // const dbOrOptionsArray = phraseStringObjects.map(pso => {
@@ -196,9 +173,9 @@ const updateDatabase = async lessons => {
   console.log('  Connecting to database')
   const client = new Client({ connectionString: CONNECTION_STRING })
   await client.connect()
-  
+
   console.log('  Adding new lessons')
-    
+
   const lessonQueries = lessons.map(async lesson => {
 
     if (!Array.isArray(lesson.phrases) || !Array.isArray(lesson.topics)) {

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import JSZip from 'jszip'
 import { saveAs } from 'file-saver'
+import yaml from 'yaml'
 
 import { supabase } from '@/db/supabase'
 
@@ -34,9 +35,12 @@ export default () => {
     const lessonFiles = lessons.map(lesson => {
       const hasTopics = lesson.current_edit?.topics && lesson.current_edit?.topics.length >= 0
       const topics = hasTopics ? ` - (${lesson.current_edit?.topics.join(', ')})` : ''
+      const metadataYaml = yaml.stringify({ unit, order, title_eng, title_ita, topics })
+      const frontmatter = `---\n${metadataYaml}---\n\n`
+
       return {
         name: `Unit ${lesson.unit || 0} - #${lesson.sort_order || 0} - ${lesson.title_eng}${topics}.md`,
-        content: lesson.current_edit?.content_eng || '',
+        content: frontmatter + (lesson.current_edit?.content_eng || ''),
       }
     })
 
