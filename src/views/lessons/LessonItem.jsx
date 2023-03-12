@@ -45,7 +45,7 @@ export default () => {
         <LessonContent content={lessonEdit?.content_eng || ''} />
       </div>
       <div>
-        {lessonEdit?.topics?.map(topic => <Badge>{topic}</Badge>)}
+        {lessonEdit?.topics?.map(topic => <Badge key="topic">{topic}</Badge>)}
         <hr />
         Created {moment(lesson?.created_at).format("MMMM Do, YYYY")}
         <br />
