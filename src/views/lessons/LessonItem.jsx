@@ -18,13 +18,12 @@ export default () => {
 
   const query = supabase
     .from('lessons')
-    .select('*, current_edit(*)')
+    .select('*, current_edit(*, created_by(*)), created_by(*)')
     .eq('slug', slug)
     .single()
   const [lesson, loading, error] = useSupabaseQuery(query, [slug])
 
-  const lessonEdit = lesson?.current_edit
-
+  console.log(lesson)
   return <>
     <BreadcrumbWrapper>
       <BreadcrumbItem to={`/${langId}/lessons`}>Lessons</BreadcrumbItem>
@@ -42,14 +41,33 @@ export default () => {
 
     <TwoColumns cols="2fr 1fr">
       <div>
-        <LessonContent content={lessonEdit?.content_eng || ''} />
+        <LessonContent content={lesson?.current_edit?.content_eng || ''} />
       </div>
       <div>
-        {lessonEdit?.topics?.map(topic => <Badge key="topic">{topic}</Badge>)}
-        <hr />
-        Created {moment(lesson?.created_at).format("MMMM Do, YYYY")}
+        {lesson?.current_edit?.topics?.map(topic => <Badge key="topic">{topic}</Badge>)}
+
         <br />
-        Last edit {moment(lessonEdit?.created_at).format("MMMM Do, YYYY")}
+
+        Created {moment(lesson?.created_at).format("MMMM Do, YYYY")}
+        {' '}
+        by
+        {' '}
+        { lesson?.created_by?.username ?
+          <Link to={`/u/${lesson?.created_by.username}`}>{lesson?.created_by.username}</Link> :
+          '❌ no username'
+        }
+
+        <br />
+
+        Last edit {moment(lesson?.current_edit?.created_at).format("MMMM Do, YYYY")}
+        {' '}
+        by
+        {' '}
+        { lesson?.current_edit?.created_by?.username ?
+          <Link to={`/u/${lesson?.current_edit?.created_by.username}`}>{lesson?.current_edit?.created_by.username}</Link> :
+          '❌ no username'
+        }
+
         <br />
         <Link to={`/${langId}/lessons/${lesson?.slug}/history`}>History</Link>
         <br />

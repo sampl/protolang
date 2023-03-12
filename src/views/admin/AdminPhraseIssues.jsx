@@ -7,7 +7,7 @@ export default () => {
 
   const query = supabase
     .from('phrase_issues')
-    .select('*, phrase_id(*)')
+    .select('*, phrase_id(*), created_by(*)')
     .eq('language_id', langId)
   const [phraseIssues, loading, error] = useSupabaseQuery(query, [langId])
 
@@ -65,7 +65,10 @@ export default () => {
                 <span>{phraseIssue.comment}</span>
               </td>
               <td>
-                {phraseIssue.created_by.slice(-6)}
+                { phraseIssue.created_by?.username ?
+                  <Link to={`/u/${phraseIssue.created_by.username}`}>{phraseIssue.created_by.username}</Link> :
+                  '❌ no username'
+                }
               </td>
               <td>
                 {new Intl.DateTimeFormat('en-US').format(new Date(phraseIssue.created_at))}

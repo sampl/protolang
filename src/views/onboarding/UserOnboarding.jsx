@@ -33,13 +33,12 @@ export default ({ closeModal }) => {
           gender: genderPreference,
           languages: languagesYouSpeak,
         },
-        created_by: user.id,
       }
 
       const { error } = await supabase
-        .from('user_settings')
+        .from('user_profiles')
         .upsert(newData)
-        .eq('created_by', user.id)
+        .eq('id', user.id)
         .select()
 
       if (error) {

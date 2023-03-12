@@ -14,19 +14,14 @@ export default ({ refreshOnSet }) => {
     event.preventDefault()
     try {
       setLoading(true)
-      const updates = {
-        id: user.id,
-        created_by: user.id,
+      const update = {
         username,
       }
 
-      // TODO - don't upsert, add another trigger and make sure there is
-      // an actual profile and user for every auth account
       const { error } = await supabase
-        .from('profiles')
-        .upsert(updates, {
-          returning: 'minimal', // Don't return the value after inserting
-        })
+        .from('user_profiles')
+        .update(update)
+        .eq('id', user.id)
 
       if (error) {
         throw error

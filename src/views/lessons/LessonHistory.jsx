@@ -21,7 +21,7 @@ export default () => {
 
   const lessonEditsQuery = supabase
     .from('lesson_edits')
-    .select()
+    .select('*, created_by(*)')
     .eq('lesson_id', lesson?.id)
   const [lessonEdits, lessonEditsLoading, lessonEditsError] = useSupabaseQuery(lessonEditsQuery, [slug, lesson?.id], !lesson)
 
@@ -50,15 +50,24 @@ export default () => {
       <div>
         {
           (!lessonEdits || lessonEdits.length) <= 0 ? `There's no content for this lesson yet` : 
-          lessonEdits?.map(lessonEdit => {
-            return <div key={lessonEdit.id}>
-              <Link to={`/${langId}/lessons/${slug}/history/${lessonEdit.id}`}>
-                {lessonEdit.id || 'Unknown'} - {lessonEdit.created_by || 'No author'}
-                {' - '}
-                {new Intl.DateTimeFormat('en-US').format(new Date(lessonEdit.created_at)) || 'No timestamp'}
-              </Link>
-            </div>
-          })
+          <table>
+            {lessonEdits?.map(lessonEdit => {
+              return <tr key={lessonEdit.id}>
+                <td>
+                  <Link to={`/${langId}/lessons/${slug}/history/${lessonEdit.id}`}>{lessonEdit.id}</Link>
+                </td>
+                <td>
+                  { lessonEdit.created_by?.username ?
+                    <Link to={`/u/${lessonEdit.created_by.username}`}>{lessonEdit.created_by.username}</Link> :
+                    '❌ no username'
+                  }
+                </td>
+                <td>
+                  {new Intl.DateTimeFormat('en-US').format(new Date(lessonEdit.created_at)) || 'No timestamp'}
+                </td>
+              </tr>
+            })}
+          </table>
         }
       </div>
       {user &&

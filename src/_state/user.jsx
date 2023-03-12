@@ -41,15 +41,8 @@ export default ({ children }) => {
     // TODO - return function that unsubscribes
   }, [])
 
-  const userSettingsQuery = supabase
-    .from('user_settings')
-    .select()
-    .eq('id', user?.id)
-    .single()
-  const [useSettings, userSettingsLoading, userSettingsError] = useSupabaseQuery(userSettingsQuery, [user?.id], !user)
-
   const profileQuery = supabase
-    .from('profiles')
+    .from('user_profiles')
     .select()
     .eq('id', user?.id)
     .single()
@@ -64,7 +57,6 @@ export default ({ children }) => {
 
   const fullUser = user ? {
     ...user,
-    ...useSettings,
     ...profile,
     role,
   } : null
@@ -86,8 +78,8 @@ export default ({ children }) => {
 
   const exposed = {
     user: fullUser,
-    loading: userLoading || profileLoading || roleLoading || userSettingsLoading,
-    error: userError || profileError || roleError || userSettingsError,
+    loading: userLoading || profileLoading || roleLoading,
+    error: userError || profileError || roleError,
     login,
     logout,
     isAdmin: role?.role_type === 'admin',

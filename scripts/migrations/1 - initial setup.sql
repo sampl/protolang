@@ -7,21 +7,25 @@ BEGIN;
 
 -----------------   Users   -----------------
 
-create table user_settings (
-  id                uuid references auth.users(id) primary key,
+create table user_profiles (
+  id                uuid primary key,
 
   preferences       jsonb,
   onboarding_flags  jsonb,
 
+  username          text unique,
+  full_name         text,
+  bio               text,
+  avatar_url        text,
+
   created_at        timestamptz default now() not null,
-  updated_at        timestamptz default now() not null,
-  created_by        uuid not null references auth.users(id)
+  updated_at        timestamptz default now() not null
 );
 
 -- TODO - this reference is weird. maybe this should not be referencing the auth uuid
 create type user_role_types as enum ('admin', 'editor', 'viewer');
 create table user_roles (
-  id                uuid references auth.users(id) primary key,
+  id                uuid references user_profiles(id) primary key,
 
   -- admins can add and edit other users
   -- editors can add and edit lessons
@@ -30,28 +34,15 @@ create table user_roles (
 
   created_at        timestamptz default now() not null,
   updated_at        timestamptz default now() not null,
-  created_by        uuid not null references auth.users(id)
-);
-
-create table profiles (
-  id            uuid references auth.users(id) primary key,
-
-  username      text unique,
-  full_name     text,
-  bio           text,
-  avatar_url    text,
-
-  created_at    timestamptz default now() not null,
-  updated_at    timestamptz default now() not null,
-  created_by    uuid not null references auth.users(id)
+  created_by        uuid not null references user_profiles(id)
 );
 
 create table profile_follows (
-  profile_id        uuid references profiles(id) not null,
+  profile_id        uuid references user_profiles(id) not null,
 
   created_at        timestamptz default now() not null,
   updated_at        timestamptz default now() not null,
-  created_by        uuid not null references auth.users(id),
+  created_by        uuid not null references user_profiles(id),
 
   primary key(created_by, profile_id)
 );
@@ -77,7 +68,7 @@ create table language_votes (
 
   created_at    timestamptz default now() not null,
   updated_at    timestamptz default now() not null,
-  created_by    uuid not null references auth.users(id),
+  created_by    uuid not null references user_profiles(id),
 
   primary key(created_by, language_id)
 );
@@ -90,7 +81,7 @@ create table user_languages (
 
   created_at          timestamptz default now() not null,
   updated_at          timestamptz default now() not null,
-  created_by          uuid not null references auth.users(id)
+  created_by          uuid not null references user_profiles(id)
 );
 
 -----------------   Topics   -----------------
@@ -105,7 +96,7 @@ create table topics (
 
   created_at          timestamptz default now() not null,
   updated_at          timestamptz default now() not null,
-  created_by          uuid not null references auth.users(id)
+  created_by          uuid not null references user_profiles(id)
 );
 
 -----------------   Phrases   -----------------
@@ -123,7 +114,7 @@ create table phrases (
 
   created_at            timestamptz default now() not null,
   updated_at            timestamptz default now() not null,
-  created_by            uuid not null references auth.users(id)
+  created_by            uuid not null references user_profiles(id)
 );
 
 create table phrase_issues (
@@ -136,7 +127,7 @@ create table phrase_issues (
 
   created_at    timestamptz default now() not null,
   updated_at    timestamptz default now() not null,
-  created_by    uuid not null references auth.users(id)
+  created_by    uuid not null references user_profiles(id)
 );
 
 create table phrase_attempts (
@@ -156,7 +147,7 @@ create table phrase_attempts (
 
   created_at    timestamptz default now() not null,
   updated_at    timestamptz default now() not null,
-  created_by    uuid not null references auth.users(id)
+  created_by    uuid not null references user_profiles(id)
 );
 
 -----------------   Chats   -----------------
@@ -168,29 +159,29 @@ create table chat_messages (
   language_id       text not null references languages(id),
   content           text not null,
   sender_type       chat_message_sender_types not null,
-  sender_id         uuid references auth.users(id),
+  sender_id         uuid references user_profiles(id),
   -- TODO - which AI generated the response
 
   created_at        timestamptz default now() not null,
   updated_at        timestamptz default now() not null,
-  created_by        uuid not null references auth.users(id)
+  created_by        uuid not null references user_profiles(id)
 );
 
 -----------------  Lessons  -----------------
 
 create table lessons (
   id            bigint primary key generated always as identity,
-  slug          text unique not null,
 
   language_id   text not null references languages(id),
   title_eng     text not null,
   title_ita     text,
+  slug          text unique not null,
   sort_order    bigint,
   unit          bigint not null,
 
   created_at    timestamptz default now() not null,
   updated_at    timestamptz default now() not null,
-  created_by    uuid not null references auth.users(id)
+  created_by    uuid not null references user_profiles(id)
 );
 
 create table lesson_edits (
@@ -209,7 +200,7 @@ create table lesson_edits (
 
   created_at          timestamptz default now() not null,
   updated_at          timestamptz default now() not null,
-  created_by          uuid not null references auth.users(id)
+  created_by          uuid not null references user_profiles(id)
 );
 
 -- not good apparently: https://stackoverflow.com/questions/10446641/in-sql-is-it-ok-for-two-tables-to-refer-to-each-other
@@ -227,7 +218,7 @@ create table lists (
 
   created_at    timestamptz default now() not null,
   updated_at    timestamptz default now() not null,
-  created_by    uuid not null references auth.users(id)
+  created_by    uuid not null references user_profiles(id)
 );
 
 create table list_items (
@@ -240,7 +231,7 @@ create table list_items (
 
   created_at    timestamptz default now() not null,
   updated_at    timestamptz default now() not null,
-  created_by    uuid not null references auth.users(id)
+  created_by    uuid not null references user_profiles(id)
 );
 
 -----------------   Media   -----------------
@@ -256,7 +247,7 @@ create table media (
 
   created_at  timestamptz default now() not null,
   updated_at  timestamptz default now() not null,
-  created_by  uuid not null references auth.users(id)
+  created_by  uuid not null references user_profiles(id)
 );
 
 create table media_votes (
@@ -266,7 +257,7 @@ create table media_votes (
 
   created_at    timestamptz default now() not null,
   updated_at    timestamptz default now() not null,
-  created_by    uuid not null references auth.users(id),
+  created_by    uuid not null references user_profiles(id),
 
   primary key(created_by, media_id)
 );
@@ -282,7 +273,7 @@ create table mnemonics (
 
   created_at        timestamptz default now() not null,
   updated_at        timestamptz default now() not null,
-  created_by        uuid not null references auth.users(id)
+  created_by        uuid not null references user_profiles(id)
 );
 
 create table mnemonic_votes (
@@ -292,7 +283,7 @@ create table mnemonic_votes (
 
   created_at    timestamptz default now() not null,
   updated_at    timestamptz default now() not null,
-  created_by    uuid not null references auth.users(id),
+  created_by    uuid not null references user_profiles(id),
 
   primary key(created_by, mnemonic_id)
 );
@@ -313,22 +304,22 @@ create table migrations (
 -- This trigger automatically creates a profile entry when a new user signs up via Supabase Auth.
 -- https://supabase.com/docs/guides/auth/managing-user-data#using-triggers for more details.
 -- TODO - this is broken, doesn't hurt but doesn't work
-create function handle_new_user()
-returns trigger as $$
-begin
-  insert into public.profiles (id, full_name, avatar_url, created_by)
-  values (
-    new.id,
-    new.raw_user_meta_data->>'full_name',
-    new.raw_user_meta_data->>'avatar_url',
-    new.id
-  );
-  return new;
-end;
-$$ language plpgsql security definer;
-create trigger on_auth_user_created
-  after insert on auth.users
-  for each row execute procedure handle_new_user();
+-- create function handle_new_user()
+-- returns trigger as $$
+-- begin
+--   insert into public.user_profiles (id, full_name, avatar_url, created_by)
+--   values (
+--     new.id,
+--     new.raw_user_meta_data->>'full_name',
+--     new.raw_user_meta_data->>'avatar_url',
+--     new.id
+--   );
+--   return new;
+-- end;
+-- $$ language plpgsql security definer;
+-- create trigger on_auth_user_created
+--   after insert on auth.users
+--   for each row execute procedure handle_new_user();
 
 -------------------------------------------------
 --------------  ROW-LEVEL-SECURITY  -------------
@@ -354,29 +345,23 @@ $$;
 
 -----------------   Users   -----------------
 
-alter table user_settings enable row level security;
-create policy "Users can view their own settings, or admins"   on user_settings for select using ( auth.uid() = id or user_is_admin() );
-create policy "Users can add their own settings"               on user_settings for insert to authenticated with check (auth.uid() = id);
-create policy "Users can update their own settings"            on user_settings for update using (auth.uid() = id);
-create policy "Nobody can delete user settings"                on user_settings for delete using (false);
-
-alter table user_roles enable row level security;
-create policy "Users can view their own user role, or admins"    on user_roles for select using ( auth.uid() = id or user_is_admin() );
-create policy "Only admins can add a user role"                  on user_roles for insert to authenticated with check ( user_is_admin() );
-create policy "Only admins can update a user role"               on user_roles for update using ( user_is_admin() );
-create policy "Nobody can delete a user role"                    on user_roles for delete using (false);
-
-alter table profiles enable row level security;
-create policy "Anyone can view a profile"            on profiles for select using (true);
-create policy "Users can add their own profile"      on profiles for insert to authenticated with check (auth.uid() = created_by);
-create policy "Users can update their own profile"   on profiles for update using (auth.uid() = created_by);
-create policy "Nobody can delete a profile"          on profiles for delete using (false);
+alter table user_profiles enable row level security;
+create policy "Users can view their own profile, or admins"   on user_profiles for select using ( auth.uid() = id or user_is_admin() );
+create policy "Users can add their own profile"               on user_profiles for insert to authenticated with check (auth.uid() = id);
+create policy "Users can update their own profile"            on user_profiles for update using (auth.uid() = id);
+create policy "Nobody can delete user profile"                on user_profiles for delete using (false);
 
 alter table profile_follows enable row level security;
 create policy "Anyone can view a profile follow"            on profile_follows for select using (true);
 create policy "Users can add their own profile follow"      on profile_follows for insert to authenticated with check (auth.uid() = created_by);
 create policy "Users can update their own profile follow"   on profile_follows for update using (auth.uid() = created_by);
 create policy "Users can delete their own profile follow"   on profile_follows for delete using (auth.uid() = created_by);
+
+alter table user_roles enable row level security;
+create policy "Users can view their own user role, or admins"    on user_roles for select using ( auth.uid() = id or user_is_admin() );
+create policy "Only admins can add a user role"                  on user_roles for insert to authenticated with check ( user_is_admin() );
+create policy "Only admins can update a user role"               on user_roles for update using ( user_is_admin() );
+create policy "Nobody can delete a user role"                    on user_roles for delete using (false);
 
 ----------------- Languages -----------------
 
@@ -516,9 +501,8 @@ create extension if not exists moddatetime schema extensions;
 -- keep updated_at timestamps up to date on all tables
 -- https://github.com/supabase/supabase/issues/379#issuecomment-755289862
 -- TODO - also do updated_by? created_at? created_by?
-create trigger keep_user_settings_updated       before update on user_settings      for each row execute procedure moddatetime (updated_at);
+create trigger keep_user_profiles_updated       before update on user_profiles      for each row execute procedure moddatetime (updated_at);
 create trigger keep_user_roles_updated          before update on user_roles         for each row execute procedure moddatetime (updated_at);
-create trigger keep_profiles_updated            before update on profiles           for each row execute procedure moddatetime (updated_at);
 create trigger keep_profile_follows_updated     before update on profile_follows    for each row execute procedure moddatetime (updated_at);
 create trigger keep_languages_updated           before update on languages          for each row execute procedure moddatetime (updated_at);
 create trigger keep_language_votes_updated      before update on language_votes     for each row execute procedure moddatetime (updated_at);

@@ -9,7 +9,7 @@ export default () => {
 
   const query = supabase
     .from('lessons')
-    .select('*, current_edit(*)')
+    .select('*, current_edit(*), created_by(*)')
     .eq('language_id', langId)
     .order('sort_order',  { ascending: true })
 
@@ -78,7 +78,7 @@ export default () => {
         <tr>
           <th>ID</th>
           <th>Title</th>
-          <th>Title Ita (coming soon)</th>
+          <th>Title Ita</th>
           <th>Slug</th>
           <th>Unit</th>
           <th>Sort order</th>
@@ -132,7 +132,10 @@ export default () => {
                 {lesson.current_edit?.content_eng?.length || 0}
               </td>
               <td>
-                {lesson.created_by.slice(-6)}
+                { lesson.created_by?.username ?
+                  <Link to={`/u/${lesson.created_by.username}`}>{lesson.created_by.username}</Link> :
+                  '❌ no username'
+                }
               </td>
               <td>
                 {new Intl.DateTimeFormat('en-US').format(new Date(lesson.created_at))}

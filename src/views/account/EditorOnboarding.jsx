@@ -27,9 +27,9 @@ export default () => {
       }
 
       const { error } = await supabase
-        .from('user_settings')
+        .from('user_profiles')
         .update(newData)
-        .eq('created_by', user.id)
+        .eq('id', user.id)
 
       if (error) {
         throw error

@@ -7,7 +7,7 @@ export default () => {
 
   const query = supabase
     .from('lesson_edits')
-    .select('*, lesson_id(*)')
+    .select('*, lesson_id(*), created_by(*)')
     .eq('language_id', langId)
 
   const [lessonEdits, loading, error] = useSupabaseQuery(query, [langId])
@@ -53,7 +53,10 @@ export default () => {
                 {lessonEdit.lesson_id?.title_ita || ''}
               </td>
               <td>
-                {lessonEdit?.created_by?.slice(-6)}
+                { lessonEdit.created_by?.username ?
+                  <Link to={`/u/${lessonEdit.created_by.username}`}>{lessonEdit.created_by.username}</Link> :
+                  '❌ no username'
+                }
               </td>
               <td>
                 {new Intl.DateTimeFormat('en-US').format(new Date(lessonEdit.created_at))}

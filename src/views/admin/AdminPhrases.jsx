@@ -13,7 +13,7 @@ export default () => {
 
   const query = supabase
     .from('phrases')
-    .select()
+    .select('*, created_by(*)')
     .eq('language_id', langId)
   const [phrases, loading, error] = useSupabaseQuery(query, [langId])
 
@@ -77,7 +77,10 @@ export default () => {
                 {!phrase.content_eng_alts ? '' : phrase.content_eng_alts.join('\n')}
               </td>
               <td>
-                {phrase.created_by.slice(-6)}
+                { phrase.created_by?.username ?
+                  <Link to={`/u/${phrase.created_by.username}`}>{phrase.created_by.username}</Link> :
+                  '❌ no username'
+                }
               </td>
               <td>
                 {new Intl.DateTimeFormat('en-US').format(new Date(phrase.created_at))}

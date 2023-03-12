@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { BreadcrumbItem, BreadcrumbSeparator, BreadcrumbWrapper } from '@/styles/Breadcrumbs'
 import moment from 'moment'
 import * as Diff from 'diff'
@@ -21,7 +21,7 @@ export default () => {
 
   const lessonEditQuery = supabase
     .from('lesson_edits')
-    .select()
+    .select('*, created_by(*)')
     .eq('id', editId)
     .single()
   const [lessonEdit, lessonEditLoading, lessonEditError] = useSupabaseQuery(lessonEditQuery)
@@ -57,7 +57,14 @@ export default () => {
     </BreadcrumbWrapper>
 
     <h1>Edit #{lessonEdit?.id}</h1>
-    Created {moment(lessonEdit?.created_at).format("MMMM Do, YYYY")} by {lessonEdit?.created_by}
+    Created {moment(lessonEdit?.created_at).format("MMMM Do, YYYY")}
+    {' '}
+    by
+    {' '}
+    { lessonEdit.created_by?.username ?
+      <Link to={`/u/${lessonEdit.created_by.username}`}>{lessonEdit.created_by.username}</Link> :
+      '❌ no username'
+    }
 
     <hr />
 

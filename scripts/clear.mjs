@@ -54,6 +54,8 @@ const clearSql = `
   drop table if exists public.user_roles;
   drop trigger if exists on_auth_user_created on auth.users;
 
+  drop table if exists public.user_profiles;
+
   drop function if exists public.handle_new_user;
   drop function if exists public.user_is_admin;
   drop function if exists public.user_admin_row;
